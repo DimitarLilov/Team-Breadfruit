@@ -32,7 +32,7 @@
             this.botCheck = new System.Windows.Forms.Button();
             this.botCall = new System.Windows.Forms.Button();
             this.botRaise = new System.Windows.Forms.Button();
-            this.pbTimer = new System.Windows.Forms.ProgressBar();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.tbChips = new System.Windows.Forms.TextBox();
             this.bAdd = new System.Windows.Forms.Button();
             this.tbAdd = new System.Windows.Forms.TextBox();
@@ -47,12 +47,12 @@
             this.tbSB = new System.Windows.Forms.TextBox();
             this.bSB = new System.Windows.Forms.Button();
             this.tbBB = new System.Windows.Forms.TextBox();
-            this.b5Status = new System.Windows.Forms.Label();
-            this.b4Status = new System.Windows.Forms.Label();
-            this.b3Status = new System.Windows.Forms.Label();
-            this.b1Status = new System.Windows.Forms.Label();
+            this.botFiveStatus = new System.Windows.Forms.Label();
+            this.botFourStatus = new System.Windows.Forms.Label();
+            this.botThreeStatus = new System.Windows.Forms.Label();
+            this.botOneStatus = new System.Windows.Forms.Label();
             this.pStatus = new System.Windows.Forms.Label();
-            this.b2Status = new System.Windows.Forms.Label();
+            this.botTwoStatus = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbRaise = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -105,16 +105,16 @@
             this.botRaise.UseVisualStyleBackColor = true;
             this.botRaise.Click += new System.EventHandler(this.bRaise_Click);
             // 
-            // pbTimer
+            // progressBar
             // 
-            this.pbTimer.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.pbTimer.BackColor = System.Drawing.SystemColors.Control;
-            this.pbTimer.Location = new System.Drawing.Point(335, 631);
-            this.pbTimer.Maximum = 1000;
-            this.pbTimer.Name = "pbTimer";
-            this.pbTimer.Size = new System.Drawing.Size(667, 23);
-            this.pbTimer.TabIndex = 5;
-            this.pbTimer.Value = 1000;
+            this.progressBar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.progressBar.BackColor = System.Drawing.SystemColors.Control;
+            this.progressBar.Location = new System.Drawing.Point(335, 631);
+            this.progressBar.Maximum = 1000;
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(667, 23);
+            this.progressBar.TabIndex = 5;
+            this.progressBar.Value = 1000;
             // 
             // tbChips
             // 
@@ -251,37 +251,37 @@
             this.tbBB.TabIndex = 19;
             this.tbBB.Text = "500";
             // 
-            // b5Status
+            // botFiveStatus
             // 
-            this.b5Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.b5Status.Location = new System.Drawing.Point(1012, 579);
-            this.b5Status.Name = "b5Status";
-            this.b5Status.Size = new System.Drawing.Size(152, 32);
-            this.b5Status.TabIndex = 26;
+            this.botFiveStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.botFiveStatus.Location = new System.Drawing.Point(1012, 579);
+            this.botFiveStatus.Name = "botFiveStatus";
+            this.botFiveStatus.Size = new System.Drawing.Size(152, 32);
+            this.botFiveStatus.TabIndex = 26;
             // 
-            // b4Status
+            // botFourStatus
             // 
-            this.b4Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.b4Status.Location = new System.Drawing.Point(970, 107);
-            this.b4Status.Name = "b4Status";
-            this.b4Status.Size = new System.Drawing.Size(123, 32);
-            this.b4Status.TabIndex = 27;
+            this.botFourStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.botFourStatus.Location = new System.Drawing.Point(970, 107);
+            this.botFourStatus.Name = "botFourStatus";
+            this.botFourStatus.Size = new System.Drawing.Size(123, 32);
+            this.botFourStatus.TabIndex = 27;
             // 
-            // b3Status
+            // botThreeStatus
             // 
-            this.b3Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.b3Status.Location = new System.Drawing.Point(755, 107);
-            this.b3Status.Name = "b3Status";
-            this.b3Status.Size = new System.Drawing.Size(125, 32);
-            this.b3Status.TabIndex = 28;
+            this.botThreeStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.botThreeStatus.Location = new System.Drawing.Point(755, 107);
+            this.botThreeStatus.Name = "botThreeStatus";
+            this.botThreeStatus.Size = new System.Drawing.Size(125, 32);
+            this.botThreeStatus.TabIndex = 28;
             // 
-            // b1Status
+            // botOneStatus
             // 
-            this.b1Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.b1Status.Location = new System.Drawing.Point(181, 579);
-            this.b1Status.Name = "b1Status";
-            this.b1Status.Size = new System.Drawing.Size(142, 32);
-            this.b1Status.TabIndex = 29;
+            this.botOneStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.botOneStatus.Location = new System.Drawing.Point(181, 579);
+            this.botOneStatus.Name = "botOneStatus";
+            this.botOneStatus.Size = new System.Drawing.Size(142, 32);
+            this.botOneStatus.TabIndex = 29;
             // 
             // pStatus
             // 
@@ -291,12 +291,12 @@
             this.pStatus.Size = new System.Drawing.Size(163, 32);
             this.pStatus.TabIndex = 30;
             // 
-            // b2Status
+            // botTwoStatus
             // 
-            this.b2Status.Location = new System.Drawing.Point(276, 107);
-            this.b2Status.Name = "b2Status";
-            this.b2Status.Size = new System.Drawing.Size(133, 32);
-            this.b2Status.TabIndex = 31;
+            this.botTwoStatus.Location = new System.Drawing.Point(276, 107);
+            this.botTwoStatus.Name = "botTwoStatus";
+            this.botTwoStatus.Size = new System.Drawing.Size(133, 32);
+            this.botTwoStatus.TabIndex = 31;
             // 
             // label1
             // 
@@ -325,12 +325,12 @@
             this.ClientSize = new System.Drawing.Size(1350, 729);
             this.Controls.Add(this.tbRaise);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.b2Status);
+            this.Controls.Add(this.botTwoStatus);
             this.Controls.Add(this.pStatus);
-            this.Controls.Add(this.b1Status);
-            this.Controls.Add(this.b3Status);
-            this.Controls.Add(this.b4Status);
-            this.Controls.Add(this.b5Status);
+            this.Controls.Add(this.botOneStatus);
+            this.Controls.Add(this.botThreeStatus);
+            this.Controls.Add(this.botFourStatus);
+            this.Controls.Add(this.botFiveStatus);
             this.Controls.Add(this.tbBB);
             this.Controls.Add(this.bSB);
             this.Controls.Add(this.tbSB);
@@ -345,7 +345,7 @@
             this.Controls.Add(this.tbAdd);
             this.Controls.Add(this.bAdd);
             this.Controls.Add(this.tbChips);
-            this.Controls.Add(this.pbTimer);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.botRaise);
             this.Controls.Add(this.botCall);
             this.Controls.Add(this.botCheck);
@@ -365,7 +365,7 @@
         private System.Windows.Forms.Button botCheck;
         private System.Windows.Forms.Button botCall;
         private System.Windows.Forms.Button botRaise;
-        private System.Windows.Forms.ProgressBar pbTimer;
+        private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.TextBox tbChips;
         private System.Windows.Forms.Button bAdd;
         private System.Windows.Forms.TextBox tbAdd;
@@ -380,12 +380,12 @@
         private System.Windows.Forms.TextBox tbSB;
         private System.Windows.Forms.Button bSB;
         private System.Windows.Forms.TextBox tbBB;
-        private System.Windows.Forms.Label b5Status;
-        private System.Windows.Forms.Label b4Status;
-        private System.Windows.Forms.Label b3Status;
-        private System.Windows.Forms.Label b1Status;
+        private System.Windows.Forms.Label botFiveStatus;
+        private System.Windows.Forms.Label botFourStatus;
+        private System.Windows.Forms.Label botThreeStatus;
+        private System.Windows.Forms.Label botOneStatus;
         private System.Windows.Forms.Label pStatus;
-        private System.Windows.Forms.Label b2Status;
+        private System.Windows.Forms.Label botTwoStatus;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbRaise;
 

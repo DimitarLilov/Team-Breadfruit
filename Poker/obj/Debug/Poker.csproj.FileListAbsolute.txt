@@ -18,3 +18,13 @@ E:\KPK Teamwork\Team-Breadfruit-\Poker\obj\Debug\Poker.AddChips.resources
 E:\KPK Teamwork\Team-Breadfruit-\Poker\obj\Debug\Poker.Form1.resources
 E:\KPK Teamwork\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.Resources.resources
 E:\KPK Teamwork\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\bin\Debug\Poker.exe.config
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.exe
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.pdb
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\bin\Debug\Poker.exe
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\bin\Debug\Poker.pdb
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.AddChips.resources
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.Form1.resources
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.Resources.resources
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache

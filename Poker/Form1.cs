@@ -30,6 +30,7 @@ namespace Poker
         private int callChipsValue = 500;
         private int foldedPlayers = 5;
         private int chips = 10000;
+        private int DefaultTableTotalCards = 17;
 
         public const int DefaultStartingChips = 10000;
 
@@ -199,6 +200,7 @@ namespace Poker
             tbRaise.Text = (bigBlind * 2).ToString();
         }
 
+        #region Shuffle
         //TODO straighten up the cohesion and loose the coupling
         async Task Shuffle()
         {
@@ -284,7 +286,7 @@ namespace Poker
         private async Task DealOutCards(int horizontal, int vertical, bool isCardOnTheTable, Bitmap backImage)
         {
 
-            for (dealtCards = 0; dealtCards < 17; dealtCards++)
+            for (dealtCards = 0; dealtCards < DefaultTableTotalCards; dealtCards++)
             {
                 Deck[dealtCards] = Image.FromFile(ImgLocation[dealtCards]);
                 //remove file location and extension
@@ -637,6 +639,9 @@ namespace Poker
         }
         #endregion
 
+        #endregion
+
+
         async Task Turns()
         {
             #region Rotating
@@ -646,8 +651,8 @@ namespace Poker
                 {
                     FixCall(pStatus, ref playerCall, ref playerRaise, 1);
                     //MessageBox.Show("Player's Turn");
-                    pbTimer.Visible = true;
-                    pbTimer.Value = 1000;
+                    progressBar.Visible = true;
+                    progressBar.Value = 1000;
                     t = 60;
 
                     timer.Start();
@@ -674,7 +679,7 @@ namespace Poker
                     }
                 }
                 await CheckRaise(0, 0);
-                pbTimer.Visible = false;
+                progressBar.Visible = false;
                 botRaise.Enabled = false;
                 botCall.Enabled = false;
                 botRaise.Enabled = false;
@@ -688,11 +693,11 @@ namespace Poker
                 {
                     if (botOneTurn)
                     {
-                        FixCall(b1Status, ref botOneCall, ref botOneRaise, 1);
-                        FixCall(b1Status, ref botOneCall, ref botOneRaise, 2);
+                        FixCall(botOneStatus, ref botOneCall, ref botOneRaise, 1);
+                        FixCall(botOneStatus, ref botOneCall, ref botOneRaise, 2);
                         Rules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
                         MessageBox.Show("Bot 1's Turn");
-                        AI(2, 3, ref bot1Chips, ref botOneTurn, ref hasBotOneBankrupted, b1Status, 0, botOnePower, botOneType);
+                        AI(2, 3, ref bot1Chips, ref botOneTurn, ref hasBotOneBankrupted, botOneStatus, 0, botOnePower, botOneType);
                         turnCount++;
                         last = 1;
                         botOneTurn = false;
@@ -715,11 +720,11 @@ namespace Poker
                 {
                     if (botTwoTurn)
                     {
-                        FixCall(b2Status, ref botTwoCall, ref botTwoRaise, 1);
-                        FixCall(b2Status, ref botTwoCall, ref botTwoRaise, 2);
+                        FixCall(botTwoStatus, ref botTwoCall, ref botTwoRaise, 1);
+                        FixCall(botTwoStatus, ref botTwoCall, ref botTwoRaise, 2);
                         Rules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
                         MessageBox.Show("Bot 2's Turn");
-                        AI(4, 5, ref bot2Chips, ref botTwoTurn, ref hasBotTwoBankrupted, b2Status, 1, botTwoPower, botTwoType);
+                        AI(4, 5, ref bot2Chips, ref botTwoTurn, ref hasBotTwoBankrupted, botTwoStatus, 1, botTwoPower, botTwoType);
                         turnCount++;
                         last = 2;
                         botTwoTurn = false;
@@ -742,11 +747,11 @@ namespace Poker
                 {
                     if (botThreeTurn)
                     {
-                        FixCall(b3Status, ref botThreeCall, ref botThreeRaise, 1);
-                        FixCall(b3Status, ref botThreeCall, ref botThreeRaise, 2);
+                        FixCall(botThreeStatus, ref botThreeCall, ref botThreeRaise, 1);
+                        FixCall(botThreeStatus, ref botThreeCall, ref botThreeRaise, 2);
                         Rules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
                         MessageBox.Show("Bot 3's Turn");
-                        AI(6, 7, ref bot3Chips, ref botThreeTurn, ref hasBotThreeBankrupted, b3Status, 2, botThreePower, botThreeType);
+                        AI(6, 7, ref bot3Chips, ref botThreeTurn, ref hasBotThreeBankrupted, botThreeStatus, 2, botThreePower, botThreeType);
                         turnCount++;
                         last = 3;
                         botThreeTurn = false;
@@ -769,11 +774,11 @@ namespace Poker
                 {
                     if (botFourTurn)
                     {
-                        FixCall(b4Status, ref botFourCall, ref botFourRaise, 1);
-                        FixCall(b4Status, ref botFourCall, ref botFourRaise, 2);
+                        FixCall(botFourStatus, ref botFourCall, ref botFourRaise, 1);
+                        FixCall(botFourStatus, ref botFourCall, ref botFourRaise, 2);
                         Rules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
                         MessageBox.Show("Bot 4's Turn");
-                        AI(8, 9, ref bot4Chips, ref botFourTurn, ref hasBotFourBankrupted, b4Status, 3, botFourPower, botFourType);
+                        AI(8, 9, ref bot4Chips, ref botFourTurn, ref hasBotFourBankrupted, botFourStatus, 3, botFourPower, botFourType);
                         turnCount++;
                         last = 4;
                         botFourTurn = false;
@@ -796,11 +801,11 @@ namespace Poker
                 {
                     if (botFiveTurn)
                     {
-                        FixCall(b5Status, ref botFiveCall, ref botFiveRaise, 1);
-                        FixCall(b5Status, ref botFiveCall, ref botFiveRaise, 2);
+                        FixCall(botFiveStatus, ref botFiveCall, ref botFiveRaise, 1);
+                        FixCall(botFiveStatus, ref botFiveCall, ref botFiveRaise, 2);
                         Rules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
                         MessageBox.Show("Bot 5's Turn");
-                        AI(10, 11, ref bot5Chips, ref botFiveTurn, ref hasBotFiveBankrupted, b5Status, 4, botFivePower, botFiveType);
+                        AI(10, 11, ref bot5Chips, ref botFiveTurn, ref hasBotFiveBankrupted, botFiveStatus, 4, botFivePower, botFiveType);
                         turnCount++;
                         last = 5;
                         botFiveTurn = false;
@@ -2026,15 +2031,15 @@ namespace Poker
                         if (!hasPlayerBankrupted)
                             pStatus.Text = "";
                         if (!hasBotOneBankrupted)
-                            b1Status.Text = "";
+                            botOneStatus.Text = "";
                         if (!hasBotTwoBankrupted)
-                            b2Status.Text = "";
+                            botTwoStatus.Text = "";
                         if (!hasBotThreeBankrupted)
-                            b3Status.Text = "";
+                            botThreeStatus.Text = "";
                         if (!hasBotFourBankrupted)
-                            b4Status.Text = "";
+                            botFourStatus.Text = "";
                         if (!hasBotFiveBankrupted)
-                            b5Status.Text = "";
+                            botFiveStatus.Text = "";
                     }
                 }
             }
@@ -2094,27 +2099,27 @@ namespace Poker
                     fixedLast = "Player";
                     Rules(0, 1, ref playerType, ref playerPower, hasPlayerBankrupted);
                 }
-                if (!b1Status.Text.Contains("Fold"))
+                if (!botOneStatus.Text.Contains("Fold"))
                 {
                     fixedLast = "Bot 1";
                     Rules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
                 }
-                if (!b2Status.Text.Contains("Fold"))
+                if (!botTwoStatus.Text.Contains("Fold"))
                 {
                     fixedLast = "Bot 2";
                     Rules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
                 }
-                if (!b3Status.Text.Contains("Fold"))
+                if (!botThreeStatus.Text.Contains("Fold"))
                 {
                     fixedLast = "Bot 3";
                     Rules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
                 }
-                if (!b4Status.Text.Contains("Fold"))
+                if (!botFourStatus.Text.Contains("Fold"))
                 {
                     fixedLast = "Bot 4";
                     Rules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
                 }
-                if (!b5Status.Text.Contains("Fold"))
+                if (!botFiveStatus.Text.Contains("Fold"))
                 {
                     fixedLast = "Bot 5";
                     Rules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
@@ -2405,11 +2410,11 @@ namespace Poker
             t = 60;
             turnCount = 0;
             pStatus.Text = "";
-            b1Status.Text = "";
-            b2Status.Text = "";
-            b3Status.Text = "";
-            b4Status.Text = "";
-            b5Status.Text = "";
+            botOneStatus.Text = "";
+            botTwoStatus.Text = "";
+            botThreeStatus.Text = "";
+            botFourStatus.Text = "";
+            botFiveStatus.Text = "";
             if (chips <= 0)
             {
                 AddChips f2 = new AddChips();
@@ -2452,27 +2457,27 @@ namespace Poker
                 fixedLast = "Player";
                 Rules(0, 1, ref playerType, ref playerPower, hasPlayerBankrupted);
             }
-            if (!b1Status.Text.Contains("Fold"))
+            if (!botOneStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Bot 1";
                 Rules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
             }
-            if (!b2Status.Text.Contains("Fold"))
+            if (!botTwoStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Bot 2";
                 Rules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
             }
-            if (!b3Status.Text.Contains("Fold"))
+            if (!botThreeStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Bot 3";
                 Rules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
             }
-            if (!b4Status.Text.Contains("Fold"))
+            if (!botFourStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Bot 4";
                 Rules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
             }
-            if (!b5Status.Text.Contains("Fold"))
+            if (!botFiveStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Bot 5";
                 Rules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
@@ -2918,7 +2923,7 @@ namespace Poker
         #region UI
         private async void timer_Tick(object sender, object e)
         {
-            if (pbTimer.Value <= 0)
+            if (progressBar.Value <= 0)
             {
                 hasPlayerBankrupted = true;
                 await Turns();
@@ -2926,7 +2931,7 @@ namespace Poker
             if (t > 0)
             {
                 t--;
-                pbTimer.Value = (t / 6) * 100;
+                progressBar.Value = (t / 6) * 100;
             }
         }
 
