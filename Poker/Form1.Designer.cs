@@ -8,7 +8,7 @@
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Clean DefaultMaximumMoney any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.bFold = new System.Windows.Forms.Button();
-            this.bCheck = new System.Windows.Forms.Button();
-            this.bCall = new System.Windows.Forms.Button();
-            this.bRaise = new System.Windows.Forms.Button();
+            this.botFold = new System.Windows.Forms.Button();
+            this.botCheck = new System.Windows.Forms.Button();
+            this.botCall = new System.Windows.Forms.Button();
+            this.botRaise = new System.Windows.Forms.Button();
             this.pbTimer = new System.Windows.Forms.ProgressBar();
             this.tbChips = new System.Windows.Forms.TextBox();
             this.bAdd = new System.Windows.Forms.Button();
@@ -57,53 +57,53 @@
             this.tbRaise = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // bFold
+            // botFold
             // 
-            this.bFold.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.bFold.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bFold.Location = new System.Drawing.Point(335, 660);
-            this.bFold.Name = "bFold";
-            this.bFold.Size = new System.Drawing.Size(130, 62);
-            this.bFold.TabIndex = 0;
-            this.bFold.Text = "Fold";
-            this.bFold.UseVisualStyleBackColor = true;
-            this.bFold.Click += new System.EventHandler(this.bFold_Click);
+            this.botFold.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.botFold.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.botFold.Location = new System.Drawing.Point(335, 660);
+            this.botFold.Name = "botFold";
+            this.botFold.Size = new System.Drawing.Size(130, 62);
+            this.botFold.TabIndex = 0;
+            this.botFold.Text = "Fold";
+            this.botFold.UseVisualStyleBackColor = true;
+            this.botFold.Click += new System.EventHandler(this.bFold_Click);
             // 
-            // bCheck
+            // botCheck
             // 
-            this.bCheck.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.bCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bCheck.Location = new System.Drawing.Point(494, 660);
-            this.bCheck.Name = "bCheck";
-            this.bCheck.Size = new System.Drawing.Size(134, 62);
-            this.bCheck.TabIndex = 2;
-            this.bCheck.Text = "Check";
-            this.bCheck.UseVisualStyleBackColor = true;
-            this.bCheck.Click += new System.EventHandler(this.bCheck_Click);
+            this.botCheck.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.botCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.botCheck.Location = new System.Drawing.Point(494, 660);
+            this.botCheck.Name = "botCheck";
+            this.botCheck.Size = new System.Drawing.Size(134, 62);
+            this.botCheck.TabIndex = 2;
+            this.botCheck.Text = "Check";
+            this.botCheck.UseVisualStyleBackColor = true;
+            this.botCheck.Click += new System.EventHandler(this.bCheck_Click);
             // 
-            // bCall
+            // botCall
             // 
-            this.bCall.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.bCall.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bCall.Location = new System.Drawing.Point(667, 661);
-            this.bCall.Name = "bCall";
-            this.bCall.Size = new System.Drawing.Size(126, 62);
-            this.bCall.TabIndex = 3;
-            this.bCall.Text = "Call";
-            this.bCall.UseVisualStyleBackColor = true;
-            this.bCall.Click += new System.EventHandler(this.bCall_Click);
+            this.botCall.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.botCall.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.botCall.Location = new System.Drawing.Point(667, 661);
+            this.botCall.Name = "botCall";
+            this.botCall.Size = new System.Drawing.Size(126, 62);
+            this.botCall.TabIndex = 3;
+            this.botCall.Text = "Call";
+            this.botCall.UseVisualStyleBackColor = true;
+            this.botCall.Click += new System.EventHandler(this.bCall_Click);
             // 
-            // bRaise
+            // botRaise
             // 
-            this.bRaise.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.bRaise.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bRaise.Location = new System.Drawing.Point(835, 661);
-            this.bRaise.Name = "bRaise";
-            this.bRaise.Size = new System.Drawing.Size(124, 62);
-            this.bRaise.TabIndex = 4;
-            this.bRaise.Text = "raise";
-            this.bRaise.UseVisualStyleBackColor = true;
-            this.bRaise.Click += new System.EventHandler(this.bRaise_Click);
+            this.botRaise.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.botRaise.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.botRaise.Location = new System.Drawing.Point(835, 661);
+            this.botRaise.Name = "botRaise";
+            this.botRaise.Size = new System.Drawing.Size(124, 62);
+            this.botRaise.TabIndex = 4;
+            this.botRaise.Text = "Raise";
+            this.botRaise.UseVisualStyleBackColor = true;
+            this.botRaise.Click += new System.EventHandler(this.bRaise_Click);
             // 
             // pbTimer
             // 
@@ -346,10 +346,10 @@
             this.Controls.Add(this.bAdd);
             this.Controls.Add(this.tbChips);
             this.Controls.Add(this.pbTimer);
-            this.Controls.Add(this.bRaise);
-            this.Controls.Add(this.bCall);
-            this.Controls.Add(this.bCheck);
-            this.Controls.Add(this.bFold);
+            this.Controls.Add(this.botRaise);
+            this.Controls.Add(this.botCall);
+            this.Controls.Add(this.botCheck);
+            this.Controls.Add(this.botFold);
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "GLS Texas Poker";
@@ -361,10 +361,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button bFold;
-        private System.Windows.Forms.Button bCheck;
-        private System.Windows.Forms.Button bCall;
-        private System.Windows.Forms.Button bRaise;
+        private System.Windows.Forms.Button botFold;
+        private System.Windows.Forms.Button botCheck;
+        private System.Windows.Forms.Button botCall;
+        private System.Windows.Forms.Button botRaise;
         private System.Windows.Forms.ProgressBar pbTimer;
         private System.Windows.Forms.TextBox tbChips;
         private System.Windows.Forms.Button bAdd;

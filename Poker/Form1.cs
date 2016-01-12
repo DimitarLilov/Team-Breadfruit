@@ -41,7 +41,7 @@ namespace Poker
         private double botFivePower;
         private double playerPower = 0;
         private double playerType = -1;
-        double raise = 0;
+        double Raise = 0;
 
         private double botOneType = -1;
         private double botTwoType = -1;
@@ -134,9 +134,9 @@ namespace Poker
 
         private int t = 60;
         private int i = 0;
-        private int bb = 500;
-        private int sb = 250;
-        private int up = 10000000;
+        private int bigBlind = 500;
+        private int smallBlind = 250;
+        private int DefaultMaximumMoney = 10000000;
         private int turnCount = 0;
 
         #endregion
@@ -144,7 +144,7 @@ namespace Poker
         {
             //listOfBooleans.Add(PFturn); listOfBooleans.Add(B1Fturn); listOfBooleans.Add(B2Fturn); listOfBooleans.Add(B3Fturn); listOfBooleans.Add(B4Fturn); listOfBooleans.Add(B5Fturn);
 
-            callChipsValue = bb;
+            callChipsValue = bigBlind;
             MaximizeBox = false;
             MinimizeBox = false;
             Updates.Start();
@@ -181,7 +181,7 @@ namespace Poker
             tbSB.Visible = false;
             bBB.Visible = false;
             bSB.Visible = false;
-            tbRaise.Text = (bb * 2).ToString();
+            tbRaise.Text = (bigBlind * 2).ToString();
         }
 
         async Task Shuffle()
@@ -193,10 +193,10 @@ namespace Poker
             listOfBooleans.Add(B4Fturn);
             listOfBooleans.Add(B5Fturn);
 
-            bCall.Enabled = false;
-            bRaise.Enabled = false;
-            bFold.Enabled = false;
-            bCheck.Enabled = false;
+            botCall.Enabled = false;
+            botRaise.Enabled = false;
+            botFold.Enabled = false;
+            botCheck.Enabled = false;
             MaximizeBox = false;
             MinimizeBox = false;
 
@@ -566,11 +566,11 @@ namespace Poker
             }
             if (i == 17)
             {
-                bRaise.Enabled = true;
-                bCall.Enabled = true;
-                bRaise.Enabled = true;
-                bRaise.Enabled = true;
-                bFold.Enabled = true;
+                botRaise.Enabled = true;
+                botCall.Enabled = true;
+                botRaise.Enabled = true;
+                botRaise.Enabled = true;
+                botFold.Enabled = true;
             }
         }
 
@@ -586,13 +586,13 @@ namespace Poker
                     pbTimer.Visible = true;
                     pbTimer.Value = 1000;
                     t = 60;
-                    up = 10000000;
+                    
                     timer.Start();
-                    bRaise.Enabled = true;
-                    bCall.Enabled = true;
-                    bRaise.Enabled = true;
-                    bRaise.Enabled = true;
-                    bFold.Enabled = true;
+                    botRaise.Enabled = true;
+                    botCall.Enabled = true;
+                    botRaise.Enabled = true;
+                    botRaise.Enabled = true;
+                    botFold.Enabled = true;
                     turnCount++;
                     FixCall(pStatus, ref playerCall, ref playerRaise, 2);
                 }
@@ -602,7 +602,7 @@ namespace Poker
                 await AllIn();
                 if (PFturn && !pFolded)
                 {
-                    if (bCall.Text.Contains("All in") == false || bRaise.Text.Contains("All in") == false)
+                    if (botCall.Text.Contains("All in") == false || botRaise.Text.Contains("All in") == false)
                     {
                         listOfBooleans.RemoveAt(0);
                         listOfBooleans.Insert(0, null);
@@ -612,11 +612,11 @@ namespace Poker
                 }
                 await CheckRaise(0, 0);
                 pbTimer.Visible = false;
-                bRaise.Enabled = false;
-                bCall.Enabled = false;
-                bRaise.Enabled = false;
-                bRaise.Enabled = false;
-                bFold.Enabled = false;
+                botRaise.Enabled = false;
+                botCall.Enabled = false;
+                botRaise.Enabled = false;
+                botRaise.Enabled = false;
+                botFold.Enabled = false;
 
                 timer.Stop();
 
@@ -757,7 +757,7 @@ namespace Poker
                 }
                 if (PFturn && !pFolded)
                 {
-                    if (bCall.Text.Contains("All in") == false || bRaise.Text.Contains("All in") == false)
+                    if (botCall.Text.Contains("All in") == false || botRaise.Text.Contains("All in") == false)
                     {
                         listOfBooleans.RemoveAt(0);
                         listOfBooleans.Insert(0, null);
@@ -1955,7 +1955,7 @@ namespace Poker
                     {
                         changed = false;
                         turnCount = 0;
-                        raise = 0;
+                        Raise = 0;
                         callChipsValue = 0;
                         raisedTurn = 123;
                         rounds++;
@@ -2083,10 +2083,10 @@ namespace Poker
                         DefaultStartingChips += f2.a;
                         PFturn = false;
                         playerTurn = true;
-                        bRaise.Enabled = true;
-                        bFold.Enabled = true;
-                        bCheck.Enabled = true;
-                        bRaise.Text = "raise";
+                        botRaise.Enabled = true;
+                        botFold.Enabled = true;
+                        botCheck.Enabled = true;
+                        botRaise.Text = "Raise";
                     }
                 }
                 pPanel.Visible = false; botOnePanel.Visible = false; botTwoPanel.Visible = false; botThreePanel.Visible = false; botFourPanel.Visible = false; botFivePanel.Visible = false;
@@ -2097,8 +2097,8 @@ namespace Poker
                 botFourCall = 0; botFourRaise = 0;
                 botFiveCall = 0; botFiveRaise = 0;
                 last = 0;
-                callChipsValue = bb;
-                raise = 0;
+                callChipsValue = bigBlind;
+                Raise = 0;
                 ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
                 listOfBooleans.Clear();
                 rounds = 0;
@@ -2129,7 +2129,7 @@ namespace Poker
             {
                 if (options == 1)
                 {
-                    if (status.Text.Contains("raise"))
+                    if (status.Text.Contains("Raise"))
                     {
                         var changeRaise = status.Text.Substring(6);
                         cRaise = int.Parse(changeRaise);
@@ -2147,19 +2147,19 @@ namespace Poker
                 }
                 if (options == 2)
                 {
-                    if (cRaise != raise && cRaise <= raise)
+                    if (cRaise != Raise && cRaise <= Raise)
                     {
-                        callChipsValue = Convert.ToInt32(raise) - cRaise;
+                        callChipsValue = Convert.ToInt32(Raise) - cRaise;
                     }
                     if (cCall != callChipsValue || cCall <= callChipsValue)
                     {
                         callChipsValue = callChipsValue - cCall;
                     }
-                    if (cRaise == raise && raise > 0)
+                    if (cRaise == Raise && Raise > 0)
                     {
                         callChipsValue = 0;
-                        bCall.Enabled = false;
-                        bCall.Text = "Callisfuckedup";
+                        botCall.Enabled = false;
+                        botCall.Text = "Callisfuckedup";
                     }
                 }
             }
@@ -2169,7 +2169,7 @@ namespace Poker
             #region All in
             if (chips <= 0 && !intsadded)
             {
-                if (pStatus.Text.Contains("raise"))
+                if (pStatus.Text.Contains("Raise"))
                 {
                     ints.Add(chips);
                     intsadded = true;
@@ -2308,9 +2308,9 @@ namespace Poker
                 FixWinners();
             }
             pPanel.Visible = false; botOnePanel.Visible = false; botTwoPanel.Visible = false; botThreePanel.Visible = false; botFourPanel.Visible = false; botFivePanel.Visible = false;
-            callChipsValue = bb; raise = 0;
+            callChipsValue = bigBlind; Raise = 0;
             foldedPlayers = 5;
-            type = 0; rounds = 0; botOnePower = 0; botTwoPower = 0; botThreePower = 0; botFourPower = 0; botFivePower = 0; playerPower = 0; playerType = -1; raise = 0;
+            type = 0; rounds = 0; botOnePower = 0; botTwoPower = 0; botThreePower = 0; botFourPower = 0; botFivePower = 0; playerPower = 0; playerType = -1; Raise = 0;
             botOneType = -1; botTwoType = -1; botThreeType = -1; botFourType = -1; botFiveType = -1;
             botOneTurn = false; botTwoTurn = false; botThreeTurn = false; botFourTurn = false; botFiveTurn = false;
             B1Fturn = false; B2Fturn = false; B3Fturn = false; B4Fturn = false; B5Fturn = false;
@@ -2335,7 +2335,8 @@ namespace Poker
             sorted.Current = 0;
             sorted.Power = 0;
             tbPot.Text = "0";
-            t = 60; up = 10000000; turnCount = 0;
+            t = 60;
+            turnCount = 0;
             pStatus.Text = "";
             b1Status.Text = "";
             b2Status.Text = "";
@@ -2356,10 +2357,10 @@ namespace Poker
                     DefaultStartingChips += f2.a;
                     PFturn = false;
                     playerTurn = true;
-                    bRaise.Enabled = true;
-                    bFold.Enabled = true;
-                    bCheck.Enabled = true;
-                    bRaise.Text = "raise";
+                    botRaise.Enabled = true;
+                    botFold.Enabled = true;
+                    botCheck.Enabled = true;
+                    botRaise.Text = "Raise";
                 }
             }
             ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
@@ -2626,10 +2627,10 @@ namespace Poker
 
         private void Raised(ref int sChips, ref bool sTurn, Label sStatus)
         {
-            sChips -= Convert.ToInt32(raise);
-            sStatus.Text = "raise " + raise;
-            tbPot.Text = (int.Parse(tbPot.Text) + Convert.ToInt32(raise)).ToString();
-            callChipsValue = Convert.ToInt32(raise);
+            sChips -= Convert.ToInt32(Raise);
+            sStatus.Text = "Raise " + Raise;
+            tbPot.Text = (int.Parse(tbPot.Text) + Convert.ToInt32(Raise)).ToString();
+            callChipsValue = Convert.ToInt32(Raise);
             raising = true;
             sTurn = false;
         }
@@ -2675,16 +2676,16 @@ namespace Poker
             }
             if (rnd == 3)
             {
-                if (raise == 0)
+                if (Raise == 0)
                 {
-                    raise = callChipsValue * 2;
+                    Raise = callChipsValue * 2;
                     Raised(ref sChips, ref sTurn, sStatus);
                 }
                 else
                 {
-                    if (raise <= RoundN(sChips, n))
+                    if (Raise <= RoundN(sChips, n))
                     {
-                        raise = callChipsValue * 2;
+                        Raise = callChipsValue * 2;
                         Raised(ref sChips, ref sTurn, sStatus);
                     }
                     else
@@ -2715,7 +2716,7 @@ namespace Poker
                     {
                         Fold(ref sTurn, ref sFTurn, sStatus);
                     }
-                    if (raise > RoundN(sChips, n))
+                    if (Raise > RoundN(sChips, n))
                     {
                         Fold(ref sTurn, ref sFTurn, sStatus);
                     }
@@ -2725,20 +2726,20 @@ namespace Poker
                         {
                             Call(ref sChips, ref sTurn, sStatus);
                         }
-                        if (raise <= RoundN(sChips, n) && raise >= (RoundN(sChips, n)) / 2)
+                        if (Raise <= RoundN(sChips, n) && Raise >= (RoundN(sChips, n)) / 2)
                         {
                             Call(ref sChips, ref sTurn, sStatus);
                         }
-                        if (raise <= (RoundN(sChips, n)) / 2)
+                        if (Raise <= (RoundN(sChips, n)) / 2)
                         {
-                            if (raise > 0)
+                            if (Raise > 0)
                             {
-                                raise = RoundN(sChips, n);
+                                Raise = RoundN(sChips, n);
                                 Raised(ref sChips, ref sTurn, sStatus);
                             }
                             else
                             {
-                                raise = callChipsValue * 2;
+                                Raise = callChipsValue * 2;
                                 Raised(ref sChips, ref sTurn, sStatus);
                             }
                         }
@@ -2754,7 +2755,7 @@ namespace Poker
                     {
                         Fold(ref sTurn, ref sFTurn, sStatus);
                     }
-                    if (raise > RoundN(sChips, n - rnd))
+                    if (Raise > RoundN(sChips, n - rnd))
                     {
                         Fold(ref sTurn, ref sFTurn, sStatus);
                     }
@@ -2764,20 +2765,20 @@ namespace Poker
                         {
                             Call(ref sChips, ref sTurn, sStatus);
                         }
-                        if (raise <= RoundN(sChips, n - rnd) && raise >= (RoundN(sChips, n - rnd)) / 2)
+                        if (Raise <= RoundN(sChips, n - rnd) && Raise >= (RoundN(sChips, n - rnd)) / 2)
                         {
                             Call(ref sChips, ref sTurn, sStatus);
                         }
-                        if (raise <= (RoundN(sChips, n - rnd)) / 2)
+                        if (Raise <= (RoundN(sChips, n - rnd)) / 2)
                         {
-                            if (raise > 0)
+                            if (Raise > 0)
                             {
-                                raise = RoundN(sChips, n - rnd);
+                                Raise = RoundN(sChips, n - rnd);
                                 Raised(ref sChips, ref sTurn, sStatus);
                             }
                             else
                             {
-                                raise = callChipsValue * 2;
+                                Raise = callChipsValue * 2;
                                 Raised(ref sChips, ref sTurn, sStatus);
                             }
                         }
@@ -2785,7 +2786,7 @@ namespace Poker
                 }
                 if (callChipsValue <= 0)
                 {
-                    raise = RoundN(sChips, r - rnd);
+                    Raise = RoundN(sChips, r - rnd);
                     Raised(ref sChips, ref sTurn, sStatus);
                 }
             }
@@ -2822,11 +2823,11 @@ namespace Poker
                 }
                 else
                 {
-                    if (raise > 0)
+                    if (Raise > 0)
                     {
-                        if (botChips >= raise * 2)
+                        if (botChips >= Raise * 2)
                         {
-                            raise *= 2;
+                            Raise *= 2;
                             Raised(ref botChips, ref botTurn, botStatus);
                         }
                         else
@@ -2836,7 +2837,7 @@ namespace Poker
                     }
                     else
                     {
-                        raise = callChipsValue * 2;
+                        Raise = callChipsValue * 2;
                         Raised(ref botChips, ref botTurn, botStatus);
                     }
                 }
@@ -2897,37 +2898,37 @@ namespace Poker
             {
                 playerTurn = false;
                 PFturn = true;
-                bCall.Enabled = false;
-                bRaise.Enabled = false;
-                bFold.Enabled = false;
-                bCheck.Enabled = false;
+                botCall.Enabled = false;
+                botRaise.Enabled = false;
+                botFold.Enabled = false;
+                botCheck.Enabled = false;
             }
-            if (up > 0)
+            if (DefaultMaximumMoney > 0)
             {
-                up--;
+                DefaultMaximumMoney--;
             }
             if (chips >= callChipsValue)
             {
-                bCall.Text = "Call " + callChipsValue.ToString();
+                botCall.Text = "Call " + callChipsValue.ToString();
             }
             else
             {
-                bCall.Text = "All in";
-                bRaise.Enabled = false;
+                botCall.Text = "All in";
+                botRaise.Enabled = false;
             }
             if (callChipsValue > 0)
             {
-                bCheck.Enabled = false;
+                botCheck.Enabled = false;
             }
             if (callChipsValue <= 0)
             {
-                bCheck.Enabled = true;
-                bCall.Text = "Call";
-                bCall.Enabled = false;
+                botCheck.Enabled = true;
+                botCall.Text = "Call";
+                botCall.Enabled = false;
             }
             if (chips <= 0)
             {
-                bRaise.Enabled = false;
+                botRaise.Enabled = false;
             }
             int parsedValue;
 
@@ -2935,16 +2936,16 @@ namespace Poker
             {
                 if (chips <= int.Parse(tbRaise.Text))
                 {
-                    bRaise.Text = "All in";
+                    botRaise.Text = "All in";
                 }
                 else
                 {
-                    bRaise.Text = "raise";
+                    botRaise.Text = "Raise";
                 }
             }
             if (chips < callChipsValue)
             {
-                bRaise.Enabled = false;
+                botRaise.Enabled = false;
             }
         }
         private async void bFold_Click(object sender, EventArgs e)
@@ -2965,7 +2966,7 @@ namespace Poker
             {
                 //pStatus.Text = "All in " + chips;
 
-                bCheck.Enabled = false;
+                botCheck.Enabled = false;
             }
             await Turns();
         }
@@ -2995,7 +2996,7 @@ namespace Poker
                 chips = 0;
                 tbChips.Text = "chips : " + chips.ToString();
                 playerTurn = false;
-                bFold.Enabled = false;
+                botFold.Enabled = false;
                 playerCall = chips;
             }
             await Turns();
@@ -3008,10 +3009,10 @@ namespace Poker
             {
                 if (chips > callChipsValue)
                 {
-                    if (raise * 2 > int.Parse(tbRaise.Text))
+                    if (Raise * 2 > int.Parse(tbRaise.Text))
                     {
-                        tbRaise.Text = (raise * 2).ToString();
-                        MessageBox.Show("You must raise atleast twice as the current raise !");
+                        tbRaise.Text = (Raise * 2).ToString();
+                        MessageBox.Show("You must Raise atleast twice as the current Raise !");
                         return;
                     }
                     else
@@ -3019,25 +3020,25 @@ namespace Poker
                         if (chips >= int.Parse(tbRaise.Text))
                         {
                             callChipsValue = int.Parse(tbRaise.Text);
-                            raise = int.Parse(tbRaise.Text);
-                            pStatus.Text = "raise " + callChipsValue.ToString();
+                            Raise = int.Parse(tbRaise.Text);
+                            pStatus.Text = "Raise " + callChipsValue.ToString();
                             tbPot.Text = (int.Parse(tbPot.Text) + callChipsValue).ToString();
-                            bCall.Text = "Call";
+                            botCall.Text = "Call";
                             chips -= int.Parse(tbRaise.Text);
                             raising = true;
                             last = 0;
-                            playerRaise = Convert.ToInt32(raise);
+                            playerRaise = Convert.ToInt32(Raise);
                         }
                         else
                         {
                             callChipsValue = chips;
-                            raise = chips;
+                            Raise = chips;
                             tbPot.Text = (int.Parse(tbPot.Text) + chips).ToString();
-                            pStatus.Text = "raise " + callChipsValue.ToString();
+                            pStatus.Text = "Raise " + callChipsValue.ToString();
                             chips = 0;
                             raising = true;
                             last = 0;
-                            playerRaise = Convert.ToInt32(raise);
+                            playerRaise = Convert.ToInt32(Raise);
                         }
                     }
                 }
@@ -3068,8 +3069,8 @@ namespace Poker
 
         private void bOptions_Click(object sender, EventArgs e)
         {
-            tbBB.Text = bb.ToString();
-            tbSB.Text = sb.ToString();
+            tbBB.Text = bigBlind.ToString();
+            tbSB.Text = smallBlind.ToString();
             if (tbBB.Visible == false)
             {
                 tbBB.Visible = true;
@@ -3092,19 +3093,19 @@ namespace Poker
             if (tbSB.Text.Contains(",") || tbSB.Text.Contains("."))
             {
                 MessageBox.Show("The Small Blind can be only round number !");
-                tbSB.Text = sb.ToString();
+                tbSB.Text = smallBlind.ToString();
                 return;
             }
             if (!int.TryParse(tbSB.Text, out parsedValue))
             {
                 MessageBox.Show("This is a number only field");
-                tbSB.Text = sb.ToString();
+                tbSB.Text = smallBlind.ToString();
                 return;
             }
             if (int.Parse(tbSB.Text) > 100000)
             {
                 MessageBox.Show("The maximum of the Small Blind is 100 000 $");
-                tbSB.Text = sb.ToString();
+                tbSB.Text = smallBlind.ToString();
             }
             if (int.Parse(tbSB.Text) < 250)
             {
@@ -3112,7 +3113,7 @@ namespace Poker
             }
             if (int.Parse(tbSB.Text) >= 250 && int.Parse(tbSB.Text) <= 100000)
             {
-                sb = int.Parse(tbSB.Text);
+                smallBlind = int.Parse(tbSB.Text);
                 MessageBox.Show("The changes have been saved ! They will become available the next hand you play. ");
             }
         }
@@ -3123,19 +3124,19 @@ namespace Poker
             if (tbBB.Text.Contains(",") || tbBB.Text.Contains("."))
             {
                 MessageBox.Show("The Big Blind can be only round number !");
-                tbBB.Text = bb.ToString();
+                tbBB.Text = bigBlind.ToString();
                 return;
             }
             if (!int.TryParse(tbSB.Text, out parsedValue))
             {
                 MessageBox.Show("This is a number only field");
-                tbSB.Text = bb.ToString();
+                tbSB.Text = bigBlind.ToString();
                 return;
             }
             if (int.Parse(tbBB.Text) > 200000)
             {
                 MessageBox.Show("The maximum of the Big Blind is 200 000");
-                tbBB.Text = bb.ToString();
+                tbBB.Text = bigBlind.ToString();
             }
             if (int.Parse(tbBB.Text) < 500)
             {
@@ -3143,7 +3144,7 @@ namespace Poker
             }
             if (int.Parse(tbBB.Text) >= 500 && int.Parse(tbBB.Text) <= 200000)
             {
-                bb = int.Parse(tbBB.Text);
+                bigBlind = int.Parse(tbBB.Text);
                 MessageBox.Show("The changes have been saved ! They will become available the next hand you play. ");
             }
         }
