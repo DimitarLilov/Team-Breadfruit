@@ -197,7 +197,7 @@ namespace Poker
             smallBlindTextBox.Visible = false;
             bigBlindButton.Visible = false;
             smallBlindButton.Visible = false;
-            raiseTextBox.Text = (bigBlind * 2).ToString();
+            playerRaiseTextBox.Text = (bigBlind * 2).ToString();
         }
 
         #region Shuffle
@@ -211,10 +211,10 @@ namespace Poker
             listOfBooleans.Add(hasBotFourBankrupted);
             listOfBooleans.Add(hasBotFiveBankrupted);
 
-            botCall.Enabled = false;
-            botRaise.Enabled = false;
-            botFold.Enabled = false;
-            botCheck.Enabled = false;
+            playerCallButton.Enabled = false;
+            playerRaiseButton.Enabled = false;
+            playerFoldButton.Enabled = false;
+            playerCheckButton.Enabled = false;
             MaximizeBox = false;
             MinimizeBox = false;
 
@@ -254,11 +254,11 @@ namespace Poker
         {
             if (dealtCards == 17)
             {
-                botRaise.Enabled = true;
-                botCall.Enabled = true;
-                botRaise.Enabled = true;
-                botRaise.Enabled = true;
-                botFold.Enabled = true;
+                playerRaiseButton.Enabled = true;
+                playerCallButton.Enabled = true;
+                playerRaiseButton.Enabled = true;
+                playerRaiseButton.Enabled = true;
+                playerFoldButton.Enabled = true;
             }
         }
 
@@ -656,11 +656,11 @@ namespace Poker
                     t = 60;
 
                     timer.Start();
-                    botRaise.Enabled = true;
-                    botCall.Enabled = true;
-                    botRaise.Enabled = true;
-                    botRaise.Enabled = true;
-                    botFold.Enabled = true;
+                    playerRaiseButton.Enabled = true;
+                    playerCallButton.Enabled = true;
+                    playerRaiseButton.Enabled = true;
+                    playerRaiseButton.Enabled = true;
+                    playerFoldButton.Enabled = true;
                     turnCount++;
                     FixCall(playerStatus, ref playerCall, ref playerRaise, 2);
                 }
@@ -670,7 +670,7 @@ namespace Poker
                 await AllIn();
                 if (hasPlayerBankrupted && !pFolded)
                 {
-                    if (botCall.Text.Contains("All in") == false || botRaise.Text.Contains("All in") == false)
+                    if (playerCallButton.Text.Contains("All in") == false || playerRaiseButton.Text.Contains("All in") == false)
                     {
                         listOfBooleans.RemoveAt(0);
                         listOfBooleans.Insert(0, null);
@@ -680,11 +680,11 @@ namespace Poker
                 }
                 await CheckRaise(0, 0);
                 timerBar.Visible = false;
-                botRaise.Enabled = false;
-                botCall.Enabled = false;
-                botRaise.Enabled = false;
-                botRaise.Enabled = false;
-                botFold.Enabled = false;
+                playerRaiseButton.Enabled = false;
+                playerCallButton.Enabled = false;
+                playerRaiseButton.Enabled = false;
+                playerRaiseButton.Enabled = false;
+                playerFoldButton.Enabled = false;
 
                 timer.Stop();
 
@@ -825,7 +825,7 @@ namespace Poker
                 }
                 if (hasPlayerBankrupted && !pFolded)
                 {
-                    if (botCall.Text.Contains("All in") == false || botRaise.Text.Contains("All in") == false)
+                    if (playerCallButton.Text.Contains("All in") == false || playerRaiseButton.Text.Contains("All in") == false)
                     {
                         listOfBooleans.RemoveAt(0);
                         listOfBooleans.Insert(0, null);
@@ -2152,10 +2152,10 @@ namespace Poker
                         botFiveChips += f2.a;
                         hasPlayerBankrupted = false;
                         playerTurn = true;
-                        botRaise.Enabled = true;
-                        botFold.Enabled = true;
-                        botCheck.Enabled = true;
-                        botRaise.Text = "Raise";
+                        playerRaiseButton.Enabled = true;
+                        playerFoldButton.Enabled = true;
+                        playerCheckButton.Enabled = true;
+                        playerRaiseButton.Text = "Raise";
                     }
                 }
                 playerPanel.Visible = false; botOnePanel.Visible = false; botTwoPanel.Visible = false; botThreePanel.Visible = false; botFourPanel.Visible = false; botFivePanel.Visible = false;
@@ -2228,8 +2228,8 @@ namespace Poker
                     if (cRaise == Raise && Raise > 0)
                     {
                         callChipsValue = 0;
-                        botCall.Enabled = false;
-                        botCall.Text = "Callisfuckedup";
+                        playerCallButton.Enabled = false;
+                        playerCallButton.Text = "Callisfuckedup";
                     }
                 }
             }
@@ -2429,10 +2429,10 @@ namespace Poker
                     botFiveChips += f2.a;
                     hasPlayerBankrupted = false;
                     playerTurn = true;
-                    botRaise.Enabled = true;
-                    botFold.Enabled = true;
-                    botCheck.Enabled = true;
-                    botRaise.Text = "Raise";
+                    playerRaiseButton.Enabled = true;
+                    playerFoldButton.Enabled = true;
+                    playerCheckButton.Enabled = true;
+                    playerRaiseButton.Text = "Raise";
                 }
             }
             ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
@@ -2977,10 +2977,10 @@ namespace Poker
             {
                 playerTurn = false;
                 hasPlayerBankrupted = true;
-                botCall.Enabled = false;
-                botRaise.Enabled = false;
-                botFold.Enabled = false;
-                botCheck.Enabled = false;
+                playerCallButton.Enabled = false;
+                playerRaiseButton.Enabled = false;
+                playerFoldButton.Enabled = false;
+                playerCheckButton.Enabled = false;
             }
             if (DefaultMaximumMoney > 0)
             {
@@ -2988,43 +2988,43 @@ namespace Poker
             }
             if (chips >= callChipsValue)
             {
-                botCall.Text = "Call " + callChipsValue.ToString();
+                playerCallButton.Text = "Call " + callChipsValue.ToString();
             }
             else
             {
-                botCall.Text = "All in";
-                botRaise.Enabled = false;
+                playerCallButton.Text = "All in";
+                playerRaiseButton.Enabled = false;
             }
             if (callChipsValue > 0)
             {
-                botCheck.Enabled = false;
+                playerCheckButton.Enabled = false;
             }
             if (callChipsValue <= 0)
             {
-                botCheck.Enabled = true;
-                botCall.Text = "Call";
-                botCall.Enabled = false;
+                playerCheckButton.Enabled = true;
+                playerCallButton.Text = "Call";
+                playerCallButton.Enabled = false;
             }
             if (chips <= 0)
             {
-                botRaise.Enabled = false;
+                playerRaiseButton.Enabled = false;
             }
             int parsedValue;
 
-            if (raiseTextBox.Text != "" && int.TryParse(raiseTextBox.Text, out parsedValue))
+            if (playerRaiseTextBox.Text != "" && int.TryParse(playerRaiseTextBox.Text, out parsedValue))
             {
-                if (chips <= int.Parse(raiseTextBox.Text))
+                if (chips <= int.Parse(playerRaiseTextBox.Text))
                 {
-                    botRaise.Text = "All in";
+                    playerRaiseButton.Text = "All in";
                 }
                 else
                 {
-                    botRaise.Text = "Raise";
+                    playerRaiseButton.Text = "Raise";
                 }
             }
             if (chips < callChipsValue)
             {
-                botRaise.Enabled = false;
+                playerRaiseButton.Enabled = false;
             }
         }
         private async void bFold_Click(object sender, EventArgs e)
@@ -3045,7 +3045,7 @@ namespace Poker
             {
                 //playerStatus.Text = "All in " + chips;
 
-                botCheck.Enabled = false;
+                playerCheckButton.Enabled = false;
             }
             await Turns();
         }
@@ -3075,7 +3075,7 @@ namespace Poker
                 chips = 0;
                 playerChipsTextBox.Text = "chips : " + chips.ToString();
                 playerTurn = false;
-                botFold.Enabled = false;
+                playerFoldButton.Enabled = false;
                 playerCall = chips;
             }
             await Turns();
@@ -3084,26 +3084,26 @@ namespace Poker
         {
             Rules(0, 1, ref playerType, ref playerPower, hasPlayerBankrupted);
             int parsedValue;
-            if (raiseTextBox.Text != "" && int.TryParse(raiseTextBox.Text, out parsedValue))
+            if (playerRaiseTextBox.Text != "" && int.TryParse(playerRaiseTextBox.Text, out parsedValue))
             {
                 if (chips > callChipsValue)
                 {
-                    if (Raise * 2 > int.Parse(raiseTextBox.Text))
+                    if (Raise * 2 > int.Parse(playerRaiseTextBox.Text))
                     {
-                        raiseTextBox.Text = (Raise * 2).ToString();
+                        playerRaiseTextBox.Text = (Raise * 2).ToString();
                         MessageBox.Show("You must Raise atleast twice as the current Raise !");
                         return;
                     }
                     else
                     {
-                        if (chips >= int.Parse(raiseTextBox.Text))
+                        if (chips >= int.Parse(playerRaiseTextBox.Text))
                         {
-                            callChipsValue = int.Parse(raiseTextBox.Text);
-                            Raise = int.Parse(raiseTextBox.Text);
+                            callChipsValue = int.Parse(playerRaiseTextBox.Text);
+                            Raise = int.Parse(playerRaiseTextBox.Text);
                             playerStatus.Text = "Raise " + callChipsValue.ToString();
                             potTextBox.Text = (int.Parse(potTextBox.Text) + callChipsValue).ToString();
-                            botCall.Text = "Call";
-                            chips -= int.Parse(raiseTextBox.Text);
+                            playerCallButton.Text = "Call";
+                            chips -= int.Parse(playerRaiseTextBox.Text);
                             raising = true;
                             last = 0;
                             playerRaise = Convert.ToInt32(Raise);

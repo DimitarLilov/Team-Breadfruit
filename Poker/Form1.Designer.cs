@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.botFold = new System.Windows.Forms.Button();
-            this.botCheck = new System.Windows.Forms.Button();
-            this.botCall = new System.Windows.Forms.Button();
-            this.botRaise = new System.Windows.Forms.Button();
+            this.playerFoldButton = new System.Windows.Forms.Button();
+            this.playerCheckButton = new System.Windows.Forms.Button();
+            this.playerCallButton = new System.Windows.Forms.Button();
+            this.playerRaiseButton = new System.Windows.Forms.Button();
 
             this.timerBar = new System.Windows.Forms.ProgressBar();
 
-            this.raiseTextBox = new System.Windows.Forms.TextBox();
+            this.playerRaiseTextBox = new System.Windows.Forms.TextBox();
 
             this.playerChipsTextBox = new System.Windows.Forms.TextBox();
             this.playerStatus = new System.Windows.Forms.Label();
@@ -70,53 +70,53 @@
 
             this.SuspendLayout();
             // 
-            // botFold
+            // playerFoldButton
             // 
-            this.botFold.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.botFold.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.botFold.Location = new System.Drawing.Point(335, 660);
-            this.botFold.Name = "botFold";
-            this.botFold.Size = new System.Drawing.Size(130, 62);
-            this.botFold.TabIndex = 0;
-            this.botFold.Text = "Fold";
-            this.botFold.UseVisualStyleBackColor = true;
-            this.botFold.Click += new System.EventHandler(this.bFold_Click);
+            this.playerFoldButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.playerFoldButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.playerFoldButton.Location = new System.Drawing.Point(335, 660);
+            this.playerFoldButton.Name = "playerFoldButton";
+            this.playerFoldButton.Size = new System.Drawing.Size(130, 62);
+            this.playerFoldButton.TabIndex = 0;
+            this.playerFoldButton.Text = "Fold";
+            this.playerFoldButton.UseVisualStyleBackColor = true;
+            this.playerFoldButton.Click += new System.EventHandler(this.bFold_Click);
             // 
-            // botCheck
+            // playerCheckButton
             // 
-            this.botCheck.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.botCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.botCheck.Location = new System.Drawing.Point(494, 660);
-            this.botCheck.Name = "botCheck";
-            this.botCheck.Size = new System.Drawing.Size(134, 62);
-            this.botCheck.TabIndex = 2;
-            this.botCheck.Text = "Check";
-            this.botCheck.UseVisualStyleBackColor = true;
-            this.botCheck.Click += new System.EventHandler(this.bCheck_Click);
+            this.playerCheckButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.playerCheckButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.playerCheckButton.Location = new System.Drawing.Point(494, 660);
+            this.playerCheckButton.Name = "playerCheckButton";
+            this.playerCheckButton.Size = new System.Drawing.Size(134, 62);
+            this.playerCheckButton.TabIndex = 2;
+            this.playerCheckButton.Text = "Check";
+            this.playerCheckButton.UseVisualStyleBackColor = true;
+            this.playerCheckButton.Click += new System.EventHandler(this.bCheck_Click);
             // 
-            // botCall
+            // playerCallButton
             // 
-            this.botCall.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.botCall.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.botCall.Location = new System.Drawing.Point(667, 661);
-            this.botCall.Name = "botCall";
-            this.botCall.Size = new System.Drawing.Size(126, 62);
-            this.botCall.TabIndex = 3;
-            this.botCall.Text = "Call";
-            this.botCall.UseVisualStyleBackColor = true;
-            this.botCall.Click += new System.EventHandler(this.bCall_Click);
+            this.playerCallButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.playerCallButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.playerCallButton.Location = new System.Drawing.Point(667, 661);
+            this.playerCallButton.Name = "botCall";
+            this.playerCallButton.Size = new System.Drawing.Size(126, 62);
+            this.playerCallButton.TabIndex = 3;
+            this.playerCallButton.Text = "Call";
+            this.playerCallButton.UseVisualStyleBackColor = true;
+            this.playerCallButton.Click += new System.EventHandler(this.bCall_Click);
             // 
-            // botRaise
+            // playerRaiseButton
             // 
-            this.botRaise.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.botRaise.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.botRaise.Location = new System.Drawing.Point(835, 661);
-            this.botRaise.Name = "botRaise";
-            this.botRaise.Size = new System.Drawing.Size(124, 62);
-            this.botRaise.TabIndex = 4;
-            this.botRaise.Text = "Raise";
-            this.botRaise.UseVisualStyleBackColor = true;
-            this.botRaise.Click += new System.EventHandler(this.bRaise_Click);
+            this.playerRaiseButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.playerRaiseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.playerRaiseButton.Location = new System.Drawing.Point(835, 661);
+            this.playerRaiseButton.Name = "playerRaiseButton";
+            this.playerRaiseButton.Size = new System.Drawing.Size(124, 62);
+            this.playerRaiseButton.TabIndex = 4;
+            this.playerRaiseButton.Text = "Raise";
+            this.playerRaiseButton.UseVisualStyleBackColor = true;
+            this.playerRaiseButton.Click += new System.EventHandler(this.bRaise_Click);
             // 
             // timerBar
             // 
@@ -321,13 +321,13 @@
             this.potLabel.TabIndex = 0;
             this.potLabel.Text = "Pot";
             // 
-            // raiseTextBox
+            // playerRaiseTextBox
             // 
-            this.raiseTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.raiseTextBox.Location = new System.Drawing.Point(965, 703);
-            this.raiseTextBox.Name = "raiseTextBox";
-            this.raiseTextBox.Size = new System.Drawing.Size(108, 20);
-            this.raiseTextBox.TabIndex = 0;
+            this.playerRaiseTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.playerRaiseTextBox.Location = new System.Drawing.Point(965, 703);
+            this.playerRaiseTextBox.Name = "playerRaiseTextBox";
+            this.playerRaiseTextBox.Size = new System.Drawing.Size(108, 20);
+            this.playerRaiseTextBox.TabIndex = 0;
             // 
             // Form1
             // 
@@ -336,7 +336,7 @@
             this.BackgroundImage = global::Poker.Properties.Resources.poker_table___Copy;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1350, 729);
-            this.Controls.Add(this.raiseTextBox);
+            this.Controls.Add(this.playerRaiseTextBox);
             this.Controls.Add(this.potLabel);
             this.Controls.Add(this.botTwoStatus);
             this.Controls.Add(this.playerStatus);
@@ -359,10 +359,10 @@
             this.Controls.Add(this.addChipsButton);
             this.Controls.Add(this.playerChipsTextBox);
             this.Controls.Add(this.timerBar);
-            this.Controls.Add(this.botRaise);
-            this.Controls.Add(this.botCall);
-            this.Controls.Add(this.botCheck);
-            this.Controls.Add(this.botFold);
+            this.Controls.Add(this.playerRaiseButton);
+            this.Controls.Add(this.playerCallButton);
+            this.Controls.Add(this.playerCheckButton);
+            this.Controls.Add(this.playerFoldButton);
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "GLS Texas Poker";
@@ -374,33 +374,43 @@
 
         #endregion
 
-        private System.Windows.Forms.Button botFold;
-        private System.Windows.Forms.Button botCheck;
-        private System.Windows.Forms.Button botCall;
-        private System.Windows.Forms.Button botRaise;
-        private System.Windows.Forms.ProgressBar timerBar;
+        private System.Windows.Forms.Button playerFoldButton;
+        private System.Windows.Forms.Button playerCheckButton;
+        private System.Windows.Forms.Button playerCallButton;
+        private System.Windows.Forms.Button playerRaiseButton;
+        private System.Windows.Forms.TextBox playerRaiseTextBox;
         private System.Windows.Forms.TextBox playerChipsTextBox;
-        private System.Windows.Forms.Button addChipsButton;
-        private System.Windows.Forms.TextBox addChipsTextBox;
-        private System.Windows.Forms.TextBox botFiveChipsTextBox;
-        private System.Windows.Forms.TextBox botFourChipsTextBox;
-        private System.Windows.Forms.TextBox botThreeChipsTextBox;
-        private System.Windows.Forms.TextBox botTwoChipsTextBox;
-        private System.Windows.Forms.TextBox botOneChipsTextBox;
+        private System.Windows.Forms.Label playerStatus;
+
+        private System.Windows.Forms.ProgressBar timerBar;
+
+        private System.Windows.Forms.Label potLabel;
         private System.Windows.Forms.TextBox potTextBox;
+
+        private System.Windows.Forms.TextBox addChipsTextBox;
+        private System.Windows.Forms.Button addChipsButton;
+
+        private System.Windows.Forms.TextBox botOneChipsTextBox;
+        private System.Windows.Forms.Label botOneStatus;
+        
+        private System.Windows.Forms.TextBox botTwoChipsTextBox;
+        private System.Windows.Forms.Label botTwoStatus;   
+
+        private System.Windows.Forms.TextBox botThreeChipsTextBox;
+        private System.Windows.Forms.Label botThreeStatus;
+
+        private System.Windows.Forms.TextBox botFourChipsTextBox;
+        private System.Windows.Forms.Label botFourStatus;
+
+        private System.Windows.Forms.TextBox botFiveChipsTextBox;
+        private System.Windows.Forms.Label botFiveStatus;
+
         private System.Windows.Forms.Button blindOptions;
-        private System.Windows.Forms.Button bigBlindButton;
         private System.Windows.Forms.TextBox smallBlindTextBox;
         private System.Windows.Forms.Button smallBlindButton;
         private System.Windows.Forms.TextBox bigBlindTextBox;
-        private System.Windows.Forms.Label botFiveStatus;
-        private System.Windows.Forms.Label botFourStatus;
-        private System.Windows.Forms.Label botThreeStatus;
-        private System.Windows.Forms.Label botOneStatus;
-        private System.Windows.Forms.Label playerStatus;
-        private System.Windows.Forms.Label botTwoStatus;
-        private System.Windows.Forms.Label potLabel;
-        private System.Windows.Forms.TextBox raiseTextBox;
+        private System.Windows.Forms.Button bigBlindButton;
+
 
 
 
