@@ -33,7 +33,7 @@
             this.botCall = new System.Windows.Forms.Button();
             this.botRaise = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.tbChips = new System.Windows.Forms.TextBox();
+            this.playerChips = new System.Windows.Forms.TextBox();
             this.bAdd = new System.Windows.Forms.Button();
             this.tbAdd = new System.Windows.Forms.TextBox();
             this.tbBotChips5 = new System.Windows.Forms.TextBox();
@@ -116,15 +116,15 @@
             this.progressBar.TabIndex = 5;
             this.progressBar.Value = 1000;
             // 
-            // tbChips
+            // playerChips
             // 
-            this.tbChips.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.tbChips.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbChips.Location = new System.Drawing.Point(755, 553);
-            this.tbChips.Name = "tbChips";
-            this.tbChips.Size = new System.Drawing.Size(163, 23);
-            this.tbChips.TabIndex = 6;
-            this.tbChips.Text = "chips : 0";
+            this.playerChips.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.playerChips.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.playerChips.Location = new System.Drawing.Point(755, 553);
+            this.playerChips.Name = "playerChips";
+            this.playerChips.Size = new System.Drawing.Size(163, 23);
+            this.playerChips.TabIndex = 6;
+            this.playerChips.Text = "chips : 0";
             // 
             // bAdd
             // 
@@ -344,7 +344,7 @@
             this.Controls.Add(this.tbBotChips5);
             this.Controls.Add(this.tbAdd);
             this.Controls.Add(this.bAdd);
-            this.Controls.Add(this.tbChips);
+            this.Controls.Add(this.playerChips);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.botRaise);
             this.Controls.Add(this.botCall);
@@ -366,7 +366,7 @@
         private System.Windows.Forms.Button botCall;
         private System.Windows.Forms.Button botRaise;
         private System.Windows.Forms.ProgressBar progressBar;
-        private System.Windows.Forms.TextBox tbChips;
+        private System.Windows.Forms.TextBox playerChips;
         private System.Windows.Forms.Button bAdd;
         private System.Windows.Forms.TextBox tbAdd;
         private System.Windows.Forms.TextBox tbBotChips5;

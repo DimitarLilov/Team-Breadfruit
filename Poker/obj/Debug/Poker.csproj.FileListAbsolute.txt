@@ -28,3 +28,13 @@ D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.AddChips.resources
 D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.Form1.resources
 D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.Resources.resources
 D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\bin\Debug\Poker.exe.config
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.exe
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.pdb
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\bin\Debug\Poker.exe
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\bin\Debug\Poker.pdb
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.AddChips.resources
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.Form1.resources
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
