@@ -1,0 +1,50 @@
+C:\Users\Ники\Documents\Visual Studio 2015\Projects\Poker\Poker\bin\Debug\Poker.exe.config
+C:\Users\Ники\Documents\Visual Studio 2015\Projects\Poker\Poker\bin\Debug\Poker.exe
+C:\Users\Ники\Documents\Visual Studio 2015\Projects\Poker\Poker\bin\Debug\Poker.pdb
+C:\Users\Ники\Documents\Visual Studio 2015\Projects\Poker\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+C:\Users\Ники\Documents\Visual Studio 2015\Projects\Poker\Poker\obj\Debug\Poker.AddChips.resources
+C:\Users\Ники\Documents\Visual Studio 2015\Projects\Poker\Poker\obj\Debug\Poker.Form1.resources
+C:\Users\Ники\Documents\Visual Studio 2015\Projects\Poker\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\Ники\Documents\Visual Studio 2015\Projects\Poker\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
+C:\Users\Ники\Documents\Visual Studio 2015\Projects\Poker\Poker\obj\Debug\Poker.exe
+C:\Users\Ники\Documents\Visual Studio 2015\Projects\Poker\Poker\obj\Debug\Poker.pdb
+E:\KPK Teamwork\Team-Breadfruit-\Poker\bin\Debug\Poker.exe.config
+E:\KPK Teamwork\Team-Breadfruit-\Poker\obj\Debug\Poker.exe
+E:\KPK Teamwork\Team-Breadfruit-\Poker\obj\Debug\Poker.pdb
+E:\KPK Teamwork\Team-Breadfruit-\Poker\bin\Debug\Poker.exe
+E:\KPK Teamwork\Team-Breadfruit-\Poker\bin\Debug\Poker.pdb
+E:\KPK Teamwork\Team-Breadfruit-\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+E:\KPK Teamwork\Team-Breadfruit-\Poker\obj\Debug\Poker.AddChips.resources
+E:\KPK Teamwork\Team-Breadfruit-\Poker\obj\Debug\Poker.Form1.resources
+E:\KPK Teamwork\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.Resources.resources
+E:\KPK Teamwork\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\bin\Debug\Poker.exe.config
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.exe
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.pdb
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\bin\Debug\Poker.exe
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\bin\Debug\Poker.pdb
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.AddChips.resources
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.Form1.resources
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.Resources.resources
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\bin\Debug\Poker.exe.config
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.exe
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.pdb
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\bin\Debug\Poker.exe
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\bin\Debug\Poker.pdb
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.AddChips.resources
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.Form1.resources
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
+C:\Users\Joro\Documents\C#\Fundamentals\High Quality Code\Team Project\Team-Breadfruit--master\Team-Breadfruit--master\Poker\bin\Debug\Poker.exe.config
+C:\Users\Joro\Documents\C#\Fundamentals\High Quality Code\Team Project\Team-Breadfruit--master\Team-Breadfruit--master\Poker\obj\Debug\Poker.exe
+C:\Users\Joro\Documents\C#\Fundamentals\High Quality Code\Team Project\Team-Breadfruit--master\Team-Breadfruit--master\Poker\obj\Debug\Poker.pdb
+C:\Users\Joro\Documents\C#\Fundamentals\High Quality Code\Team Project\Team-Breadfruit--master\Team-Breadfruit--master\Poker\bin\Debug\Poker.exe
+C:\Users\Joro\Documents\C#\Fundamentals\High Quality Code\Team Project\Team-Breadfruit--master\Team-Breadfruit--master\Poker\bin\Debug\Poker.pdb
+C:\Users\Joro\Documents\C#\Fundamentals\High Quality Code\Team Project\Team-Breadfruit--master\Team-Breadfruit--master\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+C:\Users\Joro\Documents\C#\Fundamentals\High Quality Code\Team Project\Team-Breadfruit--master\Team-Breadfruit--master\Poker\obj\Debug\Poker.AddChips.resources
+C:\Users\Joro\Documents\C#\Fundamentals\High Quality Code\Team Project\Team-Breadfruit--master\Team-Breadfruit--master\Poker\obj\Debug\Poker.Form1.resources
+C:\Users\Joro\Documents\C#\Fundamentals\High Quality Code\Team Project\Team-Breadfruit--master\Team-Breadfruit--master\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\Joro\Documents\C#\Fundamentals\High Quality Code\Team Project\Team-Breadfruit--master\Team-Breadfruit--master\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
