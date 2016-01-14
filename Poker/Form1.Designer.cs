@@ -137,7 +137,7 @@
             this.playerChipsTextBox.Name = "playerChipsTextBox";
             this.playerChipsTextBox.Size = new System.Drawing.Size(163, 23);
             this.playerChipsTextBox.TabIndex = 6;
-            this.playerChipsTextBox.Text = "chips : 0";
+            this.playerChipsTextBox.Text = "playerChips : 0";
             // 
             // addChipsButton
             // 
@@ -146,7 +146,7 @@
             this.addChipsButton.Name = "addChipsButton";
             this.addChipsButton.Size = new System.Drawing.Size(75, 25);
             this.addChipsButton.TabIndex = 7;
-            this.addChipsButton.Text = "Add chips";
+            this.addChipsButton.Text = "Add playerChips";
             this.addChipsButton.UseVisualStyleBackColor = true;
             this.addChipsButton.Click += new System.EventHandler(this.bAdd_Click);
             // 
@@ -166,7 +166,7 @@
             this.botFiveChipsTextBox.Name = "botFiveChipsTextBox";
             this.botFiveChipsTextBox.Size = new System.Drawing.Size(152, 23);
             this.botFiveChipsTextBox.TabIndex = 9;
-            this.botFiveChipsTextBox.Text = "chips : 0";
+            this.botFiveChipsTextBox.Text = "playerChips : 0";
             // 
             // botFourChipsTextBox
             // 
@@ -176,7 +176,7 @@
             this.botFourChipsTextBox.Name = "botFourChipsTextBox";
             this.botFourChipsTextBox.Size = new System.Drawing.Size(123, 23);
             this.botFourChipsTextBox.TabIndex = 10;
-            this.botFourChipsTextBox.Text = "chips : 0";
+            this.botFourChipsTextBox.Text = "playerChips : 0";
             // 
             // botThreeChipsTextBox
             // 
@@ -186,7 +186,7 @@
             this.botThreeChipsTextBox.Name = "botThreeChipsTextBox";
             this.botThreeChipsTextBox.Size = new System.Drawing.Size(125, 23);
             this.botThreeChipsTextBox.TabIndex = 11;
-            this.botThreeChipsTextBox.Text = "chips : 0";
+            this.botThreeChipsTextBox.Text = "playerChips : 0";
             // 
             // botTwoChipsTextBox
             // 
@@ -195,7 +195,7 @@
             this.botTwoChipsTextBox.Name = "botTwoChipsTextBox";
             this.botTwoChipsTextBox.Size = new System.Drawing.Size(133, 23);
             this.botTwoChipsTextBox.TabIndex = 12;
-            this.botTwoChipsTextBox.Text = "chips : 0";
+            this.botTwoChipsTextBox.Text = "playerChips : 0";
             // 
             // botOneChipsTextBox
             // 
@@ -205,7 +205,7 @@
             this.botOneChipsTextBox.Name = "botOneChipsTextBox";
             this.botOneChipsTextBox.Size = new System.Drawing.Size(142, 23);
             this.botOneChipsTextBox.TabIndex = 13;
-            this.botOneChipsTextBox.Text = "chips : 0";
+            this.botOneChipsTextBox.Text = "playerChips : 0";
             // 
             // potTextBox
             // 
