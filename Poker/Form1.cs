@@ -118,7 +118,7 @@ namespace Poker
 
         private bool hasPlayerBankrupted = false;
         private bool playerTurn = true;
-        private bool restart = false;
+        private bool shouldRestart = false;
         private bool raising = false;
 
         Poker.Type sorted;
@@ -153,6 +153,8 @@ namespace Poker
         private int turnCount = 0;
 
         #endregion
+
+        #region Form1 main
         public Form1()
         {
             //listOfBooleans.Add(hasPlayerBankrupted); listOfBooleans.Add(hasBotOneBankrupted); listOfBooleans.Add(hasBotTwoBankrupted); listOfBooleans.Add(hasBotThreeBankrupted); listOfBooleans.Add(hasBotFourBankrupted); listOfBooleans.Add(hasBotFiveBankrupted);
@@ -200,6 +202,7 @@ namespace Poker
             smallBlindButton.Visible = false;
             playerRaiseTextBox.Text = (bigBlind * 2).ToString();
         }
+        #endregion
 
         #region Shuffle
         //TODO straighten up the cohesion and loose the coupling
@@ -629,7 +632,7 @@ namespace Poker
                 }
                 if (dealtCards == 16)
                 {
-                    if (!restart)
+                    if (!shouldRestart)
                     {
                         MaximizeBox = true;
                         MinimizeBox = true;
@@ -641,7 +644,6 @@ namespace Poker
         #endregion
 
         #endregion
-
 
         async Task Turns()
         {
@@ -819,12 +821,15 @@ namespace Poker
                     }
                 }
                 #endregion
+
+                // Check who is all in
                 await WhoIsAllIn();
-                if (!restart)
+
+                if (!shouldRestart)
                 {
                     await Turns();
                 }
-                restart = false;
+                shouldRestart = false;
             }
         }
 
@@ -882,7 +887,11 @@ namespace Poker
                 var st3 = hearts.Select(o => o / 4).Distinct().ToArray();
                 var st4 = spades.Select(o => o / 4).Distinct().ToArray();
 
-                Array.Sort(currentPlayerAndTableCards); Array.Sort(st1); Array.Sort(st2); Array.Sort(st3); Array.Sort(st4);
+                Array.Sort(currentPlayerAndTableCards);
+                Array.Sort(st1);
+                Array.Sort(st2);
+                Array.Sort(st3);
+                Array.Sort(st4);
                 #endregion
                 for (int i = 0; i < 16; i++)
                 {
@@ -932,6 +941,7 @@ namespace Poker
             }
         }
 
+        #region possible hands - Most likely for the player
         private void rStraightFlush(ref double current, ref double Power, int[] st1, int[] st2, int[] st3, int[] st4)
         {
             if (current >= -1)
@@ -1007,7 +1017,6 @@ namespace Poker
             }
         }
 
-        //
         private void rFourOfAKind(ref double current, ref double Power, int[] Straight)
         {
             if (current >= -1)
@@ -1032,6 +1041,7 @@ namespace Poker
                 }
             }
         }
+
         private void rFullHouse(ref double current, ref double Power, ref bool done, int[] Straight)
         {
             if (current >= -1)
@@ -1084,6 +1094,7 @@ namespace Poker
                 }
             }
         }
+
         private void rFlush(ref double current, ref double Power, ref bool vf, int[] Straight1)
         {
             if (current >= -1)
@@ -1559,6 +1570,7 @@ namespace Poker
                 }
             }
         }
+
         private void rStraight(ref double current, ref double Power, int[] Straight)
         {
             if (current >= -1)
@@ -1593,6 +1605,7 @@ namespace Poker
                 }
             }
         }
+
         private void rThreeOfAKind(ref double current, ref double Power, int[] Straight)
         {
             if (current >= -1)
@@ -1620,6 +1633,7 @@ namespace Poker
                 }
             }
         }
+
         private void rTwoPair(ref double current, ref double Power)
         {
             if (current >= -1)
@@ -1673,6 +1687,7 @@ namespace Poker
                 }
             }
         }
+
         private void rPairTwoPair(ref double current, ref double Power)
         {
             if (current >= -1)
@@ -1774,6 +1789,7 @@ namespace Poker
                 }
             }
         }
+
         private void rPairFromHand(ref double current, ref double Power)
         {
             if (current >= -1)
@@ -1847,6 +1863,7 @@ namespace Poker
                 }
             }
         }
+
         private void rHighCard(ref double current, ref double Power)
         {
             if (current == -1)
@@ -1874,6 +1891,7 @@ namespace Poker
                 }
             }
         }
+        #endregion
 
         void Winner(double current, double Power, string currentText, int chips, string lastly)
         {
@@ -2020,6 +2038,7 @@ namespace Poker
                 }
             }
         }
+
         async Task CheckRaise(int currentTurn, int raiseTurn)
         {
             if (raising)
@@ -2143,7 +2162,7 @@ namespace Poker
                 Winner(botThreeType, botThreePower, "Bot 3", botThreeChips, fixedLast);
                 Winner(botFourType, botFourPower, "Bot 4", botFourChips, fixedLast);
                 Winner(botFiveType, botFivePower, "Bot 5", botFiveChips, fixedLast);
-                restart = true;
+                shouldRestart = true;
                 playerTurn = true;
                 hasPlayerBankrupted = false;
                 hasBotOneBankrupted = false;
@@ -2153,16 +2172,16 @@ namespace Poker
                 hasBotFiveBankrupted = false;
                 if (playerChips <= 0)
                 {
-                    AddChips f2 = new AddChips();
+                    AddChipsWhenLost f2 = new AddChipsWhenLost();
                     f2.ShowDialog();
-                    if (f2.a != 0)
+                    if (f2.AddChipsValue != 0)
                     {
-                        playerChips = f2.a;
-                        botOnehips += f2.a;
-                        botTwoChips += f2.a;
-                        botThreeChips += f2.a;
-                        botFourChips += f2.a;
-                        botFiveChips += f2.a;
+                        playerChips = f2.AddChipsValue;
+                        botOnehips += f2.AddChipsValue;
+                        botTwoChips += f2.AddChipsValue;
+                        botThreeChips += f2.AddChipsValue;
+                        botFourChips += f2.AddChipsValue;
+                        botFiveChips += f2.AddChipsValue;
                         hasPlayerBankrupted = false;
                         playerTurn = true;
                         playerRaiseButton.Enabled = true;
@@ -2259,6 +2278,7 @@ namespace Poker
                 }
             }
         }
+
         /// <summary>
         /// TODO:Split in methods
         /// </summary>
@@ -2409,54 +2429,107 @@ namespace Poker
                 FixWinners();
             }
             playerPanel.Visible = false;
-            botOnePanel.Visible = false; botTwoPanel.Visible = false; botThreePanel.Visible = false; botFourPanel.Visible = false; botFivePanel.Visible = false;
-            callChipsValue = bigBlind; Raise = 0;
+            botOnePanel.Visible = false;
+            botTwoPanel.Visible = false;
+            botThreePanel.Visible = false;
+            botFourPanel.Visible = false;
+            botFivePanel.Visible = false;
+
+            callChipsValue = bigBlind;
+            Raise = 0;
             foldedPlayers = 5;
-            type = 0; totalRounds = 0; botOnePower = 0; botTwoPower = 0; botThreePower = 0; botFourPower = 0; botFivePower = 0; playerPower = 0; playerType = -1; Raise = 0;
-            botOneType = -1; botTwoType = -1; botThreeType = -1; botFourType = -1; botFiveType = -1;
-            botOneTurn = false; botTwoTurn = false; botThreeTurn = false; botFourTurn = false; botFiveTurn = false;
-            hasBotOneBankrupted = false; hasBotTwoBankrupted = false; hasBotThreeBankrupted = false; hasBotFourBankrupted = false; hasBotFiveBankrupted = false;
+            type = 0;
+            totalRounds = 0;
+            botOnePower = 0; botTwoPower = 0;
+            botThreePower = 0;
+            botFourPower = 0;
+            botFivePower = 0;
+            playerPower = 0;
+            playerType = -1;
+            Raise = 0;
+
+            botOneType = -1;
+            botTwoType = -1;
+            botThreeType = -1;
+            botFourType = -1;
+            botFiveType = -1;
+
+            botOneTurn = false;
+            botTwoTurn = false;
+            botThreeTurn = false;
+            botFourTurn = false;
+            botFiveTurn = false;
+
+            hasBotOneBankrupted = false;
+            hasBotTwoBankrupted = false;
+            hasBotThreeBankrupted = false;
+            hasBotFourBankrupted = false;
+            hasBotFiveBankrupted = false;
+
             hasPlayerFolded = false;
             botOneFolded = false;
             botTwoFolded = false;
             botThreeFolded = false;
-            botFourFolded = false; botFiveFolded = false;
-            hasPlayerBankrupted = false; playerTurn = true; restart = false; raising = false;
-            playerCall = 0; botOneCall = 0; botTwoCall = 0; botThreeCall = 0; botFourCall = 0; botFiveCall = 0; playerRaise = 0; botOneRaise = 0; botTwoRaise = 0; botThreeRaise = 0; botFourRaise = 0; botFiveRaise = 0;
+            botFourFolded = false;
+            botFiveFolded = false;
+
+            hasPlayerBankrupted = false;
+            playerTurn = true;
+            shouldRestart = false;
+            raising = false;
+            playerCall = 0;
+            botOneCall = 0;
+            botTwoCall = 0;
+            botThreeCall = 0;
+            botFourCall = 0;
+            botFiveCall = 0;
+
+            playerRaise = 0;
+            botOneRaise = 0;
+            botTwoRaise = 0;
+            botThreeRaise = 0;
+            botFourRaise = 0;
+            botFiveRaise = 0;
+
             height = 0; width = 0; winners = 0;
             //Flop = 1;
             //Turn = 2;
             //River = 3;
             //End = 4;
             maxLeft = 6;
-            last = 123; raisedTurn = 1;
+            last = 123;
+            raisedTurn = 1;
+
             bankruptPlayers.Clear();
             CheckWinners.Clear();
             totalAllInChips.Clear();
             winningingHands.Clear();
+
             sorted.Current = 0;
             sorted.Power = 0;
             potTextBox.Text = "0";
             t = 60;
             turnCount = 0;
+
             playerStatus.Text = "";
             botOneStatus.Text = "";
             botTwoStatus.Text = "";
             botThreeStatus.Text = "";
             botFourStatus.Text = "";
             botFiveStatus.Text = "";
+
             if (playerChips <= 0)
             {
-                AddChips f2 = new AddChips();
+                AddChipsWhenLost f2 = new AddChipsWhenLost();
                 f2.ShowDialog();
-                if (f2.a != 0)
+                if (f2.AddChipsValue != 0)
                 {
-                    playerChips = f2.a;
-                    botOnehips += f2.a;
-                    botTwoChips += f2.a;
-                    botThreeChips += f2.a;
-                    botFourChips += f2.a;
-                    botFiveChips += f2.a;
+                    playerChips = f2.AddChipsValue;
+                    botOnehips += f2.AddChipsValue;
+                    botTwoChips += f2.AddChipsValue;
+                    botThreeChips += f2.AddChipsValue;
+                    botFourChips += f2.AddChipsValue;
+                    botFiveChips += f2.AddChipsValue;
                     hasPlayerBankrupted = false;
                     playerTurn = true;
                     playerRaiseButton.Enabled = true;
@@ -2527,6 +2600,7 @@ namespace Poker
             Winner(botFiveType, botFivePower, "Bot 5", botFiveChips, fixedLast);
         }
 
+        #region second possible hands - most likely for the bots (randoms)
         void AI(int c1, int c2, ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower, double botCurrent)
         {
             if (!sFTurn)
@@ -2709,6 +2783,7 @@ namespace Poker
                 Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, sfCall, sfRaise);
             }
         }
+        #endregion
 
         private void Fold(ref bool sTurn, ref bool sFTurn, Label sStatus)
         {

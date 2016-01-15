@@ -24,7 +24,6 @@ D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.pdb
 D:\Team-Breadfruit\Team-Breadfruit-\Poker\bin\Debug\Poker.exe
 D:\Team-Breadfruit\Team-Breadfruit-\Poker\bin\Debug\Poker.pdb
 D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
-D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.AddChips.resources
 D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.Form1.resources
 D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.Resources.resources
 D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
@@ -58,3 +57,4 @@ C:\Users\Joro\Documents\C#\Fundamentals\Team-Breadfruit-\Poker\obj\Debug\Poker.A
 C:\Users\Joro\Documents\C#\Fundamentals\Team-Breadfruit-\Poker\obj\Debug\Poker.Form1.resources
 C:\Users\Joro\Documents\C#\Fundamentals\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.Resources.resources
 C:\Users\Joro\Documents\C#\Fundamentals\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
+D:\Team-Breadfruit\Team-Breadfruit-\Poker\obj\Debug\Poker.AddChipsWhenLost.resources
