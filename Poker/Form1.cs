@@ -119,7 +119,7 @@ namespace Poker
         private bool hasPlayerBankrupted = false;
         private bool playerTurn = true;
         private bool shouldRestart = false;
-        private bool raising = false;
+        private bool isRaising = false;
 
         Poker.Type sorted;
 
@@ -2041,10 +2041,10 @@ namespace Poker
 
         async Task CheckRaise(int currentTurn, int raiseTurn)
         {
-            if (raising)
+            if (isRaising)
             {
                 turnCount = 0;
-                raising = false;
+                isRaising = false;
                 raisedTurn = currentTurn;
                 changed = true;
             }
@@ -2476,7 +2476,7 @@ namespace Poker
             hasPlayerBankrupted = false;
             playerTurn = true;
             shouldRestart = false;
-            raising = false;
+            isRaising = false;
             playerCall = 0;
             botOneCall = 0;
             botTwoCall = 0;
@@ -2655,12 +2655,12 @@ namespace Poker
 
         private void HighCard(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
         {
-            HP(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower, 20, 25);
+            BotsMoveFirst(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower, 20, 25);
         }
 
         private void PairTable(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
         {
-            HP(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower, 16, 25);
+            BotsMoveFirst(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower, 16, 25);
         }
 
         private void PairHand(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
@@ -2670,15 +2670,15 @@ namespace Poker
             int rRaise = rPair.Next(10, 13);
             if (botPower <= 199 && botPower >= 140)
             {
-                PH(ref sChips, ref sTurn, ref sFTurn, sStatus, rCall, 6, rRaise);
+                BotsMoveSecond(ref sChips, ref sTurn, ref sFTurn, sStatus, rCall, 6, rRaise);
             }
             if (botPower <= 139 && botPower >= 128)
             {
-                PH(ref sChips, ref sTurn, ref sFTurn, sStatus, rCall, 7, rRaise);
+                BotsMoveSecond(ref sChips, ref sTurn, ref sFTurn, sStatus, rCall, 7, rRaise);
             }
             if (botPower < 128 && botPower >= 101)
             {
-                PH(ref sChips, ref sTurn, ref sFTurn, sStatus, rCall, 9, rRaise);
+                BotsMoveSecond(ref sChips, ref sTurn, ref sFTurn, sStatus, rCall, 9, rRaise);
             }
         }
 
@@ -2689,15 +2689,15 @@ namespace Poker
             int rRaise = rPair.Next(6, 11);
             if (botPower <= 290 && botPower >= 246)
             {
-                PH(ref sChips, ref sTurn, ref sFTurn, sStatus, rCall, 3, rRaise);
+                BotsMoveSecond(ref sChips, ref sTurn, ref sFTurn, sStatus, rCall, 3, rRaise);
             }
             if (botPower <= 244 && botPower >= 234)
             {
-                PH(ref sChips, ref sTurn, ref sFTurn, sStatus, rCall, 4, rRaise);
+                BotsMoveSecond(ref sChips, ref sTurn, ref sFTurn, sStatus, rCall, 4, rRaise);
             }
             if (botPower < 234 && botPower >= 201)
             {
-                PH(ref sChips, ref sTurn, ref sFTurn, sStatus, rCall, 4, rRaise);
+                BotsMoveSecond(ref sChips, ref sTurn, ref sFTurn, sStatus, rCall, 4, rRaise);
             }
         }
 
@@ -2708,15 +2708,15 @@ namespace Poker
             int tRaise = tk.Next(4, 8);
             if (botPower <= 390 && botPower >= 330)
             {
-                Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, tCall, tRaise);
+                BotsMoveThirdPossibility(ref sChips, ref sTurn, ref sFTurn, sStatus, name, tCall, tRaise);
             }
             if (botPower <= 327 && botPower >= 321)//10  8
             {
-                Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, tCall, tRaise);
+                BotsMoveThirdPossibility(ref sChips, ref sTurn, ref sFTurn, sStatus, name, tCall, tRaise);
             }
             if (botPower < 321 && botPower >= 303)//7 2
             {
-                Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, tCall, tRaise);
+                BotsMoveThirdPossibility(ref sChips, ref sTurn, ref sFTurn, sStatus, name, tCall, tRaise);
             }
         }
 
@@ -2727,15 +2727,15 @@ namespace Poker
             int sRaise = str.Next(3, 8);
             if (botPower <= 480 && botPower >= 410)
             {
-                Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, sCall, sRaise);
+                BotsMoveThirdPossibility(ref sChips, ref sTurn, ref sFTurn, sStatus, name, sCall, sRaise);
             }
             if (botPower <= 409 && botPower >= 407)//10  8
             {
-                Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, sCall, sRaise);
+                BotsMoveThirdPossibility(ref sChips, ref sTurn, ref sFTurn, sStatus, name, sCall, sRaise);
             }
             if (botPower < 407 && botPower >= 404)
             {
-                Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, sCall, sRaise);
+                BotsMoveThirdPossibility(ref sChips, ref sTurn, ref sFTurn, sStatus, name, sCall, sRaise);
             }
         }
 
@@ -2744,7 +2744,7 @@ namespace Poker
             Random fsh = new Random();
             int fCall = fsh.Next(2, 6);
             int fRaise = fsh.Next(3, 7);
-            Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, fCall, fRaise);
+            BotsMoveThirdPossibility(ref sChips, ref sTurn, ref sFTurn, sStatus, name, fCall, fRaise);
         }
 
         private void FullHouse(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
@@ -2754,11 +2754,11 @@ namespace Poker
             int fhRaise = flh.Next(2, 6);
             if (botPower <= 626 && botPower >= 620)
             {
-                Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, fhCall, fhRaise);
+                BotsMoveThirdPossibility(ref sChips, ref sTurn, ref sFTurn, sStatus, name, fhCall, fhRaise);
             }
             if (botPower < 620 && botPower >= 602)
             {
-                Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, fhCall, fhRaise);
+                BotsMoveThirdPossibility(ref sChips, ref sTurn, ref sFTurn, sStatus, name, fhCall, fhRaise);
             }
         }
 
@@ -2769,7 +2769,7 @@ namespace Poker
             int fkRaise = fk.Next(2, 5);
             if (botPower <= 752 && botPower >= 704)
             {
-                Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, fkCall, fkRaise);
+                BotsMoveThirdPossibility(ref sChips, ref sTurn, ref sFTurn, sStatus, name, fkCall, fkRaise);
             }
         }
 
@@ -2780,81 +2780,86 @@ namespace Poker
             int sfRaise = sf.Next(1, 3);
             if (botPower <= 913 && botPower >= 804)
             {
-                Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, sfCall, sfRaise);
+                BotsMoveThirdPossibility(ref sChips, ref sTurn, ref sFTurn, sStatus, name, sfCall, sfRaise);
             }
         }
         #endregion
 
-        private void Fold(ref bool sTurn, ref bool sFTurn, Label sStatus)
+        #region check bots possibility
+
+        private void ChangeStatusToFold(ref bool isBotTurn, ref bool sFTurn, Label sStatus)
         {
-            raising = false;
+            isRaising = false;
             sStatus.Text = "Fold";
-            sTurn = false;
+            isBotTurn = false;
             sFTurn = true;
         }
 
-        private void Check(ref bool cTurn, Label cStatus)
+        //Changes the status label of the bot when it is checking the community cards
+        private void ChangeStatusToChecking(ref bool isBotsTurn, Label statusLabel)
         {
-            cStatus.Text = "Check";
-            cTurn = false;
-            raising = false;
+            statusLabel.Text = "Check";
+            isBotsTurn = false;
+            isRaising = false;
         }
 
-        private void Call(ref int sChips, ref bool sTurn, Label sStatus)
+        // The bots call // Change status to call
+        private void Call(ref int botsChips, ref bool isBotsTurn, Label statusLabel)
         {
-            raising = false;
-            sTurn = false;
-            sChips -= callChipsValue;
-            sStatus.Text = "Call " + callChipsValue;
+            isRaising = false;
+            isBotsTurn = false;
+            botsChips -= callChipsValue;
+            statusLabel.Text = "Call " + callChipsValue;
             potTextBox.Text = (int.Parse(potTextBox.Text) + callChipsValue).ToString();
         }
 
-        private void Raised(ref int sChips, ref bool sTurn, Label sStatus)
+        private void RaiseBet(ref int botChips, ref bool isBotsTurn, Label statusLabel)
         {
-            sChips -= Convert.ToInt32(Raise);
-            sStatus.Text = "Raise " + Raise;
+            botChips -= Convert.ToInt32(Raise);
+            statusLabel.Text = "Raise " + Raise;
             potTextBox.Text = (int.Parse(potTextBox.Text) + Convert.ToInt32(Raise)).ToString();
             callChipsValue = Convert.ToInt32(Raise);
-            raising = true;
-            sTurn = false;
+            isRaising = true;
+            isBotsTurn = false;
         }
 
-        private static double RoundN(int sChips, int n)
+        //Calculate the maximum amount of money that the bot can play with on this particular turn
+        private static double BotMaximumBidAbility(int botChips, int behaviour)
         {
-            double a = Math.Round((sChips / n) / 100d, 0) * 100;
-            return a;
+            double maximumBidChips = Math.Round((botChips / behaviour) / 100d, 0) * 100;
+            return maximumBidChips;
         }
 
-        private void HP(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower, int n, int n1)
+        private void BotsMoveFirst(ref int botChips, ref bool isBotsTurn, ref bool hasBotFold, Label statusLabel, double safePlay, int n, int riskPlay)
         {
             Random rand = new Random();
             int rnd = rand.Next(1, 4);
             if (callChipsValue <= 0)
             {
-                Check(ref sTurn, sStatus);
+                ChangeStatusToChecking(ref isBotsTurn, statusLabel);
             }
             if (callChipsValue > 0)
             {
                 if (rnd == 1)
                 {
-                    if (callChipsValue <= RoundN(sChips, n))
+                    if (callChipsValue <= BotMaximumBidAbility(botChips, n))
                     {
-                        Call(ref sChips, ref sTurn, sStatus);
+                        Call(ref botChips, ref isBotsTurn, statusLabel);
                     }
                     else
                     {
-                        Fold(ref sTurn, ref sFTurn, sStatus);
+                        ChangeStatusToFold(ref isBotsTurn, ref hasBotFold, statusLabel);
                     }
                 }
                 if (rnd == 2)
                 {
-                    if (callChipsValue <= RoundN(sChips, n1))
+                    if (callChipsValue <= BotMaximumBidAbility(botChips, riskPlay))
                     {
-                        Call(ref sChips, ref sTurn, sStatus);
+                        Call(ref botChips, ref isBotsTurn, statusLabel);
                     }
                     else
                     {
-                        Fold(ref sTurn, ref sFTurn, sStatus);
+                        ChangeStatusToFold(ref isBotsTurn, ref hasBotFold, statusLabel);
                     }
                 }
             }
@@ -2863,69 +2868,78 @@ namespace Poker
                 if (Raise == 0)
                 {
                     Raise = callChipsValue * 2;
-                    Raised(ref sChips, ref sTurn, sStatus);
+                    RaiseBet(ref botChips, ref isBotsTurn, statusLabel);
                 }
                 else
                 {
-                    if (Raise <= RoundN(sChips, n))
+                    if (Raise <= BotMaximumBidAbility(botChips, n))
                     {
                         Raise = callChipsValue * 2;
-                        Raised(ref sChips, ref sTurn, sStatus);
+                        RaiseBet(ref botChips, ref isBotsTurn, statusLabel);
                     }
                     else
                     {
-                        Fold(ref sTurn, ref sFTurn, sStatus);
+                        ChangeStatusToFold(ref isBotsTurn, ref hasBotFold, statusLabel);
                     }
                 }
             }
-            if (sChips <= 0)
+            if (botChips <= 0)
             {
-                sFTurn = true;
+                hasBotFold = true;
             }
         }
 
-        private void PH(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int n, int n1, int r)
+        // checks if it has pair or two pair
+        private void BotsMoveSecond(ref int botChips, ref bool isBotsTurn, ref bool botFolds, Label labelStatus, int raiseFactor, int botsPower, int callPower)
         {
             Random rand = new Random();
-            int rnd = rand.Next(1, 3);
+            int randomNumber = rand.Next(1, 3);
+
             if (totalRounds < 2)
             {
                 if (callChipsValue <= 0)
                 {
-                    Check(ref sTurn, sStatus);
+                    ChangeStatusToChecking(ref isBotsTurn, labelStatus);
                 }
+
                 if (callChipsValue > 0)
                 {
-                    if (callChipsValue >= RoundN(sChips, n1))
+                    if (callChipsValue >= BotMaximumBidAbility(botChips, botsPower))
                     {
-                        Fold(ref sTurn, ref sFTurn, sStatus);
+                        ChangeStatusToFold(ref isBotsTurn, ref botFolds, labelStatus);
                     }
-                    if (Raise > RoundN(sChips, n))
+
+                    if (Raise > BotMaximumBidAbility(botChips, raiseFactor))
                     {
-                        Fold(ref sTurn, ref sFTurn, sStatus);
+                        ChangeStatusToFold(ref isBotsTurn, ref botFolds, labelStatus);
                     }
-                    if (!sFTurn)
+
+                    if (!botFolds)
                     {
-                        if (callChipsValue >= RoundN(sChips, n) && callChipsValue <= RoundN(sChips, n1))
+                        if (callChipsValue >= BotMaximumBidAbility(botChips, raiseFactor) && callChipsValue <= BotMaximumBidAbility(botChips, botsPower))
                         {
-                            Call(ref sChips, ref sTurn, sStatus);
+                            Call(ref botChips, ref isBotsTurn, labelStatus);
                         }
-                        if (Raise <= RoundN(sChips, n) && Raise >= (RoundN(sChips, n)) / 2)
+
+                        if (Raise <= BotMaximumBidAbility(botChips, raiseFactor) && Raise >= (BotMaximumBidAbility(botChips, raiseFactor)) / 2)
                         {
-                            Call(ref sChips, ref sTurn, sStatus);
+                            Call(ref botChips, ref isBotsTurn, labelStatus);
                         }
-                        if (Raise <= (RoundN(sChips, n)) / 2)
+
+                        if (Raise <= (BotMaximumBidAbility(botChips, raiseFactor)) / 2)
                         {
                             if (Raise > 0)
                             {
-                                Raise = RoundN(sChips, n);
-                                Raised(ref sChips, ref sTurn, sStatus);
+                                Raise = BotMaximumBidAbility(botChips, raiseFactor);
+                                RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
                             }
+
                             else
                             {
                                 Raise = callChipsValue * 2;
-                                Raised(ref sChips, ref sTurn, sStatus);
+                                RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
                             }
+
                         }
 
                     }
@@ -2935,71 +2949,78 @@ namespace Poker
             {
                 if (callChipsValue > 0)
                 {
-                    if (callChipsValue >= RoundN(sChips, n1 - rnd))
+                    if (callChipsValue >= BotMaximumBidAbility(botChips, botsPower - randomNumber))
                     {
-                        Fold(ref sTurn, ref sFTurn, sStatus);
+                        ChangeStatusToFold(ref isBotsTurn, ref botFolds, labelStatus);
                     }
-                    if (Raise > RoundN(sChips, n - rnd))
+
+                    if (Raise > BotMaximumBidAbility(botChips, raiseFactor - randomNumber))
                     {
-                        Fold(ref sTurn, ref sFTurn, sStatus);
+                        ChangeStatusToFold(ref isBotsTurn, ref botFolds, labelStatus);
                     }
-                    if (!sFTurn)
+
+                    if (!botFolds)
                     {
-                        if (callChipsValue >= RoundN(sChips, n - rnd) && callChipsValue <= RoundN(sChips, n1 - rnd))
+                        if (callChipsValue >= BotMaximumBidAbility(botChips, raiseFactor - randomNumber) && callChipsValue <= BotMaximumBidAbility(botChips, botsPower - randomNumber))
                         {
-                            Call(ref sChips, ref sTurn, sStatus);
+                            Call(ref botChips, ref isBotsTurn, labelStatus);
                         }
-                        if (Raise <= RoundN(sChips, n - rnd) && Raise >= (RoundN(sChips, n - rnd)) / 2)
+
+                        if (Raise <= BotMaximumBidAbility(botChips, raiseFactor - randomNumber) && Raise >= (BotMaximumBidAbility(botChips, raiseFactor - randomNumber)) / 2)
                         {
-                            Call(ref sChips, ref sTurn, sStatus);
+                            Call(ref botChips, ref isBotsTurn, labelStatus);
                         }
-                        if (Raise <= (RoundN(sChips, n - rnd)) / 2)
+
+                        if (Raise <= (BotMaximumBidAbility(botChips, raiseFactor - randomNumber)) / 2)
                         {
                             if (Raise > 0)
                             {
-                                Raise = RoundN(sChips, n - rnd);
-                                Raised(ref sChips, ref sTurn, sStatus);
+                                Raise = BotMaximumBidAbility(botChips, raiseFactor - randomNumber);
+                                RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
                             }
+
                             else
                             {
                                 Raise = callChipsValue * 2;
-                                Raised(ref sChips, ref sTurn, sStatus);
+                                RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
                             }
                         }
                     }
                 }
                 if (callChipsValue <= 0)
                 {
-                    Raise = RoundN(sChips, r - rnd);
-                    Raised(ref sChips, ref sTurn, sStatus);
+                    Raise = BotMaximumBidAbility(botChips, callPower - randomNumber);
+                    RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
                 }
             }
-            if (sChips <= 0)
+
+            if (botChips <= 0)
             {
-                sFTurn = true;
+                botFolds = true;
             }
         }
 
-        void Smooth(ref int botChips, ref bool botTurn, ref bool botFTurn, Label botStatus, int name, int n, int r)
+        void BotsMoveThirdPossibility(ref int botChips, ref bool isBotTurn, ref bool hasBotFold, Label botStatus, int name, int behaviour, int r)
         {
             Random rand = new Random();
             int rnd = rand.Next(1, 3);
+
             if (callChipsValue <= 0)
             {
-                Check(ref botTurn, botStatus);
+                ChangeStatusToChecking(ref isBotTurn, botStatus);
             }
             else
             {
-                if (callChipsValue >= RoundN(botChips, n))
+                if (callChipsValue >= BotMaximumBidAbility(botChips, behaviour))
                 {
                     if (botChips > callChipsValue)
                     {
-                        Call(ref botChips, ref botTurn, botStatus);
+                        Call(ref botChips, ref isBotTurn, botStatus);
                     }
                     else if (botChips <= callChipsValue)
                     {
-                        raising = false;
-                        botTurn = false;
+                        isRaising = false;
+                        isBotTurn = false;
                         botChips = 0;
                         botStatus.Text = "Call " + botChips;
                         potTextBox.Text = (int.Parse(potTextBox.Text) + botChips).ToString();
@@ -3012,25 +3033,26 @@ namespace Poker
                         if (botChips >= Raise * 2)
                         {
                             Raise *= 2;
-                            Raised(ref botChips, ref botTurn, botStatus);
+                            RaiseBet(ref botChips, ref isBotTurn, botStatus);
                         }
                         else
                         {
-                            Call(ref botChips, ref botTurn, botStatus);
+                            Call(ref botChips, ref isBotTurn, botStatus);
                         }
                     }
                     else
                     {
                         Raise = callChipsValue * 2;
-                        Raised(ref botChips, ref botTurn, botStatus);
+                        RaiseBet(ref botChips, ref isBotTurn, botStatus);
                     }
                 }
             }
             if (botChips <= 0)
             {
-                botFTurn = true;
+                hasBotFold = true;
             }
         }
+        #endregion
 
         #region UI
         private async void timer_Tick(object sender, object e)
@@ -3085,6 +3107,7 @@ namespace Poker
             botThreeChipsTextBox.Text = "Chips : " + botThreeChips;
             botFourChipsTextBox.Text = "Chips : " + botFourChips;
             botFiveChipsTextBox.Text = "Chips : " + botFiveChips;
+
             if (playerChips <= 0)
             {
                 playerTurn = false;
@@ -3146,6 +3169,7 @@ namespace Poker
             hasPlayerBankrupted = true;
             await Turns();
         }
+
         private async void bCheck_Click(object sender, EventArgs e)
         {
             if (callChipsValue <= 0)
@@ -3161,6 +3185,7 @@ namespace Poker
             }
             await Turns();
         }
+
         private async void bCall_Click(object sender, EventArgs e)
         {
             Rules(0, 1, ref playerType, ref playerPower, hasPlayerBankrupted);
@@ -3192,6 +3217,7 @@ namespace Poker
             }
             await Turns();
         }
+
         private async void bRaise_Click(object sender, EventArgs e)
         {
             Rules(0, 1, ref playerType, ref playerPower, hasPlayerBankrupted);
@@ -3216,7 +3242,7 @@ namespace Poker
                             potTextBox.Text = (int.Parse(potTextBox.Text) + callChipsValue).ToString();
                             playerCallButton.Text = "Call";
                             playerChips -= int.Parse(playerRaiseTextBox.Text);
-                            raising = true;
+                            isRaising = true;
                             last = 0;
                             playerRaise = Convert.ToInt32(Raise);
                         }
@@ -3227,7 +3253,7 @@ namespace Poker
                             potTextBox.Text = (int.Parse(potTextBox.Text) + playerChips).ToString();
                             playerStatus.Text = "Raise " + callChipsValue.ToString();
                             playerChips = 0;
-                            raising = true;
+                            isRaising = true;
                             last = 0;
                             playerRaise = Convert.ToInt32(Raise);
                         }
