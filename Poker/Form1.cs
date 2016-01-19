@@ -188,14 +188,14 @@ namespace Poker
             timer.Tick += timer_Tick;
             Updates.Interval = (1 * 1 * 100);
             Updates.Tick += Update_Tick;
-            bigBlindTextBox.Visible = true;
-            smallBlindTextBox.Visible = true;
-            bigBlindButton.Visible = true;
-            smallBlindButton.Visible = true;
-            bigBlindTextBox.Visible = true;
-            smallBlindTextBox.Visible = true;
-            bigBlindButton.Visible = true;
-            smallBlindButton.Visible = true;
+            //bigBlindTextBox.Visible = true;
+            //smallBlindTextBox.Visible = true;
+            //bigBlindButton.Visible = true;
+            //smallBlindButton.Visible = true;
+            //bigBlindTextBox.Visible = true;
+            //smallBlindTextBox.Visible = true;
+            //bigBlindButton.Visible = true;
+            //smallBlindButton.Visible = true;
             bigBlindTextBox.Visible = false;
             smallBlindTextBox.Visible = false;
             bigBlindButton.Visible = false;
@@ -874,9 +874,9 @@ namespace Poker
         void Rules(int cardOne, int cardTwo, ref double current, ref double Power, bool foldedTurn)
         {
             //WTF IS THIS SHIT
-            if (cardOne == 0 && cardTwo == 1)
-            {
-            }
+            //if (cardOne == 0 && cardTwo == 1)
+            //{
+            //}
             if (!foldedTurn || cardOne == 0 && cardTwo == 1 && playerStatus.Text.Contains("Fold") == false)
             {
                 #region Variables
@@ -920,42 +920,42 @@ namespace Poker
                     {
                         //Pair from Hand current = 1
 
-                        rPairFromHand(ref current, ref Power);
+                        this.RulesPairFromHand(ref current, ref Power);
 
                         #region Pair or Two Pair from Table current = 2 || 0
-                        rPairTwoPair(ref current, ref Power);
+                        this.RulesPairTwoPair(ref current, ref Power);
                         #endregion
 
                         #region Two Pair current = 2
-                        rTwoPair(ref current, ref Power);
+                        this.RulesTwoPair(ref current, ref Power);
                         #endregion
 
                         #region Three of a kind current = 3
-                        rThreeOfAKind(ref current, ref Power, currentPlayerAndTableCards);
+                        this.RulesThreeOfAKind(ref current, ref Power, currentPlayerAndTableCards);
                         #endregion
 
                         #region CheckBotsStraight current = 4
-                        rStraight(ref current, ref Power, currentPlayerAndTableCards);
+                        this.RulesStraight(ref current, ref Power, currentPlayerAndTableCards);
                         #endregion
 
                         #region CheckBotsFlush current = 5 || 5.5
-                        rFlush(ref current, ref Power, ref vf,cardsOnTheTable);
+                        this.RulesFlush(ref current, ref Power, ref vf,cardsOnTheTable);
                         #endregion
 
                         #region Full House current = 6
-                        rFullHouse(ref current, ref Power, ref done, currentPlayerAndTableCards);
+                        this.RulesFullHouse(ref current, ref Power, ref done, currentPlayerAndTableCards);
                         #endregion
 
                         #region Four of a Kind current = 7
-                        rFourOfAKind(ref current, ref Power, currentPlayerAndTableCards);
+                        this.RulesFourOfAKind(ref current, ref Power, currentPlayerAndTableCards);
                         #endregion
 
                         #region Straight Flush current = 8 || 9
-                        rStraightFlush(ref current, ref Power, clubsStrenghtValues, diamondsStrenghtValues, heartsStrenghtValues, spadesStrenghtValues);
+                        this.RulesStraightFlush(ref current, ref Power, clubsStrenghtValues, diamondsStrenghtValues, heartsStrenghtValues, spadesStrenghtValues);
                         #endregion
 
                         #region High Card current = -1
-                        rHighCard(ref current, ref Power);
+                        this.RulesHighCard(ref current, ref Power);
                         #endregion
                     }
                 }
@@ -964,7 +964,7 @@ namespace Poker
 
         #region possible hands - Most likely for the player
 
-        private void rStraightFlush(ref double current, ref double Power, int[] clubsStrenghtValues, int[] diamondsStrenghtValues, int[] heartsStrenghtValues, int[] spadesStrenghtValues)
+        private void RulesStraightFlush(ref double current, ref double Power, int[] clubsStrenghtValues, int[] diamondsStrenghtValues, int[] heartsStrenghtValues, int[] spadesStrenghtValues)
         {
             if (current >= -1)
             {
@@ -1030,7 +1030,7 @@ namespace Poker
             sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
         }
 
-        private void rFourOfAKind(ref double current, ref double Power, int[] Straight)
+        private void RulesFourOfAKind(ref double current, ref double Power, int[] Straight)
         {
             if (current >= -1)
             {
@@ -1055,7 +1055,7 @@ namespace Poker
             }
         }
 
-        private void rFullHouse(ref double current, ref double Power, ref bool done, int[] Straight)
+        private void RulesFullHouse(ref double current, ref double Power, ref bool done, int[] Straight)
         {
             if (current >= -1)
             {
@@ -1108,7 +1108,7 @@ namespace Poker
             }
         }
 
-        private void rFlush(ref double current, ref double Power, ref bool vf, int[] Straight1)
+        private void RulesFlush(ref double current, ref double Power, ref bool vf, int[] Straight1)
         {
             if (current >= -1)
             {
@@ -1584,7 +1584,7 @@ namespace Poker
             }
         }
 
-        private void rStraight(ref double current, ref double Power, int[] Straight)
+        private void RulesStraight(ref double current, ref double Power, int[] Straight)
         {
             if (current >= -1)
             {
@@ -1619,7 +1619,7 @@ namespace Poker
             }
         }
 
-        private void rThreeOfAKind(ref double current, ref double Power, int[] Straight)
+        private void RulesThreeOfAKind(ref double current, ref double Power, int[] Straight)
         {
             if (current >= -1)
             {
@@ -1647,7 +1647,7 @@ namespace Poker
             }
         }
 
-        private void rTwoPair(ref double current, ref double Power)
+        private void RulesTwoPair(ref double current, ref double Power)
         {
             if (current >= -1)
             {
@@ -1701,7 +1701,7 @@ namespace Poker
             }
         }
 
-        private void rPairTwoPair(ref double current, ref double Power)
+        private void RulesPairTwoPair(ref double current, ref double Power)
         {
             if (current >= -1)
             {
@@ -1803,7 +1803,7 @@ namespace Poker
             }
         }
 
-        private void rPairFromHand(ref double current, ref double Power)
+        private void RulesPairFromHand(ref double current, ref double Power)
         {
             if (current >= -1)
             {
@@ -1877,7 +1877,7 @@ namespace Poker
             }
         }
 
-        private void rHighCard(ref double current, ref double Power)
+        private void RulesHighCard(ref double current, ref double Power)
         {
             if (current == -1)
             {
