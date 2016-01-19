@@ -110,7 +110,7 @@ namespace Poker
         private int raisedTurn = 1;
 
         //Lists
-        public List<bool?> bankruptPlayers { get; } = new List<bool?>();
+        public List<bool?> bankruptPlayers = new List<bool?>();
 
         List<Type> winningingHands = new List<Type>();
         List<string> CheckWinners = new List<string>();
@@ -652,9 +652,11 @@ namespace Poker
             {
                 CurrentTurnPlayerAction();
             }
+
             if (hasPlayerBankrupted || !playerTurn)
             {
                 await WhoIsAllIn();
+
                 if (hasPlayerBankrupted && !hasPlayerFolded)
                 {
                     if (playerCallButton.Text.Contains("All in") == false || playerRaiseButton.Text.Contains("All in") == false)
@@ -665,7 +667,9 @@ namespace Poker
                         hasPlayerFolded = true;
                     }
                 }
+
                 await CheckRaise(0, 0);
+
                 timerBar.Visible = false;
                 playerRaiseButton.Enabled = false;
                 playerCallButton.Enabled = false;
@@ -676,6 +680,7 @@ namespace Poker
                 timer.Stop();
 
                 botOneTurn = true;
+
                 if (!hasBotOneBankrupted)
                 {
                     if (botOneTurn)
@@ -684,13 +689,14 @@ namespace Poker
                         CheckCurrentBid(botOneStatus, ref botOneCall, ref botOneRaise, 2);
                         Rules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
                         MessageBox.Show("Bot 1's Turn");
-                        AI(2, 3, ref botOnehips, ref botOneTurn, ref hasBotOneBankrupted, botOneStatus, botOnePower, botOneType);
+                        this.CheckBotsHand(2, 3, ref botOnehips, ref botOneTurn, ref hasBotOneBankrupted, botOneStatus, botOnePower, botOneType);
                         turnCount++;
                         last = 1;
                         botOneTurn = false;
                         botTwoTurn = true;
                     }
                 }
+
                 if (hasBotOneBankrupted && !botOneFolded)
                 {
                     bankruptPlayers.RemoveAt(1);
@@ -698,11 +704,13 @@ namespace Poker
                     maxLeft--;
                     botOneFolded = true;
                 }
+
                 if (hasBotOneBankrupted || !botOneTurn)
                 {
                     await CheckRaise(1, 1);
                     botTwoTurn = true;
                 }
+
                 if (!hasBotTwoBankrupted)
                 {
                     if (botTwoTurn)
@@ -711,25 +719,30 @@ namespace Poker
                         CheckCurrentBid(botTwoStatus, ref botTwoCall, ref botTwoRaise, 2);
                         Rules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
                         MessageBox.Show("Bot 2's Turn");
-                        AI(4, 5, ref botTwoChips, ref botTwoTurn, ref hasBotTwoBankrupted, botTwoStatus, botTwoPower, botTwoType);
+                        this.CheckBotsHand(4, 5, ref botTwoChips, ref botTwoTurn, ref hasBotTwoBankrupted, botTwoStatus, botTwoPower, botTwoType);
+
                         turnCount++;
                         last = 2;
                         botTwoTurn = false;
                         botThreeTurn = true;
                     }
                 }
+
                 if (hasBotTwoBankrupted && !botTwoFolded)
                 {
                     bankruptPlayers.RemoveAt(2);
                     bankruptPlayers.Insert(2, null);
+
                     maxLeft--;
                     botTwoFolded = true;
                 }
+
                 if (hasBotTwoBankrupted || !botTwoTurn)
                 {
                     await CheckRaise(2, 2);
                     botThreeTurn = true;
                 }
+
                 if (!hasBotThreeBankrupted)
                 {
                     if (botThreeTurn)
@@ -738,13 +751,15 @@ namespace Poker
                         CheckCurrentBid(botThreeStatus, ref botThreeCall, ref botThreeRaise, 2);
                         Rules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
                         MessageBox.Show("Bot 3's Turn");
-                        AI(6, 7, ref botThreeChips, ref botThreeTurn, ref hasBotThreeBankrupted, botThreeStatus, botThreePower, botThreeType);
+                        this.CheckBotsHand(6, 7, ref botThreeChips, ref botThreeTurn, ref hasBotThreeBankrupted, botThreeStatus, botThreePower, botThreeType);
+
                         turnCount++;
                         last = 3;
                         botThreeTurn = false;
                         botFourTurn = true;
                     }
                 }
+
                 if (hasBotThreeBankrupted && !botThreeFolded)
                 {
                     bankruptPlayers.RemoveAt(3);
@@ -752,11 +767,13 @@ namespace Poker
                     maxLeft--;
                     botThreeFolded = true;
                 }
+
                 if (hasBotThreeBankrupted || !botThreeTurn)
                 {
                     await CheckRaise(3, 3);
                     botFourTurn = true;
                 }
+
                 if (!hasBotFourBankrupted)
                 {
                     if (botFourTurn)
@@ -765,13 +782,14 @@ namespace Poker
                         CheckCurrentBid(botFourStatus, ref botFourCall, ref botFourRaise, 2);
                         Rules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
                         MessageBox.Show("Bot 4's Turn");
-                        AI(8, 9, ref botFourChips, ref botFourTurn, ref hasBotFourBankrupted, botFourStatus, botFourPower, botFourType);
+                        this.CheckBotsHand(8, 9, ref botFourChips, ref botFourTurn, ref hasBotFourBankrupted, botFourStatus, botFourPower, botFourType);
                         turnCount++;
                         last = 4;
                         botFourTurn = false;
                         botFiveTurn = true;
                     }
                 }
+
                 if (hasBotFourBankrupted && !botFourFolded)
                 {
                     bankruptPlayers.RemoveAt(4);
@@ -779,6 +797,8 @@ namespace Poker
                     maxLeft--;
                     botFourFolded = true;
                 }
+
+
                 if (hasBotFourBankrupted || !botFourTurn)
                 {
                     await CheckRaise(4, 4);
@@ -792,7 +812,7 @@ namespace Poker
                         CheckCurrentBid(botFiveStatus, ref botFiveCall, ref botFiveRaise, 2);
                         Rules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
                         MessageBox.Show("Bot 5's Turn");
-                        AI(10, 11, ref botFiveChips, ref botFiveTurn, ref hasBotFiveBankrupted, botFiveStatus, botFivePower, botFiveType);
+                        this.CheckBotsHand(10, 11, ref botFiveChips, ref botFiveTurn, ref hasBotFiveBankrupted, botFiveStatus, botFivePower, botFiveType);
                         turnCount++;
                         last = 5;
                         botFiveTurn = false;
@@ -914,11 +934,11 @@ namespace Poker
                         rThreeOfAKind(ref current, ref Power, currentPlayerAndTableCards);
                         #endregion
 
-                        #region Straight current = 4
+                        #region CheckBotsStraight current = 4
                         rStraight(ref current, ref Power, currentPlayerAndTableCards);
                         #endregion
 
-                        #region Flush current = 5 || 5.5
+                        #region CheckBotsFlush current = 5 || 5.5
                         rFlush(ref current, ref Power, ref vf,cardsOnTheTable);
                         #endregion
 
@@ -2421,6 +2441,7 @@ namespace Poker
             {
                 FixWinners();
             }
+
             playerPanel.Visible = false;
             botOnePanel.Visible = false;
             botTwoPanel.Visible = false;
@@ -2433,7 +2454,8 @@ namespace Poker
             foldedPlayers = 5;
             type = 0;
             totalRounds = 0;
-            botOnePower = 0; botTwoPower = 0;
+            botOnePower = 0;
+            botTwoPower = 0;
             botThreePower = 0;
             botFourPower = 0;
             botFivePower = 0;
@@ -2470,6 +2492,7 @@ namespace Poker
             playerTurn = true;
             shouldRestart = false;
             isRaising = false;
+
             playerCall = 0;
             botOneCall = 0;
             botTwoCall = 0;
@@ -2484,7 +2507,10 @@ namespace Poker
             botFourRaise = 0;
             botFiveRaise = 0;
 
-            height = 0; width = 0; winners = 0;
+            height = 0;
+            width = 0;
+            winners = 0;
+
             //Flop = 1;
             //Turn = 2;
             //River = 3;
@@ -2513,16 +2539,17 @@ namespace Poker
 
             if (playerChips <= 0)
             {
-                AddChipsWhenLost f2 = new AddChipsWhenLost();
-                f2.ShowDialog();
-                if (f2.AddChipsValue != 0)
+                AddChipsWhenLost addChipsWhenLost = new AddChipsWhenLost();
+                addChipsWhenLost.ShowDialog();
+
+                if (addChipsWhenLost.AddChipsValue != 0)
                 {
-                    playerChips = f2.AddChipsValue;
-                    botOnehips += f2.AddChipsValue;
-                    botTwoChips += f2.AddChipsValue;
-                    botThreeChips += f2.AddChipsValue;
-                    botFourChips += f2.AddChipsValue;
-                    botFiveChips += f2.AddChipsValue;
+                    playerChips = addChipsWhenLost.AddChipsValue;
+                    botOnehips += addChipsWhenLost.AddChipsValue;
+                    botTwoChips += addChipsWhenLost.AddChipsValue;
+                    botThreeChips += addChipsWhenLost.AddChipsValue;
+                    botFourChips += addChipsWhenLost.AddChipsValue;
+                    botFiveChips += addChipsWhenLost.AddChipsValue;
                     hasPlayerBankrupted = false;
                     playerTurn = true;
                     playerRaiseButton.Enabled = true;
@@ -2531,13 +2558,16 @@ namespace Poker
                     playerRaiseButton.Text = "Raise";
                 }
             }
+
             ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
-            for (int os = 0; os < 17; os++)
+
+            for (int cardNumber = 0; cardNumber < 17; cardNumber++)
             {
-                cardsImages[os].Image = null;
-                cardsImages[os].Invalidate();
-                cardsImages[os].Visible = false;
+                cardsImages[cardNumber].Image = null;
+                cardsImages[cardNumber].Invalidate();
+                cardsImages[cardNumber].Visible = false;
             }
+
             await Shuffle();
             //await Turns();
         }
@@ -2586,21 +2616,26 @@ namespace Poker
             }
 
             Winner(playerType, playerPower, "Player", playerChips, fixedLast);
+
             Winner(botOneType, botOnePower, "Bot 1", botOnehips, fixedLast);
+
             Winner(botTwoType, botTwoPower, "Bot 2", botTwoChips, fixedLast);
+
             Winner(botThreeType, botThreePower, "Bot 3", botThreeChips, fixedLast);
+
             Winner(botFourType, botFourPower, "Bot 4", botFourChips, fixedLast);
+
             Winner(botFiveType, botFivePower, "Bot 5", botFiveChips, fixedLast);
         }
 
         #region second possible hands - most likely for the bots (randoms)
-        void AI(int c1, int c2, ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower, double botCurrent)
+        void CheckBotsHand(int botFirstCard, int botSecondCard, ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower, double botCurrent)
         {
             if (!hasBotFolded)
             {
                 if (botCurrent == -1)
                 {
-                    HighCard(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
+                    this.CheckBotsHighCard(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
                 }
                 if (botCurrent == 0)
                 {
@@ -2608,45 +2643,45 @@ namespace Poker
                 }
                 if (botCurrent == 1)
                 {
-                    PairHand(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
+                    this.CheckBotsPairHand(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
                 }
                 if (botCurrent == 2)
                 {
-                    TwoPair(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
+                    this.CheckBotsTwoPair(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
                 }
                 if (botCurrent == 3)
                 {
-                    ThreeOfAKind(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
+                    this.CheckBotsThreeOfAKind(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
                 }
                 if (botCurrent == 4)
                 {
-                    Straight(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
+                    this.CheckBotsStraight(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
                 }
                 if (botCurrent == 5 || botCurrent == 5.5)
                 {
-                    Flush(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
+                    this.CheckBotsFlush(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
                 }
                 if (botCurrent == 6)
                 {
-                    FullHouse(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
+                    this.CheckBotsFullHouse(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
                 }
                 if (botCurrent == 7)
                 {
-                    FourOfAKind(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
+                    this.CheckBotsFourOfAKind(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
                 }
                 if (botCurrent == 8 || botCurrent == 9)
                 {
-                    StraightFlush(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
+                    this.CheckBotsStraightFlush(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
                 }
             }
             if (hasBotFolded)
             {
-                cardsImages[c1].Visible = false;
-                cardsImages[c2].Visible = false;
+                cardsImages[botFirstCard].Visible = false;
+                cardsImages[botSecondCard].Visible = false;
             }
         }
 
-        private void HighCard(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
+        private void CheckBotsHighCard(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
             BotsMoveFirst(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower, 20, 25);
         }
@@ -2656,7 +2691,7 @@ namespace Poker
             BotsMoveFirst(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower, 16, 25);
         }
 
-        private void PairHand(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
+        private void CheckBotsPairHand(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
             Random rPair = new Random();
             int rCall = rPair.Next(10, 16);
@@ -2675,7 +2710,7 @@ namespace Poker
             }
         }
 
-        private void TwoPair(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
+        private void CheckBotsTwoPair(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
             Random rPair = new Random();
             int rCall = rPair.Next(6, 11);
@@ -2694,7 +2729,7 @@ namespace Poker
             }
         }
 
-        private void ThreeOfAKind(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
+        private void CheckBotsThreeOfAKind(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
             Random tk = new Random();
             int tCall = tk.Next(3, 7);
@@ -2713,7 +2748,7 @@ namespace Poker
             }
         }
 
-        private void Straight(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
+        private void CheckBotsStraight(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
             Random str = new Random();
             int sCall = str.Next(3, 6);
@@ -2732,7 +2767,7 @@ namespace Poker
             }
         }
 
-        private void Flush(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
+        private void CheckBotsFlush(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
             Random fsh = new Random();
             int fCall = fsh.Next(2, 6);
@@ -2740,7 +2775,7 @@ namespace Poker
             BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fCall, fRaise);
         }
 
-        private void FullHouse(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
+        private void CheckBotsFullHouse(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
             Random flh = new Random();
             int fhCall = flh.Next(1, 5);
@@ -2755,7 +2790,7 @@ namespace Poker
             }
         }
 
-        private void FourOfAKind(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
+        private void CheckBotsFourOfAKind(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
             Random fk = new Random();
             int fkCall = fk.Next(1, 4);
@@ -2766,7 +2801,7 @@ namespace Poker
             }
         }
 
-        private void StraightFlush(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
+        private void CheckBotsStraightFlush(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
             Random sf = new Random();
             int sfCall = sf.Next(1, 3);
@@ -2796,7 +2831,7 @@ namespace Poker
             isRaising = false;
         }
 
-        // The bots call // Change status to call
+        // The bots call. Change status to call
         private void Call(ref int botsChips, ref bool isBotsTurn, Label statusLabel)
         {
             isRaising = false;
@@ -3155,6 +3190,7 @@ namespace Poker
                 playerRaiseButton.Enabled = false;
             }
         }
+
         private async void bFold_Click(object sender, EventArgs e)
         {
             playerStatus.Text = "Fold";
