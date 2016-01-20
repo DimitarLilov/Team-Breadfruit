@@ -106,7 +106,7 @@ namespace Poker
         private const int End = 4;
         private int maxLeft = 6;
 
-        private int last = 123;
+        private int last = 0;
         private int raisedTurn = 1;
 
         //Lists
@@ -124,22 +124,13 @@ namespace Poker
         Poker.Type sorted;
 
         string[] ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
-        /*string[] ImgLocation ={
-                   "Assets\\Cards\\33.png","Assets\\Cards\\22.png",
-                    "Assets\\Cards\\29.png","Assets\\Cards\\21.png",
-                    "Assets\\Cards\\36.png","Assets\\Cards\\17.png",
-                    "Assets\\Cards\\40.png","Assets\\Cards\\16.png",
-                    "Assets\\Cards\\5.png","Assets\\Cards\\47.png",
-                    "Assets\\Cards\\37.png","Assets\\Cards\\13.png",
-                    
-                    "Assets\\Cards\\12.png",
-                    "Assets\\Cards\\8.png","Assets\\Cards\\18.png",
-                    "Assets\\Cards\\15.png","Assets\\Cards\\27.png"};*/
+        
 
         // Nothing has changed down here
         int[] cardsAsNumbers = new int[17];
         Image[] Deck = new Image[52];
         PictureBox[] cardsImages = new PictureBox[52];
+
         Timer timer = new Timer();
         Timer Updates = new Timer();
 
@@ -184,6 +175,7 @@ namespace Poker
             botThreeChipsTextBox.Text = "Chips : " + botThreeChips.ToString();
             botFourChipsTextBox.Text = "Chips : " + botFourChips.ToString();
             botFiveChipsTextBox.Text = "Chips : " + botFiveChips.ToString();
+
             timer.Interval = (1 * 1 * 1000);//?
             timer.Tick += timer_Tick;
             Updates.Interval = (1 * 1 * 100);
@@ -2203,22 +2195,47 @@ namespace Poker
                         playerRaiseButton.Text = "Raise";
                     }
                 }
-                playerPanel.Visible = false; botOnePanel.Visible = false; botTwoPanel.Visible = false; botThreePanel.Visible = false; botFourPanel.Visible = false; botFivePanel.Visible = false;
-                playerCall = 0; playerRaise = 0;
-                botOneCall = 0; botOneRaise = 0;
-                botTwoCall = 0; botTwoRaise = 0;
-                botThreeCall = 0; botThreeRaise = 0;
-                botFourCall = 0; botFourRaise = 0;
-                botFiveCall = 0; botFiveRaise = 0;
+                playerPanel.Visible = false;
+                botOnePanel.Visible = false;
+                botTwoPanel.Visible = false;
+                botThreePanel.Visible = false;
+                botFourPanel.Visible = false;
+                botFivePanel.Visible = false;
+
+                playerCall = 0;
+                playerRaise = 0;
+                botOneCall = 0;
+                botOneRaise = 0;
+                botTwoCall = 0;
+                botTwoRaise = 0;
+                botThreeCall = 0;
+                botThreeRaise = 0;
+                botFourCall = 0;
+                botFourRaise = 0;
+                botFiveCall = 0;
+                botFiveRaise = 0;
+
                 last = 0;
                 callChipsValue = bigBlind;
                 Raise = 0;
                 ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
                 bankruptPlayers.Clear();
                 totalRounds = 0;
-                playerPower = 0; playerType = -1;
-                type = 0; botOnePower = 0; botTwoPower = 0; botThreePower = 0; botFourPower = 0; botFivePower = 0;
-                botOneType = -1; botTwoType = -1; botThreeType = -1; botFourType = -1; botFiveType = -1;
+                playerPower = 0;
+                playerType = -1;
+                type = 0;
+
+                botOnePower = 0;
+                botTwoPower = 0;
+                botThreePower = 0;
+                botFourPower = 0;
+                botFivePower = 0;
+
+                botOneType = -1;
+                botTwoType = -1;
+                botThreeType = -1;
+                botFourType = -1;
+                botFiveType = -1;
                 totalAllInChips.Clear();
                 CheckWinners.Clear();
                 winners = 0;
