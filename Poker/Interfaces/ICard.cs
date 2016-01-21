@@ -4,7 +4,7 @@
     using System.Windows.Forms;
     using Poker.Enum;
 
-    interface ICard
+    public interface ICard
     {
         Image Front { get; }
 

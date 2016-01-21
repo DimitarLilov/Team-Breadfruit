@@ -57,8 +57,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IActions.cs" />
+    <Compile Include="Interfaces\IBot.cs" />
+    <Compile Include="Interfaces\ICall.cs" />
     <Compile Include="Interfaces\ICard.cs" />
+    <Compile Include="Interfaces\ICheck.cs" />
     <Compile Include="Interfaces\IDeck.cs" />
+    <Compile Include="Interfaces\IFold.cs" />
+    <Compile Include="Interfaces\IHuman.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
+    <Compile Include="Interfaces\IPosition.cs" />
+    <Compile Include="Interfaces\IRaise.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgressBars.cs" />
