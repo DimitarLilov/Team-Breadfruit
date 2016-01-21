@@ -150,7 +150,6 @@ namespace Poker
             InitializeComponent();
             width = this.Width;
             height = this.Height;
-            WindowState = FormWindowState.Maximized;
             Shuffle();
 
             // deal out the cards
@@ -239,7 +238,7 @@ namespace Poker
                 playerRaiseButton.Enabled = true;
                 playerRaiseButton.Enabled = true;
                 playerFoldButton.Enabled = true;
-                
+
             }
         }
 
@@ -846,7 +845,7 @@ namespace Poker
                         hasPlayerFolded = true;
                     }
                 }
-                #endregion
+            #endregion
 
                 // Check who is all in
                 await WhoIsAllIn();
@@ -887,35 +886,24 @@ namespace Poker
                 int[] cardsOnTheTable = new int[5];
                 int[] currentPlayerAndTableCards = new int[7];
 
-                currentPlayerAndTableCards[0] = cardsAsNumbers[cardOne];
-                currentPlayerAndTableCards[1] = cardsAsNumbers[cardTwo];
-                currentPlayerAndTableCards[2] = cardsAsNumbers[12];
-                currentPlayerAndTableCards[3] = cardsAsNumbers[13];
-                currentPlayerAndTableCards[4] = cardsAsNumbers[14];
-                currentPlayerAndTableCards[5] = cardsAsNumbers[15];
-                currentPlayerAndTableCards[6] = cardsAsNumbers[16];
+                FindPlayerAndTableCards(cardOne, cardTwo, currentPlayerAndTableCards);
 
-                cardsOnTheTable[0] = cardsAsNumbers[12];
-                cardsOnTheTable[1] = cardsAsNumbers[13];
-                cardsOnTheTable[2] = cardsAsNumbers[14];
-                cardsOnTheTable[3] = cardsAsNumbers[15];
-                cardsOnTheTable[4] = cardsAsNumbers[16];
+                FindCardsOnTable(cardsOnTheTable);
 
-                var clubs = currentPlayerAndTableCards.Where(o => o % 4 == 0).ToArray();
-                var diamonds = currentPlayerAndTableCards.Where(o => o % 4 == 1).ToArray();
-                var hearts = currentPlayerAndTableCards.Where(o => o % 4 == 2).ToArray();
-                var spades = currentPlayerAndTableCards.Where(o => o % 4 == 3).ToArray();
+                int[] clubs;
+                int[] diamonds;
+                int[] hearts;
+                int[] spades;
+                FindCardSuit(out clubs, currentPlayerAndTableCards, out diamonds, out hearts, out spades);
 
-                var clubsStrenghtValues = clubs.Select(o => o / 4).Distinct().ToArray();
-                var diamondsStrenghtValues = diamonds.Select(o => o / 4).Distinct().ToArray();
-                var heartsStrenghtValues = hearts.Select(o => o / 4).Distinct().ToArray();
-                var spadesStrenghtValues = spades.Select(o => o / 4).Distinct().ToArray();
+                int[] clubsStrenghtValues;
+                int[] diamondsStrenghtValues;
+                int[] heartsStrenghtValues;
+                int[] spadesStrenghtValues;
+                FindCardStrenght(out clubsStrenghtValues, clubs, diamonds, hearts, spades, out diamondsStrenghtValues, out heartsStrenghtValues, out spadesStrenghtValues);
 
-                Array.Sort(currentPlayerAndTableCards);
-                Array.Sort(clubsStrenghtValues);
-                Array.Sort(diamondsStrenghtValues);
-                Array.Sort(heartsStrenghtValues);
-                Array.Sort(spadesStrenghtValues);
+                SortCardsByStrenght(currentPlayerAndTableCards, clubsStrenghtValues, diamondsStrenghtValues, heartsStrenghtValues, spadesStrenghtValues);
+
                 #endregion
 
                 for (int i = 0; i < 16; i++)
@@ -964,6 +952,54 @@ namespace Poker
                     }
                 }
             }
+        }
+
+        private static void SortCardsByStrenght(int[] currentPlayerAndTableCards, int[] clubsStrenghtValues,
+            int[] diamondsStrenghtValues, int[] heartsStrenghtValues, int[] spadesStrenghtValues)
+        {
+            Array.Sort(currentPlayerAndTableCards);
+            Array.Sort(clubsStrenghtValues);
+            Array.Sort(diamondsStrenghtValues);
+            Array.Sort(heartsStrenghtValues);
+            Array.Sort(spadesStrenghtValues);
+        }
+
+        private static void FindCardStrenght(out int[] clubsStrenghtValues, int[] clubs, int[] diamonds, int[] hearts,
+            int[] spades, out int[] diamondsStrenghtValues, out int[] heartsStrenghtValues, out int[] spadesStrenghtValues)
+        {
+            clubsStrenghtValues = clubs.Select(o => o/4).Distinct().ToArray();
+            diamondsStrenghtValues = diamonds.Select(o => o/4).Distinct().ToArray();
+            heartsStrenghtValues = hearts.Select(o => o/4).Distinct().ToArray();
+            spadesStrenghtValues = spades.Select(o => o/4).Distinct().ToArray();
+        }
+
+        private static void FindCardSuit(out int[] clubs, int[] currentPlayerAndTableCards, out int[] diamonds, out int[] hearts,
+            out int[] spades)
+        {
+            clubs = currentPlayerAndTableCards.Where(o => o%4 == 0).ToArray();
+            diamonds = currentPlayerAndTableCards.Where(o => o%4 == 1).ToArray();
+            hearts = currentPlayerAndTableCards.Where(o => o%4 == 2).ToArray();
+            spades = currentPlayerAndTableCards.Where(o => o%4 == 3).ToArray();
+        }
+
+        private void FindCardsOnTable(int[] cardsOnTheTable)
+        {
+            cardsOnTheTable[0] = cardsAsNumbers[12];
+            cardsOnTheTable[1] = cardsAsNumbers[13];
+            cardsOnTheTable[2] = cardsAsNumbers[14];
+            cardsOnTheTable[3] = cardsAsNumbers[15];
+            cardsOnTheTable[4] = cardsAsNumbers[16];
+        }
+
+        private void FindPlayerAndTableCards(int cardOne, int cardTwo, int[] currentPlayerAndTableCards)
+        {
+            currentPlayerAndTableCards[0] = cardsAsNumbers[cardOne];
+            currentPlayerAndTableCards[1] = cardsAsNumbers[cardTwo];
+            currentPlayerAndTableCards[2] = cardsAsNumbers[12];
+            currentPlayerAndTableCards[3] = cardsAsNumbers[13];
+            currentPlayerAndTableCards[4] = cardsAsNumbers[14];
+            currentPlayerAndTableCards[5] = cardsAsNumbers[15];
+            currentPlayerAndTableCards[6] = cardsAsNumbers[16];
         }
 
         #region possible hands - Most likely for the player
