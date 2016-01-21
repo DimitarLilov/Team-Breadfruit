@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker.Interfaces
 {
-    interface IBot : IPlayer
+    interface IBot
     {
     }
 }

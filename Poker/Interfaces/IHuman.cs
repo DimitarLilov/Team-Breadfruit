@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker.Interfaces
 {
-    interface IHuman : IPlayer
+    interface IHuman
     {
     }
 }

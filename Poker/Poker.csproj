@@ -70,6 +70,10 @@
     <Compile Include="Interfaces\IPosition.cs" />
     <Compile Include="Interfaces\IRaise.cs" />
     <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\Deck.cs" />
+    <Compile Include="Models\Players\Bot.cs" />
+    <Compile Include="Models\Players\Human.cs" />
+    <Compile Include="Models\Players\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgressBars.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
