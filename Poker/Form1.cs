@@ -255,6 +255,7 @@ namespace Poker
                 playerRaiseButton.Enabled = true;
                 playerRaiseButton.Enabled = true;
                 playerFoldButton.Enabled = true;
+                WindowState = FormWindowState.Maximized;
             }
         }
 
