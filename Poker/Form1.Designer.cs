@@ -362,7 +362,7 @@
         #endregion
 
         public System.Windows.Forms.Button playerFoldButton;
-        private System.Windows.Forms.Button playerCheckButton;
+        public System.Windows.Forms.Button playerCheckButton;
         public System.Windows.Forms.Button playerCallButton;
         public System.Windows.Forms.Button playerRaiseButton;
         private System.Windows.Forms.TextBox playerRaiseTextBox;
@@ -378,19 +378,19 @@
         private System.Windows.Forms.Button addChipsButton;
 
         public System.Windows.Forms.TextBox botOneChipsTextBox;
-        private System.Windows.Forms.Label botOneStatus;
+        public System.Windows.Forms.Label botOneStatus;
 
         public System.Windows.Forms.TextBox botTwoChipsTextBox;
-        private System.Windows.Forms.Label botTwoStatus;
+        public System.Windows.Forms.Label botTwoStatus;
 
         public System.Windows.Forms.TextBox botThreeChipsTextBox;
-        private System.Windows.Forms.Label botThreeStatus;
+        public System.Windows.Forms.Label botThreeStatus;
 
         public System.Windows.Forms.TextBox botFourChipsTextBox;
-        private System.Windows.Forms.Label botFourStatus;
+        public System.Windows.Forms.Label botFourStatus;
 
         public System.Windows.Forms.TextBox botFiveChipsTextBox;
-        private System.Windows.Forms.Label botFiveStatus;
+        public System.Windows.Forms.Label botFiveStatus;
 
         private System.Windows.Forms.Button blindOptions;
         private System.Windows.Forms.TextBox smallBlindTextBox;

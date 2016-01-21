@@ -23,7 +23,7 @@ namespace Poker
         Panel botFivePanel = new Panel();
 
         //constants
-        private int callChipsValue = 500;
+        public int callChipsValue = 500;
         public int foldedPlayers = 5;
         private int TotalTableCards = 17;
 
@@ -47,13 +47,13 @@ namespace Poker
         public double botFivePower;
         public double playerPower;
         public double playerType = -1;
-        double Raise;
+        public double Raise;
 
-       public double botOneType = -1;
-       public double botTwoType = -1;
-       public double botThreeType = -1;
-       public double botFourType = -1;
-       public double botFiveType = -1; // bots
+        public double botOneType = -1;
+        public double botTwoType = -1;
+        public double botThreeType = -1;
+        public double botFourType = -1;
+        public double botFiveType = -1; // bots
 
         public bool botOneTurn;
         public bool botTwoTurn;
@@ -68,15 +68,15 @@ namespace Poker
         public bool hasBotFourBankrupted;
         public bool hasBotFiveBankrupted;
 
-       public bool hasPlayerFolded;
-       public bool botOneFolded;
-       public bool botTwoFolded;
-       public bool botThreeFolded;
-       public bool botFourFolded;
-       public bool botFiveFolded;
+        public bool hasPlayerFolded;
+        public bool botOneFolded;
+        public bool botTwoFolded;
+        public bool botThreeFolded;
+        public bool botFourFolded;
+        public bool botFiveFolded;
 
-       public bool hasAddedChips;
-       public bool changed;
+        public bool hasAddedChips;
+        public bool changed;
 
         public int playerCall;
         public int botOneCall;
@@ -96,11 +96,11 @@ namespace Poker
         private int width;
         public int winners;
 
-        private const int Flop = 1;
-        private const int Turn = 2;
-        private const int River = 3;
+        public const int Flop = 1;
+        public const int Turn = 2;
+        public const int River = 3;
         private const int End = 4;
-        private int maxLeft = 6;
+        public int maxLeft = 6;
 
         public int last;
         public int raisedTurn = 1;
@@ -140,6 +140,7 @@ namespace Poker
         private readonly Rules currentRules;
         private readonly HandRules handRules;
         private readonly Winner winner;
+        private readonly CheckRaiseDealer checkRaiseDealer;
         // public readonly Dealer dealer;
 
         #endregion
@@ -171,6 +172,7 @@ namespace Poker
             currentRules = new Rules(this);
             handRules = new HandRules(this);
             winner = new Winner(this);
+            checkRaiseDealer = new CheckRaiseDealer(this);
             //dealer = new Dealer(this);
         }
 
@@ -187,6 +189,11 @@ namespace Poker
         public Winner Winner1
         {
             get { return winner; }
+        }
+
+        public CheckRaiseDealer CheckRaiseDealer
+        {
+            get { return checkRaiseDealer; }
         }
 
         //public Dealer Dealer
@@ -258,10 +265,10 @@ namespace Poker
             int horizontal = 580;
             int vertical = 480;
 
-            
+
             //shuffles cards
             ShuffleCards(randomNumber);
-            
+
             await DealOutCards(horizontal, vertical, isCardOnTheTable, backImage);
 
             CheckIfGameShouldBeRestarted();
@@ -276,7 +283,7 @@ namespace Poker
             {
                 int nextRandomNumber = random.Next(i);
                 var k = ImgLocation[nextRandomNumber];
-               ImgLocation[nextRandomNumber] = ImgLocation[i - 1];
+                ImgLocation[nextRandomNumber] = ImgLocation[i - 1];
                 ImgLocation[i - 1] = k;
             }
         }
@@ -311,7 +318,7 @@ namespace Poker
             }
             else
             {
-               foldedPlayers = 5;
+                foldedPlayers = 5;
             }
         }
 
@@ -697,6 +704,10 @@ namespace Poker
 
         #endregion
 
+        /// <summary>
+        /// Dealer's turns
+        /// </summary>
+        /// <returns></returns>
         async Task Turns()
         {
             #region Rotating
@@ -897,7 +908,7 @@ namespace Poker
                         hasPlayerFolded = true;
                     }
                 }
-            #endregion
+                #endregion
                 // Check who is all in
                 await WhoIsAllIn();
 
@@ -919,173 +930,41 @@ namespace Poker
             t = 60;
 
             timer.Start();
+            RaiseButtonInitializer();
+            turnCount++;
+            CheckCurrentBid(playerStatus, ref playerCall, ref playerRaise, 2);
+        }
+
+        private void RaiseButtonInitializer()
+        {
             playerRaiseButton.Enabled = true;
             playerCallButton.Enabled = true;
             playerRaiseButton.Enabled = true;
             playerRaiseButton.Enabled = true;
             playerFoldButton.Enabled = true;
-            turnCount++;
-            CheckCurrentBid(playerStatus, ref playerCall, ref playerRaise, 2);
         }
 
         #region possible hands - Most likely for the player
         //HandRules class
         #endregion
 
+        #region CheckRaise Methods
+            /// <summary>
+            /// Dealer's checkraise
+            /// </summary>
+            /// <param name="currentTurn"></param>
+            /// <returns></returns>
         async Task CheckRaise(int currentTurn)
         {
-            if (isRaising)
-            {
-                turnCount = 0;
-                isRaising = false;
-                raisedTurn = currentTurn;
-                changed = true;
-            }
+            CheckRaiseDealer.CheckIfSomeoneRaised(currentTurn);
 
-            else
-            {
-                if (turnCount >= maxLeft - 1 ||
-                    !changed && turnCount == maxLeft)
-                {
-                    if (currentTurn == raisedTurn - 1 ||
-                        !changed && turnCount == maxLeft ||
-                        raisedTurn == 0 && currentTurn == 5)
-                    {
-                        changed = false;
-                        turnCount = 0;
-                        Raise = 0;
-                        callChipsValue = 0;
-                        raisedTurn = 123;
-                        totalRounds++;
-
-                        if (!hasPlayerBankrupted)
-                        {
-                            playerStatus.Text = "";
-                        }
-
-                        if (!hasBotOneBankrupted)
-                        {
-                            botOneStatus.Text = "";
-                        }
-
-                        if (!hasBotTwoBankrupted)
-                        {
-                            botTwoStatus.Text = "";
-                        }
-
-                        if (!hasBotThreeBankrupted)
-                        {
-                            botThreeStatus.Text = "";
-                        }
-
-                        if (!hasBotFourBankrupted)
-                        {
-                            botFourStatus.Text = "";
-                        }
-
-                        if (!hasBotFiveBankrupted)
-                        {
-                            botFiveStatus.Text = "";
-                        }
-                    }
-                }
-            }
-
-            if (totalRounds == Flop)
-            {
-                for (int j = 12; j <= 14; j++)
-                {
-                    if (cardsImages[j].Image != Deck[j])
-                    {
-                        cardsImages[j].Image = Deck[j];
-                        playerCall = 0;
-                        playerRaise = 0;
-                        botOneCall = 0;
-                        botOneRaise = 0;
-                        botTwoCall = 0;
-                        botTwoRaise = 0;
-                        botThreeCall = 0;
-                        botThreeRaise = 0;
-                        botFourCall = 0;
-                        botFourRaise = 0;
-                        botFiveCall = 0;
-                        botFiveRaise = 0;
-                    }
-                }
-            }
-
-            if (totalRounds == Turn)
-            {
-                for (int j = 14; j <= 15; j++)
-                {
-                    if (cardsImages[j].Image != Deck[j])
-                    {
-                        cardsImages[j].Image = Deck[j];
-                        playerCall = 0; playerRaise = 0;
-                        botOneCall = 0; botOneRaise = 0;
-                        botTwoCall = 0; botTwoRaise = 0;
-                        botThreeCall = 0; botThreeRaise = 0;
-                        botFourCall = 0; botFourRaise = 0;
-                        botFiveCall = 0; botFiveRaise = 0;
-                    }
-                }
-            }
-
-            if (totalRounds == River)
-            {
-                for (int j = 15; j <= 16; j++)
-                {
-                    if (cardsImages[j].Image != Deck[j])
-                    {
-                        cardsImages[j].Image = Deck[j];
-                        playerCall = 0; playerRaise = 0;
-                        botOneCall = 0; botOneRaise = 0;
-                        botTwoCall = 0; botTwoRaise = 0;
-                        botThreeCall = 0; botThreeRaise = 0;
-                        botFourCall = 0; botFourRaise = 0;
-                        botFiveCall = 0; botFiveRaise = 0;
-                    }
-                }
-            }
+            CheckRaiseDealer.CheckFlopTurnOrRiver();
 
             if (totalRounds == End && maxLeft == 6)
             {
-                string fixedLast = "qwerty";
-                if (!playerStatus.Text.Contains("Fold"))
-                {
-                    fixedLast = "Player";
-                    CurrentRules.GameRules(0, 1, ref playerType, ref playerPower, hasPlayerBankrupted);
-                }
+                string fixedLast = string.Empty;
 
-                if (!botOneStatus.Text.Contains("Fold"))
-                {
-                    fixedLast = "Bot 1";
-                    CurrentRules.GameRules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
-                }
-
-                if (!botTwoStatus.Text.Contains("Fold"))
-                {
-                    fixedLast = "Bot 2";
-                    CurrentRules.GameRules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
-                }
-
-                if (!botThreeStatus.Text.Contains("Fold"))
-                {
-                    fixedLast = "Bot 3";
-                    CurrentRules.GameRules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
-                }
-
-                if (!botFourStatus.Text.Contains("Fold"))
-                {
-                    fixedLast = "Bot 4";
-                    CurrentRules.GameRules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
-                }
-
-                if (!botFiveStatus.Text.Contains("Fold"))
-                {
-                    fixedLast = "Bot 5";
-                    CurrentRules.GameRules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
-                }
+                fixedLast = CheckRaiseDealer.CheckPlayerBotsStatus(fixedLast);
 
                 Winner1.WinnerRules(playerType, playerPower, "Player", fixedLast);
                 Winner1.WinnerRules(botOneType, botOnePower, "Bot 1", fixedLast);
@@ -1096,6 +975,7 @@ namespace Poker
 
                 shouldRestart = true;
                 playerTurn = true;
+
                 hasPlayerBankrupted = false;
                 hasBotOneBankrupted = false;
                 hasBotTwoBankrupted = false;
@@ -1103,27 +983,8 @@ namespace Poker
                 hasBotFourBankrupted = false;
                 hasBotFiveBankrupted = false;
 
-                if (playerChips <= 0)
-                {
-                    AddChipsWhenLost f2 = new AddChipsWhenLost();
-                    f2.ShowDialog();
+                CheckRaiseDealer.AddChipsIfLost();
 
-                    if (f2.AddChipsValue != 0)
-                    {
-                        playerChips = f2.AddChipsValue;
-                        botOnehips += f2.AddChipsValue;
-                        botTwoChips += f2.AddChipsValue;
-                        botThreeChips += f2.AddChipsValue;
-                        botFourChips += f2.AddChipsValue;
-                        botFiveChips += f2.AddChipsValue;
-                        hasPlayerBankrupted = false;
-                        playerTurn = true;
-                        playerRaiseButton.Enabled = true;
-                        playerFoldButton.Enabled = true;
-                        playerCheckButton.Enabled = true;
-                        playerRaiseButton.Text = "Raise";
-                    }
-                }
                 playerPanel.Visible = false;
                 botOnePanel.Visible = false;
                 botTwoPanel.Visible = false;
@@ -1165,8 +1026,11 @@ namespace Poker
                 botThreeType = -1;
                 botFourType = -1;
                 botFiveType = -1;
+
                 totalAllInChips.Clear();
+
                 CheckWinners.Clear();
+
                 winners = 0;
                 winningingHands.Clear();
                 sorted.Current = 0;
@@ -1186,6 +1050,8 @@ namespace Poker
                 await Turns();
             }
         }
+
+        #endregion
 
         void CheckCurrentBid(Label status, ref int chipCall, ref int chipRaise, int options)
         {
