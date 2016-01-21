@@ -8,3 +8,13 @@ E:\KPK Teamwork\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.Resources.reso
 E:\KPK Teamwork\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
 E:\KPK Teamwork\Team-Breadfruit-\Poker\obj\Debug\Poker.exe
 E:\KPK Teamwork\Team-Breadfruit-\Poker\obj\Debug\Poker.pdb
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\bin\Debug\Poker.exe.config
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.exe
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.pdb
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\bin\Debug\Poker.exe
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\bin\Debug\Poker.pdb
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.AddChipsWhenLost.resources
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.Form1.resources
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
