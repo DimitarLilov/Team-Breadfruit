@@ -24,13 +24,13 @@ namespace Poker
 
         //constants
         private int callChipsValue = 500;
-        private int foldedPlayers = 5;
+        public int foldedPlayers = 5;
         private int TotalTableCards = 17;
 
         public const int DefaultStartingChips = 10000;
         public const int LastRound = 4;
 
-        private int playerChips = DefaultStartingChips;
+        public int playerChips = DefaultStartingChips;
         public int botOnehips = DefaultStartingChips;
         public int botTwoChips = DefaultStartingChips;
         public int botThreeChips = DefaultStartingChips;
@@ -38,63 +38,63 @@ namespace Poker
         public int botFiveChips = DefaultStartingChips;
 
 
-        private double type;
-        private double totalRounds;
-        private double botOnePower;
-        private double botTwoPower;
-        private double botThreePower;
-        private double botFourPower;
-        private double botFivePower;
-        private double playerPower;
-        private double playerType = -1;
+        public double type;
+        public double totalRounds;
+        public double botOnePower;
+        public double botTwoPower;
+        public double botThreePower;
+        public double botFourPower;
+        public double botFivePower;
+        public double playerPower;
+        public double playerType = -1;
         double Raise;
 
-        private double botOneType = -1;
-        private double botTwoType = -1;
-        private double botThreeType = -1;
-        private double botFourType = -1;
-        private double botFiveType = -1; // bots
+       public double botOneType = -1;
+       public double botTwoType = -1;
+       public double botThreeType = -1;
+       public double botFourType = -1;
+       public double botFiveType = -1; // bots
 
-        private bool botOneTurn;
-        private bool botTwoTurn;
-        private bool botThreeTurn;
-        private bool botFourTurn;
-        private bool botFiveTurn;
+        public bool botOneTurn;
+        public bool botTwoTurn;
+        public bool botThreeTurn;
+        public bool botFourTurn;
+        public bool botFiveTurn;
 
         //If the bots folded
-        private bool hasBotOneBankrupted;
-        private bool hasBotTwoBankrupted;
-        private bool hasBotThreeBankrupted;
-        private bool hasBotFourBankrupted;
-        private bool hasBotFiveBankrupted;
+        public bool hasBotOneBankrupted;
+        public bool hasBotTwoBankrupted;
+        public bool hasBotThreeBankrupted;
+        public bool hasBotFourBankrupted;
+        public bool hasBotFiveBankrupted;
 
-        private bool hasPlayerFolded;
-        private bool botOneFolded;
-        private bool botTwoFolded;
-        private bool botThreeFolded;
-        private bool botFourFolded;
-        private bool botFiveFolded;
+       public bool hasPlayerFolded;
+       public bool botOneFolded;
+       public bool botTwoFolded;
+       public bool botThreeFolded;
+       public bool botFourFolded;
+       public bool botFiveFolded;
 
-        private bool hasAddedChips;
-        private bool changed;
+       public bool hasAddedChips;
+       public bool changed;
 
-        private int playerCall;
-        private int botOneCall;
-        private int botTwoCall;
-        private int botThreeCall;
-        private int botFourCall;
-        private int botFiveCall;
+        public int playerCall;
+        public int botOneCall;
+        public int botTwoCall;
+        public int botThreeCall;
+        public int botFourCall;
+        public int botFiveCall;
 
-        private int playerRaise;
-        private int botOneRaise;
-        private int botTwoRaise;
-        private int botThreeRaise;
-        private int botFourRaise;
-        private int botFiveRaise;
+        public int playerRaise;
+        public int botOneRaise;
+        public int botTwoRaise;
+        public int botThreeRaise;
+        public int botFourRaise;
+        public int botFiveRaise;
 
         private int height;
         private int width;
-        private int winners;
+        public int winners;
 
         private const int Flop = 1;
         private const int Turn = 2;
@@ -102,41 +102,45 @@ namespace Poker
         private const int End = 4;
         private int maxLeft = 6;
 
-        private int last;
-        private int raisedTurn = 1;
+        public int last;
+        public int raisedTurn = 1;
 
         //Lists
         public List<bool?> bankruptPlayers = new List<bool?>();
 
-        List<Type> winningingHands = new List<Type>();
-        List<string> CheckWinners = new List<string>();
+        public List<Type> winningingHands = new List<Type>();
+        public List<string> CheckWinners = new List<string>();
         List<int> totalAllInChips = new List<int>();
 
-        private bool hasPlayerBankrupted;
-        private bool playerTurn = true;
-        private bool shouldRestart;
-        private bool isRaising;
+        public bool hasPlayerBankrupted;
+        public bool playerTurn = true;
+        public bool shouldRestart;
+        public bool isRaising;
 
-        Poker.Type sorted;
+        public Poker.Type sorted;
 
-        string[] ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
+        public string[] ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
 
 
         // Nothing has changed down here
-        int[] cardsAsNumbers = new int[17];
-        Image[] Deck = new Image[52];
-        PictureBox[] cardsImages = new PictureBox[52];
+        public int[] cardsAsNumbers = new int[17];
+        public Image[] Deck = new Image[52];
+        public PictureBox[] cardsImages = new PictureBox[52];
 
         Timer timer = new Timer();
         Timer Updates = new Timer();
 
-        private int t = 60;
-        private int dealtCards;
-        private int i = 0;
-        private int bigBlind = 500;
-        private int smallBlind = 250;
-        private int DefaultMaximumMoney = 10000000;
-        private int turnCount;
+        public int t = 60;
+        public int dealtCards;
+        public int i = 0;
+        public int bigBlind = 500;
+        public int smallBlind = 250;
+        public int DefaultMaximumMoney = 10000000;
+        public int turnCount;
+        private readonly Rules currentRules;
+        private readonly HandRules handRules;
+        private readonly Winner winner;
+        // public readonly Dealer dealer;
 
         #endregion
 
@@ -146,13 +150,78 @@ namespace Poker
             callChipsValue = bigBlind;
             MaximizeBox = false;
             MinimizeBox = false;
+
             Updates.Start();
             InitializeComponent();
+
             width = this.Width;
             height = this.Height;
+
             Shuffle();
 
-            // deal out the cards
+            EnableAllTextBoxes();
+
+            InitializeChipsTextBoxes();
+
+            InitializeTimer();
+
+            InitializeBlindsBoxes();
+
+            playerRaiseTextBox.Text = (bigBlind * 2).ToString();
+            currentRules = new Rules(this);
+            handRules = new HandRules(this);
+            winner = new Winner(this);
+            //dealer = new Dealer(this);
+        }
+
+        public Rules CurrentRules
+        {
+            get { return currentRules; }
+        }
+
+        public HandRules HandRules
+        {
+            get { return handRules; }
+        }
+
+        public Winner Winner1
+        {
+            get { return winner; }
+        }
+
+        //public Dealer Dealer
+        //{
+        //    get { return dealer; }
+        //}
+
+        private void InitializeBlindsBoxes()
+        {
+            bigBlindTextBox.Visible = false;
+            smallBlindTextBox.Visible = false;
+            bigBlindButton.Visible = false;
+            smallBlindButton.Visible = false;
+        }
+
+        private void InitializeTimer()
+        {
+            timer.Interval = 1000;
+            timer.Tick += timer_Tick;
+            Updates.Interval = 100;
+            Updates.Tick += Update_Tick;
+        }
+
+        private void InitializeChipsTextBoxes()
+        {
+            this.playerChipsTextBox.Text = "Chips : " + playerChips;
+            this.botOneChipsTextBox.Text = "Chips : " + botOnehips;
+            this.botTwoChipsTextBox.Text = "Chips : " + botTwoChips;
+            this.botThreeChipsTextBox.Text = "Chips : " + botThreeChips;
+            this.botFourChipsTextBox.Text = "Chips : " + botFourChips;
+            this.botFiveChipsTextBox.Text = "Chips : " + botFiveChips;
+        }
+
+        private void EnableAllTextBoxes()
+        {
             potTextBox.Enabled = false;
             playerChipsTextBox.Enabled = false;
             botOneChipsTextBox.Enabled = false;
@@ -160,26 +229,8 @@ namespace Poker
             botThreeChipsTextBox.Enabled = false;
             botFourChipsTextBox.Enabled = false;
             botFiveChipsTextBox.Enabled = false;
-
-            playerChipsTextBox.Text = "Chips : " + playerChips.ToString();
-            botOneChipsTextBox.Text = "Chips : " + botOnehips.ToString();
-            botTwoChipsTextBox.Text = "Chips : " + botTwoChips.ToString();
-            botThreeChipsTextBox.Text = "Chips : " + botThreeChips.ToString();
-            botFourChipsTextBox.Text = "Chips : " + botFourChips.ToString();
-            botFiveChipsTextBox.Text = "Chips : " + botFiveChips.ToString();
-
-            timer.Interval = (1 * 1 * 1000);//?
-            timer.Tick += timer_Tick;
-            Updates.Interval = (1 * 1 * 100);
-            Updates.Tick += Update_Tick;
-
-            bigBlindTextBox.Visible = false;
-            smallBlindTextBox.Visible = false;
-            bigBlindButton.Visible = false;
-            smallBlindButton.Visible = false;
-
-            playerRaiseTextBox.Text = (bigBlind * 2).ToString();
         }
+
         #endregion
 
         #region Shuffle
@@ -207,9 +258,10 @@ namespace Poker
             int horizontal = 580;
             int vertical = 480;
 
+            
             //shuffles cards
             ShuffleCards(randomNumber);
-
+            
             await DealOutCards(horizontal, vertical, isCardOnTheTable, backImage);
 
             CheckIfGameShouldBeRestarted();
@@ -218,18 +270,18 @@ namespace Poker
         }
 
         #region Shuffle methods
-        private void ShuffleCards(Random random)
+        public void ShuffleCards(Random random)
         {
             for (int i = ImgLocation.Length; i > 0; i--)
             {
                 int nextRandomNumber = random.Next(i);
                 var k = ImgLocation[nextRandomNumber];
-                ImgLocation[nextRandomNumber] = ImgLocation[i - 1];
+               ImgLocation[nextRandomNumber] = ImgLocation[i - 1];
                 ImgLocation[i - 1] = k;
             }
         }
 
-        private void CheckIfBotsActionsShouldBeEnabled()
+        public void CheckIfBotsActionsShouldBeEnabled()
         {
             if (dealtCards == 17)
             {
@@ -242,7 +294,7 @@ namespace Poker
             }
         }
 
-        private void CheckIfGameShouldBeRestarted()
+        public void CheckIfGameShouldBeRestarted()
         {
             if (foldedPlayers == 5)
             {
@@ -259,7 +311,7 @@ namespace Poker
             }
             else
             {
-                foldedPlayers = 5;
+               foldedPlayers = 5;
             }
         }
 
@@ -687,7 +739,7 @@ namespace Poker
                     {
                         CheckCurrentBid(botOneStatus, ref botOneCall, ref botOneRaise, 1);
                         CheckCurrentBid(botOneStatus, ref botOneCall, ref botOneRaise, 2);
-                        Rules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
+                        CurrentRules.GameRules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
                         MessageBox.Show("Bot 1's Turn");
                         this.CheckBotsHand(2, 3, ref botOnehips, ref botOneTurn, ref hasBotOneBankrupted, botOneStatus, botOnePower, botOneType);
                         turnCount++;
@@ -717,7 +769,7 @@ namespace Poker
                     {
                         CheckCurrentBid(botTwoStatus, ref botTwoCall, ref botTwoRaise, 1);
                         CheckCurrentBid(botTwoStatus, ref botTwoCall, ref botTwoRaise, 2);
-                        Rules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
+                        CurrentRules.GameRules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
 
                         MessageBox.Show("Bot 2's Turn");
                         this.CheckBotsHand(4, 5, ref botTwoChips, ref botTwoTurn, ref hasBotTwoBankrupted, botTwoStatus, botTwoPower, botTwoType);
@@ -750,7 +802,7 @@ namespace Poker
                     {
                         CheckCurrentBid(botThreeStatus, ref botThreeCall, ref botThreeRaise, 1);
                         CheckCurrentBid(botThreeStatus, ref botThreeCall, ref botThreeRaise, 2);
-                        Rules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
+                        CurrentRules.GameRules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
                         MessageBox.Show("Bot 3's Turn");
                         this.CheckBotsHand(6, 7, ref botThreeChips, ref botThreeTurn, ref hasBotThreeBankrupted, botThreeStatus, botThreePower, botThreeType);
 
@@ -781,7 +833,7 @@ namespace Poker
                     {
                         CheckCurrentBid(botFourStatus, ref botFourCall, ref botFourRaise, 1);
                         CheckCurrentBid(botFourStatus, ref botFourCall, ref botFourRaise, 2);
-                        Rules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
+                        CurrentRules.GameRules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
                         MessageBox.Show("Bot 4's Turn");
                         this.CheckBotsHand(8, 9, ref botFourChips, ref botFourTurn, ref hasBotFourBankrupted, botFourStatus, botFourPower, botFourType);
                         turnCount++;
@@ -812,7 +864,7 @@ namespace Poker
                     {
                         CheckCurrentBid(botFiveStatus, ref botFiveCall, ref botFiveRaise, 1);
                         CheckCurrentBid(botFiveStatus, ref botFiveCall, ref botFiveRaise, 2);
-                        Rules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
+                        CurrentRules.GameRules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
                         MessageBox.Show("Bot 5's Turn");
                         this.CheckBotsHand(10, 11, ref botFiveChips, ref botFiveTurn, ref hasBotFiveBankrupted, botFiveStatus, botFivePower, botFiveType);
                         turnCount++;
@@ -846,7 +898,6 @@ namespace Poker
                     }
                 }
             #endregion
-
                 // Check who is all in
                 await WhoIsAllIn();
 
@@ -877,1407 +928,9 @@ namespace Poker
             CheckCurrentBid(playerStatus, ref playerCall, ref playerRaise, 2);
         }
 
-        void Rules(int cardOne, int cardTwo, ref double current, ref double Power, bool foldedTurn)
-        {
-            if (!foldedTurn || cardOne == 0 && cardTwo == 1 && playerStatus.Text.Contains("Fold") == false)
-            {
-                #region Variables
-                bool done = false, hasFlush = false;
-                int[] cardsOnTheTable = new int[5];
-                int[] currentPlayerAndTableCards = new int[7];
-
-                currentPlayerAndTableCards[0] = cardsAsNumbers[cardOne];
-               currentPlayerAndTableCards[1] = cardsAsNumbers[cardTwo];
-               currentPlayerAndTableCards[2] = cardsAsNumbers[12];
-               currentPlayerAndTableCards[3] = cardsAsNumbers[13];
-               currentPlayerAndTableCards[4] = cardsAsNumbers[14];
-               currentPlayerAndTableCards[5] = cardsAsNumbers[15];
-               currentPlayerAndTableCards[6] = cardsAsNumbers[16];
-               
-               cardsOnTheTable[0] = cardsAsNumbers[12];
-               cardsOnTheTable[1] = cardsAsNumbers[13];
-               cardsOnTheTable[2] = cardsAsNumbers[14];
-               cardsOnTheTable[3] = cardsAsNumbers[15];
-               cardsOnTheTable[4] = cardsAsNumbers[16];
-               
-               var clubs = currentPlayerAndTableCards.Where(o => o % 4 == 0).ToArray();
-               var diamonds = currentPlayerAndTableCards.Where(o => o % 4 == 1).ToArray();
-               var hearts = currentPlayerAndTableCards.Where(o => o % 4 == 2).ToArray();
-               var spades = currentPlayerAndTableCards.Where(o => o % 4 == 3).ToArray();
-               
-               var clubsStrenghtValues = clubs.Select(o => o / 4).Distinct().ToArray();
-               var diamondsStrenghtValues = diamonds.Select(o => o / 4).Distinct().ToArray();
-               var heartsStrenghtValues = hearts.Select(o => o / 4).Distinct().ToArray();
-               var spadesStrenghtValues = spades.Select(o => o / 4).Distinct().ToArray();
-               
-               Array.Sort(currentPlayerAndTableCards);
-               Array.Sort(clubsStrenghtValues);
-               Array.Sort(diamondsStrenghtValues);
-               Array.Sort(heartsStrenghtValues);
-               Array.Sort(spadesStrenghtValues);
-                #endregion
-
-                for (int i = 0; i < 16; i++)
-                {
-                    if (cardsAsNumbers[i] == int.Parse(cardsImages[cardOne].Tag.ToString()) && cardsAsNumbers[i + 1] == int.Parse(cardsImages[cardTwo].Tag.ToString()))
-                    {
-                        //Pair from Hand current = 1
-
-                        this.RulesPairFromHand(ref current, ref Power);
-
-                        #region Pair or Two Pair from Table current = 2 || 0
-                        this.RulesPairTwoPair(ref current, ref Power);
-                        #endregion
-
-                        #region Two Pair current = 2
-                        this.RulesTwoPair(ref current, ref Power);
-                        #endregion
-
-                        #region Three of a kind current = 3
-                        this.RulesThreeOfAKind(ref current, ref Power, currentPlayerAndTableCards);
-                        #endregion
-
-                        #region CheckBotsStraight current = 4
-                        this.RulesStraight(ref current, ref Power, currentPlayerAndTableCards);
-                        #endregion
-
-                        #region CheckBotsFlush current = 5 || 5.5
-                        this.RulesFlush(ref current, ref Power, ref hasFlush, cardsOnTheTable);
-                        #endregion
-
-                        #region Full House current = 6
-                        this.RulesFullHouse(ref current, ref Power, ref done, currentPlayerAndTableCards);
-                        #endregion
-
-                        #region Four of a Kind current = 7
-                        this.RulesFourOfAKind(ref current, ref Power, currentPlayerAndTableCards);
-                        #endregion
-
-                        #region Straight Flush current = 8 || 9
-                        this.RulesStraightFlush(ref current, ref Power, clubsStrenghtValues, diamondsStrenghtValues, heartsStrenghtValues, spadesStrenghtValues);
-                        #endregion
-
-                        #region High Card current = -1
-                        this.RulesHighCard(ref current, ref Power);
-                        #endregion
-                    }
-                }
-            }
-        }
-
         #region possible hands - Most likely for the player
-
-        private void RulesStraightFlush(ref double current, ref double Power, int[] clubsStrenghtValues, int[] diamondsStrenghtValues, int[] heartsStrenghtValues, int[] spadesStrenghtValues)
-        {
-            if (current >= -1)
-            {
-                if (clubsStrenghtValues.Length >= 5)
-                {
-                    if (clubsStrenghtValues[0] + 4 == clubsStrenghtValues[4])
-                    {
-                        current = 8;
-                        sortWinningHands(current, out Power, clubsStrenghtValues);
-                    }
-
-                    if (clubsStrenghtValues[0] == 0 &&
-                        clubsStrenghtValues[1] == 9 &&
-                        clubsStrenghtValues[2] == 10 &&
-                        clubsStrenghtValues[3] == 11 &&
-                        clubsStrenghtValues[0] + 12 == clubsStrenghtValues[4])
-                    {
-                        current = 9;
-                        sortWinningHands(current, out Power, clubsStrenghtValues);
-                    }
-                }
-
-                if (diamondsStrenghtValues.Length >= 5)
-                {
-                    if (diamondsStrenghtValues[0] + 4 == diamondsStrenghtValues[4])
-                    {
-                        current = 8;
-                        sortWinningHands(current, out Power, diamondsStrenghtValues);
-                    }
-
-                    if (diamondsStrenghtValues[0] == 0 &&
-                        diamondsStrenghtValues[1] == 9 &&
-                        diamondsStrenghtValues[2] == 10 &&
-                        diamondsStrenghtValues[3] == 11 &&
-                        diamondsStrenghtValues[0] + 12 == diamondsStrenghtValues[4])
-                    {
-                        current = 9;
-                        sortWinningHands(current, out Power, diamondsStrenghtValues);
-                    }
-                }
-
-                if (heartsStrenghtValues.Length >= 5)
-                {
-                    if (heartsStrenghtValues[0] + 4 == heartsStrenghtValues[4])
-                    {
-                        current = 8;
-                        sortWinningHands(current, out Power, heartsStrenghtValues);
-                    }
-
-                    if (heartsStrenghtValues[0] == 0 &&
-                        heartsStrenghtValues[1] == 9 &&
-                        heartsStrenghtValues[2] == 10 &&
-                        heartsStrenghtValues[3] == 11 &&
-                        heartsStrenghtValues[0] + 12 == heartsStrenghtValues[4])
-                    {
-                        current = 9;
-                        sortWinningHands(current, out Power, heartsStrenghtValues);
-                    }
-                }
-
-                if (spadesStrenghtValues.Length >= 5)
-                {
-                    if (spadesStrenghtValues[0] + 4 == spadesStrenghtValues[4])
-                    {
-                        current = 8;
-                        sortWinningHands(current, out Power, spadesStrenghtValues);
-                    }
-
-                    if (spadesStrenghtValues[0] == 0 &&
-                        spadesStrenghtValues[1] == 9 &&
-                        spadesStrenghtValues[2] == 10 &&
-                        spadesStrenghtValues[3] == 11 &&
-                        spadesStrenghtValues[0] + 12 == spadesStrenghtValues[4])
-                    {
-                        current = 9;
-                        sortWinningHands(current, out Power, spadesStrenghtValues);
-                    }
-                }
-            }
-        }
-
-        private void sortWinningHands(double current, out double Power, int[] strenght)
-        {
-            Power = (strenght.Max()) / 4 + current * 100;
-            winningingHands.Add(new Type() { Power = Power, Current = 8 });
-            sorted = winningingHands
-                .OrderByDescending(op1 => op1.Current)
-                .ThenByDescending(op1 => op1.Power).First();
-        }
-
-        private void RulesFourOfAKind(ref double current, ref double Power, int[] Straight)
-        {
-            if (current >= -1)
-            {
-                for (int j = 0; j <= 3; j++)
-                {
-                    if (Straight[j] / 4 == Straight[j + 1] / 4 && Straight[j] / 4 == Straight[j + 2] / 4 &&
-                        Straight[j] / 4 == Straight[j + 3] / 4)
-                    {
-                        current = 7;
-                        Power = (Straight[j] / 4) * 4 + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 7 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                    }
-
-                    if (Straight[j] / 4 == 0 && Straight[j + 1] / 4 == 0 && Straight[j + 2] / 4 == 0 && Straight[j + 3] / 4 == 0)
-                    {
-                        current = 7;
-                        Power = 13 * 4 + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 7 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                    }
-                }
-            }
-        }
-
-        private void RulesFullHouse(ref double current, ref double Power, ref bool done, int[] Straight)
-        {
-            if (current >= -1)
-            {
-                type = Power;
-                for (int j = 0; j <= 12; j++)
-                {
-                    var fh = Straight.Where(o => o / 4 == j).ToArray();
-                    if (fh.Length == 3 || done)
-                    {
-                        if (fh.Length == 2)
-                        {
-                            if (fh.Max() / 4 == 0)
-                            {
-                                current = 6;
-                                Power = 13 * 2 + current * 100;
-                                winningingHands.Add(new Type() { Power = Power, Current = 6 });
-                                sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                                break;
-                            }
-
-                            if (fh.Max() / 4 > 0)
-                            {
-                                current = 6;
-                                Power = fh.Max() / 4 * 2 + current * 100;
-                                winningingHands.Add(new Type() { Power = Power, Current = 6 });
-                                sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                                break;
-                            }
-
-                        }
-
-                        if (!done)
-                        {
-                            if (fh.Max() / 4 == 0)
-                            {
-                                Power = 13;
-                                done = true;
-                                j = -1;
-                            }
-                            else
-                            {
-                                Power = fh.Max() / 4;
-                                done = true;
-                                j = -1;
-                            }
-                        }
-                    }
-                }
-
-                if (current != 6)
-                {
-                    Power = type;
-                }
-            }
-        }
-
-        private void RulesFlush(ref double current, ref double Power, ref bool hasFlush, int[] Straight1)
-        {
-            if (current >= -1)
-            {
-                var clubs = Straight1.Where(o => o % 4 == 0).ToArray();
-                var diamonds = Straight1.Where(o => o % 4 == 1).ToArray();
-                var hearts = Straight1.Where(o => o % 4 == 2).ToArray();
-                var spades = Straight1.Where(o => o % 4 == 3).ToArray();
-
-                if (clubs.Length == 3 || clubs.Length == 4)
-                {
-                    if (cardsAsNumbers[i] % 4 == cardsAsNumbers[i + 1] % 4 && cardsAsNumbers[i] % 4 == clubs[0] % 4)
-                    {
-                        if (cardsAsNumbers[i] / 4 > clubs.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i] + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-
-                        if (cardsAsNumbers[i + 1] / 4 > clubs.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i + 1] + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-
-                        else if (cardsAsNumbers[i] / 4 < clubs.Max() / 4 && cardsAsNumbers[i + 1] / 4 < clubs.Max() / 4)
-                        {
-                            current = 5;
-                            Power = clubs.Max() + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-                    }
-                }
-                if (clubs.Length == 4)//different cards in hand
-                {
-                    if (cardsAsNumbers[i] % 4 != cardsAsNumbers[i + 1] % 4 && cardsAsNumbers[i] % 4 == clubs[0] % 4)
-                    {
-                        if (cardsAsNumbers[i] / 4 > clubs.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i] + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
-
-                            hasFlush = true;
-                        }
-                        else
-                        {
-                            current = 5;
-                            Power = clubs.Max() + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
-
-                            hasFlush = true;
-                        }
-                    }
-
-                    if (cardsAsNumbers[i + 1] % 4 != cardsAsNumbers[i] % 4 &&
-                        cardsAsNumbers[i + 1] % 4 == clubs[0] % 4)
-                    {
-                        if (cardsAsNumbers[i + 1] / 4 > clubs.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i + 1] + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-                        else
-                        {
-                            current = 5;
-                            Power = clubs.Max() + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-                    }
-                }
-
-                if (clubs.Length == 5)
-                {
-                    if (cardsAsNumbers[i] % 4 == clubs[0] % 4 &&
-                        cardsAsNumbers[i] / 4 > clubs.Min() / 4)
-                    {
-                        current = 5;
-                        Power = cardsAsNumbers[i] + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                        hasFlush = true;
-                    }
-
-                    if (cardsAsNumbers[i + 1] % 4 == clubs[0] % 4 &&
-                        cardsAsNumbers[i + 1] / 4 > clubs.Min() / 4)
-                    {
-                        current = 5;
-                        Power = cardsAsNumbers[i + 1] + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                        hasFlush = true;
-                    }
-
-                    else if (cardsAsNumbers[i] / 4 < clubs.Min() / 4 &&
-                        cardsAsNumbers[i + 1] / 4 < clubs.Min())
-                    {
-                        current = 5;
-                        Power = clubs.Max() + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
-                        hasFlush = true;
-                    }
-                }
-
-                if (diamonds.Length == 3 || diamonds.Length == 4)
-                {
-                    if (cardsAsNumbers[i] % 4 == cardsAsNumbers[i + 1] % 4 && cardsAsNumbers[i] % 4 == diamonds[0] % 4)
-                    {
-                        if (cardsAsNumbers[i] / 4 > diamonds.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i] + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-
-                        if (cardsAsNumbers[i + 1] / 4 > diamonds.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i + 1] + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-
-                        else if (cardsAsNumbers[i] / 4 < diamonds.Max() / 4 && cardsAsNumbers[i + 1] / 4 < diamonds.Max() / 4)
-                        {
-                            current = 5;
-                            Power = diamonds.Max() + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-                    }
-                }
-
-                if (diamonds.Length == 4)
-                {
-                    if (cardsAsNumbers[i] % 4 != cardsAsNumbers[i + 1] % 4
-                        && cardsAsNumbers[i] % 4 == diamonds[0] % 4)
-                    {
-                        if (cardsAsNumbers[i] / 4 > diamonds.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i] + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-                        else
-                        {
-                            current = 5;
-                            Power = diamonds.Max() + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-                    }
-
-                    if (cardsAsNumbers[i + 1] % 4 != cardsAsNumbers[i] % 4 &&
-                        cardsAsNumbers[i + 1] % 4 == diamonds[0] % 4)
-                    {
-                        if (cardsAsNumbers[i + 1] / 4 > diamonds.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i + 1] + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
-                            hasFlush = true;
-                        }
-                        else
-                        {
-                            current = 5;
-                            Power = diamonds.Max() + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
-                            hasFlush = true;
-                        }
-                    }
-                }
-
-                if (diamonds.Length == 5)
-                {
-                    if (cardsAsNumbers[i] % 4 == diamonds[0] % 4
-                        && cardsAsNumbers[i] / 4 > diamonds.Min() / 4)
-                    {
-                        current = 5;
-                        Power = cardsAsNumbers[i] + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
-                        hasFlush = true;
-                    }
-
-                    if (cardsAsNumbers[i + 1] % 4 == diamonds[0] % 4
-                        && cardsAsNumbers[i + 1] / 4 > diamonds.Min() / 4)
-                    {
-                        current = 5;
-                        Power = cardsAsNumbers[i + 1] + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
-                        hasFlush = true;
-                    }
-
-                    else if (cardsAsNumbers[i] / 4 < diamonds.Min() / 4 && cardsAsNumbers[i + 1] / 4 < diamonds.Min())
-                    {
-                        current = 5;
-                        Power = diamonds.Max() + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                        hasFlush = true;
-                    }
-                }
-
-                if (hearts.Length == 3 || hearts.Length == 4)
-                {
-                    if (cardsAsNumbers[i] % 4 == cardsAsNumbers[i + 1] % 4
-                        && cardsAsNumbers[i] % 4 == hearts[0] % 4)
-                    {
-                        if (cardsAsNumbers[i] / 4 > hearts.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i] + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
-                            hasFlush = true;
-                        }
-
-                        if (cardsAsNumbers[i + 1] / 4 > hearts.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i + 1] + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
-                            hasFlush = true;
-                        }
-
-                        else if (cardsAsNumbers[i] / 4 < hearts.Max() / 4 &&
-                            cardsAsNumbers[i + 1] / 4 < hearts.Max() / 4)
-                        {
-                            current = 5;
-                            Power = hearts.Max() + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
-                            hasFlush = true;
-                        }
-                    }
-                }
-
-                if (hearts.Length == 4)//different cards in hand
-                {
-                    if (cardsAsNumbers[i] % 4 != cardsAsNumbers[i + 1] % 4 &&
-                        cardsAsNumbers[i] % 4 == hearts[0] % 4)
-                    {
-                        if (cardsAsNumbers[i] / 4 > hearts.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i] + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-                        else
-                        {
-                            current = 5;
-                            Power = hearts.Max() + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-                    }
-
-                    if (cardsAsNumbers[i + 1] % 4 != cardsAsNumbers[i] % 4 && cardsAsNumbers[i + 1] % 4 == hearts[0] % 4)
-                    {
-                        if (cardsAsNumbers[i + 1] / 4 > hearts.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i + 1] + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-                        else
-                        {
-                            current = 5;
-                            Power = hearts.Max() + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-                    }
-                }
-
-                if (hearts.Length == 5)
-                {
-                    if (cardsAsNumbers[i] % 4 == hearts[0] % 4
-                        && cardsAsNumbers[i] / 4 > hearts.Min() / 4)
-                    {
-                        current = 5;
-                        Power = cardsAsNumbers[i] + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                        hasFlush = true;
-                    }
-
-                    if (cardsAsNumbers[i + 1] % 4 == hearts[0] % 4 && cardsAsNumbers[i + 1] / 4 > hearts.Min() / 4)
-                    {
-                        current = 5;
-                        Power = cardsAsNumbers[i + 1] + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                        hasFlush = true;
-                    }
-
-                    else if (cardsAsNumbers[i] / 4 < hearts.Min() / 4 && cardsAsNumbers[i + 1] / 4 < hearts.Min())
-                    {
-                        current = 5;
-                        Power = hearts.Max() + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                        hasFlush = true;
-                    }
-                }
-
-                if (spades.Length == 3 || spades.Length == 4)
-                {
-                    if (cardsAsNumbers[i] % 4 == cardsAsNumbers[i + 1] % 4 &&
-                        cardsAsNumbers[i] % 4 == spades[0] % 4)
-                    {
-                        if (cardsAsNumbers[i] / 4 > spades.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i] + current * 100;
-                            winningingHands.Add(new Type { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-
-                        if (cardsAsNumbers[i + 1] / 4 > spades.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i + 1] + current * 100;
-                            winningingHands.Add(new Type { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-
-                        else if (cardsAsNumbers[i] / 4 < spades.Max() / 4 && cardsAsNumbers[i + 1] / 4 < spades.Max() / 4)
-                        {
-                            current = 5;
-                            Power = spades.Max() + current * 100;
-                            winningingHands.Add(new Type { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-                    }
-                }
-
-                if (spades.Length == 4)
-                {
-                    if (cardsAsNumbers[i] % 4 != cardsAsNumbers[i + 1] % 4
-                        && cardsAsNumbers[i] % 4 == spades[0] % 4)
-                    {
-                        if (cardsAsNumbers[i] / 4 > spades.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i] + current * 100;
-                            winningingHands.Add(new Type { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                            hasFlush = true;
-                        }
-                        else
-                        {
-                            current = 5;
-                            Power = spades.Max() + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
-                            hasFlush = true;
-                        }
-                    }
-
-                    if (cardsAsNumbers[i + 1] % 4 != cardsAsNumbers[i] % 4 && cardsAsNumbers[i + 1] % 4 == spades[0] % 4)
-                    {
-                        if (cardsAsNumbers[i + 1] / 4 > spades.Max() / 4)
-                        {
-                            current = 5;
-                            Power = cardsAsNumbers[i + 1] + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
-                            hasFlush = true;
-                        }
-                        else
-                        {
-                            current = 5;
-                            Power = spades.Max() + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
-                            hasFlush = true;
-                        }
-                    }
-                }
-
-                if (spades.Length == 5)
-                {
-                    if (cardsAsNumbers[i] % 4 == spades[0] % 4 && cardsAsNumbers[i] / 4 > spades.Min() / 4)
-                    {
-                        current = 5;
-                        Power = cardsAsNumbers[i] + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
-                        hasFlush = true;
-                    }
-
-                    if (cardsAsNumbers[i + 1] % 4 == spades[0] % 4
-                        && cardsAsNumbers[i + 1] / 4 > spades.Min() / 4)
-                    {
-                        current = 5;
-                        Power = cardsAsNumbers[i + 1] + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
-                        hasFlush = true;
-                    }
-
-                    else if (cardsAsNumbers[i] / 4 < spades.Min() / 4
-                        && cardsAsNumbers[i + 1] / 4 < spades.Min())
-                    {
-                        current = 5;
-                        Power = spades.Max() + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
-                        hasFlush = true;
-                    }
-                }
-
-                if (clubs.Length > 0)
-                {
-                    if (cardsAsNumbers[i] / 4 == 0 &&
-                        cardsAsNumbers[i] % 4 == clubs[0] % 4 &&
-                        hasFlush && clubs.Length > 0)
-                    {
-                        current = 5.5;
-                        Power = 13 + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 5.5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
-                    }
-
-                    if (cardsAsNumbers[i + 1] / 4 == 0 &&
-                        cardsAsNumbers[i + 1] % 4 == clubs[0] % 4 &&
-                        hasFlush && clubs.Length > 0)
-                    {
-                        current = 5.5;
-                        Power = 13 + current * 100;
-                        winningingHands.Add(new Type { Power = Power, Current = 5.5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
-                    }
-                }
-                if (diamonds.Length > 0)
-                {
-                    if (cardsAsNumbers[i] / 4 == 0 &&
-                        cardsAsNumbers[i] % 4 == diamonds[0] % 4 &&
-                        hasFlush && diamonds.Length > 0)
-                    {
-                        current = 5.5;
-                        Power = 13 + current * 100;
-                        winningingHands.Add(new Type { Power = Power, Current = 5.5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
-                    }
-
-                    if (cardsAsNumbers[i + 1] / 4 == 0 &&
-                        cardsAsNumbers[i + 1] % 4 == diamonds[0] % 4 &&
-                        hasFlush && diamonds.Length > 0)
-                    {
-                        current = 5.5;
-                        Power = 13 + current * 100;
-                        winningingHands.Add(new Type { Power = Power, Current = 5.5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
-                    }
-                }
-                if (hearts.Length > 0)
-                {
-                    if (cardsAsNumbers[i] / 4 == 0 &&
-                        cardsAsNumbers[i] % 4 == hearts[0] % 4 &&
-                        hasFlush && hearts.Length > 0)
-                    {
-                        current = 5.5;
-                        Power = 13 + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 5.5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
-                    }
-
-                    if (cardsAsNumbers[i + 1] / 4 == 0 && cardsAsNumbers[i + 1] % 4 == hearts[0] % 4 && hasFlush && hearts.Length > 0)
-                    {
-                        current = 5.5;
-                        Power = 13 + current * 100;
-                        winningingHands.Add(new Type() { Power = Power, Current = 5.5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
-                    }
-                }
-
-                if (spades.Length > 0)
-                {
-                    if (cardsAsNumbers[i] / 4 == 0 &&
-                        cardsAsNumbers[i] % 4 == spades[0] % 4 &&
-                        hasFlush && spades.Length > 0)
-                    {
-                        current = 5.5;
-                        Power = 13 + current * 100;
-                        winningingHands.Add(new Type { Power = Power, Current = 5.5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
-                    }
-
-                    if (cardsAsNumbers[i + 1] / 4 == 0 &&
-                        cardsAsNumbers[i + 1] % 4 == spades[0] % 4 &&
-                        hasFlush)
-                    {
-                        current = 5.5;
-                        Power = 13 + current * 100;
-                        winningingHands.Add(new Type { Power = Power, Current = 5.5 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
-                    }
-                }
-            }
-        }
-
-        private void RulesStraight(ref double current, ref double Power, int[] Straight)
-        {
-            if (current >= -1)
-            {
-                var op = Straight.Select(o => o / 4)
-                    .Distinct()
-                    .ToArray();
-
-                for (int j = 0; j < op.Length - 4; j++)
-                {
-                    if (op[j] + 4 == op[j + 4])
-                    {
-                        if (op.Max() - 4 == op[j])
-                        {
-                            current = 4;
-                            Power = op.Max() + current * 100;
-                            winningingHands.Add(new Type { Power = Power, Current = 4 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
-                        }
-
-                        else
-                        {
-                            current = 4;
-                            Power = op[j + 4] + current * 100;
-                            winningingHands.Add(new Type { Power = Power, Current = 4 });
-                            sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
-                        }
-                    }
-
-                    if (op[j] == 0 && op[j + 1] == 9 &&
-                        op[j + 2] == 10 &&
-                        op[j + 3] == 11 &&
-                        op[j + 4] == 12)
-                    {
-                        current = 4;
-                        Power = 13 + current * 100;
-                        winningingHands.Add(new Type { Power = Power, Current = 4 });
-                        sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
-                    }
-                }
-            }
-        }
-
-        private void RulesThreeOfAKind(ref double current, ref double Power, int[] Straight)
-        {
-            if (current >= -1)
-            {
-                for (int j = 0; j <= 12; j++)
-                {
-                    var fh = Straight.Where(o => o / 4 == j)
-                        .ToArray();
-
-                    if (fh.Length == 3)
-                    {
-                        if (fh.Max() / 4 == 0)
-                        {
-                            current = 3;
-                            Power = 13 * 3 + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 3 });
-                            sorted = winningingHands.OrderByDescending(op => op.Current)
-                                .ThenByDescending(op => op.Power)
-                                .First();
-                        }
-                        else
-                        {
-                            current = 3;
-                            Power = fh[0] / 4 + fh[1] / 4 + fh[2] / 4 + current * 100;
-                            winningingHands.Add(new Type { Power = Power, Current = 3 });
-                            sorted = winningingHands.OrderByDescending(op => op.Current)
-                                .ThenByDescending(op => op.Power)
-                                .First();
-                        }
-                    }
-                }
-            }
-        }
-
-        private void RulesTwoPair(ref double current, ref double Power)
-        {
-            if (current >= -1)
-            {
-                bool msgbox = false;
-
-                for (int totalCards = 16; totalCards >= 12; totalCards--)
-                {
-                    int max = totalCards - 12;
-                    if (cardsAsNumbers[i] / 4 != cardsAsNumbers[i + 1] / 4)
-                    {
-                        for (int k = 1; k <= max; k++)
-                        {
-                            if (totalCards - k < 12)
-                            {
-                                max--;
-                            }
-
-                            if (totalCards - k >= 12)
-                            {
-                                if (cardsAsNumbers[i] / 4 == cardsAsNumbers[totalCards] / 4 &&
-                                    cardsAsNumbers[i + 1] / 4 == cardsAsNumbers[totalCards - k] / 4 ||
-                                    cardsAsNumbers[i + 1] / 4 == cardsAsNumbers[totalCards] / 4 &&
-                                    cardsAsNumbers[i] / 4 == cardsAsNumbers[totalCards - k] / 4)
-                                {
-                                    if (!msgbox)
-                                    {
-                                        if (cardsAsNumbers[i] / 4 == 0)
-                                        {
-                                            current = 2;
-                                            Power = 13 * 4 + (cardsAsNumbers[i + 1] / 4) * 2 + current * 100;
-                                            winningingHands.Add(new Type { Power = Power, Current = 2 });
-                                            sorted = winningingHands.OrderByDescending(op => op.Current)
-                                                .ThenByDescending(op => op.Power)
-                                                .First();
-                                        }
-
-                                        if (cardsAsNumbers[i + 1] / 4 == 0)
-                                        {
-                                            current = 2;
-                                            Power = 13 * 4 + (cardsAsNumbers[i] / 4) * 2 + current * 100;
-                                            winningingHands.Add(new Type() { Power = Power, Current = 2 });
-                                            sorted = winningingHands.OrderByDescending(op => op.Current)
-                                                .ThenByDescending(op => op.Power)
-                                                .First();
-                                        }
-
-                                        if (cardsAsNumbers[i + 1] / 4 != 0 && cardsAsNumbers[i] / 4 != 0)
-                                        {
-                                            current = 2;
-                                            Power = (cardsAsNumbers[i] / 4) * 2 + (cardsAsNumbers[i + 1] / 4) * 2 + current * 100;
-                                            winningingHands.Add(new Type() { Power = Power, Current = 2 });
-                                            sorted = winningingHands.OrderByDescending(op => op.Current)
-                                                .ThenByDescending(op => op.Power)
-                                                .First();
-                                        }
-                                    }
-
-                                    msgbox = true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        private void RulesPairTwoPair(ref double current, ref double Power)
-        {
-            if (current >= -1)
-            {
-                bool msgbox = false;
-                bool msgbox1 = false;
-
-                for (int totalCards = 16; totalCards >= 12; totalCards--)
-                {
-                    int max = totalCards - 12;
-                    for (int k = 1; k <= max; k++)
-                    {
-                        if (totalCards - k < 12)
-                        {
-                            max--;
-                        }
-
-                        if (totalCards - k >= 12)
-                        {
-                            if (cardsAsNumbers[totalCards] / 4 == cardsAsNumbers[totalCards - k] / 4)
-                            {
-                                if (cardsAsNumbers[totalCards] / 4 != cardsAsNumbers[i] / 4 && cardsAsNumbers[totalCards] / 4 != cardsAsNumbers[i + 1] / 4 && current == 1)
-                                {
-                                    if (!msgbox)
-                                    {
-                                        if (cardsAsNumbers[i + 1] / 4 == 0)
-                                        {
-                                            current = 2;
-                                            Power = (cardsAsNumbers[i] / 4) * 2 + 13 * 4 + current * 100;
-                                            winningingHands.Add(new Type() { Power = Power, Current = 2 });
-                                            sorted = winningingHands.OrderByDescending(op => op.Current)
-                                                .ThenByDescending(op => op.Power)
-                                                .First();
-                                        }
-
-                                        if (cardsAsNumbers[i] / 4 == 0)
-                                        {
-                                            current = 2;
-                                            Power = (cardsAsNumbers[i + 1] / 4) * 2 + 13 * 4 + current * 100;
-                                            winningingHands.Add(new Type() { Power = Power, Current = 2 });
-                                            sorted = winningingHands.OrderByDescending(op => op.Current)
-                                                .ThenByDescending(op => op.Power)
-                                                .First();
-                                        }
-
-                                        if (cardsAsNumbers[i + 1] / 4 != 0)
-                                        {
-                                            current = 2;
-                                            Power = (cardsAsNumbers[totalCards] / 4) * 2 + (cardsAsNumbers[i + 1] / 4) * 2 + current * 100;
-                                            winningingHands.Add(new Type() { Power = Power, Current = 2 });
-                                            sorted = winningingHands.OrderByDescending(op => op.Current)
-                                                .ThenByDescending(op => op.Power)
-                                                .First();
-                                        }
-
-                                        if (cardsAsNumbers[i] / 4 != 0)
-                                        {
-                                            current = 2;
-                                            Power = (cardsAsNumbers[totalCards] / 4) * 2 + (cardsAsNumbers[i] / 4) * 2 + current * 100;
-                                            winningingHands.Add(new Type() { Power = Power, Current = 2 });
-                                            sorted = winningingHands.OrderByDescending(op => op.Current)
-                                                .ThenByDescending(op => op.Power)
-                                                .First();
-                                        }
-                                    }
-
-                                    msgbox = true;
-                                }
-
-                                if (current == -1)
-                                {
-                                    if (!msgbox1)
-                                    {
-                                        if (cardsAsNumbers[i] / 4 > cardsAsNumbers[i + 1] / 4)
-                                        {
-                                            if (cardsAsNumbers[totalCards] / 4 == 0)
-                                            {
-                                                current = 0;
-                                                Power = 13 + cardsAsNumbers[i] / 4 + current * 100;
-                                                winningingHands.Add(new Type { Power = Power, Current = 1 });
-                                                sorted = winningingHands.OrderByDescending(op => op.Current)
-                                                    .ThenByDescending(op => op.Power)
-                                                    .First();
-                                            }
-
-                                            else
-                                            {
-                                                current = 0;
-                                                Power = cardsAsNumbers[totalCards] / 4 + cardsAsNumbers[i] / 4 + current * 100;
-                                                winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                                                sorted = winningingHands.OrderByDescending(op => op.Current)
-                                                    .ThenByDescending(op => op.Power)
-                                                    .First();
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (cardsAsNumbers[totalCards] / 4 == 0)
-                                            {
-                                                current = 0;
-                                                Power = 13 + cardsAsNumbers[i + 1] + current * 100;
-                                                winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                                                sorted = winningingHands.OrderByDescending(op => op.Current)
-                                                    .ThenByDescending(op => op.Power)
-                                                    .First();
-                                            }
-                                            else
-                                            {
-                                                current = 0;
-                                                Power = cardsAsNumbers[totalCards] / 4 + cardsAsNumbers[i + 1] / 4 + current * 100;
-                                                winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                                                sorted = winningingHands.OrderByDescending(op => op.Current)
-                                                    .ThenByDescending(op => op.Power)
-                                                    .First();
-                                            }
-                                        }
-                                    }
-
-                                    msgbox1 = true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        private void RulesPairFromHand(ref double current, ref double Power)
-        {
-            if (current >= -1)
-            {
-                bool msgbox = false;
-                if (cardsAsNumbers[i] / 4 == cardsAsNumbers[i + 1] / 4)
-                {
-                    if (!msgbox)
-                    {
-                        if (cardsAsNumbers[i] / 4 == 0)
-                        {
-                            current = 1;
-                            Power = 13 * 4 + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                            sorted = winningingHands.OrderByDescending(op => op.Current)
-                                .ThenByDescending(op => op.Power)
-                                .First();
-                        }
-                        else
-                        {
-                            current = 1;
-                            Power = (cardsAsNumbers[i + 1] / 4) * 4 + current * 100;
-                            winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                            sorted = winningingHands.OrderByDescending(op => op.Current)
-                                .ThenByDescending(op => op.Power)
-                                .First();
-                        }
-                    }
-
-                    msgbox = true;
-                }
-
-                for (int totalCards = 16; totalCards >= 12; totalCards--)
-                {
-                    if (cardsAsNumbers[i + 1] / 4 == cardsAsNumbers[totalCards] / 4)
-                    {
-                        if (!msgbox)
-                        {
-                            if (cardsAsNumbers[i + 1] / 4 == 0)
-                            {
-                                current = 1;
-                                Power = 13 * 4 + cardsAsNumbers[i] / 4 + current * 100;
-                                winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                                sorted = winningingHands.OrderByDescending(op => op.Current)
-                                    .ThenByDescending(op => op.Power)
-                                    .First();
-                            }
-                            else
-                            {
-                                current = 1;
-                                Power = (cardsAsNumbers[i + 1] / 4) * 4 + cardsAsNumbers[i] / 4 + current * 100;
-                                winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                                sorted = winningingHands.OrderByDescending(op => op.Current)
-                                    .ThenByDescending(op => op.Power)
-                                    .First();
-                            }
-                        }
-
-                        msgbox = true;
-                    }
-
-                    if (cardsAsNumbers[i] / 4 == cardsAsNumbers[totalCards] / 4)
-                    {
-                        if (!msgbox)
-                        {
-                            if (cardsAsNumbers[i] / 4 == 0)
-                            {
-                                current = 1;
-                                Power = 13 * 4 + cardsAsNumbers[i + 1] / 4 + current * 100;
-                                winningingHands.Add(new Type { Power = Power, Current = 1 });
-                                sorted = winningingHands.OrderByDescending(op => op.Current)
-                                    .ThenByDescending(op => op.Power)
-                                    .First();
-                            }
-                            else
-                            {
-                                current = 1;
-                                Power = (cardsAsNumbers[totalCards] / 4) * 4 + cardsAsNumbers[i + 1] / 4 + current * 100;
-                                winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                                sorted = winningingHands.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
-                            }
-                        }
-
-                        msgbox = true;
-                    }
-                }
-            }
-        }
-
-        private void RulesHighCard(ref double current, ref double Power)
-        {
-            if (current == -1)
-            {
-                if (cardsAsNumbers[i] / 4 > cardsAsNumbers[i + 1] / 4)
-                {
-                    current = -1;
-                    Power = cardsAsNumbers[i] / 4;
-                    winningingHands.Add(new Type { Power = Power, Current = -1 });
-                    sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                        .ThenByDescending(op1 => op1.Power)
-                        .First();
-                }
-                else
-                {
-                    current = -1;
-                    Power = cardsAsNumbers[i + 1] / 4;
-                    winningingHands.Add(new Type { Power = Power, Current = -1 });
-                    sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                        .ThenByDescending(op1 => op1.Power)
-                        .First();
-                }
-
-                if (cardsAsNumbers[i] / 4 == 0 || cardsAsNumbers[i + 1] / 4 == 0)
-                {
-                    current = -1;
-                    Power = 13;
-                    winningingHands.Add(new Type { Power = Power, Current = -1 });
-                    sorted = winningingHands.OrderByDescending(op1 => op1.Current)
-                        .ThenByDescending(op1 => op1.Power)
-                        .First();
-                }
-            }
-        }
+        //HandRules class
         #endregion
-
-        void Winner(double current, double power, string currentText, string lastly)
-        {
-            if (lastly == " ")
-            {
-                lastly = "Bot 5";
-            }
-
-            for (int j = 0; j <= 16; j++)
-            {
-                if (cardsImages[j].Visible)
-                {
-                    cardsImages[j].Image = Deck[j];
-                }
-            }
-
-            if (current == sorted.Current)
-            {
-                if (power == sorted.Power)
-                {
-                    winners++;
-                    CheckWinners.Add(currentText);
-
-                    if (current == -1)
-                    {
-                        MessageBox.Show(currentText + " High Card ");
-                    }
-
-                    if (current == 1 || current == 0)
-                    {
-                        MessageBox.Show(currentText + " Pair ");
-                    }
-
-                    if (current == 2)
-                    {
-                        MessageBox.Show(currentText + " Two Pair ");
-                    }
-
-                    if (current == 3)
-                    {
-                        MessageBox.Show(currentText + " Three of a Kind ");
-                    }
-                    if (current == 4)
-                    {
-                        MessageBox.Show(currentText + " Straight ");
-                    }
-
-                    if (current == 5 || current == 5.5)
-                    {
-                        MessageBox.Show(currentText + " Flush ");
-                    }
-
-                    if (current == 6)
-                    {
-                        MessageBox.Show(currentText + " Full House ");
-                    }
-
-                    if (current == 7)
-                    {
-                        MessageBox.Show(currentText + " Four of a Kind ");
-                    }
-
-                    if (current == 8)
-                    {
-                        MessageBox.Show(currentText + " Straight Flush ");
-                    }
-
-                    if (current == 9)
-                    {
-                        MessageBox.Show(currentText + " Royal Flush ! ");
-                    }
-                }
-            }
-
-            if (currentText == lastly)
-            {
-                if (winners > 1)
-                {
-                    if (CheckWinners.Contains("Player"))
-                    {
-                        this.playerChips += int.Parse(potTextBox.Text) / winners;
-                        playerChipsTextBox.Text = this.playerChips.ToString();
-                    }
-
-                    if (CheckWinners.Contains("Bot 1"))
-                    {
-                        botOnehips += int.Parse(potTextBox.Text) / winners;
-                        botOneChipsTextBox.Text = botOnehips.ToString();
-                    }
-
-                    if (CheckWinners.Contains("Bot 2"))
-                    {
-                        botTwoChips += int.Parse(potTextBox.Text) / winners;
-                        botTwoChipsTextBox.Text = botTwoChips.ToString();
-                    }
-
-                    if (CheckWinners.Contains("Bot 3"))
-                    {
-                        botThreeChips += int.Parse(potTextBox.Text) / winners;
-                        botThreeChipsTextBox.Text = botThreeChips.ToString();
-                    }
-
-                    if (CheckWinners.Contains("Bot 4"))
-                    {
-                        botFourChips += int.Parse(potTextBox.Text) / winners;
-                        botFourChipsTextBox.Text = botFourChips.ToString();
-                    }
-
-                    if (CheckWinners.Contains("Bot 5"))
-                    {
-                        botFiveChips += int.Parse(potTextBox.Text) / winners;
-                        botFiveChipsTextBox.Text = botFiveChips.ToString();
-                    }
-
-                }
-
-                if (winners == 1)
-                {
-                    if (CheckWinners.Contains("Player"))
-                    {
-                        this.playerChips += int.Parse(potTextBox.Text);
-                    }
-
-                    if (CheckWinners.Contains("Bot 1"))
-                    {
-                        botOnehips += int.Parse(potTextBox.Text);
-                    }
-
-                    if (CheckWinners.Contains("Bot 2"))
-                    {
-                        botTwoChips += int.Parse(potTextBox.Text);
-                    }
-
-                    if (CheckWinners.Contains("Bot 3"))
-                    {
-                        botThreeChips += int.Parse(potTextBox.Text);
-                    }
-
-                    if (CheckWinners.Contains("Bot 4"))
-                    {
-                        botFourChips += int.Parse(potTextBox.Text);
-                    }
-
-                    if (CheckWinners.Contains("Bot 5"))
-                    {
-                        botFiveChips += int.Parse(potTextBox.Text);
-                    }
-                }
-            }
-        }
 
         async Task CheckRaise(int currentTurn)
         {
@@ -2401,45 +1054,45 @@ namespace Poker
                 if (!playerStatus.Text.Contains("Fold"))
                 {
                     fixedLast = "Player";
-                    Rules(0, 1, ref playerType, ref playerPower, hasPlayerBankrupted);
+                    CurrentRules.GameRules(0, 1, ref playerType, ref playerPower, hasPlayerBankrupted);
                 }
 
                 if (!botOneStatus.Text.Contains("Fold"))
                 {
                     fixedLast = "Bot 1";
-                    Rules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
+                    CurrentRules.GameRules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
                 }
 
                 if (!botTwoStatus.Text.Contains("Fold"))
                 {
                     fixedLast = "Bot 2";
-                    Rules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
+                    CurrentRules.GameRules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
                 }
 
                 if (!botThreeStatus.Text.Contains("Fold"))
                 {
                     fixedLast = "Bot 3";
-                    Rules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
+                    CurrentRules.GameRules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
                 }
 
                 if (!botFourStatus.Text.Contains("Fold"))
                 {
                     fixedLast = "Bot 4";
-                    Rules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
+                    CurrentRules.GameRules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
                 }
 
                 if (!botFiveStatus.Text.Contains("Fold"))
                 {
                     fixedLast = "Bot 5";
-                    Rules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
+                    CurrentRules.GameRules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
                 }
 
-                Winner(playerType, playerPower, "Player", fixedLast);
-                Winner(botOneType, botOnePower, "Bot 1", fixedLast);
-                Winner(botTwoType, botTwoPower, "Bot 2", fixedLast);
-                Winner(botThreeType, botThreePower, "Bot 3", fixedLast);
-                Winner(botFourType, botFourPower, "Bot 4", fixedLast);
-                Winner(botFiveType, botFivePower, "Bot 5", fixedLast);
+                Winner1.WinnerRules(playerType, playerPower, "Player", fixedLast);
+                Winner1.WinnerRules(botOneType, botOnePower, "Bot 1", fixedLast);
+                Winner1.WinnerRules(botTwoType, botTwoPower, "Bot 2", fixedLast);
+                Winner1.WinnerRules(botThreeType, botThreePower, "Bot 3", fixedLast);
+                Winner1.WinnerRules(botFourType, botFourPower, "Bot 4", fixedLast);
+                Winner1.WinnerRules(botFiveType, botFivePower, "Bot 5", fixedLast);
 
                 shouldRestart = true;
                 playerTurn = true;
@@ -2875,50 +1528,50 @@ namespace Poker
             if (!playerStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Player";
-                Rules(0, 1, ref playerType, ref playerPower, hasPlayerBankrupted);
+                CurrentRules.GameRules(0, 1, ref playerType, ref playerPower, hasPlayerBankrupted);
             }
 
             if (!botOneStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Bot 1";
-                Rules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
+                CurrentRules.GameRules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
             }
 
             if (!botTwoStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Bot 2";
-                Rules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
+                CurrentRules.GameRules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
             }
 
             if (!botThreeStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Bot 3";
-                Rules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
+                CurrentRules.GameRules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
             }
 
             if (!botFourStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Bot 4";
-                Rules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
+                CurrentRules.GameRules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
             }
 
             if (!botFiveStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Bot 5";
-                Rules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
+                CurrentRules.GameRules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
             }
 
-            Winner(playerType, playerPower, "Player", fixedLast);
+            Winner1.WinnerRules(playerType, playerPower, "Player", fixedLast);
 
-            Winner(botOneType, botOnePower, "Bot 1", fixedLast);
+            Winner1.WinnerRules(botOneType, botOnePower, "Bot 1", fixedLast);
 
-            Winner(botTwoType, botTwoPower, "Bot 2", fixedLast);
+            Winner1.WinnerRules(botTwoType, botTwoPower, "Bot 2", fixedLast);
 
-            Winner(botThreeType, botThreePower, "Bot 3", fixedLast);
+            Winner1.WinnerRules(botThreeType, botThreePower, "Bot 3", fixedLast);
 
-            Winner(botFourType, botFourPower, "Bot 4", fixedLast);
+            Winner1.WinnerRules(botFourType, botFourPower, "Bot 4", fixedLast);
 
-            Winner(botFiveType, botFivePower, "Bot 5", fixedLast);
+            Winner1.WinnerRules(botFiveType, botFivePower, "Bot 5", fixedLast);
         }
 
         #region second possible hands - bots
@@ -3542,7 +2195,7 @@ namespace Poker
 
         private async void bCall_Click(object sender, EventArgs e)
         {
-            Rules(0, 1, ref playerType, ref playerPower, hasPlayerBankrupted);
+            CurrentRules.GameRules(0, 1, ref playerType, ref playerPower, hasPlayerBankrupted);
             if (playerChips >= callChipsValue)
             {
                 playerChips -= callChipsValue;
@@ -3576,7 +2229,7 @@ namespace Poker
 
         private async void bRaise_Click(object sender, EventArgs e)
         {
-            Rules(0, 1, ref playerType, ref playerPower, hasPlayerBankrupted);
+            CurrentRules.GameRules(0, 1, ref playerType, ref playerPower, hasPlayerBankrupted);
             int parsedValue;
             if (playerRaiseTextBox.Text != "" && int.TryParse(playerRaiseTextBox.Text, out parsedValue))
             {

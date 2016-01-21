@@ -361,35 +361,35 @@
 
         #endregion
 
-        private System.Windows.Forms.Button playerFoldButton;
+        public System.Windows.Forms.Button playerFoldButton;
         private System.Windows.Forms.Button playerCheckButton;
-        private System.Windows.Forms.Button playerCallButton;
-        private System.Windows.Forms.Button playerRaiseButton;
+        public System.Windows.Forms.Button playerCallButton;
+        public System.Windows.Forms.Button playerRaiseButton;
         private System.Windows.Forms.TextBox playerRaiseTextBox;
-        private System.Windows.Forms.TextBox playerChipsTextBox;
-        private System.Windows.Forms.Label playerStatus;
+        public System.Windows.Forms.TextBox playerChipsTextBox;
+        public System.Windows.Forms.Label playerStatus;
 
         private System.Windows.Forms.ProgressBar timerBar;
 
         private System.Windows.Forms.Label potLabel;
-        private System.Windows.Forms.TextBox potTextBox;
+        public System.Windows.Forms.TextBox potTextBox;
 
         private System.Windows.Forms.TextBox addChipsTextBox;
         private System.Windows.Forms.Button addChipsButton;
 
-        private System.Windows.Forms.TextBox botOneChipsTextBox;
+        public System.Windows.Forms.TextBox botOneChipsTextBox;
         private System.Windows.Forms.Label botOneStatus;
-        
-        private System.Windows.Forms.TextBox botTwoChipsTextBox;
-        private System.Windows.Forms.Label botTwoStatus;   
 
-        private System.Windows.Forms.TextBox botThreeChipsTextBox;
+        public System.Windows.Forms.TextBox botTwoChipsTextBox;
+        private System.Windows.Forms.Label botTwoStatus;
+
+        public System.Windows.Forms.TextBox botThreeChipsTextBox;
         private System.Windows.Forms.Label botThreeStatus;
 
-        private System.Windows.Forms.TextBox botFourChipsTextBox;
+        public System.Windows.Forms.TextBox botFourChipsTextBox;
         private System.Windows.Forms.Label botFourStatus;
 
-        private System.Windows.Forms.TextBox botFiveChipsTextBox;
+        public System.Windows.Forms.TextBox botFiveChipsTextBox;
         private System.Windows.Forms.Label botFiveStatus;
 
         private System.Windows.Forms.Button blindOptions;
