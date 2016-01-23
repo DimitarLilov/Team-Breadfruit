@@ -44,31 +44,31 @@ namespace Poker
 
             if (!currentForm.botOneStatus.Text.Contains("Fold"))
             {
-                fixedLast = "Bot 1";
+                fixedLast = "Winner 1";
                 currentForm.CurrentRules.GameRules(2, 3, ref currentForm.botOneType, ref currentForm.botOnePower, currentForm.hasBotOneBankrupted);
             }
 
             if (!currentForm.botTwoStatus.Text.Contains("Fold"))
             {
-                fixedLast = "Bot 2";
+                fixedLast = "Winner 2";
                 currentForm.CurrentRules.GameRules(4, 5, ref currentForm.botTwoType, ref currentForm.botTwoPower, currentForm.hasBotTwoBankrupted);
             }
 
             if (!currentForm.botThreeStatus.Text.Contains("Fold"))
             {
-                fixedLast = "Bot 3";
+                fixedLast = "Winner 3";
                 currentForm.CurrentRules.GameRules(6, 7, ref currentForm.botThreeType, ref currentForm.botThreePower, currentForm.hasBotThreeBankrupted);
             }
 
             if (!currentForm.botFourStatus.Text.Contains("Fold"))
             {
-                fixedLast = "Bot 4";
+                fixedLast = "Winner 4";
                 currentForm.CurrentRules.GameRules(8, 9, ref currentForm.botFourType, ref currentForm.botFourPower, currentForm.hasBotFourBankrupted);
             }
 
             if (!currentForm.botFiveStatus.Text.Contains("Fold"))
             {
-                fixedLast = "Bot 5";
+                fixedLast = "Winner 5";
                 currentForm.CurrentRules.GameRules(10, 11, ref currentForm.botFiveType, ref currentForm.botFivePower, currentForm.hasBotFiveBankrupted);
             }
             return fixedLast;

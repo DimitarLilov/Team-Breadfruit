@@ -1,3 +1,4 @@
+using System;
 using System.Windows.Forms;
 
 namespace Poker
@@ -159,6 +160,62 @@ namespace Poker
                     }
                 }
             }
+        }
+
+        public void FixWinners()
+        {
+            currentForm.winningingHands.Clear();
+            currentForm.sorted.Current = 0;
+            currentForm.sorted.Power = 0;
+            string fixedLast = String.Empty;
+
+            if (!currentForm.playerStatus.Text.Contains("Fold"))
+            {
+                fixedLast = "Player";
+                currentForm.CurrentRules.GameRules(0, 1, ref currentForm.playerType, ref currentForm.playerPower, currentForm.hasPlayerBankrupted);
+            }
+
+            if (!currentForm.botOneStatus.Text.Contains("Fold"))
+            {
+                fixedLast = "Bot 1";
+                currentForm.CurrentRules.GameRules(2, 3, ref currentForm.botOneType, ref currentForm.botOnePower, currentForm.hasBotOneBankrupted);
+            }
+
+            if (!currentForm.botTwoStatus.Text.Contains("Fold"))
+            {
+                fixedLast = "Bot 2";
+                currentForm.CurrentRules.GameRules(4, 5, ref currentForm.botTwoType, ref currentForm.botTwoPower, currentForm.hasBotTwoBankrupted);
+            }
+
+            if (!currentForm.botThreeStatus.Text.Contains("Fold"))
+            {
+                fixedLast = "Bot 3";
+                currentForm.CurrentRules.GameRules(6, 7, ref currentForm.botThreeType, ref currentForm.botThreePower, currentForm.hasBotThreeBankrupted);
+            }
+
+            if (!currentForm.botFourStatus.Text.Contains("Fold"))
+            {
+                fixedLast = "Bot 4";
+                currentForm.CurrentRules.GameRules(8, 9, ref currentForm.botFourType, ref currentForm.botFourPower, currentForm.hasBotFourBankrupted);
+            }
+
+            if (!currentForm.botFiveStatus.Text.Contains("Fold"))
+            {
+                fixedLast = "Bot 5";
+                currentForm.CurrentRules.GameRules(10, 11, ref currentForm.botFiveType, ref currentForm.botFivePower, currentForm.hasBotFiveBankrupted);
+            }
+
+            currentForm.Winner1.WinnerRules(currentForm.playerType, currentForm.playerPower, "Player", fixedLast);
+
+            currentForm.Winner1.WinnerRules(currentForm.botOneType, currentForm.botOnePower, "Bot 1", fixedLast);
+
+            currentForm.Winner1.WinnerRules(currentForm.botTwoType, currentForm.botTwoPower, "Bot 2", fixedLast);
+
+            currentForm.Winner1.WinnerRules(currentForm.botThreeType, currentForm.botThreePower, "Bot 3", fixedLast);
+
+            currentForm.Winner1.WinnerRules(currentForm.botFourType, currentForm.botFourPower, "Bot 4", fixedLast);
+
+            currentForm.Winner1.WinnerRules(currentForm.botFiveType, currentForm.botFivePower, "Bot 5", fixedLast);
         }
     }
 }

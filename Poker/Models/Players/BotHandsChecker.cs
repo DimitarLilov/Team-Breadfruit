@@ -75,12 +75,12 @@ namespace Poker
 
         private void CheckBotsHighCard(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
-            currentForm.Bot.BotsMoveFirst(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower, 20, 25);
+            currentForm.Winner.BotsMoveFirst(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower, 20, 25);
         }
 
         private void PairTable(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
-            currentForm.Bot.BotsMoveFirst(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower, 16, 25);
+            currentForm.Winner.BotsMoveFirst(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower, 16, 25);
         }
 
         private void CheckBotsPairHand(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
@@ -91,17 +91,17 @@ namespace Poker
 
             if (botPower <= 199 && botPower >= 140)
             {
-                currentForm.Bot.BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 6, rRaise);
+                currentForm.Winner.BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 6, rRaise);
             }
 
             if (botPower <= 139 && botPower >= 128)
             {
-                currentForm.Bot.BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 7, rRaise);
+                currentForm.Winner.BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 7, rRaise);
             }
 
             if (botPower < 128 && botPower >= 101)
             {
-                currentForm.Bot.BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 9, rRaise);
+                currentForm.Winner.BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 9, rRaise);
             }
         }
 
@@ -113,17 +113,17 @@ namespace Poker
 
             if (botPower <= 290 && botPower >= 246)
             {
-                currentForm.Bot.BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 3, rRaise);
+                currentForm.Winner.BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 3, rRaise);
             }
 
             if (botPower <= 244 && botPower >= 234)
             {
-                currentForm.Bot.BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 4, rRaise);
+                currentForm.Winner.BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 4, rRaise);
             }
 
             if (botPower < 234 && botPower >= 201)
             {
-                currentForm.Bot.BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 4, rRaise);
+                currentForm.Winner.BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 4, rRaise);
             }
         }
 
@@ -135,17 +135,17 @@ namespace Poker
 
             if (botPower <= 390 && botPower >= 330)
             {
-                currentForm.Bot.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
+                currentForm.Winner.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
             }
 
             if (botPower <= 327 && botPower >= 321)
             {
-                currentForm.Bot.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
+                currentForm.Winner.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
             }
 
             if (botPower < 321 && botPower >= 303)
             {
-                currentForm.Bot.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
+                currentForm.Winner.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
             }
         }
 
@@ -157,17 +157,17 @@ namespace Poker
 
             if (botPower <= 480 && botPower >= 410)
             {
-                currentForm.Bot.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
+                currentForm.Winner.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
             }
 
             if (botPower <= 409 && botPower >= 407)//10  8
             {
-                currentForm.Bot.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
+                currentForm.Winner.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
             }
 
             if (botPower < 407 && botPower >= 404)
             {
-                currentForm.Bot.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
+                currentForm.Winner.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
             }
         }
 
@@ -176,7 +176,7 @@ namespace Poker
             Random fsh = new Random();
             int fCall = fsh.Next(2, 6);
             int fRaise = fsh.Next(3, 7);
-            currentForm.Bot.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fCall);
+            currentForm.Winner.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fCall);
         }
 
         private void CheckBotsFullHouse(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
@@ -187,12 +187,12 @@ namespace Poker
 
             if (botPower <= 626 && botPower >= 620)
             {
-                currentForm.Bot.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fhCall);
+                currentForm.Winner.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fhCall);
             }
 
             if (botPower < 620 && botPower >= 602)
             {
-                currentForm.Bot.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fhCall);
+                currentForm.Winner.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fhCall);
             }
         }
 
@@ -204,7 +204,7 @@ namespace Poker
 
             if (botPower <= 752 && botPower >= 704)
             {
-                currentForm.Bot.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fkCall);
+                currentForm.Winner.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fkCall);
             }
         }
 
@@ -215,7 +215,7 @@ namespace Poker
             int sfRaise = sf.Next(1, 3);
             if (botPower <= 913 && botPower >= 804)
             {
-                currentForm.Bot.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sfCall);
+                currentForm.Winner.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sfCall);
             }
         }
     }

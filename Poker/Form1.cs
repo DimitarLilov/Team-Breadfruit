@@ -142,7 +142,8 @@ namespace Poker
         private readonly Winner winner;
         private readonly CheckRaiseDealer checkRaiseDealer;
         private readonly BotHandsChecker _botHandsChecker;
-        private readonly Bot _bot;
+        private readonly Bot bot;
+
         // public readonly Dealer dealer;
 
         #endregion
@@ -176,7 +177,7 @@ namespace Poker
             winner = new Winner(this);
             checkRaiseDealer = new CheckRaiseDealer(this);
             _botHandsChecker = new BotHandsChecker(this);
-            _bot = new Bot(this);
+            bot = new Bot(this);
             //dealer = new Dealer(this);
         }
 
@@ -207,7 +208,7 @@ namespace Poker
 
         public Bot Bot
         {
-            get { return _bot; }
+            get { return bot; }
         }
 
         //public Dealer Dealer
@@ -958,10 +959,6 @@ namespace Poker
             playerFoldButton.Enabled = true;
         }
 
-        #region possible hands - Most likely for the player
-        //HandRules class
-        #endregion
-
         #region CheckRaise Methods
         /// <summary>
         /// Dealer's checkraise
@@ -1282,7 +1279,7 @@ namespace Poker
         {
             if (n == 2)
             {
-                FixWinners();
+                winner.FixWinners();
             }
 
             playerPanel.Visible = false;
@@ -1409,62 +1406,6 @@ namespace Poker
             }
 
             await Shuffle();
-        }
-
-        void FixWinners()
-        {
-            winningingHands.Clear();
-            sorted.Current = 0;
-            sorted.Power = 0;
-            string fixedLast = String.Empty;
-
-            if (!playerStatus.Text.Contains("Fold"))
-            {
-                fixedLast = "Player";
-                CurrentRules.GameRules(0, 1, ref playerType, ref playerPower, hasPlayerBankrupted);
-            }
-
-            if (!botOneStatus.Text.Contains("Fold"))
-            {
-                fixedLast = "Bot 1";
-                CurrentRules.GameRules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
-            }
-
-            if (!botTwoStatus.Text.Contains("Fold"))
-            {
-                fixedLast = "Bot 2";
-                CurrentRules.GameRules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
-            }
-
-            if (!botThreeStatus.Text.Contains("Fold"))
-            {
-                fixedLast = "Bot 3";
-                CurrentRules.GameRules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
-            }
-
-            if (!botFourStatus.Text.Contains("Fold"))
-            {
-                fixedLast = "Bot 4";
-                CurrentRules.GameRules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
-            }
-
-            if (!botFiveStatus.Text.Contains("Fold"))
-            {
-                fixedLast = "Bot 5";
-                CurrentRules.GameRules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
-            }
-
-            Winner1.WinnerRules(playerType, playerPower, "Player", fixedLast);
-
-            Winner1.WinnerRules(botOneType, botOnePower, "Bot 1", fixedLast);
-
-            Winner1.WinnerRules(botTwoType, botTwoPower, "Bot 2", fixedLast);
-
-            Winner1.WinnerRules(botThreeType, botThreePower, "Bot 3", fixedLast);
-
-            Winner1.WinnerRules(botFourType, botFourPower, "Bot 4", fixedLast);
-
-            Winner1.WinnerRules(botFiveType, botFivePower, "Bot 5", fixedLast);
         }
 
         #region UI
