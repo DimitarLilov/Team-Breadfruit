@@ -113,16 +113,14 @@ namespace Poker
                     {
                         current = 7;
                         Power = (Straight[j] / 4) * 4 + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 7 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                        this.SortedWinningHands(current, Power);
                     }
 
                     if (Straight[j] / 4 == 0 && Straight[j + 1] / 4 == 0 && Straight[j + 2] / 4 == 0 && Straight[j + 3] / 4 == 0)
                     {
                         current = 7;
                         Power = 13 * 4 + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 7 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                        this.SortedWinningHands(current, Power);
                     }
                 }
             }
@@ -144,8 +142,7 @@ namespace Poker
                             {
                                 current = 6;
                                 Power = 13 * 2 + current * 100;
-                                currentForm.winningingHands.Add(new Type() { Power = Power, Current = 6 });
-                                currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                                this.SortedWinningHands(current, Power);
                                 break;
                             }
 
@@ -153,8 +150,7 @@ namespace Poker
                             {
                                 current = 6;
                                 Power = fh.Max() / 4 * 2 + current * 100;
-                                currentForm.winningingHands.Add(new Type() { Power = Power, Current = 6 });
-                                currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                                this.SortedWinningHands(current, Power);
                                 break;
                             }
 
@@ -202,8 +198,7 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
 
@@ -211,8 +206,7 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
 
@@ -220,8 +214,7 @@ namespace Poker
                         {
                             current = 5;
                             Power = clubs.Max() + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
                     }
@@ -234,21 +227,14 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
-
+                            this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
                         else
                         {
                             current = 5;
                             Power = clubs.Max() + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
+                            this.SortedWinningHands(current, Power);
 
                             hasFlush = true;
                         }
@@ -260,16 +246,14 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
                         else
                         {
                             current = 5;
                             Power = clubs.Max() + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
                     }
@@ -281,8 +265,7 @@ namespace Poker
                     {
                         current = 5;
                         Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                        this.SortedWinningHands(current, Power);
                         hasFlush = true;
                     }
 
@@ -290,8 +273,7 @@ namespace Poker
                     {
                         current = 5;
                         Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                        this.SortedWinningHands(current, Power);
                         hasFlush = true;
                     }
 
@@ -299,10 +281,7 @@ namespace Poker
                     {
                         current = 5;
                         Power = clubs.Max() + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
+                        this.SortedWinningHands(current, Power);
                         hasFlush = true;
                     }
                 }
@@ -315,8 +294,7 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
 
@@ -324,8 +302,7 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
 
@@ -333,8 +310,7 @@ namespace Poker
                         {
                             current = 5;
                             Power = diamonds.Max() + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
                     }
@@ -349,16 +325,14 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
                         else
                         {
                             current = 5;
                             Power = diamonds.Max() + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
                     }
@@ -369,20 +343,14 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
+                            this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
                         else
                         {
                             current = 5;
                             Power = diamonds.Max() + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
+                            this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
                     }
@@ -395,10 +363,7 @@ namespace Poker
                     {
                         current = 5;
                         Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
+                        this.SortedWinningHands(current, Power);
                         hasFlush = true;
                     }
 
@@ -407,10 +372,7 @@ namespace Poker
                     {
                         current = 5;
                         Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
+                        this.SortedWinningHands(current, Power);
                         hasFlush = true;
                     }
 
@@ -418,8 +380,8 @@ namespace Poker
                     {
                         current = 5;
                         Power = diamonds.Max() + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                        this.SortedWinningHands(current, Power);
+
                         hasFlush = true;
                     }
                 }
@@ -433,10 +395,8 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
+                            this.SortedWinningHands(current, Power);
+
                             hasFlush = true;
                         }
 
@@ -444,10 +404,8 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
+                            this.SortedWinningHands(current, Power);
+
                             hasFlush = true;
                         }
 
@@ -455,10 +413,8 @@ namespace Poker
                         {
                             current = 5;
                             Power = hearts.Max() + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
+                            this.SortedWinningHands(current, Power);
+
                             hasFlush = true;
                         }
                     }
@@ -472,16 +428,16 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
+
                             hasFlush = true;
                         }
                         else
                         {
                             current = 5;
                             Power = hearts.Max() + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
+
                             hasFlush = true;
                         }
                     }
@@ -492,16 +448,16 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
+
                             hasFlush = true;
                         }
                         else
                         {
                             current = 5;
                             Power = hearts.Max() + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
+
                             hasFlush = true;
                         }
                     }
@@ -514,8 +470,8 @@ namespace Poker
                     {
                         current = 5;
                         Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                        this.SortedWinningHands(current, Power);
+
                         hasFlush = true;
                     }
 
@@ -523,8 +479,8 @@ namespace Poker
                     {
                         current = 5;
                         Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                        this.SortedWinningHands(current, Power);
+
                         hasFlush = true;
                     }
 
@@ -532,8 +488,8 @@ namespace Poker
                     {
                         current = 5;
                         Power = hearts.Max() + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                        this.SortedWinningHands(current, Power);
+
                         hasFlush = true;
                     }
                 }
@@ -546,8 +502,8 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
-                            currentForm.winningingHands.Add(new Type { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
+
                             hasFlush = true;
                         }
 
@@ -555,8 +511,8 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
-                            currentForm.winningingHands.Add(new Type { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
+
                             hasFlush = true;
                         }
 
@@ -564,8 +520,8 @@ namespace Poker
                         {
                             current = 5;
                             Power = spades.Max() + current * 100;
-                            currentForm.winningingHands.Add(new Type { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
+
                             hasFlush = true;
                         }
                     }
@@ -580,18 +536,16 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
-                            currentForm.winningingHands.Add(new Type { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                            this.SortedWinningHands(current, Power);
+
                             hasFlush = true;
                         }
                         else
                         {
                             current = 5;
                             Power = spades.Max() + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
+                            this.SortedWinningHands(current, Power);
+
                             hasFlush = true;
                         }
                     }
@@ -602,20 +556,16 @@ namespace Poker
                         {
                             current = 5;
                             Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
+                            this.SortedWinningHands(current, Power);
+
                             hasFlush = true;
                         }
                         else
                         {
                             current = 5;
                             Power = spades.Max() + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
+                            this.SortedWinningHands(current, Power);
+
                             hasFlush = true;
                         }
                     }
@@ -627,10 +577,8 @@ namespace Poker
                     {
                         current = 5;
                         Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
+                        this.SortedWinningHands(current, Power);
+
                         hasFlush = true;
                     }
 
@@ -639,10 +587,8 @@ namespace Poker
                     {
                         current = 5;
                         Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
+                        this.SortedWinningHands(current, Power);
+
                         hasFlush = true;
                     }
 
@@ -651,10 +597,8 @@ namespace Poker
                     {
                         current = 5;
                         Power = spades.Max() + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
+                        this.SortedWinningHands(current, Power);
+
                         hasFlush = true;
                     }
                 }
@@ -666,10 +610,8 @@ namespace Poker
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5.5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
+                        this.SortedWinningHands(current, Power);
+
                     }
 
                     if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == 0 && currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == clubs[0] % 4 &&
@@ -677,10 +619,8 @@ namespace Poker
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
-                        currentForm.winningingHands.Add(new Type { Power = Power, Current = 5.5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
+                        this.SortedWinningHands(current, Power);
+
                     }
                 }
                 if (diamonds.Length > 0)
@@ -690,10 +630,8 @@ namespace Poker
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
-                        currentForm.winningingHands.Add(new Type { Power = Power, Current = 5.5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
+                        this.SortedWinningHands(current, Power);
+
                     }
 
                     if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == 0 && currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == diamonds[0] % 4 &&
@@ -701,10 +639,8 @@ namespace Poker
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
-                        currentForm.winningingHands.Add(new Type { Power = Power, Current = 5.5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
+                        this.SortedWinningHands(current, Power);
+
                     }
                 }
                 if (hearts.Length > 0)
@@ -714,18 +650,16 @@ namespace Poker
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5.5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
+                        this.SortedWinningHands(current, Power);
+
                     }
 
                     if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == 0 && currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == hearts[0] % 4 && hasFlush && hearts.Length > 0)
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
-                        currentForm.winningingHands.Add(new Type() { Power = Power, Current = 5.5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
+                        this.SortedWinningHands(current, Power);
+
                     }
                 }
 
@@ -736,10 +670,8 @@ namespace Poker
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
-                        currentForm.winningingHands.Add(new Type { Power = Power, Current = 5.5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
+                        this.SortedWinningHands(current, Power);
+
                     }
 
                     if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == 0 && currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == spades[0] % 4 &&
@@ -747,10 +679,8 @@ namespace Poker
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
-                        currentForm.winningingHands.Add(new Type { Power = Power, Current = 5.5 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
+                        this.SortedWinningHands(current, Power);
+
                     }
                 }
             }
@@ -772,20 +702,16 @@ namespace Poker
                         {
                             current = 4;
                             Power = op.Max() + current * 100;
-                            currentForm.winningingHands.Add(new Type { Power = Power, Current = 4 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
+                            this.SortedWinningHands(current, Power);
+
                         }
 
                         else
                         {
                             current = 4;
                             Power = op[j + 4] + current * 100;
-                            currentForm.winningingHands.Add(new Type { Power = Power, Current = 4 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                                .ThenByDescending(op1 => op1.Power)
-                                .First();
+                            this.SortedWinningHands(current, Power);
+
                         }
                     }
 
@@ -796,10 +722,8 @@ namespace Poker
                     {
                         current = 4;
                         Power = 13 + current * 100;
-                        currentForm.winningingHands.Add(new Type { Power = Power, Current = 4 });
-                        currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                            .ThenByDescending(op1 => op1.Power)
-                            .First();
+                        this.SortedWinningHands(current, Power);
+
                     }
                 }
             }
@@ -820,19 +744,15 @@ namespace Poker
                         {
                             current = 3;
                             Power = 13 * 3 + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 3 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                .ThenByDescending(op => op.Power)
-                                .First();
+                            this.SortedWinningHands(current, Power);
+
                         }
                         else
                         {
                             current = 3;
                             Power = fh[0] / 4 + fh[1] / 4 + fh[2] / 4 + current * 100;
-                            currentForm.winningingHands.Add(new Type { Power = Power, Current = 3 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                .ThenByDescending(op => op.Power)
-                                .First();
+                            this.SortedWinningHands(current, Power);
+
                         }
                     }
                 }
@@ -867,30 +787,24 @@ namespace Poker
                                         {
                                             current = 2;
                                             Power = 13 * 4 + (currentForm.cardsAsNumbers[currentForm.i + 1] / 4) * 2 + current * 100;
-                                            currentForm.winningingHands.Add(new Type { Power = Power, Current = 2 });
-                                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                                .ThenByDescending(op => op.Power)
-                                                .First();
+                                            this.SortedWinningHands(current, Power);
+
                                         }
 
                                         if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == 0)
                                         {
                                             current = 2;
                                             Power = 13 * 4 + (currentForm.cardsAsNumbers[currentForm.i] / 4) * 2 + current * 100;
-                                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 2 });
-                                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                                .ThenByDescending(op => op.Power)
-                                                .First();
+                                            this.SortedWinningHands(current, Power);
+
                                         }
 
                                         if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 != 0 && currentForm.cardsAsNumbers[currentForm.i] / 4 != 0)
                                         {
                                             current = 2;
                                             Power = (currentForm.cardsAsNumbers[currentForm.i] / 4) * 2 + (currentForm.cardsAsNumbers[currentForm.i + 1] / 4) * 2 + current * 100;
-                                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 2 });
-                                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                                .ThenByDescending(op => op.Power)
-                                                .First();
+                                            this.SortedWinningHands(current, Power);
+
                                         }
                                     }
 
@@ -932,40 +846,32 @@ namespace Poker
                                         {
                                             current = 2;
                                             Power = (currentForm.cardsAsNumbers[currentForm.i] / 4) * 2 + 13 * 4 + current * 100;
-                                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 2 });
-                                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                                .ThenByDescending(op => op.Power)
-                                                .First();
+                                            this.SortedWinningHands(current, Power);
+
                                         }
 
                                         if (currentForm.cardsAsNumbers[currentForm.i] / 4 == 0)
                                         {
                                             current = 2;
                                             Power = (currentForm.cardsAsNumbers[currentForm.i + 1] / 4) * 2 + 13 * 4 + current * 100;
-                                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 2 });
-                                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                                .ThenByDescending(op => op.Power)
-                                                .First();
+                                            this.SortedWinningHands(current, Power);
+
                                         }
 
                                         if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 != 0)
                                         {
                                             current = 2;
                                             Power = (currentForm.cardsAsNumbers[totalCards] / 4) * 2 + (currentForm.cardsAsNumbers[currentForm.i + 1] / 4) * 2 + current * 100;
-                                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 2 });
-                                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                                .ThenByDescending(op => op.Power)
-                                                .First();
+                                            this.SortedWinningHands(current, Power);
+
                                         }
 
                                         if (currentForm.cardsAsNumbers[currentForm.i] / 4 != 0)
                                         {
                                             current = 2;
                                             Power = (currentForm.cardsAsNumbers[totalCards] / 4) * 2 + (currentForm.cardsAsNumbers[currentForm.i] / 4) * 2 + current * 100;
-                                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 2 });
-                                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                                .ThenByDescending(op => op.Power)
-                                                .First();
+                                            this.SortedWinningHands(current, Power);
+
                                         }
                                     }
 
@@ -982,20 +888,16 @@ namespace Poker
                                             {
                                                 current = 0;
                                                 Power = 13 + currentForm.cardsAsNumbers[currentForm.i] / 4 + current * 100;
-                                                currentForm.winningingHands.Add(new Type { Power = Power, Current = 1 });
-                                                currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                                    .ThenByDescending(op => op.Power)
-                                                    .First();
+                                                this.SortedWinningHands(current, Power);
+
                                             }
 
                                             else
                                             {
                                                 current = 0;
                                                 Power = currentForm.cardsAsNumbers[totalCards] / 4 + currentForm.cardsAsNumbers[currentForm.i] / 4 + current * 100;
-                                                currentForm.winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                                                currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                                    .ThenByDescending(op => op.Power)
-                                                    .First();
+                                                this.SortedWinningHands(current, Power);
+
                                             }
                                         }
                                         else
@@ -1004,19 +906,15 @@ namespace Poker
                                             {
                                                 current = 0;
                                                 Power = 13 + currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
-                                                currentForm.winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                                                currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                                    .ThenByDescending(op => op.Power)
-                                                    .First();
+                                                this.SortedWinningHands(current, Power);
+
                                             }
                                             else
                                             {
                                                 current = 0;
                                                 Power = currentForm.cardsAsNumbers[totalCards] / 4 + currentForm.cardsAsNumbers[currentForm.i + 1] / 4 + current * 100;
-                                                currentForm.winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                                                currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                                    .ThenByDescending(op => op.Power)
-                                                    .First();
+                                                this.SortedWinningHands(current, Power);
+
                                             }
                                         }
                                     }
@@ -1043,19 +941,15 @@ namespace Poker
                         {
                             current = 1;
                             Power = 13 * 4 + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                .ThenByDescending(op => op.Power)
-                                .First();
+                            this.SortedWinningHands(current, Power);
+
                         }
                         else
                         {
                             current = 1;
                             Power = (currentForm.cardsAsNumbers[currentForm.i + 1] / 4) * 4 + current * 100;
-                            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                            currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                .ThenByDescending(op => op.Power)
-                                .First();
+                            this.SortedWinningHands(current, Power);
+
                         }
                     }
 
@@ -1072,19 +966,15 @@ namespace Poker
                             {
                                 current = 1;
                                 Power = 13 * 4 + currentForm.cardsAsNumbers[currentForm.i] / 4 + current * 100;
-                                currentForm.winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                                currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                    .ThenByDescending(op => op.Power)
-                                    .First();
+                                this.SortedWinningHands(current, Power);
+
                             }
                             else
                             {
                                 current = 1;
                                 Power = (currentForm.cardsAsNumbers[currentForm.i + 1] / 4) * 4 + currentForm.cardsAsNumbers[currentForm.i] / 4 + current * 100;
-                                currentForm.winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                                currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                    .ThenByDescending(op => op.Power)
-                                    .First();
+                                this.SortedWinningHands(current, Power);
+
                             }
                         }
 
@@ -1099,17 +989,15 @@ namespace Poker
                             {
                                 current = 1;
                                 Power = 13 * 4 + currentForm.cardsAsNumbers[currentForm.i + 1] / 4 + current * 100;
-                                currentForm.winningingHands.Add(new Type { Power = Power, Current = 1 });
-                                currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current)
-                                    .ThenByDescending(op => op.Power)
-                                    .First();
+                                this.SortedWinningHands(current, Power);
+
                             }
                             else
                             {
                                 current = 1;
                                 Power = (currentForm.cardsAsNumbers[totalCards] / 4) * 4 + currentForm.cardsAsNumbers[currentForm.i + 1] / 4 + current * 100;
-                                currentForm.winningingHands.Add(new Type() { Power = Power, Current = 1 });
-                                currentForm.sorted = currentForm.winningingHands.OrderByDescending(op => op.Current).ThenByDescending(op => op.Power).First();
+                                this.SortedWinningHands(current, Power);
+
                             }
                         }
 
@@ -1127,31 +1015,32 @@ namespace Poker
                 {
                     current = -1;
                     Power = currentForm.cardsAsNumbers[currentForm.i] / 4;
-                    currentForm.winningingHands.Add(new Type { Power = Power, Current = -1 });
-                    currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                        .ThenByDescending(op1 => op1.Power)
-                        .First();
+                    this.SortedWinningHands(current, Power);
+
                 }
                 else
                 {
                     current = -1;
                     Power = currentForm.cardsAsNumbers[currentForm.i + 1] / 4;
-                    currentForm.winningingHands.Add(new Type { Power = Power, Current = -1 });
-                    currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                        .ThenByDescending(op1 => op1.Power)
-                        .First();
+                    this.SortedWinningHands(current, Power);
+
                 }
 
                 if (currentForm.cardsAsNumbers[currentForm.i] / 4 == 0 || currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == 0)
                 {
                     current = -1;
                     Power = 13;
-                    currentForm.winningingHands.Add(new Type { Power = Power, Current = -1 });
-                    currentForm.sorted = currentForm.winningingHands.OrderByDescending(op1 => op1.Current)
-                        .ThenByDescending(op1 => op1.Power)
-                        .First();
+                    this.SortedWinningHands(current, Power);
+
                 }
             }
+        }
+
+        private void SortedWinningHands(double current, double Power)
+        {
+            this.currentForm.winningingHands.Add(new Type() { Power = Power, Current = current });
+            this.currentForm.sorted =
+                this.currentForm.winningingHands.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
         }
     }
 }
