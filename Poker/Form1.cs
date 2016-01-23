@@ -141,6 +141,8 @@ namespace Poker
         private readonly HandRules handRules;
         private readonly Winner winner;
         private readonly CheckRaiseDealer checkRaiseDealer;
+        private readonly BotHandsChecker _botHandsChecker;
+        private readonly Bot _bot;
         // public readonly Dealer dealer;
 
         #endregion
@@ -173,6 +175,8 @@ namespace Poker
             handRules = new HandRules(this);
             winner = new Winner(this);
             checkRaiseDealer = new CheckRaiseDealer(this);
+            _botHandsChecker = new BotHandsChecker(this);
+            _bot = new Bot(this);
             //dealer = new Dealer(this);
         }
 
@@ -194,6 +198,16 @@ namespace Poker
         public CheckRaiseDealer CheckRaiseDealer
         {
             get { return checkRaiseDealer; }
+        }
+
+        public BotHandsChecker BotHandsChecker
+        {
+            get { return _botHandsChecker; }
+        }
+
+        public Bot Bot
+        {
+            get { return _bot; }
         }
 
         //public Dealer Dealer
@@ -752,7 +766,7 @@ namespace Poker
                         CheckCurrentBid(botOneStatus, ref botOneCall, ref botOneRaise, 2);
                         CurrentRules.GameRules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
                         MessageBox.Show("Bot 1's Turn");
-                        this.CheckBotsHand(2, 3, ref botOnehips, ref botOneTurn, ref hasBotOneBankrupted, botOneStatus, botOnePower, botOneType);
+                        BotHandsChecker.CheckBotsHand(2, 3, ref botOnehips, ref botOneTurn, ref hasBotOneBankrupted, botOneStatus, botOnePower, botOneType);
                         turnCount++;
                         last = 1;
                         botOneTurn = false;
@@ -783,7 +797,7 @@ namespace Poker
                         CurrentRules.GameRules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
 
                         MessageBox.Show("Bot 2's Turn");
-                        this.CheckBotsHand(4, 5, ref botTwoChips, ref botTwoTurn, ref hasBotTwoBankrupted, botTwoStatus, botTwoPower, botTwoType);
+                        BotHandsChecker.CheckBotsHand(4, 5, ref botTwoChips, ref botTwoTurn, ref hasBotTwoBankrupted, botTwoStatus, botTwoPower, botTwoType);
 
                         turnCount++;
                         last = 2;
@@ -815,7 +829,7 @@ namespace Poker
                         CheckCurrentBid(botThreeStatus, ref botThreeCall, ref botThreeRaise, 2);
                         CurrentRules.GameRules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
                         MessageBox.Show("Bot 3's Turn");
-                        this.CheckBotsHand(6, 7, ref botThreeChips, ref botThreeTurn, ref hasBotThreeBankrupted, botThreeStatus, botThreePower, botThreeType);
+                        BotHandsChecker.CheckBotsHand(6, 7, ref botThreeChips, ref botThreeTurn, ref hasBotThreeBankrupted, botThreeStatus, botThreePower, botThreeType);
 
                         turnCount++;
                         last = 3;
@@ -846,7 +860,7 @@ namespace Poker
                         CheckCurrentBid(botFourStatus, ref botFourCall, ref botFourRaise, 2);
                         CurrentRules.GameRules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
                         MessageBox.Show("Bot 4's Turn");
-                        this.CheckBotsHand(8, 9, ref botFourChips, ref botFourTurn, ref hasBotFourBankrupted, botFourStatus, botFourPower, botFourType);
+                        BotHandsChecker.CheckBotsHand(8, 9, ref botFourChips, ref botFourTurn, ref hasBotFourBankrupted, botFourStatus, botFourPower, botFourType);
                         turnCount++;
                         last = 4;
                         botFourTurn = false;
@@ -877,7 +891,7 @@ namespace Poker
                         CheckCurrentBid(botFiveStatus, ref botFiveCall, ref botFiveRaise, 2);
                         CurrentRules.GameRules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
                         MessageBox.Show("Bot 5's Turn");
-                        this.CheckBotsHand(10, 11, ref botFiveChips, ref botFiveTurn, ref hasBotFiveBankrupted, botFiveStatus, botFivePower, botFiveType);
+                        BotHandsChecker.CheckBotsHand(10, 11, ref botFiveChips, ref botFiveTurn, ref hasBotFiveBankrupted, botFiveStatus, botFivePower, botFiveType);
                         turnCount++;
                         last = 5;
                         botFiveTurn = false;
@@ -949,11 +963,11 @@ namespace Poker
         #endregion
 
         #region CheckRaise Methods
-            /// <summary>
-            /// Dealer's checkraise
-            /// </summary>
-            /// <param name="currentTurn"></param>
-            /// <returns></returns>
+        /// <summary>
+        /// Dealer's checkraise
+        /// </summary>
+        /// <param name="currentTurn"></param>
+        /// <returns></returns>
         async Task CheckRaise(int currentTurn)
         {
             CheckRaiseDealer.CheckIfSomeoneRaised(currentTurn);
@@ -1105,6 +1119,93 @@ namespace Poker
         async Task WhoIsAllIn()
         {
             #region All in
+            await CheckAllIn();
+            #endregion
+
+            int currentWinnerNumber = bankruptPlayers.Count(x => x == false);
+
+            #region LastManStanding
+            if (currentWinnerNumber == 1)
+            {
+                CheckWhoWins();
+
+                for (int cardNumber = 0; cardNumber < TotalTableCards; cardNumber++)
+                {
+                    cardsImages[cardNumber].Visible = false;
+                }
+
+                await Finish(1);
+            }
+
+            hasAddedChips = false;
+            #endregion
+
+            #region FiveOrLessLeft
+            if (currentWinnerNumber < 6 &&
+                currentWinnerNumber > 1 &&
+                totalRounds >= End)
+            {
+                await Finish(2);
+            }
+            #endregion
+        }
+
+        #region WhoIsAllInMethods
+
+        private void CheckWhoWins()
+        {
+            int index = bankruptPlayers.IndexOf(false);
+            if (index == 0)
+            {
+                playerChips += int.Parse(potTextBox.Text);
+                playerChipsTextBox.Text = playerChips.ToString();
+                playerPanel.Visible = true;
+                MessageBox.Show("Player Wins");
+            }
+
+            if (index == 1)
+            {
+                botOnehips += int.Parse(potTextBox.Text);
+                botOneChipsTextBox.Text = botOnehips.ToString();
+                botOnePanel.Visible = true;
+                MessageBox.Show("Bot 1 Wins");
+            }
+
+            if (index == 2)
+            {
+                botTwoChips += int.Parse(potTextBox.Text);
+                botTwoChipsTextBox.Text = botTwoChips.ToString();
+                botTwoPanel.Visible = true;
+                MessageBox.Show("Bot 2 Wins");
+            }
+
+            if (index == 3)
+            {
+                botThreeChips += int.Parse(potTextBox.Text);
+                botThreeChipsTextBox.Text = botThreeChips.ToString();
+                botThreePanel.Visible = true;
+                MessageBox.Show("Bot 3 Wins");
+            }
+
+            if (index == 4)
+            {
+                botFourChips += int.Parse(potTextBox.Text);
+                botFourChipsTextBox.Text = botFourChips.ToString();
+                botFourPanel.Visible = true;
+                MessageBox.Show("Bot 4 Wins");
+            }
+
+            if (index == 5)
+            {
+                botFiveChips += int.Parse(potTextBox.Text);
+                botFiveChipsTextBox.Text = botFiveChips.ToString();
+                botFivePanel.Visible = true;
+                MessageBox.Show("Bot 5 Wins");
+            }
+        }
+
+        private async Task CheckAllIn()
+        {
             if (playerChips <= 0 && !hasAddedChips)
             {
                 totalAllInChips.Add(playerChips);
@@ -1174,82 +1275,8 @@ namespace Poker
             {
                 totalAllInChips.Clear();
             }
-            #endregion
-
-            int currentWinnerNumber = bankruptPlayers.Count(x => x == false);
-
-            #region LastManStanding
-            if (currentWinnerNumber == 1)
-            {
-                int index = bankruptPlayers.IndexOf(false);
-                if (index == 0)
-                {
-                    playerChips += int.Parse(potTextBox.Text);
-                    playerChipsTextBox.Text = playerChips.ToString();
-                    playerPanel.Visible = true;
-                    MessageBox.Show("Player Wins");
-                }
-
-                if (index == 1)
-                {
-                    botOnehips += int.Parse(potTextBox.Text);
-                    botOneChipsTextBox.Text = botOnehips.ToString();
-                    botOnePanel.Visible = true;
-                    MessageBox.Show("Bot 1 Wins");
-                }
-
-                if (index == 2)
-                {
-                    botTwoChips += int.Parse(potTextBox.Text);
-                    botTwoChipsTextBox.Text = botTwoChips.ToString();
-                    botTwoPanel.Visible = true;
-                    MessageBox.Show("Bot 2 Wins");
-                }
-
-                if (index == 3)
-                {
-                    botThreeChips += int.Parse(potTextBox.Text);
-                    botThreeChipsTextBox.Text = botThreeChips.ToString();
-                    botThreePanel.Visible = true;
-                    MessageBox.Show("Bot 3 Wins");
-                }
-
-                if (index == 4)
-                {
-                    botFourChips += int.Parse(potTextBox.Text);
-                    botFourChipsTextBox.Text = botFourChips.ToString();
-                    botFourPanel.Visible = true;
-                    MessageBox.Show("Bot 4 Wins");
-                }
-
-                if (index == 5)
-                {
-                    botFiveChips += int.Parse(potTextBox.Text);
-                    botFiveChipsTextBox.Text = botFiveChips.ToString();
-                    botFivePanel.Visible = true;
-                    MessageBox.Show("Bot 5 Wins");
-                }
-
-                for (int cardNumber = 0; cardNumber < TotalTableCards; cardNumber++)
-                {
-                    cardsImages[cardNumber].Visible = false;
-                }
-
-                await Finish(1);
-            }
-
-            hasAddedChips = false;
-            #endregion
-
-            #region FiveOrLessLeft
-            if (currentWinnerNumber < 6 &&
-                currentWinnerNumber > 1 &&
-                totalRounds >= End)
-            {
-                await Finish(2);
-            }
-            #endregion
         }
+        #endregion
 
         async Task Finish(int n)
         {
@@ -1439,486 +1466,6 @@ namespace Poker
 
             Winner1.WinnerRules(botFiveType, botFivePower, "Bot 5", fixedLast);
         }
-
-        #region second possible hands - bots
-        void CheckBotsHand(int botFirstCard, int botSecondCard, ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower, double botCurrent)
-        {
-            if (!hasBotFolded)
-            {
-                if (botCurrent == -1)
-                {
-                    this.CheckBotsHighCard(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
-                }
-
-                if (botCurrent == 0)
-                {
-                    PairTable(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
-                }
-
-                if (botCurrent == 1)
-                {
-                    this.CheckBotsPairHand(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
-                }
-
-                if (botCurrent == 2)
-                {
-                    this.CheckBotsTwoPair(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
-                }
-
-                if (botCurrent == 3)
-                {
-                    this.CheckBotsThreeOfAKind(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
-                }
-
-                if (botCurrent == 4)
-                {
-                    this.CheckBotsStraight(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
-                }
-
-                if (botCurrent == 5 || botCurrent == 5.5)
-                {
-                    this.CheckBotsFlush(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus);
-                }
-                if (botCurrent == 6)
-                {
-                    this.CheckBotsFullHouse(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
-                }
-
-                if (botCurrent == 7)
-                {
-                    this.CheckBotsFourOfAKind(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
-                }
-
-                if (botCurrent == 8 || botCurrent == 9)
-                {
-                    this.CheckBotsStraightFlush(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
-                }
-            }
-
-            if (hasBotFolded)
-            {
-                cardsImages[botFirstCard].Visible = false;
-                cardsImages[botSecondCard].Visible = false;
-            }
-        }
-
-        private void CheckBotsHighCard(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
-        {
-            BotsMoveFirst(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower, 20, 25);
-        }
-
-        private void PairTable(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
-        {
-            BotsMoveFirst(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower, 16, 25);
-        }
-
-        private void CheckBotsPairHand(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
-        {
-            Random rPair = new Random();
-            int rCall = rPair.Next(10, 16);
-            int rRaise = rPair.Next(10, 13);
-
-            if (botPower <= 199 && botPower >= 140)
-            {
-                BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 6, rRaise);
-            }
-
-            if (botPower <= 139 && botPower >= 128)
-            {
-                BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 7, rRaise);
-            }
-
-            if (botPower < 128 && botPower >= 101)
-            {
-                BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 9, rRaise);
-            }
-        }
-
-        private void CheckBotsTwoPair(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
-        {
-            Random rPair = new Random();
-            int rCall = rPair.Next(6, 11);
-            int rRaise = rPair.Next(6, 11);
-
-            if (botPower <= 290 && botPower >= 246)
-            {
-                BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 3, rRaise);
-            }
-
-            if (botPower <= 244 && botPower >= 234)
-            {
-                BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 4, rRaise);
-            }
-
-            if (botPower < 234 && botPower >= 201)
-            {
-                BotsMoveSecond(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 4, rRaise);
-            }
-        }
-
-        private void CheckBotsThreeOfAKind(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
-        {
-            Random tk = new Random();
-            int tCall = tk.Next(3, 7);
-            int tRaise = tk.Next(4, 8);
-
-            if (botPower <= 390 && botPower >= 330)
-            {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
-            }
-
-            if (botPower <= 327 && botPower >= 321)
-            {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
-            }
-
-            if (botPower < 321 && botPower >= 303)
-            {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
-            }
-        }
-
-        private void CheckBotsStraight(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
-        {
-            Random str = new Random();
-            int sCall = str.Next(3, 6);
-            int sRaise = str.Next(3, 8);
-
-            if (botPower <= 480 && botPower >= 410)
-            {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
-            }
-
-            if (botPower <= 409 && botPower >= 407)//10  8
-            {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
-            }
-
-            if (botPower < 407 && botPower >= 404)
-            {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
-            }
-        }
-
-        private void CheckBotsFlush(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus)
-        {
-            Random fsh = new Random();
-            int fCall = fsh.Next(2, 6);
-            int fRaise = fsh.Next(3, 7);
-            BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fCall);
-        }
-
-        private void CheckBotsFullHouse(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
-        {
-            Random flh = new Random();
-            int fhCall = flh.Next(1, 5);
-            int fhRaise = flh.Next(2, 6);
-
-            if (botPower <= 626 && botPower >= 620)
-            {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fhCall);
-            }
-
-            if (botPower < 620 && botPower >= 602)
-            {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fhCall);
-            }
-        }
-
-        private void CheckBotsFourOfAKind(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
-        {
-            Random fk = new Random();
-            int fkCall = fk.Next(1, 4);
-            int fkRaise = fk.Next(2, 5);
-
-            if (botPower <= 752 && botPower >= 704)
-            {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fkCall);
-            }
-        }
-
-        private void CheckBotsStraightFlush(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
-        {
-            Random sf = new Random();
-            int sfCall = sf.Next(1, 3);
-            int sfRaise = sf.Next(1, 3);
-            if (botPower <= 913 && botPower >= 804)
-            {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sfCall);
-            }
-        }
-        #endregion
-
-        #region check bots possibility
-
-        private void ChangeStatusToFold(ref bool isBotTurn, ref bool sFTurn, Label sStatus)
-        {
-            isRaising = false;
-            sStatus.Text = "Fold";
-            isBotTurn = false;
-            sFTurn = true;
-        }
-
-        //Changes the status label of the bot when it is checking the community cards
-        private void ChangeStatusToChecking(ref bool isBotsTurn, Label statusLabel)
-        {
-            statusLabel.Text = "Check";
-            isBotsTurn = false;
-            isRaising = false;
-        }
-
-        // The bots call. Change status to call
-        private void Call(ref int botsChips, ref bool isBotsTurn, Label statusLabel)
-        {
-            isRaising = false;
-            isBotsTurn = false;
-            botsChips -= callChipsValue;
-            statusLabel.Text = "Call " + callChipsValue;
-            potTextBox.Text = (int.Parse(potTextBox.Text) + callChipsValue).ToString();
-        }
-
-        private void RaiseBet(ref int botChips, ref bool isBotsTurn, Label statusLabel)
-        {
-            botChips -= Convert.ToInt32(Raise);
-            statusLabel.Text = "Raise " + Raise;
-            potTextBox.Text = (int.Parse(potTextBox.Text) + Convert.ToInt32(Raise)).ToString();
-            callChipsValue = Convert.ToInt32(Raise);
-            isRaising = true;
-            isBotsTurn = false;
-        }
-
-        //Calculate the maximum amount of money that the bot can play with on this particular turn
-        private static double BotMaximumBidAbility(int botChips, int behaviour)
-        {
-            double maximumBidChips = Math.Round((botChips / behaviour) / 100d, 0) * 100;
-            return maximumBidChips;
-        }
-
-        private void BotsMoveFirst(ref int botChips, ref bool isBotsTurn, ref bool hasBotFold, Label statusLabel, double safePlay, int n, int riskPlay)
-        {
-            Random rand = new Random();
-            int rnd = rand.Next(1, 4);
-            if (callChipsValue <= 0)
-            {
-                ChangeStatusToChecking(ref isBotsTurn, statusLabel);
-            }
-            if (callChipsValue > 0)
-            {
-                if (rnd == 1)
-                {
-                    if (callChipsValue <= BotMaximumBidAbility(botChips, n))
-                    {
-                        Call(ref botChips, ref isBotsTurn, statusLabel);
-                    }
-                    else
-                    {
-                        ChangeStatusToFold(ref isBotsTurn, ref hasBotFold, statusLabel);
-                    }
-                }
-                if (rnd == 2)
-                {
-                    if (callChipsValue <= BotMaximumBidAbility(botChips, riskPlay))
-                    {
-                        Call(ref botChips, ref isBotsTurn, statusLabel);
-                    }
-                    else
-                    {
-                        ChangeStatusToFold(ref isBotsTurn, ref hasBotFold, statusLabel);
-                    }
-                }
-            }
-
-            if (rnd == 3)
-            {
-                if (Raise == 0)
-                {
-                    Raise = callChipsValue * 2;
-                    RaiseBet(ref botChips, ref isBotsTurn, statusLabel);
-                }
-                else
-                {
-                    if (Raise <= BotMaximumBidAbility(botChips, n))
-                    {
-                        Raise = callChipsValue * 2;
-                        RaiseBet(ref botChips, ref isBotsTurn, statusLabel);
-                    }
-                    else
-                    {
-                        ChangeStatusToFold(ref isBotsTurn, ref hasBotFold, statusLabel);
-                    }
-                }
-            }
-
-            if (botChips <= 0)
-            {
-                hasBotFold = true;
-            }
-        }
-
-        // checks if it has pair or two pair
-        private void BotsMoveSecond(ref int botChips, ref bool isBotsTurn, ref bool botFolds, Label labelStatus, int raiseFactor, int botsPower, int callPower)
-        {
-            Random rand = new Random();
-            int randomNumber = rand.Next(1, 3);
-
-            if (totalRounds < 2)
-            {
-                if (callChipsValue <= 0)
-                {
-                    ChangeStatusToChecking(ref isBotsTurn, labelStatus);
-                }
-
-                if (callChipsValue > 0)
-                {
-                    if (callChipsValue >= BotMaximumBidAbility(botChips, botsPower))
-                    {
-                        ChangeStatusToFold(ref isBotsTurn, ref botFolds, labelStatus);
-                    }
-
-                    if (Raise > BotMaximumBidAbility(botChips, raiseFactor))
-                    {
-                        ChangeStatusToFold(ref isBotsTurn, ref botFolds, labelStatus);
-                    }
-
-                    if (!botFolds)
-                    {
-                        if (callChipsValue >= BotMaximumBidAbility(botChips, raiseFactor) && callChipsValue <= BotMaximumBidAbility(botChips, botsPower))
-                        {
-                            Call(ref botChips, ref isBotsTurn, labelStatus);
-                        }
-
-                        if (Raise <= BotMaximumBidAbility(botChips, raiseFactor) && Raise >= (BotMaximumBidAbility(botChips, raiseFactor)) / 2)
-                        {
-                            Call(ref botChips, ref isBotsTurn, labelStatus);
-                        }
-
-                        if (Raise <= (BotMaximumBidAbility(botChips, raiseFactor)) / 2)
-                        {
-                            if (Raise > 0)
-                            {
-                                Raise = BotMaximumBidAbility(botChips, raiseFactor);
-                                RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
-                            }
-
-                            else
-                            {
-                                Raise = callChipsValue * 2;
-                                RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
-                            }
-                        }
-
-                    }
-                }
-            }
-            if (totalRounds >= 2)
-            {
-                if (callChipsValue > 0)
-                {
-                    if (callChipsValue >= BotMaximumBidAbility(botChips, botsPower - randomNumber))
-                    {
-                        ChangeStatusToFold(ref isBotsTurn, ref botFolds, labelStatus);
-                    }
-
-                    if (Raise > BotMaximumBidAbility(botChips, raiseFactor - randomNumber))
-                    {
-                        ChangeStatusToFold(ref isBotsTurn, ref botFolds, labelStatus);
-                    }
-
-                    if (!botFolds)
-                    {
-                        if (callChipsValue >= BotMaximumBidAbility(botChips, raiseFactor - randomNumber) && callChipsValue <= BotMaximumBidAbility(botChips, botsPower - randomNumber))
-                        {
-                            Call(ref botChips, ref isBotsTurn, labelStatus);
-                        }
-
-                        if (Raise <= BotMaximumBidAbility(botChips, raiseFactor - randomNumber) && Raise >= (BotMaximumBidAbility(botChips, raiseFactor - randomNumber)) / 2)
-                        {
-                            Call(ref botChips, ref isBotsTurn, labelStatus);
-                        }
-
-                        if (Raise <= (BotMaximumBidAbility(botChips, raiseFactor - randomNumber)) / 2)
-                        {
-                            if (Raise > 0)
-                            {
-                                Raise = BotMaximumBidAbility(botChips, raiseFactor - randomNumber);
-                                RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
-                            }
-
-                            else
-                            {
-                                Raise = callChipsValue * 2;
-                                RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
-                            }
-                        }
-                    }
-                }
-
-                if (callChipsValue <= 0)
-                {
-                    Raise = BotMaximumBidAbility(botChips, callPower - randomNumber);
-                    RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
-                }
-            }
-
-            if (botChips <= 0)
-            {
-                botFolds = true;
-            }
-        }
-
-        void BotsMoveThirdPossibility(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, int behaviour)
-        {
-            Random rand = new Random();
-
-            if (callChipsValue <= 0)
-            {
-                ChangeStatusToChecking(ref isBotTurn, botStatus);
-            }
-            else
-            {
-                if (callChipsValue >= BotMaximumBidAbility(botChips, behaviour))
-                {
-                    if (botChips > callChipsValue)
-                    {
-                        Call(ref botChips, ref isBotTurn, botStatus);
-                    }
-                    else if (botChips <= callChipsValue)
-                    {
-                        isRaising = false;
-                        isBotTurn = false;
-                        botChips = 0;
-                        botStatus.Text = "Call " + botChips;
-                        potTextBox.Text = (int.Parse(potTextBox.Text) + botChips).ToString();
-                    }
-                }
-                else
-                {
-                    if (Raise > 0)
-                    {
-                        if (botChips >= Raise * 2)
-                        {
-                            Raise *= 2;
-                            RaiseBet(ref botChips, ref isBotTurn, botStatus);
-                        }
-                        else
-                        {
-                            Call(ref botChips, ref isBotTurn, botStatus);
-                        }
-                    }
-                    else
-                    {
-                        Raise = callChipsValue * 2;
-                        RaiseBet(ref botChips, ref isBotTurn, botStatus);
-                    }
-                }
-            }
-
-            if (botChips <= 0)
-            {
-                hasBotFolded = true;
-            }
-        }
-        #endregion
 
         #region UI
         private async void timer_Tick(object sender, object e)
