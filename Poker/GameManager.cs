@@ -141,7 +141,6 @@
         public int DefaultMaximumMoney = 10000000;
         public int turnCount;
         private readonly Rules currentRules;
-        private readonly HandRules handRules;
         public readonly Winner winner;
         private readonly Dealer checkRaiseDealer;
         private readonly BotHandsChecker butHandsChecker;
@@ -176,7 +175,6 @@
 
             playerRaiseTextBox.Text = (bigBlind * 2).ToString();
             this.currentRules = new Rules(this);
-            this.handRules = new HandRules(this);
             this.winner = new Winner(this);
             this.checkRaiseDealer = new Dealer(this);
             this.butHandsChecker = new BotHandsChecker(this);
@@ -188,10 +186,7 @@
             get { return this.currentRules; }
         }
 
-        public HandRules HandRules
-        {
-            get { return handRules; }
-        }
+        
 
         public Winner Winner1
         {

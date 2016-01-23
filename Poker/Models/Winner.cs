@@ -3,7 +3,9 @@ namespace Poker.Models
     using System;
     using System.Windows.Forms;
 
-    public class Winner
+    using Poker.Interfaces;
+
+    public class Winner :IWinner
     {
         private GameManager currentForm;
 

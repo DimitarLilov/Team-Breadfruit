@@ -13,6 +13,7 @@ namespace Poker.Models.Players.Bot
             this.gameManager = gameManager;
         }
 
+
         private void ChangeStatusToFold(ref bool isBotTurn, ref bool sFTurn, Label sStatus)
         {
             this.gameManager.isRaising = false;

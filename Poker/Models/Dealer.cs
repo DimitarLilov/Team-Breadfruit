@@ -1,6 +1,7 @@
 namespace Poker.Models
 {
-    public class Dealer
+    using Poker.Interfaces;
+    public class Dealer : IDealer
     {
         private GameManager currentForm;
 
@@ -101,26 +102,6 @@ namespace Poker.Models
             }
         }
 
-        private void ResetPlayerBotsValues(int j)
-        {
-            if (this.currentForm.cardsImages[j].Image != this.currentForm.Deck[j])
-            {
-                this.currentForm.cardsImages[j].Image = this.currentForm.Deck[j];
-                this.currentForm.playerCall = 0;
-                this.currentForm.playerRaise = 0;
-                this.currentForm.botOneCall = 0;
-                this.currentForm.botOneRaise = 0;
-                this.currentForm.botTwoCall = 0;
-                this.currentForm.botTwoRaise = 0;
-                this.currentForm.botThreeCall = 0;
-                this.currentForm.botThreeRaise = 0;
-                this.currentForm.botFourCall = 0;
-                this.currentForm.botFourRaise = 0;
-                this.currentForm.botFiveCall = 0;
-                this.currentForm.botFiveRaise = 0;
-            }
-        }
-
         public void CheckIfSomeoneRaised(int currentTurn)
         {
             if (this.currentForm.isRaising)
@@ -152,6 +133,26 @@ namespace Poker.Models
             }
         }
 
+        private void ResetPlayerBotsValues(int j)
+        {
+            if (this.currentForm.cardsImages[j].Image != this.currentForm.Deck[j])
+            {
+                this.currentForm.cardsImages[j].Image = this.currentForm.Deck[j];
+                this.currentForm.playerCall = 0;
+                this.currentForm.playerRaise = 0;
+                this.currentForm.botOneCall = 0;
+                this.currentForm.botOneRaise = 0;
+                this.currentForm.botTwoCall = 0;
+                this.currentForm.botTwoRaise = 0;
+                this.currentForm.botThreeCall = 0;
+                this.currentForm.botThreeRaise = 0;
+                this.currentForm.botFourCall = 0;
+                this.currentForm.botFourRaise = 0;
+                this.currentForm.botFiveCall = 0;
+                this.currentForm.botFiveRaise = 0;
+            }
+        }
+        
         private void CheckIfBankrupted()
         {
             if (!this.currentForm.hasPlayerBankrupted)
