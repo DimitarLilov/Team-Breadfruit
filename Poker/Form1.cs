@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace Poker
 {
+    using Poker.Models.Players;
 
     public partial class Form1 : Form
     {
@@ -139,7 +140,7 @@ namespace Poker
         public int turnCount;
         private readonly Rules currentRules;
         private readonly HandRules handRules;
-        private readonly Winner winner;
+        public readonly Winner winner;
         private readonly CheckRaiseDealer checkRaiseDealer;
         private readonly BotHandsChecker _botHandsChecker;
         private readonly Bot bot;
@@ -210,6 +211,8 @@ namespace Poker
         {
             get { return bot; }
         }
+
+        public Winner Winner { get; set; }
 
         //public Dealer Dealer
         //{
