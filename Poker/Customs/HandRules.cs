@@ -1,7 +1,7 @@
-using System.Linq;
-
-namespace Poker
+namespace Poker.Customs
 {
+    using System.Linq;
+
     public class HandRules
     {
         private Form1 currentForm;
@@ -20,7 +20,7 @@ namespace Poker
                     if (clubsStrenghtValues[0] + 4 == clubsStrenghtValues[4])
                     {
                         current = 8;
-                        sortWinningHands(current, out Power, clubsStrenghtValues);
+                        this.sortWinningHands(current, out Power, clubsStrenghtValues);
                     }
 
                     if (clubsStrenghtValues[0] == 0 &&
@@ -30,7 +30,7 @@ namespace Poker
                         clubsStrenghtValues[0] + 12 == clubsStrenghtValues[4])
                     {
                         current = 9;
-                        sortWinningHands(current, out Power, clubsStrenghtValues);
+                        this.sortWinningHands(current, out Power, clubsStrenghtValues);
                     }
                 }
 
@@ -39,7 +39,7 @@ namespace Poker
                     if (diamondsStrenghtValues[0] + 4 == diamondsStrenghtValues[4])
                     {
                         current = 8;
-                        sortWinningHands(current, out Power, diamondsStrenghtValues);
+                        this.sortWinningHands(current, out Power, diamondsStrenghtValues);
                     }
 
                     if (diamondsStrenghtValues[0] == 0 &&
@@ -49,7 +49,7 @@ namespace Poker
                         diamondsStrenghtValues[0] + 12 == diamondsStrenghtValues[4])
                     {
                         current = 9;
-                        sortWinningHands(current, out Power, diamondsStrenghtValues);
+                        this.sortWinningHands(current, out Power, diamondsStrenghtValues);
                     }
                 }
 
@@ -58,7 +58,7 @@ namespace Poker
                     if (heartsStrenghtValues[0] + 4 == heartsStrenghtValues[4])
                     {
                         current = 8;
-                        sortWinningHands(current, out Power, heartsStrenghtValues);
+                        this.sortWinningHands(current, out Power, heartsStrenghtValues);
                     }
 
                     if (heartsStrenghtValues[0] == 0 &&
@@ -68,7 +68,7 @@ namespace Poker
                         heartsStrenghtValues[0] + 12 == heartsStrenghtValues[4])
                     {
                         current = 9;
-                        sortWinningHands(current, out Power, heartsStrenghtValues);
+                        this.sortWinningHands(current, out Power, heartsStrenghtValues);
                     }
                 }
 
@@ -77,7 +77,7 @@ namespace Poker
                     if (spadesStrenghtValues[0] + 4 == spadesStrenghtValues[4])
                     {
                         current = 8;
-                        sortWinningHands(current, out Power, spadesStrenghtValues);
+                        this.sortWinningHands(current, out Power, spadesStrenghtValues);
                     }
 
                     if (spadesStrenghtValues[0] == 0 &&
@@ -87,7 +87,7 @@ namespace Poker
                         spadesStrenghtValues[0] + 12 == spadesStrenghtValues[4])
                     {
                         current = 9;
-                        sortWinningHands(current, out Power, spadesStrenghtValues);
+                        this.sortWinningHands(current, out Power, spadesStrenghtValues);
                     }
                 }
             }
@@ -96,8 +96,8 @@ namespace Poker
         private void sortWinningHands(double current, out double Power, int[] strenght)
         {
             Power = (strenght.Max()) / 4 + current * 100;
-            currentForm.winningingHands.Add(new Type() { Power = Power, Current = 8 });
-            currentForm.sorted = currentForm.winningingHands
+            this.currentForm.winningingHands.Add(new Type() { Power = Power, Current = 8 });
+            this.currentForm.sorted = this.currentForm.winningingHands
                 .OrderByDescending(op1 => op1.Current)
                 .ThenByDescending(op1 => op1.Power).First();
         }
@@ -130,7 +130,7 @@ namespace Poker
         {
             if (current >= -1)
             {
-                currentForm.type = Power;
+                this.currentForm.type = Power;
                 for (int j = 0; j <= 12; j++)
                 {
                     var fh = Straight.Where(o => o / 4 == j).ToArray();
@@ -176,7 +176,7 @@ namespace Poker
 
                 if (current != 6)
                 {
-                    Power = currentForm.type;
+                    Power = this.currentForm.type;
                 }
             }
         }
@@ -192,25 +192,25 @@ namespace Poker
 
                 if (clubs.Length == 3 || clubs.Length == 4)
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] % 4 == currentForm.cardsAsNumbers[currentForm.i + 1] % 4 && currentForm.cardsAsNumbers[currentForm.i] % 4 == clubs[0] % 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 && this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == clubs[0] % 4)
                     {
-                        if (currentForm.cardsAsNumbers[currentForm.i] / 4 > clubs.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > clubs.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
                             this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
 
-                        if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 > clubs.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 > clubs.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                             this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
 
-                        else if (currentForm.cardsAsNumbers[currentForm.i] / 4 < clubs.Max() / 4 && currentForm.cardsAsNumbers[currentForm.i + 1] / 4 < clubs.Max() / 4)
+                        else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 < clubs.Max() / 4 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 < clubs.Max() / 4)
                         {
                             current = 5;
                             Power = clubs.Max() + current * 100;
@@ -221,12 +221,12 @@ namespace Poker
                 }
                 if (clubs.Length == 4)//different cards in hand
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] % 4 != currentForm.cardsAsNumbers[currentForm.i + 1] % 4 && currentForm.cardsAsNumbers[currentForm.i] % 4 == clubs[0] % 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 && this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == clubs[0] % 4)
                     {
-                        if (currentForm.cardsAsNumbers[currentForm.i] / 4 > clubs.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > clubs.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
                             this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
@@ -240,12 +240,12 @@ namespace Poker
                         }
                     }
 
-                    if (currentForm.cardsAsNumbers[currentForm.i + 1] % 4 != currentForm.cardsAsNumbers[currentForm.i] % 4 && currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == clubs[0] % 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == clubs[0] % 4)
                     {
-                        if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 > clubs.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 > clubs.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                             this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
@@ -261,23 +261,23 @@ namespace Poker
 
                 if (clubs.Length == 5)
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] % 4 == clubs[0] % 4 && currentForm.cardsAsNumbers[currentForm.i] / 4 > clubs.Min() / 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == clubs[0] % 4 && this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > clubs.Min() / 4)
                     {
                         current = 5;
-                        Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
+                        Power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
                         this.SortedWinningHands(current, Power);
                         hasFlush = true;
                     }
 
-                    if (currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == clubs[0] % 4 && currentForm.cardsAsNumbers[currentForm.i + 1] / 4 > clubs.Min() / 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == clubs[0] % 4 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 > clubs.Min() / 4)
                     {
                         current = 5;
-                        Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
+                        Power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                         this.SortedWinningHands(current, Power);
                         hasFlush = true;
                     }
 
-                    else if (currentForm.cardsAsNumbers[currentForm.i] / 4 < clubs.Min() / 4 && currentForm.cardsAsNumbers[currentForm.i + 1] / 4 < clubs.Min())
+                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 < clubs.Min() / 4 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 < clubs.Min())
                     {
                         current = 5;
                         Power = clubs.Max() + current * 100;
@@ -288,25 +288,25 @@ namespace Poker
 
                 if (diamonds.Length == 3 || diamonds.Length == 4)
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] % 4 == currentForm.cardsAsNumbers[currentForm.i + 1] % 4 && currentForm.cardsAsNumbers[currentForm.i] % 4 == diamonds[0] % 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 && this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == diamonds[0] % 4)
                     {
-                        if (currentForm.cardsAsNumbers[currentForm.i] / 4 > diamonds.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > diamonds.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
                             this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
 
-                        if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 > diamonds.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 > diamonds.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                             this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
 
-                        else if (currentForm.cardsAsNumbers[currentForm.i] / 4 < diamonds.Max() / 4 && currentForm.cardsAsNumbers[currentForm.i + 1] / 4 < diamonds.Max() / 4)
+                        else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 < diamonds.Max() / 4 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 < diamonds.Max() / 4)
                         {
                             current = 5;
                             Power = diamonds.Max() + current * 100;
@@ -318,13 +318,13 @@ namespace Poker
 
                 if (diamonds.Length == 4)
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] % 4 != currentForm.cardsAsNumbers[currentForm.i + 1] % 4
-                        && currentForm.cardsAsNumbers[currentForm.i] % 4 == diamonds[0] % 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4
+                        && this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == diamonds[0] % 4)
                     {
-                        if (currentForm.cardsAsNumbers[currentForm.i] / 4 > diamonds.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > diamonds.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
                             this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
@@ -337,12 +337,12 @@ namespace Poker
                         }
                     }
 
-                    if (currentForm.cardsAsNumbers[currentForm.i + 1] % 4 != currentForm.cardsAsNumbers[currentForm.i] % 4 && currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == diamonds[0] % 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == diamonds[0] % 4)
                     {
-                        if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 > diamonds.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 > diamonds.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                             this.SortedWinningHands(current, Power);
                             hasFlush = true;
                         }
@@ -358,25 +358,25 @@ namespace Poker
 
                 if (diamonds.Length == 5)
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] % 4 == diamonds[0] % 4
-                        && currentForm.cardsAsNumbers[currentForm.i] / 4 > diamonds.Min() / 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == diamonds[0] % 4
+                        && this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > diamonds.Min() / 4)
                     {
                         current = 5;
-                        Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
+                        Power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
                         this.SortedWinningHands(current, Power);
                         hasFlush = true;
                     }
 
-                    if (currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == diamonds[0] % 4
-                        && currentForm.cardsAsNumbers[currentForm.i + 1] / 4 > diamonds.Min() / 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == diamonds[0] % 4
+                        && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 > diamonds.Min() / 4)
                     {
                         current = 5;
-                        Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
+                        Power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                         this.SortedWinningHands(current, Power);
                         hasFlush = true;
                     }
 
-                    else if (currentForm.cardsAsNumbers[currentForm.i] / 4 < diamonds.Min() / 4 && currentForm.cardsAsNumbers[currentForm.i + 1] / 4 < diamonds.Min())
+                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 < diamonds.Min() / 4 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 < diamonds.Min())
                     {
                         current = 5;
                         Power = diamonds.Max() + current * 100;
@@ -388,28 +388,28 @@ namespace Poker
 
                 if (hearts.Length == 3 || hearts.Length == 4)
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] % 4 == currentForm.cardsAsNumbers[currentForm.i + 1] % 4
-                        && currentForm.cardsAsNumbers[currentForm.i] % 4 == hearts[0] % 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4
+                        && this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == hearts[0] % 4)
                     {
-                        if (currentForm.cardsAsNumbers[currentForm.i] / 4 > hearts.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > hearts.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
                             this.SortedWinningHands(current, Power);
 
                             hasFlush = true;
                         }
 
-                        if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 > hearts.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 > hearts.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                             this.SortedWinningHands(current, Power);
 
                             hasFlush = true;
                         }
 
-                        else if (currentForm.cardsAsNumbers[currentForm.i] / 4 < hearts.Max() / 4 && currentForm.cardsAsNumbers[currentForm.i + 1] / 4 < hearts.Max() / 4)
+                        else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 < hearts.Max() / 4 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 < hearts.Max() / 4)
                         {
                             current = 5;
                             Power = hearts.Max() + current * 100;
@@ -422,12 +422,12 @@ namespace Poker
 
                 if (hearts.Length == 4)//different cards in hand
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] % 4 != currentForm.cardsAsNumbers[currentForm.i + 1] % 4 && currentForm.cardsAsNumbers[currentForm.i] % 4 == hearts[0] % 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 && this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == hearts[0] % 4)
                     {
-                        if (currentForm.cardsAsNumbers[currentForm.i] / 4 > hearts.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > hearts.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
                             this.SortedWinningHands(current, Power);
 
                             hasFlush = true;
@@ -442,12 +442,12 @@ namespace Poker
                         }
                     }
 
-                    if (currentForm.cardsAsNumbers[currentForm.i + 1] % 4 != currentForm.cardsAsNumbers[currentForm.i] % 4 && currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == hearts[0] % 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == hearts[0] % 4)
                     {
-                        if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 > hearts.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 > hearts.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                             this.SortedWinningHands(current, Power);
 
                             hasFlush = true;
@@ -465,26 +465,26 @@ namespace Poker
 
                 if (hearts.Length == 5)
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] % 4 == hearts[0] % 4
-                        && currentForm.cardsAsNumbers[currentForm.i] / 4 > hearts.Min() / 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == hearts[0] % 4
+                        && this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > hearts.Min() / 4)
                     {
                         current = 5;
-                        Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
+                        Power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
                         this.SortedWinningHands(current, Power);
 
                         hasFlush = true;
                     }
 
-                    if (currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == hearts[0] % 4 && currentForm.cardsAsNumbers[currentForm.i + 1] / 4 > hearts.Min() / 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == hearts[0] % 4 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 > hearts.Min() / 4)
                     {
                         current = 5;
-                        Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
+                        Power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                         this.SortedWinningHands(current, Power);
 
                         hasFlush = true;
                     }
 
-                    else if (currentForm.cardsAsNumbers[currentForm.i] / 4 < hearts.Min() / 4 && currentForm.cardsAsNumbers[currentForm.i + 1] / 4 < hearts.Min())
+                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 < hearts.Min() / 4 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 < hearts.Min())
                     {
                         current = 5;
                         Power = hearts.Max() + current * 100;
@@ -496,27 +496,27 @@ namespace Poker
 
                 if (spades.Length == 3 || spades.Length == 4)
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] % 4 == currentForm.cardsAsNumbers[currentForm.i + 1] % 4 && currentForm.cardsAsNumbers[currentForm.i] % 4 == spades[0] % 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 && this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == spades[0] % 4)
                     {
-                        if (currentForm.cardsAsNumbers[currentForm.i] / 4 > spades.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > spades.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
                             this.SortedWinningHands(current, Power);
 
                             hasFlush = true;
                         }
 
-                        if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 > spades.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 > spades.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                             this.SortedWinningHands(current, Power);
 
                             hasFlush = true;
                         }
 
-                        else if (currentForm.cardsAsNumbers[currentForm.i] / 4 < spades.Max() / 4 && currentForm.cardsAsNumbers[currentForm.i + 1] / 4 < spades.Max() / 4)
+                        else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 < spades.Max() / 4 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 < spades.Max() / 4)
                         {
                             current = 5;
                             Power = spades.Max() + current * 100;
@@ -529,13 +529,13 @@ namespace Poker
 
                 if (spades.Length == 4)
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] % 4 != currentForm.cardsAsNumbers[currentForm.i + 1] % 4
-                        && currentForm.cardsAsNumbers[currentForm.i] % 4 == spades[0] % 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4
+                        && this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == spades[0] % 4)
                     {
-                        if (currentForm.cardsAsNumbers[currentForm.i] / 4 > spades.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > spades.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
                             this.SortedWinningHands(current, Power);
 
                             hasFlush = true;
@@ -550,12 +550,12 @@ namespace Poker
                         }
                     }
 
-                    if (currentForm.cardsAsNumbers[currentForm.i + 1] % 4 != currentForm.cardsAsNumbers[currentForm.i] % 4 && currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == spades[0] % 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == spades[0] % 4)
                     {
-                        if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 > spades.Max() / 4)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 > spades.Max() / 4)
                         {
                             current = 5;
-                            Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
+                            Power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                             this.SortedWinningHands(current, Power);
 
                             hasFlush = true;
@@ -573,27 +573,27 @@ namespace Poker
 
                 if (spades.Length == 5)
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] % 4 == spades[0] % 4 && currentForm.cardsAsNumbers[currentForm.i] / 4 > spades.Min() / 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == spades[0] % 4 && this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > spades.Min() / 4)
                     {
                         current = 5;
-                        Power = currentForm.cardsAsNumbers[currentForm.i] + current * 100;
+                        Power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
                         this.SortedWinningHands(current, Power);
 
                         hasFlush = true;
                     }
 
-                    if (currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == spades[0] % 4
-                        && currentForm.cardsAsNumbers[currentForm.i + 1] / 4 > spades.Min() / 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == spades[0] % 4
+                        && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 > spades.Min() / 4)
                     {
                         current = 5;
-                        Power = currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
+                        Power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                         this.SortedWinningHands(current, Power);
 
                         hasFlush = true;
                     }
 
-                    else if (currentForm.cardsAsNumbers[currentForm.i] / 4 < spades.Min() / 4
-                             && currentForm.cardsAsNumbers[currentForm.i + 1] / 4 < spades.Min())
+                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 < spades.Min() / 4
+                             && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 < spades.Min())
                     {
                         current = 5;
                         Power = spades.Max() + current * 100;
@@ -605,7 +605,7 @@ namespace Poker
 
                 if (clubs.Length > 0)
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] / 4 == 0 && currentForm.cardsAsNumbers[currentForm.i] % 4 == clubs[0] % 4 &&
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == 0 && this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == clubs[0] % 4 &&
                         hasFlush && clubs.Length > 0)
                     {
                         current = 5.5;
@@ -614,7 +614,7 @@ namespace Poker
 
                     }
 
-                    if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == 0 && currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == clubs[0] % 4 &&
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == 0 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == clubs[0] % 4 &&
                         hasFlush && clubs.Length > 0)
                     {
                         current = 5.5;
@@ -625,7 +625,7 @@ namespace Poker
                 }
                 if (diamonds.Length > 0)
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] / 4 == 0 && currentForm.cardsAsNumbers[currentForm.i] % 4 == diamonds[0] % 4 &&
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == 0 && this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == diamonds[0] % 4 &&
                         hasFlush && diamonds.Length > 0)
                     {
                         current = 5.5;
@@ -634,7 +634,7 @@ namespace Poker
 
                     }
 
-                    if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == 0 && currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == diamonds[0] % 4 &&
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == 0 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == diamonds[0] % 4 &&
                         hasFlush && diamonds.Length > 0)
                     {
                         current = 5.5;
@@ -645,7 +645,7 @@ namespace Poker
                 }
                 if (hearts.Length > 0)
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] / 4 == 0 && currentForm.cardsAsNumbers[currentForm.i] % 4 == hearts[0] % 4 &&
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == 0 && this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == hearts[0] % 4 &&
                         hasFlush && hearts.Length > 0)
                     {
                         current = 5.5;
@@ -654,7 +654,7 @@ namespace Poker
 
                     }
 
-                    if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == 0 && currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == hearts[0] % 4 && hasFlush && hearts.Length > 0)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == 0 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == hearts[0] % 4 && hasFlush && hearts.Length > 0)
                     {
                         current = 5.5;
                         Power = 13 + current * 100;
@@ -665,7 +665,7 @@ namespace Poker
 
                 if (spades.Length > 0)
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i] / 4 == 0 && currentForm.cardsAsNumbers[currentForm.i] % 4 == spades[0] % 4 &&
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == 0 && this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == spades[0] % 4 &&
                         hasFlush && spades.Length > 0)
                     {
                         current = 5.5;
@@ -674,7 +674,7 @@ namespace Poker
 
                     }
 
-                    if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == 0 && currentForm.cardsAsNumbers[currentForm.i + 1] % 4 == spades[0] % 4 &&
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == 0 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == spades[0] % 4 &&
                         hasFlush)
                     {
                         current = 5.5;
@@ -768,7 +768,7 @@ namespace Poker
                 for (int totalCards = 16; totalCards >= 12; totalCards--)
                 {
                     int max = totalCards - 12;
-                    if (currentForm.cardsAsNumbers[currentForm.i] / 4 != currentForm.cardsAsNumbers[currentForm.i + 1] / 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 != this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4)
                     {
                         for (int k = 1; k <= max; k++)
                         {
@@ -779,30 +779,30 @@ namespace Poker
 
                             if (totalCards - k >= 12)
                             {
-                                if (currentForm.cardsAsNumbers[currentForm.i] / 4 == currentForm.cardsAsNumbers[totalCards] / 4 && currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == currentForm.cardsAsNumbers[totalCards - k] / 4 || currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == currentForm.cardsAsNumbers[totalCards] / 4 && currentForm.cardsAsNumbers[currentForm.i] / 4 == currentForm.cardsAsNumbers[totalCards - k] / 4)
+                                if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == this.currentForm.cardsAsNumbers[totalCards] / 4 && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == this.currentForm.cardsAsNumbers[totalCards - k] / 4 || this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == this.currentForm.cardsAsNumbers[totalCards] / 4 && this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == this.currentForm.cardsAsNumbers[totalCards - k] / 4)
                                 {
                                     if (!msgbox)
                                     {
-                                        if (currentForm.cardsAsNumbers[currentForm.i] / 4 == 0)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == 0)
                                         {
                                             current = 2;
-                                            Power = 13 * 4 + (currentForm.cardsAsNumbers[currentForm.i + 1] / 4) * 2 + current * 100;
+                                            Power = 13 * 4 + (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4) * 2 + current * 100;
                                             this.SortedWinningHands(current, Power);
 
                                         }
 
-                                        if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == 0)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == 0)
                                         {
                                             current = 2;
-                                            Power = 13 * 4 + (currentForm.cardsAsNumbers[currentForm.i] / 4) * 2 + current * 100;
+                                            Power = 13 * 4 + (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4) * 2 + current * 100;
                                             this.SortedWinningHands(current, Power);
 
                                         }
 
-                                        if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 != 0 && currentForm.cardsAsNumbers[currentForm.i] / 4 != 0)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 != 0 && this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 != 0)
                                         {
                                             current = 2;
-                                            Power = (currentForm.cardsAsNumbers[currentForm.i] / 4) * 2 + (currentForm.cardsAsNumbers[currentForm.i + 1] / 4) * 2 + current * 100;
+                                            Power = (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4) * 2 + (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4) * 2 + current * 100;
                                             this.SortedWinningHands(current, Power);
 
                                         }
@@ -836,40 +836,40 @@ namespace Poker
 
                         if (totalCards - k >= 12)
                         {
-                            if (currentForm.cardsAsNumbers[totalCards] / 4 == currentForm.cardsAsNumbers[totalCards - k] / 4)
+                            if (this.currentForm.cardsAsNumbers[totalCards] / 4 == this.currentForm.cardsAsNumbers[totalCards - k] / 4)
                             {
-                                if (currentForm.cardsAsNumbers[totalCards] / 4 != currentForm.cardsAsNumbers[currentForm.i] / 4 && currentForm.cardsAsNumbers[totalCards] / 4 != currentForm.cardsAsNumbers[currentForm.i + 1] / 4 && current == 1)
+                                if (this.currentForm.cardsAsNumbers[totalCards] / 4 != this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 && this.currentForm.cardsAsNumbers[totalCards] / 4 != this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 && current == 1)
                                 {
                                     if (!msgbox)
                                     {
-                                        if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == 0)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == 0)
                                         {
                                             current = 2;
-                                            Power = (currentForm.cardsAsNumbers[currentForm.i] / 4) * 2 + 13 * 4 + current * 100;
+                                            Power = (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4) * 2 + 13 * 4 + current * 100;
                                             this.SortedWinningHands(current, Power);
 
                                         }
 
-                                        if (currentForm.cardsAsNumbers[currentForm.i] / 4 == 0)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == 0)
                                         {
                                             current = 2;
-                                            Power = (currentForm.cardsAsNumbers[currentForm.i + 1] / 4) * 2 + 13 * 4 + current * 100;
+                                            Power = (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4) * 2 + 13 * 4 + current * 100;
                                             this.SortedWinningHands(current, Power);
 
                                         }
 
-                                        if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 != 0)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 != 0)
                                         {
                                             current = 2;
-                                            Power = (currentForm.cardsAsNumbers[totalCards] / 4) * 2 + (currentForm.cardsAsNumbers[currentForm.i + 1] / 4) * 2 + current * 100;
+                                            Power = (this.currentForm.cardsAsNumbers[totalCards] / 4) * 2 + (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4) * 2 + current * 100;
                                             this.SortedWinningHands(current, Power);
 
                                         }
 
-                                        if (currentForm.cardsAsNumbers[currentForm.i] / 4 != 0)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 != 0)
                                         {
                                             current = 2;
-                                            Power = (currentForm.cardsAsNumbers[totalCards] / 4) * 2 + (currentForm.cardsAsNumbers[currentForm.i] / 4) * 2 + current * 100;
+                                            Power = (this.currentForm.cardsAsNumbers[totalCards] / 4) * 2 + (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4) * 2 + current * 100;
                                             this.SortedWinningHands(current, Power);
 
                                         }
@@ -882,12 +882,12 @@ namespace Poker
                                 {
                                     if (!msgbox1)
                                     {
-                                        if (currentForm.cardsAsNumbers[currentForm.i] / 4 > currentForm.cardsAsNumbers[currentForm.i + 1] / 4)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4)
                                         {
-                                            if (currentForm.cardsAsNumbers[totalCards] / 4 == 0)
+                                            if (this.currentForm.cardsAsNumbers[totalCards] / 4 == 0)
                                             {
                                                 current = 0;
-                                                Power = 13 + currentForm.cardsAsNumbers[currentForm.i] / 4 + current * 100;
+                                                Power = 13 + this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 + current * 100;
                                                 this.SortedWinningHands(current, Power);
 
                                             }
@@ -895,24 +895,24 @@ namespace Poker
                                             else
                                             {
                                                 current = 0;
-                                                Power = currentForm.cardsAsNumbers[totalCards] / 4 + currentForm.cardsAsNumbers[currentForm.i] / 4 + current * 100;
+                                                Power = this.currentForm.cardsAsNumbers[totalCards] / 4 + this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 + current * 100;
                                                 this.SortedWinningHands(current, Power);
 
                                             }
                                         }
                                         else
                                         {
-                                            if (currentForm.cardsAsNumbers[totalCards] / 4 == 0)
+                                            if (this.currentForm.cardsAsNumbers[totalCards] / 4 == 0)
                                             {
                                                 current = 0;
-                                                Power = 13 + currentForm.cardsAsNumbers[currentForm.i + 1] + current * 100;
+                                                Power = 13 + this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                                                 this.SortedWinningHands(current, Power);
 
                                             }
                                             else
                                             {
                                                 current = 0;
-                                                Power = currentForm.cardsAsNumbers[totalCards] / 4 + currentForm.cardsAsNumbers[currentForm.i + 1] / 4 + current * 100;
+                                                Power = this.currentForm.cardsAsNumbers[totalCards] / 4 + this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 + current * 100;
                                                 this.SortedWinningHands(current, Power);
 
                                             }
@@ -933,11 +933,11 @@ namespace Poker
             if (current >= -1)
             {
                 bool msgbox = false;
-                if (currentForm.cardsAsNumbers[currentForm.i] / 4 == currentForm.cardsAsNumbers[currentForm.i + 1] / 4)
+                if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4)
                 {
                     if (!msgbox)
                     {
-                        if (currentForm.cardsAsNumbers[currentForm.i] / 4 == 0)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == 0)
                         {
                             current = 1;
                             Power = 13 * 4 + current * 100;
@@ -947,7 +947,7 @@ namespace Poker
                         else
                         {
                             current = 1;
-                            Power = (currentForm.cardsAsNumbers[currentForm.i + 1] / 4) * 4 + current * 100;
+                            Power = (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4) * 4 + current * 100;
                             this.SortedWinningHands(current, Power);
 
                         }
@@ -958,21 +958,21 @@ namespace Poker
 
                 for (int totalCards = 16; totalCards >= 12; totalCards--)
                 {
-                    if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == currentForm.cardsAsNumbers[totalCards] / 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == this.currentForm.cardsAsNumbers[totalCards] / 4)
                     {
                         if (!msgbox)
                         {
-                            if (currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == 0)
+                            if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == 0)
                             {
                                 current = 1;
-                                Power = 13 * 4 + currentForm.cardsAsNumbers[currentForm.i] / 4 + current * 100;
+                                Power = 13 * 4 + this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 + current * 100;
                                 this.SortedWinningHands(current, Power);
 
                             }
                             else
                             {
                                 current = 1;
-                                Power = (currentForm.cardsAsNumbers[currentForm.i + 1] / 4) * 4 + currentForm.cardsAsNumbers[currentForm.i] / 4 + current * 100;
+                                Power = (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4) * 4 + this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 + current * 100;
                                 this.SortedWinningHands(current, Power);
 
                             }
@@ -981,21 +981,21 @@ namespace Poker
                         msgbox = true;
                     }
 
-                    if (currentForm.cardsAsNumbers[currentForm.i] / 4 == currentForm.cardsAsNumbers[totalCards] / 4)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == this.currentForm.cardsAsNumbers[totalCards] / 4)
                     {
                         if (!msgbox)
                         {
-                            if (currentForm.cardsAsNumbers[currentForm.i] / 4 == 0)
+                            if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == 0)
                             {
                                 current = 1;
-                                Power = 13 * 4 + currentForm.cardsAsNumbers[currentForm.i + 1] / 4 + current * 100;
+                                Power = 13 * 4 + this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 + current * 100;
                                 this.SortedWinningHands(current, Power);
 
                             }
                             else
                             {
                                 current = 1;
-                                Power = (currentForm.cardsAsNumbers[totalCards] / 4) * 4 + currentForm.cardsAsNumbers[currentForm.i + 1] / 4 + current * 100;
+                                Power = (this.currentForm.cardsAsNumbers[totalCards] / 4) * 4 + this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 + current * 100;
                                 this.SortedWinningHands(current, Power);
 
                             }
@@ -1011,22 +1011,22 @@ namespace Poker
         {
             if (current == -1)
             {
-                if (currentForm.cardsAsNumbers[currentForm.i] / 4 > currentForm.cardsAsNumbers[currentForm.i + 1] / 4)
+                if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4)
                 {
                     current = -1;
-                    Power = currentForm.cardsAsNumbers[currentForm.i] / 4;
+                    Power = this.currentForm.cardsAsNumbers[this.currentForm.i] / 4;
                     this.SortedWinningHands(current, Power);
 
                 }
                 else
                 {
                     current = -1;
-                    Power = currentForm.cardsAsNumbers[currentForm.i + 1] / 4;
+                    Power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4;
                     this.SortedWinningHands(current, Power);
 
                 }
 
-                if (currentForm.cardsAsNumbers[currentForm.i] / 4 == 0 || currentForm.cardsAsNumbers[currentForm.i + 1] / 4 == 0)
+                if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == 0 || this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == 0)
                 {
                     current = -1;
                     Power = 13;

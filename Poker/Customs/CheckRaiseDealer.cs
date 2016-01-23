@@ -1,4 +1,4 @@
-namespace Poker
+namespace Poker.Customs
 {
     public class CheckRaiseDealer
     {
@@ -11,142 +11,142 @@ namespace Poker
 
         public void AddChipsIfLost()
         {
-            if (currentForm.playerChips <= 0)
+            if (this.currentForm.playerChips <= 0)
             {
                 AddChipsWhenLost f2 = new AddChipsWhenLost();
                 f2.ShowDialog();
 
                 if (f2.AddChipsValue != 0)
                 {
-                    currentForm.playerChips = f2.AddChipsValue;
-                    currentForm.botOnehips += f2.AddChipsValue;
-                    currentForm.botTwoChips += f2.AddChipsValue;
-                    currentForm.botThreeChips += f2.AddChipsValue;
-                    currentForm.botFourChips += f2.AddChipsValue;
-                    currentForm.botFiveChips += f2.AddChipsValue;
-                    currentForm.hasPlayerBankrupted = false;
-                    currentForm.playerTurn = true;
-                    currentForm.playerRaiseButton.Enabled = true;
-                    currentForm.playerFoldButton.Enabled = true;
-                    currentForm.playerCheckButton.Enabled = true;
-                    currentForm.playerRaiseButton.Text = "Raise";
+                    this.currentForm.playerChips = f2.AddChipsValue;
+                    this.currentForm.botOnehips += f2.AddChipsValue;
+                    this.currentForm.botTwoChips += f2.AddChipsValue;
+                    this.currentForm.botThreeChips += f2.AddChipsValue;
+                    this.currentForm.botFourChips += f2.AddChipsValue;
+                    this.currentForm.botFiveChips += f2.AddChipsValue;
+                    this.currentForm.hasPlayerBankrupted = false;
+                    this.currentForm.playerTurn = true;
+                    this.currentForm.playerRaiseButton.Enabled = true;
+                    this.currentForm.playerFoldButton.Enabled = true;
+                    this.currentForm.playerCheckButton.Enabled = true;
+                    this.currentForm.playerRaiseButton.Text = "Raise";
                 }
             }
         }
 
         public string CheckPlayerBotsStatus(string fixedLast)
         {
-            if (!currentForm.playerStatus.Text.Contains("Fold"))
+            if (!this.currentForm.playerStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Player";
-                currentForm.CurrentRules.GameRules(0, 1, ref currentForm.playerType, ref currentForm.playerPower, currentForm.hasPlayerBankrupted);
+                this.currentForm.CurrentRules.GameRules(0, 1, ref this.currentForm.playerType, ref this.currentForm.playerPower, this.currentForm.hasPlayerBankrupted);
             }
 
-            if (!currentForm.botOneStatus.Text.Contains("Fold"))
+            if (!this.currentForm.botOneStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Winner 1";
-                currentForm.CurrentRules.GameRules(2, 3, ref currentForm.botOneType, ref currentForm.botOnePower, currentForm.hasBotOneBankrupted);
+                this.currentForm.CurrentRules.GameRules(2, 3, ref this.currentForm.botOneType, ref this.currentForm.botOnePower, this.currentForm.hasBotOneBankrupted);
             }
 
-            if (!currentForm.botTwoStatus.Text.Contains("Fold"))
+            if (!this.currentForm.botTwoStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Winner 2";
-                currentForm.CurrentRules.GameRules(4, 5, ref currentForm.botTwoType, ref currentForm.botTwoPower, currentForm.hasBotTwoBankrupted);
+                this.currentForm.CurrentRules.GameRules(4, 5, ref this.currentForm.botTwoType, ref this.currentForm.botTwoPower, this.currentForm.hasBotTwoBankrupted);
             }
 
-            if (!currentForm.botThreeStatus.Text.Contains("Fold"))
+            if (!this.currentForm.botThreeStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Winner 3";
-                currentForm.CurrentRules.GameRules(6, 7, ref currentForm.botThreeType, ref currentForm.botThreePower, currentForm.hasBotThreeBankrupted);
+                this.currentForm.CurrentRules.GameRules(6, 7, ref this.currentForm.botThreeType, ref this.currentForm.botThreePower, this.currentForm.hasBotThreeBankrupted);
             }
 
-            if (!currentForm.botFourStatus.Text.Contains("Fold"))
+            if (!this.currentForm.botFourStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Winner 4";
-                currentForm.CurrentRules.GameRules(8, 9, ref currentForm.botFourType, ref currentForm.botFourPower, currentForm.hasBotFourBankrupted);
+                this.currentForm.CurrentRules.GameRules(8, 9, ref this.currentForm.botFourType, ref this.currentForm.botFourPower, this.currentForm.hasBotFourBankrupted);
             }
 
-            if (!currentForm.botFiveStatus.Text.Contains("Fold"))
+            if (!this.currentForm.botFiveStatus.Text.Contains("Fold"))
             {
                 fixedLast = "Winner 5";
-                currentForm.CurrentRules.GameRules(10, 11, ref currentForm.botFiveType, ref currentForm.botFivePower, currentForm.hasBotFiveBankrupted);
+                this.currentForm.CurrentRules.GameRules(10, 11, ref this.currentForm.botFiveType, ref this.currentForm.botFivePower, this.currentForm.hasBotFiveBankrupted);
             }
             return fixedLast;
         }
 
         public void CheckFlopTurnOrRiver()
         {
-            if (currentForm.totalRounds == Form1.Flop)
+            if (this.currentForm.totalRounds == Form1.Flop)
             {
                 for (int j = 12; j <= 14; j++)
                 {
-                    ResetPlayerBotsValues(j);
+                    this.ResetPlayerBotsValues(j);
                 }
             }
 
-            if (currentForm.totalRounds == Form1.Turn)
+            if (this.currentForm.totalRounds == Form1.Turn)
             {
                 for (int j = 14; j <= 15; j++)
                 {
-                    ResetPlayerBotsValues(j);
+                    this.ResetPlayerBotsValues(j);
                 }
             }
 
-            if (currentForm.totalRounds == Form1.River)
+            if (this.currentForm.totalRounds == Form1.River)
             {
                 for (int j = 15; j <= 16; j++)
                 {
-                    ResetPlayerBotsValues(j);
+                    this.ResetPlayerBotsValues(j);
                 }
             }
         }
 
         private void ResetPlayerBotsValues(int j)
         {
-            if (currentForm.cardsImages[j].Image != currentForm.Deck[j])
+            if (this.currentForm.cardsImages[j].Image != this.currentForm.Deck[j])
             {
-                currentForm.cardsImages[j].Image = currentForm.Deck[j];
-                currentForm.playerCall = 0;
-                currentForm.playerRaise = 0;
-                currentForm.botOneCall = 0;
-                currentForm.botOneRaise = 0;
-                currentForm.botTwoCall = 0;
-                currentForm.botTwoRaise = 0;
-                currentForm.botThreeCall = 0;
-                currentForm.botThreeRaise = 0;
-                currentForm.botFourCall = 0;
-                currentForm.botFourRaise = 0;
-                currentForm.botFiveCall = 0;
-                currentForm.botFiveRaise = 0;
+                this.currentForm.cardsImages[j].Image = this.currentForm.Deck[j];
+                this.currentForm.playerCall = 0;
+                this.currentForm.playerRaise = 0;
+                this.currentForm.botOneCall = 0;
+                this.currentForm.botOneRaise = 0;
+                this.currentForm.botTwoCall = 0;
+                this.currentForm.botTwoRaise = 0;
+                this.currentForm.botThreeCall = 0;
+                this.currentForm.botThreeRaise = 0;
+                this.currentForm.botFourCall = 0;
+                this.currentForm.botFourRaise = 0;
+                this.currentForm.botFiveCall = 0;
+                this.currentForm.botFiveRaise = 0;
             }
         }
 
         public void CheckIfSomeoneRaised(int currentTurn)
         {
-            if (currentForm.isRaising)
+            if (this.currentForm.isRaising)
             {
-                currentForm.turnCount = 0;
-                currentForm.isRaising = false;
-                currentForm.raisedTurn = currentTurn;
-                currentForm.changed = true;
+                this.currentForm.turnCount = 0;
+                this.currentForm.isRaising = false;
+                this.currentForm.raisedTurn = currentTurn;
+                this.currentForm.changed = true;
             }
 
             else
             {
-                if (currentForm.turnCount >= currentForm.maxLeft - 1 ||
-                    !currentForm.changed && currentForm.turnCount == currentForm.maxLeft)
+                if (this.currentForm.turnCount >= this.currentForm.maxLeft - 1 ||
+                    !this.currentForm.changed && this.currentForm.turnCount == this.currentForm.maxLeft)
                 {
-                    if (currentTurn == currentForm.raisedTurn - 1 ||
-                        !currentForm.changed && currentForm.turnCount == currentForm.maxLeft || currentForm.raisedTurn == 0 && currentTurn == 5)
+                    if (currentTurn == this.currentForm.raisedTurn - 1 ||
+                        !this.currentForm.changed && this.currentForm.turnCount == this.currentForm.maxLeft || this.currentForm.raisedTurn == 0 && currentTurn == 5)
                     {
-                        currentForm.changed = false;
-                        currentForm.turnCount = 0;
-                        currentForm.Raise = 0;
-                        currentForm.callChipsValue = 0;
-                        currentForm.raisedTurn = 123;
-                        currentForm.totalRounds++;
+                        this.currentForm.changed = false;
+                        this.currentForm.turnCount = 0;
+                        this.currentForm.Raise = 0;
+                        this.currentForm.callChipsValue = 0;
+                        this.currentForm.raisedTurn = 123;
+                        this.currentForm.totalRounds++;
 
-                        CheckIfBankrupted();
+                        this.CheckIfBankrupted();
                     }
                 }
             }
@@ -154,34 +154,34 @@ namespace Poker
 
         private void CheckIfBankrupted()
         {
-            if (!currentForm.hasPlayerBankrupted)
+            if (!this.currentForm.hasPlayerBankrupted)
             {
-                currentForm.playerStatus.Text = "";
+                this.currentForm.playerStatus.Text = "";
             }
 
-            if (!currentForm.hasBotOneBankrupted)
+            if (!this.currentForm.hasBotOneBankrupted)
             {
-                currentForm.botOneStatus.Text = "";
+                this.currentForm.botOneStatus.Text = "";
             }
 
-            if (!currentForm.hasBotTwoBankrupted)
+            if (!this.currentForm.hasBotTwoBankrupted)
             {
-                currentForm.botTwoStatus.Text = "";
+                this.currentForm.botTwoStatus.Text = "";
             }
 
-            if (!currentForm.hasBotThreeBankrupted)
+            if (!this.currentForm.hasBotThreeBankrupted)
             {
-                currentForm.botThreeStatus.Text = "";
+                this.currentForm.botThreeStatus.Text = "";
             }
 
-            if (!currentForm.hasBotFourBankrupted)
+            if (!this.currentForm.hasBotFourBankrupted)
             {
-                currentForm.botFourStatus.Text = "";
+                this.currentForm.botFourStatus.Text = "";
             }
 
-            if (!currentForm.hasBotFiveBankrupted)
+            if (!this.currentForm.hasBotFiveBankrupted)
             {
-                currentForm.botFiveStatus.Text = "";
+                this.currentForm.botFiveStatus.Text = "";
             }
         }
     }

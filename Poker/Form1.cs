@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace Poker
 {
+    using Poker.Customs;
     using Poker.Models.Players;
 
     public partial class Form1 : Form
