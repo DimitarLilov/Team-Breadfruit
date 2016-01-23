@@ -1,13 +1,13 @@
-namespace Poker.Models.Players
+namespace Poker.Models.Players.Bot
 {
     using System;
     using System.Windows.Forms;
 
     public class BotHandsChecker
     {
-        private Form1 currentForm;
+        private GameManager currentForm;
 
-        public BotHandsChecker(Form1 currentForm)
+        public BotHandsChecker(GameManager currentForm)
         {
             this.currentForm = currentForm;
         }

@@ -1,13 +1,13 @@
-namespace Poker.Customs
+namespace Poker.Models.Rules
 {
     using System;
     using System.Linq;
 
     public class Rules
     {
-        private Form1 currentForm;
+        private GameManager currentForm;
 
-        public Rules(Form1 currentForm)
+        public Rules(GameManager currentForm)
         {
             this.currentForm = currentForm;
         }

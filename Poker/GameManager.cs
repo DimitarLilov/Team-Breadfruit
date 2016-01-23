@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-
-namespace Poker
+﻿namespace Poker
 {
-    using Poker.Customs;
-    using Poker.Models.Players;
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
 
-    public partial class Form1 : Form
+    using Poker.Models;
+    using Poker.Models.Players;
+    using Poker.Models.Players.Bot;
+    using Poker.Models.Rules;
+
+    public partial class GameManager : Form
     {
         #region Variables
         //ProgressBar asd = new ProgressBar();
@@ -142,16 +143,16 @@ namespace Poker
         private readonly Rules currentRules;
         private readonly HandRules handRules;
         public readonly Winner winner;
-        private readonly CheckRaiseDealer checkRaiseDealer;
-        private readonly BotHandsChecker _botHandsChecker;
+        private readonly Dealer checkRaiseDealer;
+        private readonly BotHandsChecker butHandsChecker;
         private readonly Bot bot;
 
         // public readonly Dealer dealer;
 
         #endregion
 
-        #region Form1 main
-        public Form1()
+        #region GameManager main
+        public GameManager()
         {
             callChipsValue = bigBlind;
             MaximizeBox = false;
@@ -174,18 +175,17 @@ namespace Poker
             InitializeBlindsBoxes();
 
             playerRaiseTextBox.Text = (bigBlind * 2).ToString();
-            currentRules = new Rules(this);
-            handRules = new HandRules(this);
-            winner = new Winner(this);
-            checkRaiseDealer = new CheckRaiseDealer(this);
-            _botHandsChecker = new BotHandsChecker(this);
+            this.currentRules = new Rules(this);
+            this.handRules = new HandRules(this);
+            this.winner = new Winner(this);
+            this.checkRaiseDealer = new Dealer(this);
+            this.butHandsChecker = new BotHandsChecker(this);
             bot = new Bot(this);
-            //dealer = new Dealer(this);
         }
 
         public Rules CurrentRules
         {
-            get { return currentRules; }
+            get { return this.currentRules; }
         }
 
         public HandRules HandRules
@@ -198,14 +198,14 @@ namespace Poker
             get { return winner; }
         }
 
-        public CheckRaiseDealer CheckRaiseDealer
+        public Dealer CheckRaiseDealer
         {
             get { return checkRaiseDealer; }
         }
 
-        public BotHandsChecker BotHandsChecker
+        public BotHandsChecker ButHandsChecker
         {
-            get { return _botHandsChecker; }
+            get { return this.butHandsChecker; }
         }
 
         public Bot Bot
@@ -723,10 +723,7 @@ namespace Poker
 
         #endregion
 
-        /// <summary>
-        /// Dealer's turns
-        /// </summary>
-        /// <returns></returns>
+        #region Turns
         async Task Turns()
         {
             #region Rotating
@@ -771,7 +768,7 @@ namespace Poker
                         CheckCurrentBid(botOneStatus, ref botOneCall, ref botOneRaise, 2);
                         CurrentRules.GameRules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
                         MessageBox.Show("Bot 1's Turn");
-                        BotHandsChecker.CheckBotsHand(2, 3, ref botOnehips, ref botOneTurn, ref hasBotOneBankrupted, botOneStatus, botOnePower, botOneType);
+                        this.ButHandsChecker.CheckBotsHand(2, 3, ref botOnehips, ref botOneTurn, ref hasBotOneBankrupted, botOneStatus, botOnePower, botOneType);
                         turnCount++;
                         last = 1;
                         botOneTurn = false;
@@ -802,7 +799,7 @@ namespace Poker
                         CurrentRules.GameRules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
 
                         MessageBox.Show("Bot 2's Turn");
-                        BotHandsChecker.CheckBotsHand(4, 5, ref botTwoChips, ref botTwoTurn, ref hasBotTwoBankrupted, botTwoStatus, botTwoPower, botTwoType);
+                        this.ButHandsChecker.CheckBotsHand(4, 5, ref botTwoChips, ref botTwoTurn, ref hasBotTwoBankrupted, botTwoStatus, botTwoPower, botTwoType);
 
                         turnCount++;
                         last = 2;
@@ -834,7 +831,7 @@ namespace Poker
                         CheckCurrentBid(botThreeStatus, ref botThreeCall, ref botThreeRaise, 2);
                         CurrentRules.GameRules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
                         MessageBox.Show("Bot 3's Turn");
-                        BotHandsChecker.CheckBotsHand(6, 7, ref botThreeChips, ref botThreeTurn, ref hasBotThreeBankrupted, botThreeStatus, botThreePower, botThreeType);
+                        this.ButHandsChecker.CheckBotsHand(6, 7, ref botThreeChips, ref botThreeTurn, ref hasBotThreeBankrupted, botThreeStatus, botThreePower, botThreeType);
 
                         turnCount++;
                         last = 3;
@@ -865,7 +862,7 @@ namespace Poker
                         CheckCurrentBid(botFourStatus, ref botFourCall, ref botFourRaise, 2);
                         CurrentRules.GameRules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
                         MessageBox.Show("Bot 4's Turn");
-                        BotHandsChecker.CheckBotsHand(8, 9, ref botFourChips, ref botFourTurn, ref hasBotFourBankrupted, botFourStatus, botFourPower, botFourType);
+                        this.ButHandsChecker.CheckBotsHand(8, 9, ref botFourChips, ref botFourTurn, ref hasBotFourBankrupted, botFourStatus, botFourPower, botFourType);
                         turnCount++;
                         last = 4;
                         botFourTurn = false;
@@ -896,7 +893,7 @@ namespace Poker
                         CheckCurrentBid(botFiveStatus, ref botFiveCall, ref botFiveRaise, 2);
                         CurrentRules.GameRules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
                         MessageBox.Show("Bot 5's Turn");
-                        BotHandsChecker.CheckBotsHand(10, 11, ref botFiveChips, ref botFiveTurn, ref hasBotFiveBankrupted, botFiveStatus, botFivePower, botFiveType);
+                        this.ButHandsChecker.CheckBotsHand(10, 11, ref botFiveChips, ref botFiveTurn, ref hasBotFiveBankrupted, botFiveStatus, botFivePower, botFiveType);
                         turnCount++;
                         last = 5;
                         botFiveTurn = false;
@@ -964,11 +961,7 @@ namespace Poker
         }
 
         #region CheckRaise Methods
-        /// <summary>
-        /// Dealer's checkraise
-        /// </summary>
-        /// <param name="currentTurn"></param>
-        /// <returns></returns>
+
         async Task CheckRaise(int currentTurn)
         {
             CheckRaiseDealer.CheckIfSomeoneRaised(currentTurn);
@@ -1117,6 +1110,9 @@ namespace Poker
             }
         }
 
+        #endregion
+
+        #region CheckWhoIsAllIn
         async Task WhoIsAllIn()
         {
             #region All in
@@ -1278,7 +1274,9 @@ namespace Poker
             }
         }
         #endregion
+        #endregion
 
+        #region Finish
         async Task Finish(int n)
         {
             if (n == 2)
@@ -1411,6 +1409,7 @@ namespace Poker
 
             await Shuffle();
         }
+        #endregion
 
         #region UI
         private async void timer_Tick(object sender, object e)

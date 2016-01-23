@@ -1,10 +1,10 @@
-namespace Poker.Customs
+namespace Poker.Models
 {
-    public class CheckRaiseDealer
+    public class Dealer
     {
-        private Form1 currentForm;
+        private GameManager currentForm;
 
-        public CheckRaiseDealer(Form1 currentForm)
+        public Dealer(GameManager currentForm)
         {
             this.currentForm = currentForm;
         }
@@ -76,7 +76,7 @@ namespace Poker.Customs
 
         public void CheckFlopTurnOrRiver()
         {
-            if (this.currentForm.totalRounds == Form1.Flop)
+            if (this.currentForm.totalRounds == GameManager.Flop)
             {
                 for (int j = 12; j <= 14; j++)
                 {
@@ -84,7 +84,7 @@ namespace Poker.Customs
                 }
             }
 
-            if (this.currentForm.totalRounds == Form1.Turn)
+            if (this.currentForm.totalRounds == GameManager.Turn)
             {
                 for (int j = 14; j <= 15; j++)
                 {
@@ -92,7 +92,7 @@ namespace Poker.Customs
                 }
             }
 
-            if (this.currentForm.totalRounds == Form1.River)
+            if (this.currentForm.totalRounds == GameManager.River)
             {
                 for (int j = 15; j <= 16; j++)
                 {

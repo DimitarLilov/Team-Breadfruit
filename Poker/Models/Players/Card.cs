@@ -1,10 +1,12 @@
-﻿namespace Poker.Models
+﻿namespace Poker.Models.Players
 {
     using System;
     using System.Drawing;
     using System.Windows.Forms;
-    using Enum;
+
+    using Poker.Enum;
     using Poker.Interfaces;
+
     class Card : ICard
     {
         public Image Front

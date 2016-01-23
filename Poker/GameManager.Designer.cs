@@ -1,6 +1,6 @@
 ﻿namespace Poker
 {
-    partial class Form1
+    partial class GameManager
     {
         /// <summary>
         /// Required designer variable.
@@ -316,7 +316,7 @@
             this.bigBlindTextBox.TabIndex = 19;
             this.bigBlindTextBox.Text = "500";
             // 
-            // Form1
+            // GameManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -351,7 +351,7 @@
             this.Controls.Add(this.playerCheckButton);
             this.Controls.Add(this.playerFoldButton);
             this.DoubleBuffered = true;
-            this.Name = "Form1";
+            this.Name = "GameManager";
             this.Text = "GLS Texas Poker";
             this.Layout += new System.Windows.Forms.LayoutEventHandler(this.Layout_Change);
             this.ResumeLayout(false);

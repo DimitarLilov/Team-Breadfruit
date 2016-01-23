@@ -1,4 +1,4 @@
-namespace Poker.Models.Players
+namespace Poker.Models.Players.Bot
 {
     using System;
     using System.Windows.Forms;
@@ -6,16 +6,16 @@ namespace Poker.Models.Players
     //check bots possibility
     public class Bot
     {
-        private Form1 _form1;
+        private GameManager gameManager;
 
-        public Bot(Form1 form1)
+        public Bot(GameManager gameManager)
         {
-            this._form1 = form1;
+            this.gameManager = gameManager;
         }
 
         private void ChangeStatusToFold(ref bool isBotTurn, ref bool sFTurn, Label sStatus)
         {
-            this._form1.isRaising = false;
+            this.gameManager.isRaising = false;
             sStatus.Text = "Fold";
             isBotTurn = false;
             sFTurn = true;
@@ -25,25 +25,25 @@ namespace Poker.Models.Players
         {
             statusLabel.Text = "Check";
             isBotsTurn = false;
-            this._form1.isRaising = false;
+            this.gameManager.isRaising = false;
         }
 
         private void Call(ref int botsChips, ref bool isBotsTurn, Label statusLabel)
         {
-            this._form1.isRaising = false;
+            this.gameManager.isRaising = false;
             isBotsTurn = false;
-            botsChips -= this._form1.callChipsValue;
-            statusLabel.Text = "Call " + this._form1.callChipsValue;
-            this._form1.potTextBox.Text = (int.Parse(this._form1.potTextBox.Text) + this._form1.callChipsValue).ToString();
+            botsChips -= this.gameManager.callChipsValue;
+            statusLabel.Text = "Call " + this.gameManager.callChipsValue;
+            this.gameManager.potTextBox.Text = (int.Parse(this.gameManager.potTextBox.Text) + this.gameManager.callChipsValue).ToString();
         }
 
         private void RaiseBet(ref int botChips, ref bool isBotsTurn, Label statusLabel)
         {
-            botChips -= Convert.ToInt32(this._form1.Raise);
-            statusLabel.Text = "Raise " + this._form1.Raise;
-            this._form1.potTextBox.Text = (int.Parse(this._form1.potTextBox.Text) + Convert.ToInt32(this._form1.Raise)).ToString();
-            this._form1.callChipsValue = Convert.ToInt32(this._form1.Raise);
-            this._form1.isRaising = true;
+            botChips -= Convert.ToInt32(this.gameManager.Raise);
+            statusLabel.Text = "Raise " + this.gameManager.Raise;
+            this.gameManager.potTextBox.Text = (int.Parse(this.gameManager.potTextBox.Text) + Convert.ToInt32(this.gameManager.Raise)).ToString();
+            this.gameManager.callChipsValue = Convert.ToInt32(this.gameManager.Raise);
+            this.gameManager.isRaising = true;
             isBotsTurn = false;
         }
 
@@ -57,15 +57,15 @@ namespace Poker.Models.Players
         {
             Random rand = new Random();
             int rnd = rand.Next(1, 4);
-            if (this._form1.callChipsValue <= 0)
+            if (this.gameManager.callChipsValue <= 0)
             {
                 this.ChangeStatusToChecking(ref isBotsTurn, statusLabel);
             }
-            if (this._form1.callChipsValue > 0)
+            if (this.gameManager.callChipsValue > 0)
             {
                 if (rnd == 1)
                 {
-                    if (this._form1.callChipsValue <= BotMaximumBidAbility(botChips, n))
+                    if (this.gameManager.callChipsValue <= BotMaximumBidAbility(botChips, n))
                     {
                         this.Call(ref botChips, ref isBotsTurn, statusLabel);
                     }
@@ -76,7 +76,7 @@ namespace Poker.Models.Players
                 }
                 if (rnd == 2)
                 {
-                    if (this._form1.callChipsValue <= BotMaximumBidAbility(botChips, riskPlay))
+                    if (this.gameManager.callChipsValue <= BotMaximumBidAbility(botChips, riskPlay))
                     {
                         this.Call(ref botChips, ref isBotsTurn, statusLabel);
                     }
@@ -89,16 +89,16 @@ namespace Poker.Models.Players
 
             if (rnd == 3)
             {
-                if (this._form1.Raise == 0)
+                if (this.gameManager.Raise == 0)
                 {
-                    this._form1.Raise = this._form1.callChipsValue * 2;
+                    this.gameManager.Raise = this.gameManager.callChipsValue * 2;
                     this.RaiseBet(ref botChips, ref isBotsTurn, statusLabel);
                 }
                 else
                 {
-                    if (this._form1.Raise <= BotMaximumBidAbility(botChips, n))
+                    if (this.gameManager.Raise <= BotMaximumBidAbility(botChips, n))
                     {
-                        this._form1.Raise = this._form1.callChipsValue * 2;
+                        this.gameManager.Raise = this.gameManager.callChipsValue * 2;
                         this.RaiseBet(ref botChips, ref isBotsTurn, statusLabel);
                     }
                     else
@@ -119,48 +119,48 @@ namespace Poker.Models.Players
             Random rand = new Random();
             int randomNumber = rand.Next(1, 3);
 
-            if (this._form1.totalRounds < 2)
+            if (this.gameManager.totalRounds < 2)
             {
-                if (this._form1.callChipsValue <= 0)
+                if (this.gameManager.callChipsValue <= 0)
                 {
                     this.ChangeStatusToChecking(ref isBotsTurn, labelStatus);
                 }
 
-                if (this._form1.callChipsValue > 0)
+                if (this.gameManager.callChipsValue > 0)
                 {
-                    if (this._form1.callChipsValue >= BotMaximumBidAbility(botChips, botsPower))
+                    if (this.gameManager.callChipsValue >= BotMaximumBidAbility(botChips, botsPower))
                     {
                         this.ChangeStatusToFold(ref isBotsTurn, ref botFolds, labelStatus);
                     }
 
-                    if (this._form1.Raise > BotMaximumBidAbility(botChips, raiseFactor))
+                    if (this.gameManager.Raise > BotMaximumBidAbility(botChips, raiseFactor))
                     {
                         this.ChangeStatusToFold(ref isBotsTurn, ref botFolds, labelStatus);
                     }
 
                     if (!botFolds)
                     {
-                        if (this._form1.callChipsValue >= BotMaximumBidAbility(botChips, raiseFactor) && this._form1.callChipsValue <= BotMaximumBidAbility(botChips, botsPower))
+                        if (this.gameManager.callChipsValue >= BotMaximumBidAbility(botChips, raiseFactor) && this.gameManager.callChipsValue <= BotMaximumBidAbility(botChips, botsPower))
                         {
                             this.Call(ref botChips, ref isBotsTurn, labelStatus);
                         }
 
-                        if (this._form1.Raise <= BotMaximumBidAbility(botChips, raiseFactor) && this._form1.Raise >= (BotMaximumBidAbility(botChips, raiseFactor)) / 2)
+                        if (this.gameManager.Raise <= BotMaximumBidAbility(botChips, raiseFactor) && this.gameManager.Raise >= (BotMaximumBidAbility(botChips, raiseFactor)) / 2)
                         {
                             this.Call(ref botChips, ref isBotsTurn, labelStatus);
                         }
 
-                        if (this._form1.Raise <= (BotMaximumBidAbility(botChips, raiseFactor)) / 2)
+                        if (this.gameManager.Raise <= (BotMaximumBidAbility(botChips, raiseFactor)) / 2)
                         {
-                            if (this._form1.Raise > 0)
+                            if (this.gameManager.Raise > 0)
                             {
-                                this._form1.Raise = BotMaximumBidAbility(botChips, raiseFactor);
+                                this.gameManager.Raise = BotMaximumBidAbility(botChips, raiseFactor);
                                 this.RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
                             }
 
                             else
                             {
-                                this._form1.Raise = this._form1.callChipsValue * 2;
+                                this.gameManager.Raise = this.gameManager.callChipsValue * 2;
                                 this.RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
                             }
                         }
@@ -168,52 +168,52 @@ namespace Poker.Models.Players
                     }
                 }
             }
-            if (this._form1.totalRounds >= 2)
+            if (this.gameManager.totalRounds >= 2)
             {
-                if (this._form1.callChipsValue > 0)
+                if (this.gameManager.callChipsValue > 0)
                 {
-                    if (this._form1.callChipsValue >= BotMaximumBidAbility(botChips, botsPower - randomNumber))
+                    if (this.gameManager.callChipsValue >= BotMaximumBidAbility(botChips, botsPower - randomNumber))
                     {
                         this.ChangeStatusToFold(ref isBotsTurn, ref botFolds, labelStatus);
                     }
 
-                    if (this._form1.Raise > BotMaximumBidAbility(botChips, raiseFactor - randomNumber))
+                    if (this.gameManager.Raise > BotMaximumBidAbility(botChips, raiseFactor - randomNumber))
                     {
                         this.ChangeStatusToFold(ref isBotsTurn, ref botFolds, labelStatus);
                     }
 
                     if (!botFolds)
                     {
-                        if (this._form1.callChipsValue >= BotMaximumBidAbility(botChips, raiseFactor - randomNumber) && this._form1.callChipsValue <= BotMaximumBidAbility(botChips, botsPower - randomNumber))
+                        if (this.gameManager.callChipsValue >= BotMaximumBidAbility(botChips, raiseFactor - randomNumber) && this.gameManager.callChipsValue <= BotMaximumBidAbility(botChips, botsPower - randomNumber))
                         {
                             this.Call(ref botChips, ref isBotsTurn, labelStatus);
                         }
 
-                        if (this._form1.Raise <= BotMaximumBidAbility(botChips, raiseFactor - randomNumber) && this._form1.Raise >= (BotMaximumBidAbility(botChips, raiseFactor - randomNumber)) / 2)
+                        if (this.gameManager.Raise <= BotMaximumBidAbility(botChips, raiseFactor - randomNumber) && this.gameManager.Raise >= (BotMaximumBidAbility(botChips, raiseFactor - randomNumber)) / 2)
                         {
                             this.Call(ref botChips, ref isBotsTurn, labelStatus);
                         }
 
-                        if (this._form1.Raise <= (BotMaximumBidAbility(botChips, raiseFactor - randomNumber)) / 2)
+                        if (this.gameManager.Raise <= (BotMaximumBidAbility(botChips, raiseFactor - randomNumber)) / 2)
                         {
-                            if (this._form1.Raise > 0)
+                            if (this.gameManager.Raise > 0)
                             {
-                                this._form1.Raise = BotMaximumBidAbility(botChips, raiseFactor - randomNumber);
+                                this.gameManager.Raise = BotMaximumBidAbility(botChips, raiseFactor - randomNumber);
                                 this.RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
                             }
 
                             else
                             {
-                                this._form1.Raise = this._form1.callChipsValue * 2;
+                                this.gameManager.Raise = this.gameManager.callChipsValue * 2;
                                 this.RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
                             }
                         }
                     }
                 }
 
-                if (this._form1.callChipsValue <= 0)
+                if (this.gameManager.callChipsValue <= 0)
                 {
-                    this._form1.Raise = BotMaximumBidAbility(botChips, callPower - randomNumber);
+                    this.gameManager.Raise = BotMaximumBidAbility(botChips, callPower - randomNumber);
                     this.RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
                 }
             }
@@ -228,34 +228,34 @@ namespace Poker.Models.Players
         {
             Random rand = new Random();
 
-            if (this._form1.callChipsValue <= 0)
+            if (this.gameManager.callChipsValue <= 0)
             {
                 this.ChangeStatusToChecking(ref isBotTurn, botStatus);
             }
             else
             {
-                if (this._form1.callChipsValue >= BotMaximumBidAbility(botChips, behaviour))
+                if (this.gameManager.callChipsValue >= BotMaximumBidAbility(botChips, behaviour))
                 {
-                    if (botChips > this._form1.callChipsValue)
+                    if (botChips > this.gameManager.callChipsValue)
                     {
                         this.Call(ref botChips, ref isBotTurn, botStatus);
                     }
-                    else if (botChips <= this._form1.callChipsValue)
+                    else if (botChips <= this.gameManager.callChipsValue)
                     {
-                        this._form1.isRaising = false;
+                        this.gameManager.isRaising = false;
                         isBotTurn = false;
                         botChips = 0;
                         botStatus.Text = "Call " + botChips;
-                        this._form1.potTextBox.Text = (int.Parse(this._form1.potTextBox.Text) + botChips).ToString();
+                        this.gameManager.potTextBox.Text = (int.Parse(this.gameManager.potTextBox.Text) + botChips).ToString();
                     }
                 }
                 else
                 {
-                    if (this._form1.Raise > 0)
+                    if (this.gameManager.Raise > 0)
                     {
-                        if (botChips >= this._form1.Raise * 2)
+                        if (botChips >= this.gameManager.Raise * 2)
                         {
-                            this._form1.Raise *= 2;
+                            this.gameManager.Raise *= 2;
                             this.RaiseBet(ref botChips, ref isBotTurn, botStatus);
                         }
                         else
@@ -265,7 +265,7 @@ namespace Poker.Models.Players
                     }
                     else
                     {
-                        this._form1.Raise = this._form1.callChipsValue * 2;
+                        this.gameManager.Raise = this.gameManager.callChipsValue * 2;
                         this.RaiseBet(ref botChips, ref isBotTurn, botStatus);
                     }
                 }

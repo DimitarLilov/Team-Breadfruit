@@ -1,13 +1,13 @@
-namespace Poker.Customs
+namespace Poker.Models
 {
     using System;
     using System.Windows.Forms;
 
     public class Winner
     {
-        private Form1 currentForm;
+        private GameManager currentForm;
 
-        public Winner(Form1 currentForm)
+        public Winner(GameManager currentForm)
         {
             this.currentForm = currentForm;
         }
