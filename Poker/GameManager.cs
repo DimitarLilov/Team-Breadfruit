@@ -143,7 +143,6 @@
         private readonly Rules currentRules;
         public readonly Winner winner;
         private readonly Dealer checkRaiseDealer;
-        private readonly BotHandsChecker butHandsChecker;
         private readonly Bot bot;
 
         // public readonly Dealer dealer;
@@ -176,7 +175,6 @@
             this.currentRules = new Rules(this);
             this.winner = new Winner(this);
             this.checkRaiseDealer = new Dealer(this);
-            this.butHandsChecker = new BotHandsChecker(this);
             bot = new Bot(this);
         }
 
@@ -197,10 +195,7 @@
             get { return checkRaiseDealer; }
         }
 
-        public BotHandsChecker ButHandsChecker
-        {
-            get { return this.butHandsChecker; }
-        }
+       
 
         public Bot Bot
         {
@@ -761,7 +756,7 @@
                         CheckCurrentBid(botOneStatus, ref botOneCall, ref botOneRaise, 2);
                         CurrentRules.GameRules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
                         MessageBox.Show("Bot 1's Turn");
-                        this.ButHandsChecker.CheckBotsHand(2, 3, ref botOnehips, ref botOneTurn, ref hasBotOneBankrupted, botOneStatus, botOnePower, botOneType);
+                        this.Bot.CheckBotsHand(2, 3, ref botOnehips, ref botOneTurn, ref hasBotOneBankrupted, botOneStatus, botOnePower, botOneType);
                         turnCount++;
                         last = 1;
                         botOneTurn = false;
@@ -792,7 +787,7 @@
                         CurrentRules.GameRules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
 
                         MessageBox.Show("Bot 2's Turn");
-                        this.ButHandsChecker.CheckBotsHand(4, 5, ref botTwoChips, ref botTwoTurn, ref hasBotTwoBankrupted, botTwoStatus, botTwoPower, botTwoType);
+                        this.Bot.CheckBotsHand(4, 5, ref botTwoChips, ref botTwoTurn, ref hasBotTwoBankrupted, botTwoStatus, botTwoPower, botTwoType);
 
                         turnCount++;
                         last = 2;
@@ -824,7 +819,7 @@
                         CheckCurrentBid(botThreeStatus, ref botThreeCall, ref botThreeRaise, 2);
                         CurrentRules.GameRules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
                         MessageBox.Show("Bot 3's Turn");
-                        this.ButHandsChecker.CheckBotsHand(6, 7, ref botThreeChips, ref botThreeTurn, ref hasBotThreeBankrupted, botThreeStatus, botThreePower, botThreeType);
+                        this.Bot.CheckBotsHand(6, 7, ref botThreeChips, ref botThreeTurn, ref hasBotThreeBankrupted, botThreeStatus, botThreePower, botThreeType);
 
                         turnCount++;
                         last = 3;
@@ -855,7 +850,7 @@
                         CheckCurrentBid(botFourStatus, ref botFourCall, ref botFourRaise, 2);
                         CurrentRules.GameRules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
                         MessageBox.Show("Bot 4's Turn");
-                        this.ButHandsChecker.CheckBotsHand(8, 9, ref botFourChips, ref botFourTurn, ref hasBotFourBankrupted, botFourStatus, botFourPower, botFourType);
+                        this.Bot.CheckBotsHand(8, 9, ref botFourChips, ref botFourTurn, ref hasBotFourBankrupted, botFourStatus, botFourPower, botFourType);
                         turnCount++;
                         last = 4;
                         botFourTurn = false;
@@ -886,7 +881,7 @@
                         CheckCurrentBid(botFiveStatus, ref botFiveCall, ref botFiveRaise, 2);
                         CurrentRules.GameRules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
                         MessageBox.Show("Bot 5's Turn");
-                        this.ButHandsChecker.CheckBotsHand(10, 11, ref botFiveChips, ref botFiveTurn, ref hasBotFiveBankrupted, botFiveStatus, botFivePower, botFiveType);
+                        this.Bot.CheckBotsHand(10, 11, ref botFiveChips, ref botFiveTurn, ref hasBotFiveBankrupted, botFiveStatus, botFivePower, botFiveType);
                         turnCount++;
                         last = 5;
                         botFiveTurn = false;

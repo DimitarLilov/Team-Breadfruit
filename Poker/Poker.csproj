@@ -62,7 +62,6 @@
     <Compile Include="Interfaces\IWinnerRules.cs" />
     <Compile Include="Models\CardFactory.cs" />
     <Compile Include="Models\Players\Bot\Bot.cs" />
-    <Compile Include="Models\Players\Bot\BotHandsChecker.cs" />
     <Compile Include="Models\Dealer.cs" />
     <Compile Include="GameManager.cs">
       <SubType>Form</SubType>
