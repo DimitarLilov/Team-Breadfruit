@@ -8,12 +8,28 @@ namespace Poker.Models.Players.Bot
     {
         #region fields
         private GameManager currentForm;
+        private bool unitTest;
         #endregion
 
         #region constructor
         public Bot(GameManager currentForm)
         {
             this.currentForm = currentForm;
+        }
+
+        public Bot()
+        {
+
+        }
+
+        #endregion
+
+        #region properties
+
+        public bool UnitTest
+        {
+            get { return unitTest; }
+            private set { unitTest = value; }
         }
         #endregion
 
@@ -83,6 +99,7 @@ namespace Poker.Models.Players.Bot
         {
             Random randomNumberGenerator = new Random();
             int randomNumber = randomNumberGenerator.Next(1, 4);
+            this.UnitTest = true;
             if (this.currentForm.callChipsValue <= 0)
             {
                 this.ChangeStatusToChecking(ref isBotsTurn, statusLabel);
@@ -252,7 +269,7 @@ namespace Poker.Models.Players.Bot
 
         private void BotsMoveThirdPossibility(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, int behaviour)
         {
-            Random randomNumberGenerator = new Random();
+            new Random();
 
             if (this.currentForm.callChipsValue <= 0)
             {
@@ -373,6 +390,8 @@ namespace Poker.Models.Players.Bot
             {
                 BotsMoveSecondPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 9, rRaise);
             }
+
+            this.UnitTest = true;
         }
 
         private void CheckBotsTwoPair(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
@@ -395,6 +414,8 @@ namespace Poker.Models.Players.Bot
             {
                 BotsMoveSecondPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 4, rRaise);
             }
+
+            this.UnitTest = true;
         }
 
         private void CheckBotsThreeOfAKind(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
@@ -417,13 +438,14 @@ namespace Poker.Models.Players.Bot
             {
                 BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
             }
+
+            this.UnitTest = true;
         }
 
         private void CheckBotsStraight(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
             Random str = new Random();
             int sCall = str.Next(3, 6);
-            int sRaise = str.Next(3, 8);
 
             if (botPower <= 480 && botPower >= 410)
             {
@@ -437,8 +459,10 @@ namespace Poker.Models.Players.Bot
 
             if (botPower < 407 && botPower >= 404)
             {
-               BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
+                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
             }
+
+            this.UnitTest = true;
         }
 
         private void CheckBotsFlush(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus)
@@ -464,6 +488,8 @@ namespace Poker.Models.Players.Bot
             {
                 BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fhCall);
             }
+
+            this.UnitTest = true;
         }
 
         private void CheckBotsFourOfAKind(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
@@ -476,6 +502,8 @@ namespace Poker.Models.Players.Bot
             {
                 BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fkCall);
             }
+
+            this.UnitTest = true;
         }
 
         private void CheckBotsStraightFlush(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
@@ -487,6 +515,8 @@ namespace Poker.Models.Players.Bot
             {
                 BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sfCall);
             }
+
+            this.UnitTest = true;
         }
         #endregion
 

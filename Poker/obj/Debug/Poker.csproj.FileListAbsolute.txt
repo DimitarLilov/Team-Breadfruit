@@ -1,33 +1,10 @@
-C:\Users\Valio\Desktop\pp\Poker\bin\Debug\Poker.exe.config
-C:\Users\Valio\Desktop\pp\Poker\bin\Debug\Poker.exe
-C:\Users\Valio\Desktop\pp\Poker\bin\Debug\Poker.pdb
-C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
-C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.AddChipsWhenLost.resources
-C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.GameManager.resources
-C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.Properties.Resources.resources
-C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
-C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.exe
-C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.pdb
 C:\Users\Ники\Desktop\Team-Breadfruit-\Poker\bin\Debug\Poker.exe.config
+C:\Users\Ники\Desktop\Team-Breadfruit-\Poker\bin\Debug\Poker.exe
+C:\Users\Ники\Desktop\Team-Breadfruit-\Poker\bin\Debug\Poker.pdb
+C:\Users\Ники\Desktop\Team-Breadfruit-\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+C:\Users\Ники\Desktop\Team-Breadfruit-\Poker\obj\Debug\Poker.AddChipsWhenLost.resources
+C:\Users\Ники\Desktop\Team-Breadfruit-\Poker\obj\Debug\Poker.GameManager.resources
+C:\Users\Ники\Desktop\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\Ники\Desktop\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
 C:\Users\Ники\Desktop\Team-Breadfruit-\Poker\obj\Debug\Poker.exe
 C:\Users\Ники\Desktop\Team-Breadfruit-\Poker\obj\Debug\Poker.pdb
-C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\bin\Debug\Poker.exe.config
-C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.exe
-C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.pdb
-C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
-C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.AddChipsWhenLost.resources
-C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.GameManager.resources
-C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.Resources.resources
-C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
-C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\bin\Debug\Poker.exe
-C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\bin\Debug\Poker.pdb
-C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\bin\Debug\Poker.exe.config
-C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.exe
-C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.pdb
-C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
-C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.AddChipsWhenLost.resources
-C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.GameManager.resources
-C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.Resources.resources
-C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
-C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\bin\Debug\Poker.exe
-C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\bin\Debug\Poker.pdb
