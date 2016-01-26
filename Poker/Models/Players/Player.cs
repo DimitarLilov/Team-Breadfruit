@@ -5,6 +5,7 @@
     using System.Reflection.Emit;
 
     using Poker.Interfaces;
+
     public abstract class Player : IPlayer
     {
         public bool HasCalled { get; set; }

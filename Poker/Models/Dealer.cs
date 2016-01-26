@@ -3,7 +3,7 @@ namespace Poker.Models
     using Poker.Interfaces;
     public class Dealer : IDealer
     {
-        private GameManager currentForm;
+        private readonly GameManager currentForm;
 
         public Dealer(GameManager currentForm)
         {
@@ -20,7 +20,7 @@ namespace Poker.Models
                 if (f2.AddChipsValue != 0)
                 {
                     this.currentForm.playerChips = f2.AddChipsValue;
-                    this.currentForm.botOnehips += f2.AddChipsValue;
+                    this.currentForm.botOneChips += f2.AddChipsValue;
                     this.currentForm.botTwoChips += f2.AddChipsValue;
                     this.currentForm.botThreeChips += f2.AddChipsValue;
                     this.currentForm.botFourChips += f2.AddChipsValue;
@@ -37,41 +37,42 @@ namespace Poker.Models
 
         public string CheckPlayerBotsStatus(string fixedLast)
         {
-            if (!this.currentForm.playerStatus.Text.Contains("Fold"))
+            if (!this.currentForm.playerStatus.Text.Contains(Winner.FoldString))
             {
                 fixedLast = "Player";
                 this.currentForm.CurrentRules.GameRules(0, 1, ref this.currentForm.playerType, ref this.currentForm.playerPower, this.currentForm.hasPlayerBankrupted);
             }
 
-            if (!this.currentForm.botOneStatus.Text.Contains("Fold"))
+            if (!this.currentForm.botOneStatus.Text.Contains(Winner.FoldString))
             {
                 fixedLast = "Winner 1";
                 this.currentForm.CurrentRules.GameRules(2, 3, ref this.currentForm.botOneType, ref this.currentForm.botOnePower, this.currentForm.hasBotOneBankrupted);
             }
 
-            if (!this.currentForm.botTwoStatus.Text.Contains("Fold"))
+            if (!this.currentForm.botTwoStatus.Text.Contains(Winner.FoldString))
             {
                 fixedLast = "Winner 2";
                 this.currentForm.CurrentRules.GameRules(4, 5, ref this.currentForm.botTwoType, ref this.currentForm.botTwoPower, this.currentForm.hasBotTwoBankrupted);
             }
 
-            if (!this.currentForm.botThreeStatus.Text.Contains("Fold"))
+            if (!this.currentForm.botThreeStatus.Text.Contains(Winner.FoldString))
             {
                 fixedLast = "Winner 3";
                 this.currentForm.CurrentRules.GameRules(6, 7, ref this.currentForm.botThreeType, ref this.currentForm.botThreePower, this.currentForm.hasBotThreeBankrupted);
             }
 
-            if (!this.currentForm.botFourStatus.Text.Contains("Fold"))
+            if (!this.currentForm.botFourStatus.Text.Contains(Winner.FoldString))
             {
                 fixedLast = "Winner 4";
                 this.currentForm.CurrentRules.GameRules(8, 9, ref this.currentForm.botFourType, ref this.currentForm.botFourPower, this.currentForm.hasBotFourBankrupted);
             }
 
-            if (!this.currentForm.botFiveStatus.Text.Contains("Fold"))
+            if (!this.currentForm.botFiveStatus.Text.Contains(Winner.FoldString))
             {
                 fixedLast = "Winner 5";
                 this.currentForm.CurrentRules.GameRules(10, 11, ref this.currentForm.botFiveType, ref this.currentForm.botFivePower, this.currentForm.hasBotFiveBankrupted);
             }
+
             return fixedLast;
         }
 
@@ -111,14 +112,14 @@ namespace Poker.Models
                 this.currentForm.raisedTurn = currentTurn;
                 this.currentForm.changed = true;
             }
-
             else
             {
                 if (this.currentForm.turnCount >= this.currentForm.maxLeft - 1 ||
                     !this.currentForm.changed && this.currentForm.turnCount == this.currentForm.maxLeft)
                 {
                     if (currentTurn == this.currentForm.raisedTurn - 1 ||
-                        !this.currentForm.changed && this.currentForm.turnCount == this.currentForm.maxLeft || this.currentForm.raisedTurn == 0 && currentTurn == 5)
+                        !this.currentForm.changed && this.currentForm.turnCount == this.currentForm.maxLeft ||
+                        this.currentForm.raisedTurn == 0 && currentTurn == 5)
                     {
                         this.currentForm.changed = false;
                         this.currentForm.turnCount = 0;

@@ -8,7 +8,28 @@ namespace Poker.Models
 
     public class Winner :IWinner
     {
-        private GameManager currentForm;
+        private readonly GameManager currentForm;
+
+        private const string HighCard = "High Card";
+        private const string Pair = "Pair";
+        private const string TwoPair = "Two Pair";
+        private const string ThreeOfAKind = "Three of a Kind";
+        private const string Straight = "Straight";
+        private const string Flush = "Flush";
+        private const string FullHouse = "Full House";
+        private const string FourOfAKind = "Four of a Kind";
+        private const string StraightFlush = "Straight Flush";
+        private const string RoyalFlush = "Royal Flush !";
+
+        private const string PlayerWinner = "Player";
+        private const string Bot1Winner = "Bot 1";
+        private const string Bot2Winner = "Bot 2";
+        private const string Bot3Winner = "Bot 3";
+        private const string Bot4Winner = "Bot 4";
+        private const string Bot5Winner = "Bot 5";
+
+        public const string FoldString = "Fold";
+
 
         public Winner(GameManager currentForm)
         {
@@ -39,51 +60,51 @@ namespace Poker.Models
 
                     if (current == -1)
                     {
-                        MessageBox.Show(currentText + " High Card ");
+                        MessageBox.Show(currentText + HighCard);
                     }
 
                     if (current == 1 || current == 0)
                     {
-                        MessageBox.Show(currentText + " Pair ");
+                        MessageBox.Show(currentText + Pair);
                     }
 
                     if (current == 2)
                     {
-                        MessageBox.Show(currentText + " Two Pair ");
+                        MessageBox.Show(currentText + TwoPair);
                     }
 
                     if (current == 3)
                     {
-                        MessageBox.Show(currentText + " Three of a Kind ");
+                        MessageBox.Show(currentText + ThreeOfAKind);
                     }
                     if (current == 4)
                     {
-                        MessageBox.Show(currentText + " Straight ");
+                        MessageBox.Show(currentText + Straight);
                     }
 
                     if (current == 5 || current == 5.5)
                     {
-                        MessageBox.Show(currentText + " Flush ");
+                        MessageBox.Show(currentText + Flush);
                     }
 
                     if (current == 6)
                     {
-                        MessageBox.Show(currentText + " Full House ");
+                        MessageBox.Show(currentText + FullHouse);
                     }
 
                     if (current == 7)
                     {
-                        MessageBox.Show(currentText + " Four of a Kind ");
+                        MessageBox.Show(currentText + FourOfAKind);
                     }
 
                     if (current == 8)
                     {
-                        MessageBox.Show(currentText + " Straight Flush ");
+                        MessageBox.Show(currentText + StraightFlush);
                     }
 
                     if (current == 9)
                     {
-                        MessageBox.Show(currentText + " Royal Flush ! ");
+                        MessageBox.Show(currentText + RoyalFlush);
                     }
                 }
             }
@@ -92,73 +113,71 @@ namespace Poker.Models
             {
                 if (this.currentForm.winners > 1)
                 {
-                    if (this.currentForm.CheckWinners.Contains("Player"))
+                    if (this.currentForm.CheckWinners.Contains(PlayerWinner))
                     {
-                        this.currentForm.playerChips += int.Parse(this.currentForm.potTextBox.Text) /this.currentForm.winners;
+                        this.currentForm.playerChips += int.Parse(this.currentForm.potTextBox.Text) / this.currentForm.winners;
                         this.currentForm.playerChipsTextBox.Text = this.currentForm.playerChips.ToString();
                     }
 
-                    if (this.currentForm.CheckWinners.Contains("Bot 1"))
+                    if (this.currentForm.CheckWinners.Contains(Bot1Winner))
                     {
-                        this.currentForm.botOnehips += int.Parse(this.currentForm.potTextBox.Text) /this.currentForm.winners;
-                        this.currentForm.botOneChipsTextBox.Text = this.currentForm.botOnehips.ToString();
+                        this.currentForm.botOneChips += int.Parse(this.currentForm.potTextBox.Text) / this.currentForm.winners;
+                        this.currentForm.botOneChipsTextBox.Text = this.currentForm.botOneChips.ToString();
                     }
 
-                    if (this.currentForm.CheckWinners.Contains("Bot 2"))
+                    if (this.currentForm.CheckWinners.Contains(Bot2Winner))
                     {
-                        this.currentForm.botTwoChips += int.Parse(this.currentForm.potTextBox.Text) /this.currentForm.winners;
+                        this.currentForm.botTwoChips += int.Parse(this.currentForm.potTextBox.Text) / this.currentForm.winners;
                         this.currentForm.botTwoChipsTextBox.Text = this.currentForm.botTwoChips.ToString();
                     }
 
-                    if (this.currentForm.CheckWinners.Contains("Bot 3"))
+                    if (this.currentForm.CheckWinners.Contains(Bot3Winner))
                     {
-                        this.currentForm.botThreeChips += int.Parse(this.currentForm.potTextBox.Text) /this.currentForm.winners;
+                        this.currentForm.botThreeChips += int.Parse(this.currentForm.potTextBox.Text) / this.currentForm.winners;
                         this.currentForm.botThreeChipsTextBox.Text = this.currentForm.botThreeChips.ToString();
                     }
 
-                    if (this.currentForm.CheckWinners.Contains("Bot 4"))
+                    if (this.currentForm.CheckWinners.Contains(Bot4Winner))
                     {
-
-                        this.currentForm.botFourChips += int.Parse(this.currentForm.potTextBox.Text) /this.currentForm.winners;
+                        this.currentForm.botFourChips += int.Parse(this.currentForm.potTextBox.Text) / this.currentForm.winners;
                         this.currentForm.botFourChipsTextBox.Text = this.currentForm.botFourChips.ToString();
                     }
 
-                    if (this.currentForm.CheckWinners.Contains("Bot 5"))
+                    if (this.currentForm.CheckWinners.Contains(Bot5Winner))
                     {
-                        this.currentForm.botFiveChips += int.Parse(this.currentForm.potTextBox.Text) /this.currentForm.winners;
+                        this.currentForm.botFiveChips += int.Parse(this.currentForm.potTextBox.Text) / this.currentForm.winners;
                         this.currentForm.botFiveChipsTextBox.Text = this.currentForm.botFiveChips.ToString();
                     }
-
                 }
 
                 if (this.currentForm.winners == 1)
                 {
-                    if (this.currentForm.CheckWinners.Contains("Player"))
+                    if (this.currentForm.CheckWinners.Contains(PlayerWinner))
                     {
                         this.currentForm.playerChips += int.Parse(this.currentForm.potTextBox.Text);
                     }
 
-                    if (this.currentForm.CheckWinners.Contains("Bot 1"))
+                    if (this.currentForm.CheckWinners.Contains(Bot1Winner))
                     {
-                        this.currentForm.botOnehips += int.Parse(this.currentForm.potTextBox.Text);
+                        this.currentForm.botOneChips += int.Parse(this.currentForm.potTextBox.Text);
                     }
 
-                    if (this.currentForm.CheckWinners.Contains("Bot 2"))
+                    if (this.currentForm.CheckWinners.Contains(Bot2Winner))
                     {
                         this.currentForm.botTwoChips += int.Parse(this.currentForm.potTextBox.Text);
                     }
 
-                    if (this.currentForm.CheckWinners.Contains("Bot 3"))
+                    if (this.currentForm.CheckWinners.Contains(Bot3Winner))
                     {
                         this.currentForm.botThreeChips += int.Parse(this.currentForm.potTextBox.Text);
                     }
 
-                    if (this.currentForm.CheckWinners.Contains("Bot 4"))
+                    if (this.currentForm.CheckWinners.Contains(Bot4Winner))
                     {
                         this.currentForm.botFourChips += int.Parse(this.currentForm.potTextBox.Text);
                     }
 
-                    if (this.currentForm.CheckWinners.Contains("Bot 5"))
+                    if (this.currentForm.CheckWinners.Contains(Bot5Winner))
                     {
                         this.currentForm.botFiveChips += int.Parse(this.currentForm.potTextBox.Text);
                     }
@@ -173,53 +192,53 @@ namespace Poker.Models
             this.currentForm.sorted.Power = 0;
             string fixedLast = String.Empty;
 
-            if (!this.currentForm.playerStatus.Text.Contains("Fold"))
+            if (!this.currentForm.playerStatus.Text.Contains(FoldString))
             {
-                fixedLast = "Player";
+                fixedLast = PlayerWinner;
                 this.currentForm.CurrentRules.GameRules(0, 1, ref this.currentForm.playerType, ref this.currentForm.playerPower, this.currentForm.hasPlayerBankrupted);
             }
 
-            if (!this.currentForm.botOneStatus.Text.Contains("Fold"))
+            if (!this.currentForm.botOneStatus.Text.Contains(FoldString))
             {
-                fixedLast = "Bot 1";
+                fixedLast = Bot1Winner;
                 this.currentForm.CurrentRules.GameRules(2, 3, ref this.currentForm.botOneType, ref this.currentForm.botOnePower, this.currentForm.hasBotOneBankrupted);
             }
 
-            if (!this.currentForm.botTwoStatus.Text.Contains("Fold"))
+            if (!this.currentForm.botTwoStatus.Text.Contains(FoldString))
             {
-                fixedLast = "Bot 2";
+                fixedLast = Bot2Winner;
                 this.currentForm.CurrentRules.GameRules(4, 5, ref this.currentForm.botTwoType, ref this.currentForm.botTwoPower, this.currentForm.hasBotTwoBankrupted);
             }
 
-            if (!this.currentForm.botThreeStatus.Text.Contains("Fold"))
+            if (!this.currentForm.botThreeStatus.Text.Contains(FoldString))
             {
-                fixedLast = "Bot 3";
+                fixedLast = Bot3Winner;
                 this.currentForm.CurrentRules.GameRules(6, 7, ref this.currentForm.botThreeType, ref this.currentForm.botThreePower, this.currentForm.hasBotThreeBankrupted);
             }
 
-            if (!this.currentForm.botFourStatus.Text.Contains("Fold"))
+            if (!this.currentForm.botFourStatus.Text.Contains(FoldString))
             {
-                fixedLast = "Bot 4";
+                fixedLast = Bot4Winner;
                 this.currentForm.CurrentRules.GameRules(8, 9, ref this.currentForm.botFourType, ref this.currentForm.botFourPower, this.currentForm.hasBotFourBankrupted);
             }
 
-            if (!this.currentForm.botFiveStatus.Text.Contains("Fold"))
+            if (!this.currentForm.botFiveStatus.Text.Contains(FoldString))
             {
-                fixedLast = "Bot 5";
+                fixedLast = Bot5Winner;
                 this.currentForm.CurrentRules.GameRules(10, 11, ref this.currentForm.botFiveType, ref this.currentForm.botFivePower, this.currentForm.hasBotFiveBankrupted);
             }
 
-            this.currentForm.Winner1.WinnerRules(this.currentForm.playerType, this.currentForm.playerPower, "Player", fixedLast);
+            this.currentForm.Winner1.WinnerRules(this.currentForm.playerType, this.currentForm.playerPower, PlayerWinner, fixedLast);
 
-            this.currentForm.Winner1.WinnerRules(this.currentForm.botOneType, this.currentForm.botOnePower, "Bot 1", fixedLast);
+            this.currentForm.Winner1.WinnerRules(this.currentForm.botOneType, this.currentForm.botOnePower, Bot1Winner, fixedLast);
 
-            this.currentForm.Winner1.WinnerRules(this.currentForm.botTwoType, this.currentForm.botTwoPower, "Bot 2", fixedLast);
+            this.currentForm.Winner1.WinnerRules(this.currentForm.botTwoType, this.currentForm.botTwoPower, Bot2Winner, fixedLast);
 
-            this.currentForm.Winner1.WinnerRules(this.currentForm.botThreeType, this.currentForm.botThreePower, "Bot 3", fixedLast);
+            this.currentForm.Winner1.WinnerRules(this.currentForm.botThreeType, this.currentForm.botThreePower, Bot3Winner, fixedLast);
 
-            this.currentForm.Winner1.WinnerRules(this.currentForm.botFourType, this.currentForm.botFourPower, "Bot 4", fixedLast);
+            this.currentForm.Winner1.WinnerRules(this.currentForm.botFourType, this.currentForm.botFourPower, Bot4Winner, fixedLast);
 
-            this.currentForm.Winner1.WinnerRules(this.currentForm.botFiveType, this.currentForm.botFivePower, "Bot 5", fixedLast);
+            this.currentForm.Winner1.WinnerRules(this.currentForm.botFiveType, this.currentForm.botFivePower, Bot5Winner, fixedLast);
         }
     }
 }

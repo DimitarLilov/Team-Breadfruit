@@ -3,7 +3,7 @@
     using Poker.Interfaces;
     using System;
 
-    class CardFactory
+    public class CardFactory
     {
         public static ICard CreateCard()
         {

@@ -1,7 +1,9 @@
 ﻿namespace Poker.Models.Players
 {
     using Poker.Interfaces;
-    class Human: Player, IHuman
+
+    public class Human : Player, IHuman
     {
+
     }
 }

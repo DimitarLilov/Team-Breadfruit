@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Poker.Models.Players
+﻿namespace Poker.Models.Players
 {
-    class CardsCollection : IList<Card>
+    using System.Collections;
+    using System.Collections.Generic;
+
+    public class CardsCollection : IList<Card>
     {
         public static readonly CardsCollection FullDeckOfCards = null;
 
@@ -93,6 +89,7 @@ namespace Poker.Models.Players
         public bool Remove(Card item)
         {
             var removed = this.cards.Remove(item);
+
             return removed;
         }
 

@@ -3,15 +3,12 @@ namespace Poker.Models.Players.Bot
     using System;
     using System.Windows.Forms;
 
-    //check bots possibility
     public class Bot
     {
-        #region fields
-        private GameManager currentForm;
+        private readonly GameManager currentForm;
         private bool unitTest;
-        #endregion
+        private Random random;
 
-        #region constructor
         public Bot(GameManager currentForm)
         {
             this.currentForm = currentForm;
@@ -22,19 +19,22 @@ namespace Poker.Models.Players.Bot
 
         }
 
-        #endregion
-
-        #region properties
-
         public bool UnitTest
         {
-            get { return unitTest; }
-            private set { unitTest = value; }
-        }
-        #endregion
+            get { return this.unitTest; }
 
-        #region methods
-        public void CheckBotsHand(int botFirstCard, int botSecondCard, ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower, double botCurrent)
+            private set { this.unitTest = value; }
+        }
+
+        public void CheckBotsHand(
+            int botFirstCard, 
+            int botSecondCard, 
+            ref int botChips,
+            ref bool isBotTurn,
+            ref bool hasBotFolded,
+            Label botStatus,
+            double botPower,
+            double botCurrent)
         {
             if (!hasBotFolded)
             {
@@ -72,6 +72,7 @@ namespace Poker.Models.Players.Bot
                 {
                     this.CheckBotsFlush(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus);
                 }
+                
                 if (botCurrent == 6)
                 {
                     this.CheckBotsFullHouse(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower);
@@ -95,15 +96,24 @@ namespace Poker.Models.Players.Bot
             }
         }
 
-        private void BotsMoveFirstPossibility(ref int botChips, ref bool isBotsTurn, ref bool hasBotFold, Label statusLabel, double safePlay, int behaviour, int riskPlay)
+        private void BotsMoveFirstPossibility(
+            ref int botChips,
+            ref bool isBotsTurn, 
+            ref bool hasBotFold,
+            Label statusLabel,
+            double safePlay, 
+            int behaviour, 
+            int riskPlay)
         {
-            Random randomNumberGenerator = new Random();
-            int randomNumber = randomNumberGenerator.Next(1, 4);
+            this.random = new Random();
+            int randomNumber = this.random.Next(1, 4);
             this.UnitTest = true;
+
             if (this.currentForm.callChipsValue <= 0)
             {
                 this.ChangeStatusToChecking(ref isBotsTurn, statusLabel);
             }
+
             if (this.currentForm.callChipsValue > 0)
             {
                 if (randomNumber == 1)
@@ -117,6 +127,7 @@ namespace Poker.Models.Players.Bot
                         this.ChangeStatusToFold(ref isBotsTurn, ref hasBotFold, statusLabel);
                     }
                 }
+
                 if (randomNumber == 2)
                 {
                     if (this.currentForm.callChipsValue <= BotMaximumBidAbility(botChips, riskPlay))
@@ -157,10 +168,17 @@ namespace Poker.Models.Players.Bot
             }
         }
 
-        private void BotsMoveSecondPossibility(ref int botChips, ref bool isBotsTurn, ref bool botFolds, Label labelStatus, int raiseFactor, int botsPower, int callPower)
+        private void BotsMoveSecondPossibility(
+            ref int botChips,
+            ref bool isBotsTurn,
+            ref bool botFolds,
+            Label labelStatus,
+            int raiseFactor,
+            int botsPower,
+            int callPower)
         {
-            Random randomNumberGenerator = new Random();
-            int randomNumber = randomNumberGenerator.Next(1, 3);
+            this.random = new Random();
+            int randomNumber = this.random.Next(1, 3);
 
             if (this.currentForm.totalRounds < 2)
             {
@@ -183,34 +201,35 @@ namespace Poker.Models.Players.Bot
 
                     if (!botFolds)
                     {
-                        if (this.currentForm.callChipsValue >= BotMaximumBidAbility(botChips, raiseFactor) && this.currentForm.callChipsValue <= BotMaximumBidAbility(botChips, botsPower))
+                        if (this.currentForm.callChipsValue >= BotMaximumBidAbility(botChips, raiseFactor) &&
+                            this.currentForm.callChipsValue <= BotMaximumBidAbility(botChips, botsPower))
                         {
                             this.Call(ref botChips, ref isBotsTurn, labelStatus);
                         }
 
-                        if (this.currentForm.Raise <= BotMaximumBidAbility(botChips, raiseFactor) && this.currentForm.Raise >= (BotMaximumBidAbility(botChips, raiseFactor)) / 2)
+                        if (this.currentForm.Raise <= BotMaximumBidAbility(botChips, raiseFactor) && 
+                            this.currentForm.Raise >= BotMaximumBidAbility(botChips, raiseFactor) / 2)
                         {
                             this.Call(ref botChips, ref isBotsTurn, labelStatus);
                         }
 
-                        if (this.currentForm.Raise <= (BotMaximumBidAbility(botChips, raiseFactor)) / 2)
+                        if (this.currentForm.Raise <= BotMaximumBidAbility(botChips, raiseFactor) / 2)
                         {
                             if (this.currentForm.Raise > 0)
                             {
                                 this.currentForm.Raise = BotMaximumBidAbility(botChips, raiseFactor);
                                 this.RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
                             }
-
                             else
                             {
                                 this.currentForm.Raise = this.currentForm.callChipsValue * 2;
                                 this.RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
                             }
                         }
-
                     }
                 }
             }
+
             if (this.currentForm.totalRounds >= 2)
             {
                 if (this.currentForm.callChipsValue > 0)
@@ -227,24 +246,25 @@ namespace Poker.Models.Players.Bot
 
                     if (!botFolds)
                     {
-                        if (this.currentForm.callChipsValue >= BotMaximumBidAbility(botChips, raiseFactor - randomNumber) && this.currentForm.callChipsValue <= BotMaximumBidAbility(botChips, botsPower - randomNumber))
+                        if (this.currentForm.callChipsValue >= BotMaximumBidAbility(botChips, raiseFactor - randomNumber) &&
+                            this.currentForm.callChipsValue <= BotMaximumBidAbility(botChips, botsPower - randomNumber))
                         {
                             this.Call(ref botChips, ref isBotsTurn, labelStatus);
                         }
 
-                        if (this.currentForm.Raise <= BotMaximumBidAbility(botChips, raiseFactor - randomNumber) && this.currentForm.Raise >= (BotMaximumBidAbility(botChips, raiseFactor - randomNumber)) / 2)
+                        if (this.currentForm.Raise <= BotMaximumBidAbility(botChips, raiseFactor - randomNumber) &&
+                            this.currentForm.Raise >= BotMaximumBidAbility(botChips, raiseFactor - randomNumber) / 2)
                         {
                             this.Call(ref botChips, ref isBotsTurn, labelStatus);
                         }
 
-                        if (this.currentForm.Raise <= (BotMaximumBidAbility(botChips, raiseFactor - randomNumber)) / 2)
+                        if (this.currentForm.Raise <= BotMaximumBidAbility(botChips, raiseFactor - randomNumber) / 2)
                         {
                             if (this.currentForm.Raise > 0)
                             {
                                 this.currentForm.Raise = BotMaximumBidAbility(botChips, raiseFactor - randomNumber);
                                 this.RaiseBet(ref botChips, ref isBotsTurn, labelStatus);
                             }
-
                             else
                             {
                                 this.currentForm.Raise = this.currentForm.callChipsValue * 2;
@@ -269,7 +289,7 @@ namespace Poker.Models.Players.Bot
 
         private void BotsMoveThirdPossibility(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, int behaviour)
         {
-            new Random();
+            this.random = new Random();
 
             if (this.currentForm.callChipsValue <= 0)
             {
@@ -289,6 +309,7 @@ namespace Poker.Models.Players.Bot
                         isBotTurn = false;
                         botChips = 0;
                         botStatus.Text = "Call " + botChips;
+
                         this.currentForm.potTextBox.Text = (int.Parse(this.currentForm.potTextBox.Text) + botChips).ToString();
                     }
                 }
@@ -341,6 +362,7 @@ namespace Poker.Models.Players.Bot
             isBotsTurn = false;
             botsChips -= this.currentForm.callChipsValue;
             statusLabel.Text = "Call " + this.currentForm.callChipsValue;
+
             this.currentForm.potTextBox.Text = (int.Parse(this.currentForm.potTextBox.Text) + this.currentForm.callChipsValue).ToString();
         }
 
@@ -357,6 +379,7 @@ namespace Poker.Models.Players.Bot
         private static double BotMaximumBidAbility(int botChips, int behaviour)
         {
             double maximumBidChips = Math.Round((botChips / behaviour) / 100d, 0) * 100;
+            
             return maximumBidChips;
         }
 
@@ -372,9 +395,9 @@ namespace Poker.Models.Players.Bot
 
         private void CheckBotsPairHand(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
-            Random rPair = new Random();
-            int rCall = rPair.Next(10, 16);
-            int rRaise = rPair.Next(10, 13);
+            this.random = new Random();
+            int rCall = this.random.Next(10, 16);
+            int rRaise = this.random.Next(10, 13);
 
             if (botPower <= 199 && botPower >= 140)
             {
@@ -396,9 +419,9 @@ namespace Poker.Models.Players.Bot
 
         private void CheckBotsTwoPair(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
-            Random rPair = new Random();
-            int rCall = rPair.Next(6, 11);
-            int rRaise = rPair.Next(6, 11);
+            this.random = new Random();
+            int rCall = this.random.Next(6, 11);
+            int rRaise = this.random.Next(6, 11);
 
             if (botPower <= 290 && botPower >= 246)
             {
@@ -420,9 +443,9 @@ namespace Poker.Models.Players.Bot
 
         private void CheckBotsThreeOfAKind(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
-            Random tk = new Random();
-            int tCall = tk.Next(3, 7);
-            int tRaise = tk.Next(4, 8);
+            this.random = new Random();
+            int tCall = this.random.Next(3, 7);
+            int tRaise = this.random.Next(4, 8);
 
             if (botPower <= 390 && botPower >= 330)
             {
@@ -444,8 +467,8 @@ namespace Poker.Models.Players.Bot
 
         private void CheckBotsStraight(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
-            Random str = new Random();
-            int sCall = str.Next(3, 6);
+            this.random = new Random();
+            int sCall = this.random.Next(3, 6);
 
             if (botPower <= 480 && botPower >= 410)
             {
@@ -467,17 +490,18 @@ namespace Poker.Models.Players.Bot
 
         private void CheckBotsFlush(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus)
         {
-            Random fsh = new Random();
-            int fCall = fsh.Next(2, 6);
-            int fRaise = fsh.Next(3, 7);
+            this.random = new Random();
+            int fCall = this.random.Next(2, 6);
+            int fRaise = this.random.Next(3, 7);
+
             BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fCall);
         }
 
         private void CheckBotsFullHouse(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
-            Random flh = new Random();
-            int fhCall = flh.Next(1, 5);
-            int fhRaise = flh.Next(2, 6);
+            this.random = new Random();
+            int fhCall = this.random.Next(1, 5);
+            int fhRaise = this.random.Next(2, 6);
 
             if (botPower <= 626 && botPower >= 620)
             {
@@ -494,9 +518,9 @@ namespace Poker.Models.Players.Bot
 
         private void CheckBotsFourOfAKind(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
-            Random fk = new Random();
-            int fkCall = fk.Next(1, 4);
-            int fkRaise = fk.Next(2, 5);
+            this.random = new Random();
+            int fkCall = this.random.Next(1, 4);
+            int fkRaise = this.random.Next(2, 5);
 
             if (botPower <= 752 && botPower >= 704)
             {
@@ -508,9 +532,10 @@ namespace Poker.Models.Players.Bot
 
         private void CheckBotsStraightFlush(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
-            Random sf = new Random();
-            int sfCall = sf.Next(1, 3);
-            int sfRaise = sf.Next(1, 3);
+            this.random = new Random();
+            int sfCall = this.random.Next(1, 3);
+            int sfRaise = this.random.Next(1, 3);
+
             if (botPower <= 913 && botPower >= 804)
             {
                 BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sfCall);
@@ -518,7 +543,5 @@ namespace Poker.Models.Players.Bot
 
             this.UnitTest = true;
         }
-        #endregion
-
     }
 }

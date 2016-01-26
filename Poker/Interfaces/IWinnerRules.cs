@@ -1,5 +1,4 @@
-﻿
-namespace Poker.Interfaces
+﻿namespace Poker.Interfaces
 {
     public interface IWinnerRules
     {

@@ -1,13 +1,12 @@
 ﻿namespace Poker.Models.Players
 {
-    using System;
     using System.Drawing;
     using System.Windows.Forms;
 
     using Poker.Enum;
     using Poker.Interfaces;
 
-    class Card : ICard
+    public class Card : ICard
     {
         public Card(Image front, PictureBox pictureBox, int power, Suit suit)
         {

@@ -1,7 +1,6 @@
-﻿
-namespace Poker.Interfaces
+﻿namespace Poker.Interfaces
 {
-    public interface IWinner: IWinnerRules, IFixWinners
+    public interface IWinner : IWinnerRules, IFixWinners
     {
 
     }
