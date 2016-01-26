@@ -8,3 +8,6 @@ C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.Properties.Resources.resources
 C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
 C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.exe
 C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.pdb
+C:\Users\Ники\Desktop\Team-Breadfruit-\Poker\bin\Debug\Poker.exe.config
+C:\Users\Ники\Desktop\Team-Breadfruit-\Poker\obj\Debug\Poker.exe
+C:\Users\Ники\Desktop\Team-Breadfruit-\Poker\obj\Debug\Poker.pdb
