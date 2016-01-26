@@ -1,3 +1,4 @@
+#pragma warning disable 197
 namespace Poker.Models
 {
     using System;
@@ -117,6 +118,7 @@ namespace Poker.Models
 
                     if (this.currentForm.CheckWinners.Contains("Bot 4"))
                     {
+
                         this.currentForm.botFourChips += int.Parse(this.currentForm.potTextBox.Text) /this.currentForm.winners;
                         this.currentForm.botFourChipsTextBox.Text = this.currentForm.botFourChips.ToString();
                     }

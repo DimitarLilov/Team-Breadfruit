@@ -730,343 +730,343 @@
         async Task Turns()
         {
             #region Rotating
-            if (!hasPlayerBankrupted && playerTurn)
+            if (!this.hasPlayerBankrupted && this.playerTurn)
             {
-                CurrentTurnPlayerAction();
+                this.CurrentTurnPlayerAction();
             }
 
-            if (hasPlayerBankrupted || !playerTurn)
+            if (this.hasPlayerBankrupted || !this.playerTurn)
             {
                 await WhoIsAllIn();
 
-                if (hasPlayerBankrupted && !hasPlayerFolded)
+                if (this.hasPlayerBankrupted && !this.hasPlayerFolded)
                 {
-                    if (playerCallButton.Text.Contains("All in") == false || playerRaiseButton.Text.Contains("All in") == false)
+                    if (this.playerCallButton.Text.Contains("All in") == false || this.playerRaiseButton.Text.Contains("All in") == false)
                     {
-                        bankruptPlayers.RemoveAt(0);
-                        bankruptPlayers.Insert(0, null);
-                        maxLeft--;
-                        hasPlayerFolded = true;
+                        this.bankruptPlayers.RemoveAt(0);
+                        this.bankruptPlayers.Insert(0, null);
+                        this.maxLeft--;
+                        this.hasPlayerFolded = true;
                     }
                 }
 
-                await CheckRaise(0);
+                await this.CheckRaise(0);
 
-                timerBar.Visible = false;
-                playerRaiseButton.Enabled = false;
-                playerCallButton.Enabled = false;
-                playerRaiseButton.Enabled = false;
-                playerRaiseButton.Enabled = false;
-                playerFoldButton.Enabled = false;
+                this.timerBar.Visible = false;
+                this.playerRaiseButton.Enabled = false;
+                this.playerCallButton.Enabled = false;
+                this.playerRaiseButton.Enabled = false;
+                this.playerRaiseButton.Enabled = false;
+                this.playerFoldButton.Enabled = false;
 
-                timer.Stop();
+                this.timer.Stop();
 
-                botOneTurn = true;
+                this.botOneTurn = true;
 
-                if (!hasBotOneBankrupted)
+                if (!this.hasBotOneBankrupted)
                 {
-                    if (botOneTurn)
+                    if (this.botOneTurn)
                     {
-                        CheckCurrentBid(botOneStatus, ref botOneCall, ref botOneRaise, 1);
-                        CheckCurrentBid(botOneStatus, ref botOneCall, ref botOneRaise, 2);
-                        CurrentRules.GameRules(2, 3, ref botOneType, ref botOnePower, hasBotOneBankrupted);
-                        MessageBox.Show("Bot 1's Turn");
-                        this.Bot.CheckBotsHand(2, 3, ref botOnehips, ref botOneTurn, ref hasBotOneBankrupted, botOneStatus, botOnePower, botOneType);
-                        turnCount++;
-                        last = 1;
-                        botOneTurn = false;
-                        botTwoTurn = true;
+                        this.CheckCurrentBid(this.botOneStatus, ref this.botOneCall, ref this.botOneRaise, 1);
+                        this.CheckCurrentBid(this.botOneStatus, ref this.botOneCall, ref this.botOneRaise, 2);
+                        this.CurrentRules.GameRules(2, 3, ref this.botOneType, ref this.botOnePower, this.hasBotOneBankrupted);
+                        MessageBox.Show(@"Bot 1's Turn");
+                        this.Bot.CheckBotsHand(2, 3, ref this.botOnehips, ref this.botOneTurn, ref this.hasBotOneBankrupted, this.botOneStatus, this.botOnePower, this.botOneType);
+                        this.turnCount++;
+                        this.last = 1;
+                        this.botOneTurn = false;
+                        this.botTwoTurn = true;
                     }
                 }
 
-                if (hasBotOneBankrupted && !botOneFolded)
+                if (this.hasBotOneBankrupted && !this.botOneFolded)
                 {
-                    bankruptPlayers.RemoveAt(1);
-                    bankruptPlayers.Insert(1, null);
-                    maxLeft--;
-                    botOneFolded = true;
+                    this.bankruptPlayers.RemoveAt(1);
+                    this.bankruptPlayers.Insert(1, null);
+                    this.maxLeft--;
+                    this.botOneFolded = true;
                 }
 
-                if (hasBotOneBankrupted || !botOneTurn)
+                if (this.hasBotOneBankrupted || !this.botOneTurn)
                 {
-                    await CheckRaise(1);
-                    botTwoTurn = true;
+                    await this.CheckRaise(1);
+                    this.botTwoTurn = true;
                 }
 
-                if (!hasBotTwoBankrupted)
+                if (!this.hasBotTwoBankrupted)
                 {
-                    if (botTwoTurn)
+                    if (this.botTwoTurn)
                     {
-                        CheckCurrentBid(botTwoStatus, ref botTwoCall, ref botTwoRaise, 1);
-                        CheckCurrentBid(botTwoStatus, ref botTwoCall, ref botTwoRaise, 2);
-                        CurrentRules.GameRules(4, 5, ref botTwoType, ref botTwoPower, hasBotTwoBankrupted);
+                        this.CheckCurrentBid(this.botTwoStatus, ref this.botTwoCall, ref this.botTwoRaise, 1);
+                        this.CheckCurrentBid(this.botTwoStatus, ref this.botTwoCall, ref this.botTwoRaise, 2);
+                        this.CurrentRules.GameRules(4, 5, ref this.botTwoType, ref this.botTwoPower, this.hasBotTwoBankrupted);
 
-                        MessageBox.Show("Bot 2's Turn");
-                        this.Bot.CheckBotsHand(4, 5, ref botTwoChips, ref botTwoTurn, ref hasBotTwoBankrupted, botTwoStatus, botTwoPower, botTwoType);
+                        MessageBox.Show(@"Bot 2's Turn");
+                        this.Bot.CheckBotsHand(4, 5, ref this.botTwoChips, ref this.botTwoTurn, ref this.hasBotTwoBankrupted, this.botTwoStatus, this.botTwoPower, this.botTwoType);
 
-                        turnCount++;
-                        last = 2;
-                        botTwoTurn = false;
-                        botThreeTurn = true;
+                        this.turnCount++;
+                        this.last = 2;
+                        this.botTwoTurn = false;
+                        this.botThreeTurn = true;
                     }
                 }
 
-                if (hasBotTwoBankrupted && !botTwoFolded)
+                if (this.hasBotTwoBankrupted && !this.botTwoFolded)
                 {
-                    bankruptPlayers.RemoveAt(2);
-                    bankruptPlayers.Insert(2, null);
+                    this.bankruptPlayers.RemoveAt(2);
+                    this.bankruptPlayers.Insert(2, null);
 
-                    maxLeft--;
-                    botTwoFolded = true;
+                    this.maxLeft--;
+                    this.botTwoFolded = true;
                 }
 
-                if (hasBotTwoBankrupted || !botTwoTurn)
+                if (this.hasBotTwoBankrupted || !this.botTwoTurn)
                 {
-                    await CheckRaise(2);
-                    botThreeTurn = true;
+                    await this.CheckRaise(2);
+                    this.botThreeTurn = true;
                 }
 
-                if (!hasBotThreeBankrupted)
+                if (!this.hasBotThreeBankrupted)
                 {
-                    if (botThreeTurn)
+                    if (this.botThreeTurn)
                     {
-                        CheckCurrentBid(botThreeStatus, ref botThreeCall, ref botThreeRaise, 1);
-                        CheckCurrentBid(botThreeStatus, ref botThreeCall, ref botThreeRaise, 2);
-                        CurrentRules.GameRules(6, 7, ref botThreeType, ref botThreePower, hasBotThreeBankrupted);
-                        MessageBox.Show("Bot 3's Turn");
-                        this.Bot.CheckBotsHand(6, 7, ref botThreeChips, ref botThreeTurn, ref hasBotThreeBankrupted, botThreeStatus, botThreePower, botThreeType);
+                        this.CheckCurrentBid(this.botThreeStatus, ref this.botThreeCall, ref this.botThreeRaise, 1);
+                        this.CheckCurrentBid(this.botThreeStatus, ref this.botThreeCall, ref this.botThreeRaise, 2);
+                        this.CurrentRules.GameRules(6, 7, ref this.botThreeType, ref this.botThreePower, this.hasBotThreeBankrupted);
+                        MessageBox.Show(@"Bot 3's Turn");
+                        this.Bot.CheckBotsHand(6, 7, ref this.botThreeChips, ref this.botThreeTurn, ref this.hasBotThreeBankrupted, this.botThreeStatus, this.botThreePower, this.botThreeType);
 
-                        turnCount++;
-                        last = 3;
-                        botThreeTurn = false;
-                        botFourTurn = true;
+                        this.turnCount++;
+                        this.last = 3;
+                        this.botThreeTurn = false;
+                        this.botFourTurn = true;
                     }
                 }
 
-                if (hasBotThreeBankrupted && !botThreeFolded)
+                if (this.hasBotThreeBankrupted && !this.botThreeFolded)
                 {
-                    bankruptPlayers.RemoveAt(3);
-                    bankruptPlayers.Insert(3, null);
-                    maxLeft--;
-                    botThreeFolded = true;
+                    this.bankruptPlayers.RemoveAt(3);
+                    this.bankruptPlayers.Insert(3, null);
+                    this.maxLeft--;
+                    this.botThreeFolded = true;
                 }
 
-                if (hasBotThreeBankrupted || !botThreeTurn)
+                if (this.hasBotThreeBankrupted || !this.botThreeTurn)
                 {
-                    await CheckRaise(3);
-                    botFourTurn = true;
+                    await this.CheckRaise(3);
+                    this.botFourTurn = true;
                 }
 
-                if (!hasBotFourBankrupted)
+                if (!this.hasBotFourBankrupted)
                 {
-                    if (botFourTurn)
+                    if (this.botFourTurn)
                     {
-                        CheckCurrentBid(botFourStatus, ref botFourCall, ref botFourRaise, 1);
-                        CheckCurrentBid(botFourStatus, ref botFourCall, ref botFourRaise, 2);
-                        CurrentRules.GameRules(8, 9, ref botFourType, ref botFourPower, hasBotFourBankrupted);
-                        MessageBox.Show("Bot 4's Turn");
-                        this.Bot.CheckBotsHand(8, 9, ref botFourChips, ref botFourTurn, ref hasBotFourBankrupted, botFourStatus, botFourPower, botFourType);
-                        turnCount++;
-                        last = 4;
-                        botFourTurn = false;
-                        botFiveTurn = true;
+                        this.CheckCurrentBid(this.botFourStatus, ref this.botFourCall, ref this.botFourRaise, 1);
+                        this.CheckCurrentBid(this.botFourStatus, ref this.botFourCall, ref this.botFourRaise, 2);
+                        this.CurrentRules.GameRules(8, 9, ref this.botFourType, ref this.botFourPower, this.hasBotFourBankrupted);
+                        MessageBox.Show(@"Bot 4's Turn");
+                        this.Bot.CheckBotsHand(8, 9, ref this.botFourChips, ref this.botFourTurn, ref this.hasBotFourBankrupted, this.botFourStatus, this.botFourPower, this.botFourType);
+                        this.turnCount++;
+                        this.last = 4;
+                        this.botFourTurn = false;
+                        this.botFiveTurn = true;
                     }
                 }
 
-                if (hasBotFourBankrupted && !botFourFolded)
+                if (this.hasBotFourBankrupted && !this.botFourFolded)
                 {
-                    bankruptPlayers.RemoveAt(4);
-                    bankruptPlayers.Insert(4, null);
-                    maxLeft--;
-                    botFourFolded = true;
+                    this.bankruptPlayers.RemoveAt(4);
+                    this.bankruptPlayers.Insert(4, null);
+                    this.maxLeft--;
+                    this.botFourFolded = true;
                 }
 
 
-                if (hasBotFourBankrupted || !botFourTurn)
+                if (this.hasBotFourBankrupted || !this.botFourTurn)
                 {
-                    await CheckRaise(4);
-                    botFiveTurn = true;
+                    await this.CheckRaise(4);
+                    this.botFiveTurn = true;
                 }
 
-                if (!hasBotFiveBankrupted)
+                if (!this.hasBotFiveBankrupted)
                 {
-                    if (botFiveTurn)
+                    if (this.botFiveTurn)
                     {
-                        CheckCurrentBid(botFiveStatus, ref botFiveCall, ref botFiveRaise, 1);
-                        CheckCurrentBid(botFiveStatus, ref botFiveCall, ref botFiveRaise, 2);
-                        CurrentRules.GameRules(10, 11, ref botFiveType, ref botFivePower, hasBotFiveBankrupted);
-                        MessageBox.Show("Bot 5's Turn");
-                        this.Bot.CheckBotsHand(10, 11, ref botFiveChips, ref botFiveTurn, ref hasBotFiveBankrupted, botFiveStatus, botFivePower, botFiveType);
-                        turnCount++;
-                        last = 5;
-                        botFiveTurn = false;
+                        this.CheckCurrentBid(this.botFiveStatus, ref this.botFiveCall, ref this.botFiveRaise, 1);
+                        this.CheckCurrentBid(this.botFiveStatus, ref this.botFiveCall, ref this.botFiveRaise, 2);
+                        this.CurrentRules.GameRules(10, 11, ref this.botFiveType, ref this.botFivePower, this.hasBotFiveBankrupted);
+                        MessageBox.Show(@"Bot 5's Turn");
+                        this.Bot.CheckBotsHand(10, 11, ref this.botFiveChips, ref this.botFiveTurn, ref this.hasBotFiveBankrupted, this.botFiveStatus, this.botFivePower, this.botFiveType);
+                        this.turnCount++;
+                        this.last = 5;
+                        this.botFiveTurn = false;
                     }
                 }
 
-                if (hasBotFiveBankrupted && !botFiveFolded)
+                if (this.hasBotFiveBankrupted && !this.botFiveFolded)
                 {
-                    bankruptPlayers.RemoveAt(5);
-                    bankruptPlayers.Insert(5, null);
-                    maxLeft--;
-                    botFiveFolded = true;
+                    this.bankruptPlayers.RemoveAt(5);
+                    this.bankruptPlayers.Insert(5, null);
+                    this.maxLeft--;
+                    this.botFiveFolded = true;
                 }
 
-                if (hasBotFiveBankrupted || !botFiveTurn)
+                if (this.hasBotFiveBankrupted || !this.botFiveTurn)
                 {
-                    await CheckRaise(5);
-                    playerTurn = true;
+                    await this.CheckRaise(5);
+                    this.playerTurn = true;
                 }
 
-                if (hasPlayerBankrupted && !hasPlayerFolded)
+                if (this.hasPlayerBankrupted && !this.hasPlayerFolded)
                 {
-                    if (playerCallButton.Text.Contains("All in") == false || playerRaiseButton.Text.Contains("All in") == false)
+                    if (this.playerCallButton.Text.Contains("All in") == false || this.playerRaiseButton.Text.Contains("All in") == false)
                     {
-                        bankruptPlayers.RemoveAt(0);
-                        bankruptPlayers.Insert(0, null);
-                        maxLeft--;
-                        hasPlayerFolded = true;
+                        this.bankruptPlayers.RemoveAt(0);
+                        this.bankruptPlayers.Insert(0, null);
+                        this.maxLeft--;
+                        this.hasPlayerFolded = true;
                     }
                 }
                 #endregion
                 // Check who is all in
-                await WhoIsAllIn();
+                await this.WhoIsAllIn();
 
-                if (!shouldRestart)
+                if (!this.shouldRestart)
                 {
-                    await Turns();
+                    await this.Turns();
                 }
 
-                shouldRestart = false;
+                this.shouldRestart = false;
             }
         }
 
         private void CurrentTurnPlayerAction()
         {
-            CheckCurrentBid(playerStatus, ref playerCall, ref playerRaise, 1);
+            this.CheckCurrentBid(this.playerStatus, ref this.playerCall, ref this.playerRaise, 1);
 
-            timerBar.Visible = true;
-            timerBar.Value = 1000;
-            t = 60;
+            this.timerBar.Visible = true;
+            this.timerBar.Value = 1000;
+            this.t = 60;
 
-            timer.Start();
-            RaiseButtonInitializer();
-            turnCount++;
-            CheckCurrentBid(playerStatus, ref playerCall, ref playerRaise, 2);
+            this.timer.Start();
+            this.RaiseButtonInitializer();
+            this.turnCount++;
+            this.CheckCurrentBid(this.playerStatus, ref this.playerCall, ref this.playerRaise, 2);
         }
 
         private void RaiseButtonInitializer()
         {
-            playerRaiseButton.Enabled = true;
-            playerCallButton.Enabled = true;
-            playerRaiseButton.Enabled = true;
-            playerRaiseButton.Enabled = true;
-            playerFoldButton.Enabled = true;
+            this.playerRaiseButton.Enabled = true;
+            this.playerCallButton.Enabled = true;
+            this.playerRaiseButton.Enabled = true;
+            this.playerRaiseButton.Enabled = true;
+            this.playerFoldButton.Enabled = true;
         }
 
         #region CheckRaise Methods
 
         async Task CheckRaise(int currentTurn)
         {
-            CheckRaiseDealer.CheckIfSomeoneRaised(currentTurn);
+            this.CheckRaiseDealer.CheckIfSomeoneRaised(currentTurn);
 
-            CheckRaiseDealer.CheckFlopTurnOrRiver();
+            this.CheckRaiseDealer.CheckFlopTurnOrRiver();
 
-            if (totalRounds == End && maxLeft == 6)
+            if (this.totalRounds == End && this.maxLeft == 6)
             {
                 string fixedLast = string.Empty;
 
-                fixedLast = CheckRaiseDealer.CheckPlayerBotsStatus(fixedLast);
+                fixedLast = this.CheckRaiseDealer.CheckPlayerBotsStatus(fixedLast);
 
-                Winner1.WinnerRules(playerType, playerPower, "Player", fixedLast);
-                Winner1.WinnerRules(botOneType, botOnePower, "Bot 1", fixedLast);
-                Winner1.WinnerRules(botTwoType, botTwoPower, "Bot 2", fixedLast);
-                Winner1.WinnerRules(botThreeType, botThreePower, "Bot 3", fixedLast);
-                Winner1.WinnerRules(botFourType, botFourPower, "Bot 4", fixedLast);
-                Winner1.WinnerRules(botFiveType, botFivePower, "Bot 5", fixedLast);
+                this.Winner1.WinnerRules(this.playerType, this.playerPower, "Player", fixedLast);
+                this.Winner1.WinnerRules(this.botOneType, this.botOnePower, "Bot 1", fixedLast);
+                this.Winner1.WinnerRules(this.botTwoType, this.botTwoPower, "Bot 2", fixedLast);
+                this.Winner1.WinnerRules(this.botThreeType, this.botThreePower, "Bot 3", fixedLast);
+                this.Winner1.WinnerRules(this.botFourType, this.botFourPower, "Bot 4", fixedLast);
+                this.Winner1.WinnerRules(this.botFiveType, this.botFivePower, "Bot 5", fixedLast);
 
-                shouldRestart = true;
-                playerTurn = true;
+                this.shouldRestart = true;
+                this.playerTurn = true;
 
-                hasPlayerBankrupted = false;
-                hasBotOneBankrupted = false;
-                hasBotTwoBankrupted = false;
-                hasBotThreeBankrupted = false;
-                hasBotFourBankrupted = false;
-                hasBotFiveBankrupted = false;
+                this.hasPlayerBankrupted = false;
+                this.hasBotOneBankrupted = false;
+                this.hasBotTwoBankrupted = false;
+                this.hasBotThreeBankrupted = false;
+                this.hasBotFourBankrupted = false;
+                this.hasBotFiveBankrupted = false;
 
-                CheckRaiseDealer.AddChipsIfLost();
+                this.CheckRaiseDealer.AddChipsIfLost();
 
-                playerPanel.Visible = false;
-                botOnePanel.Visible = false;
-                botTwoPanel.Visible = false;
-                botThreePanel.Visible = false;
-                botFourPanel.Visible = false;
-                botFivePanel.Visible = false;
+                this.playerPanel.Visible = false;
+                this.botOnePanel.Visible = false;
+                this.botTwoPanel.Visible = false;
+                this.botThreePanel.Visible = false;
+                this.botFourPanel.Visible = false;
+                this.botFivePanel.Visible = false;
 
-                playerCall = 0;
-                playerRaise = 0;
-                botOneCall = 0;
-                botOneRaise = 0;
-                botTwoCall = 0;
-                botTwoRaise = 0;
-                botThreeCall = 0;
-                botThreeRaise = 0;
-                botFourCall = 0;
-                botFourRaise = 0;
-                botFiveCall = 0;
-                botFiveRaise = 0;
+                this.playerCall = 0;
+                this.playerRaise = 0;
+                this.botOneCall = 0;
+                this.botOneRaise = 0;
+                this.botTwoCall = 0;
+                this.botTwoRaise = 0;
+                this.botThreeCall = 0;
+                this.botThreeRaise = 0;
+                this.botFourCall = 0;
+                this.botFourRaise = 0;
+                this.botFiveCall = 0;
+                this.botFiveRaise = 0;
 
-                last = 0;
-                callChipsValue = bigBlind;
-                Raise = 0;
-                ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
-                bankruptPlayers.Clear();
-                totalRounds = 0;
-                playerPower = 0;
-                playerType = -1;
-                type = 0;
+                this.last = 0;
+                this.callChipsValue = this.bigBlind;
+                this.Raise = 0;
+                this.ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
+                this.bankruptPlayers.Clear();
+                this.totalRounds = 0;
+                this.playerPower = 0;
+                this.playerType = -1;
+                this.type = 0;
 
-                botOnePower = 0;
-                botTwoPower = 0;
-                botThreePower = 0;
-                botFourPower = 0;
-                botFivePower = 0;
+                this.botOnePower = 0;
+                this.botTwoPower = 0;
+                this.botThreePower = 0;
+                this.botFourPower = 0;
+                this.botFivePower = 0;
 
-                botOneType = -1;
-                botTwoType = -1;
-                botThreeType = -1;
-                botFourType = -1;
-                botFiveType = -1;
+                this.botOneType = -1;
+                this.botTwoType = -1;
+                this.botThreeType = -1;
+                this.botFourType = -1;
+                this.botFiveType = -1;
 
-                totalAllInChips.Clear();
+                this.totalAllInChips.Clear();
 
-                CheckWinners.Clear();
+                this.CheckWinners.Clear();
 
-                winners = 0;
-                winningingHands.Clear();
-                sorted.Current = 0;
-                sorted.Power = 0;
+                this.winners = 0;
+                this.winningingHands.Clear();
+                this.sorted.Current = 0;
+                this.sorted.Power = 0;
 
                 for (int os = 0; os < 17; os++)
                 {
-                    cardsImages[os].Image = null;
-                    cardsImages[os].Invalidate();
-                    cardsImages[os].Visible = false;
+                    this.cardsImages[os].Image = null;
+                    this.cardsImages[os].Invalidate();
+                    this.cardsImages[os].Visible = false;
                 }
 
-                potTextBox.Text = "0";
-                playerStatus.Text = "";
+                this.potTextBox.Text = "0";
+                this.playerStatus.Text = "";
 
-                await Shuffle();
-                await Turns();
+                await this.Shuffle();
+                await this.Turns();
             }
         }
 
         #endregion
 
-        void CheckCurrentBid(Label status, ref int chipCall, ref int chipRaise, int options)
+        public void CheckCurrentBid(Label status, ref int chipCall, ref int chipRaise, int options)
         {
-            if (totalRounds != LastRound)
+            if (this.totalRounds != LastRound)
             {
                 if (options == 1)
                 {
@@ -1093,21 +1093,21 @@
                 if (options == 2)
                 {
                     //
-                    if (chipRaise != Raise && chipRaise <= Raise)
+                    if (chipRaise != this.Raise && chipRaise <= this.Raise)
                     {
-                        callChipsValue = Convert.ToInt32(Raise) - chipRaise;
+                        this.callChipsValue = Convert.ToInt32(this.Raise) - chipRaise;
                     }
 
-                    if (chipCall != callChipsValue || chipCall <= callChipsValue)
+                    if (chipCall != this.callChipsValue || chipCall <= this.callChipsValue)
                     {
-                        callChipsValue = callChipsValue - chipCall;
+                        this.callChipsValue = this.callChipsValue - chipCall;
                     }
 
-                    if (chipRaise == Raise && Raise > 0)
+                    if (chipRaise == this.Raise && this.Raise > 0)
                     {
-                        callChipsValue = 0;
-                        playerCallButton.Enabled = false;
-                        playerCallButton.Text = "Call";
+                        this.callChipsValue = 0;
+                        this.playerCallButton.Enabled = false;
+                        this.playerCallButton.Text = @"Call";
                     }
                 }
             }
@@ -1127,25 +1127,24 @@
             #region LastManStanding
             if (currentWinnerNumber == 1)
             {
-                CheckWhoWins();
+                this.CheckWhoWins();
 
-                for (int cardNumber = 0; cardNumber < TotalTableCards; cardNumber++)
+                for (int cardNumber = 0; cardNumber < this.TotalTableCards; cardNumber++)
                 {
-                    cardsImages[cardNumber].Visible = false;
+                    this.cardsImages[cardNumber].Visible = false;
                 }
 
-                await Finish(1);
+                await this.Finish(1);
             }
 
-            hasAddedChips = false;
+            this.hasAddedChips = false;
             #endregion
 
             #region FiveOrLessLeft
             if (currentWinnerNumber < 6 &&
-                currentWinnerNumber > 1 &&
-                totalRounds >= End)
+                currentWinnerNumber > 1 && this.totalRounds >= End)
             {
-                await Finish(2);
+                await this.Finish(2);
             }
             #endregion
         }
@@ -1154,126 +1153,126 @@
 
         private void CheckWhoWins()
         {
-            int index = bankruptPlayers.IndexOf(false);
+            int index = this.bankruptPlayers.IndexOf(false);
             if (index == 0)
             {
-                playerChips += int.Parse(potTextBox.Text);
-                playerChipsTextBox.Text = playerChips.ToString();
-                playerPanel.Visible = true;
-                MessageBox.Show("Player Wins");
+                this.playerChips += int.Parse(this.potTextBox.Text);
+                this.playerChipsTextBox.Text = this.playerChips.ToString();
+                this.playerPanel.Visible = true;
+                MessageBox.Show(@"Player Wins");
             }
 
             if (index == 1)
             {
-                botOnehips += int.Parse(potTextBox.Text);
-                botOneChipsTextBox.Text = botOnehips.ToString();
-                botOnePanel.Visible = true;
-                MessageBox.Show("Bot 1 Wins");
+                this.botOnehips += int.Parse(this.potTextBox.Text);
+                this.botOneChipsTextBox.Text = this.botOnehips.ToString();
+                this.botOnePanel.Visible = true;
+                MessageBox.Show(@"Bot 1 Wins");
             }
 
             if (index == 2)
             {
-                botTwoChips += int.Parse(potTextBox.Text);
-                botTwoChipsTextBox.Text = botTwoChips.ToString();
-                botTwoPanel.Visible = true;
+                this.botTwoChips += int.Parse(this.potTextBox.Text);
+                this.botTwoChipsTextBox.Text = this.botTwoChips.ToString();
+                this.botTwoPanel.Visible = true;
                 MessageBox.Show("Bot 2 Wins");
             }
 
             if (index == 3)
             {
-                botThreeChips += int.Parse(potTextBox.Text);
-                botThreeChipsTextBox.Text = botThreeChips.ToString();
-                botThreePanel.Visible = true;
-                MessageBox.Show("Bot 3 Wins");
+                this.botThreeChips += int.Parse(this.potTextBox.Text);
+                this.botThreeChipsTextBox.Text = this.botThreeChips.ToString();
+                this.botThreePanel.Visible = true;
+                MessageBox.Show(@"Bot 3 Wins");
             }
 
             if (index == 4)
             {
-                botFourChips += int.Parse(potTextBox.Text);
-                botFourChipsTextBox.Text = botFourChips.ToString();
-                botFourPanel.Visible = true;
-                MessageBox.Show("Bot 4 Wins");
+                this.botFourChips += int.Parse(this.potTextBox.Text);
+                this.botFourChipsTextBox.Text = this.botFourChips.ToString();
+                this.botFourPanel.Visible = true;
+                MessageBox.Show(@"Bot 4 Wins");
             }
 
             if (index == 5)
             {
-                botFiveChips += int.Parse(potTextBox.Text);
-                botFiveChipsTextBox.Text = botFiveChips.ToString();
-                botFivePanel.Visible = true;
-                MessageBox.Show("Bot 5 Wins");
+                this.botFiveChips += int.Parse(this.potTextBox.Text);
+                this.botFiveChipsTextBox.Text = this.botFiveChips.ToString();
+                this.botFivePanel.Visible = true;
+                MessageBox.Show(@"Bot 5 Wins");
             }
         }
 
         private async Task CheckAllIn()
         {
-            if (playerChips <= 0 && !hasAddedChips)
+            if (this.playerChips <= 0 && !this.hasAddedChips)
             {
-                totalAllInChips.Add(playerChips);
-                hasAddedChips = true;
+                this.totalAllInChips.Add(this.playerChips);
+                this.hasAddedChips = true;
             }
 
-            hasAddedChips = false;
+            this.hasAddedChips = false;
 
-            if (botOnehips <= 0 && !hasBotOneBankrupted)
+            if (this.botOnehips <= 0 && !this.hasBotOneBankrupted)
             {
-                if (!hasAddedChips)
+                if (!this.hasAddedChips)
                 {
-                    totalAllInChips.Add(botOnehips);
-                    hasAddedChips = true;
+                    this.totalAllInChips.Add(this.botOnehips);
+                    this.hasAddedChips = true;
                 }
 
-                hasAddedChips = false;
+                this.hasAddedChips = false;
             }
 
-            if (botTwoChips <= 0 && !hasBotTwoBankrupted)
+            if (this.botTwoChips <= 0 && !this.hasBotTwoBankrupted)
             {
-                if (!hasAddedChips)
+                if (!this.hasAddedChips)
                 {
-                    totalAllInChips.Add(botTwoChips);
-                    hasAddedChips = true;
+                    this.totalAllInChips.Add(this.botTwoChips);
+                    this.hasAddedChips = true;
                 }
 
-                hasAddedChips = false;
+                this.hasAddedChips = false;
             }
 
-            if (botThreeChips <= 0 && !hasBotThreeBankrupted)
+            if (this.botThreeChips <= 0 && !this.hasBotThreeBankrupted)
             {
-                if (!hasAddedChips)
+                if (!this.hasAddedChips)
                 {
-                    totalAllInChips.Add(botThreeChips);
-                    hasAddedChips = true;
+                    this.totalAllInChips.Add(this.botThreeChips);
+                    this.hasAddedChips = true;
                 }
 
-                hasAddedChips = false;
+                this.hasAddedChips = false;
             }
 
-            if (botFourChips <= 0 && !hasBotFourBankrupted)
+            if (this.botFourChips <= 0 && !this.hasBotFourBankrupted)
             {
-                if (!hasAddedChips)
+                if (!this.hasAddedChips)
                 {
-                    totalAllInChips.Add(botFourChips);
-                    hasAddedChips = true;
+                    this.totalAllInChips.Add(this.botFourChips);
+                    this.hasAddedChips = true;
                 }
 
-                hasAddedChips = false;
+                this.hasAddedChips = false;
             }
 
-            if (botFiveChips <= 0 && !hasBotFiveBankrupted)
+            if (this.botFiveChips <= 0 && !this.hasBotFiveBankrupted)
             {
-                if (!hasAddedChips)
+                if (!this.hasAddedChips)
                 {
-                    totalAllInChips.Add(botFiveChips);
-                    hasAddedChips = true;
+                    this.totalAllInChips.Add(this.botFiveChips);
+                    this.hasAddedChips = true;
                 }
             }
 
-            if (totalAllInChips.ToArray().Length == maxLeft)
+            if (this.totalAllInChips.ToArray().Length == maxLeft)
             {
-                await Finish(2);
+                await this.Finish(2);
             }
             else
             {
-                totalAllInChips.Clear();
+                this.totalAllInChips.Clear();
             }
         }
         #endregion
@@ -1284,133 +1283,133 @@
         {
             if (n == 2)
             {
-                winner.FixWinners();
+                this.winner.FixWinners();
             }
 
-            playerPanel.Visible = false;
-            botOnePanel.Visible = false;
-            botTwoPanel.Visible = false;
-            botThreePanel.Visible = false;
-            botFourPanel.Visible = false;
-            botFivePanel.Visible = false;
+            this.playerPanel.Visible = false;
+            this.botOnePanel.Visible = false;
+            this.botTwoPanel.Visible = false;
+            this.botThreePanel.Visible = false;
+            this.botFourPanel.Visible = false;
+            this.botFivePanel.Visible = false;
 
-            callChipsValue = bigBlind;
-            Raise = 0;
-            foldedPlayers = 5;
-            type = 0;
-            totalRounds = 0;
-            botOnePower = 0;
-            botTwoPower = 0;
-            botThreePower = 0;
-            botFourPower = 0;
-            botFivePower = 0;
-            playerPower = 0;
-            playerType = -1;
-            Raise = 0;
+            this.callChipsValue = this.bigBlind;
+            this.Raise = 0;
+            this.foldedPlayers = 5;
+            this.type = 0;
+            this.totalRounds = 0;
+            this.botOnePower = 0;
+            this.botTwoPower = 0;
+            this.botThreePower = 0;
+            this.botFourPower = 0;
+            this.botFivePower = 0;
+            this.playerPower = 0;
+            this.playerType = -1;
+            this.Raise = 0;
 
-            botOneType = -1;
-            botTwoType = -1;
-            botThreeType = -1;
-            botFourType = -1;
-            botFiveType = -1;
+            this.botOneType = -1;
+            this.botTwoType = -1;
+            this.botThreeType = -1;
+            this.botFourType = -1;
+            this.botFiveType = -1;
 
-            botOneTurn = false;
-            botTwoTurn = false;
-            botThreeTurn = false;
-            botFourTurn = false;
-            botFiveTurn = false;
+            this.botOneTurn = false;
+            this.botTwoTurn = false;
+            this.botThreeTurn = false;
+            this.botFourTurn = false;
+            this.botFiveTurn = false;
 
-            hasBotOneBankrupted = false;
-            hasBotTwoBankrupted = false;
-            hasBotThreeBankrupted = false;
-            hasBotFourBankrupted = false;
-            hasBotFiveBankrupted = false;
+            this.hasBotOneBankrupted = false;
+            this.hasBotTwoBankrupted = false;
+            this.hasBotThreeBankrupted = false;
+            this.hasBotFourBankrupted = false;
+            this.hasBotFiveBankrupted = false;
 
-            hasPlayerFolded = false;
-            botOneFolded = false;
-            botTwoFolded = false;
-            botThreeFolded = false;
-            botFourFolded = false;
-            botFiveFolded = false;
+            this.hasPlayerFolded = false;
+            this.botOneFolded = false;
+            this.botTwoFolded = false;
+            this.botThreeFolded = false;
+            this.botFourFolded = false;
+            this.botFiveFolded = false;
 
-            hasPlayerBankrupted = false;
-            playerTurn = true;
-            shouldRestart = false;
-            isRaising = false;
+            this.hasPlayerBankrupted = false;
+            this.playerTurn = true;
+            this.shouldRestart = false;
+            this.isRaising = false;
 
-            playerCall = 0;
-            botOneCall = 0;
-            botTwoCall = 0;
-            botThreeCall = 0;
-            botFourCall = 0;
-            botFiveCall = 0;
+            this.playerCall = 0;
+            this.botOneCall = 0;
+            this.botTwoCall = 0;
+            this.botThreeCall = 0;
+            this.botFourCall = 0;
+            this.botFiveCall = 0;
 
-            playerRaise = 0;
-            botOneRaise = 0;
-            botTwoRaise = 0;
-            botThreeRaise = 0;
-            botFourRaise = 0;
-            botFiveRaise = 0;
+            this.playerRaise = 0;
+            this.botOneRaise = 0;
+            this.botTwoRaise = 0;
+            this.botThreeRaise = 0;
+            this.botFourRaise = 0;
+            this.botFiveRaise = 0;
 
-            height = 0;
-            width = 0;
-            winners = 0;
+            this.height = 0;
+            this.width = 0;
+            this.winners = 0;
 
-            maxLeft = 6;
-            last = 123;
-            raisedTurn = 1;
+            this.maxLeft = 6;
+            this.last = 0;
+            this.raisedTurn = 1;
 
-            bankruptPlayers.Clear();
-            CheckWinners.Clear();
-            totalAllInChips.Clear();
-            winningingHands.Clear();
+            this.bankruptPlayers.Clear();
+            this.CheckWinners.Clear();
+            this.totalAllInChips.Clear();
+            this.winningingHands.Clear();
 
-            sorted.Current = 0;
-            sorted.Power = 0;
-            potTextBox.Text = "0";
-            t = 60;
-            turnCount = 0;
+            this.sorted.Current = 0;
+            this.sorted.Power = 0;
+            this.potTextBox.Text = "0";
+            this.t = 60;
+            this.turnCount = 0;
 
-            playerStatus.Text = "";
-            botOneStatus.Text = "";
-            botTwoStatus.Text = "";
-            botThreeStatus.Text = "";
-            botFourStatus.Text = "";
-            botFiveStatus.Text = "";
+            this.playerStatus.Text = "";
+            this.botOneStatus.Text = "";
+            this.botTwoStatus.Text = "";
+            this.botThreeStatus.Text = "";
+            this.botFourStatus.Text = "";
+            this.botFiveStatus.Text = "";
 
-            if (playerChips <= 0)
+            if (this.playerChips <= 0)
             {
                 AddChipsWhenLost addChipsWhenLost = new AddChipsWhenLost();
                 addChipsWhenLost.ShowDialog();
 
                 if (addChipsWhenLost.AddChipsValue != 0)
                 {
-                    playerChips = addChipsWhenLost.AddChipsValue;
-                    botOnehips += addChipsWhenLost.AddChipsValue;
-                    botTwoChips += addChipsWhenLost.AddChipsValue;
-                    botThreeChips += addChipsWhenLost.AddChipsValue;
-                    botFourChips += addChipsWhenLost.AddChipsValue;
-                    botFiveChips += addChipsWhenLost.AddChipsValue;
+                    this.playerChips = addChipsWhenLost.AddChipsValue;
+                    this.botOnehips += addChipsWhenLost.AddChipsValue;
+                    this.botTwoChips += addChipsWhenLost.AddChipsValue;
+                    this.botThreeChips += addChipsWhenLost.AddChipsValue;
+                    this.botFourChips += addChipsWhenLost.AddChipsValue;
+                    this.botFiveChips += addChipsWhenLost.AddChipsValue;
 
-                    hasPlayerBankrupted = false;
-                    playerTurn = true;
-                    playerRaiseButton.Enabled = true;
-                    playerFoldButton.Enabled = true;
-                    playerCheckButton.Enabled = true;
-                    playerRaiseButton.Text = "Raise";
+                    this.hasPlayerBankrupted = false;
+                    this.playerTurn = true;
+                    this.playerRaiseButton.Enabled = true;
+                    this.playerFoldButton.Enabled = true;
+                    this.playerCheckButton.Enabled = true;
+                    this.playerRaiseButton.Text = @"Raise";
                 }
             }
 
-            ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
+            this.ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
 
             for (int cardNumber = 0; cardNumber < 17; cardNumber++)
             {
-                cardsImages[cardNumber].Image = null;
-                cardsImages[cardNumber].Invalidate();
-                cardsImages[cardNumber].Visible = false;
+                this.cardsImages[cardNumber].Image = null;
+                this.cardsImages[cardNumber].Invalidate();
+                this.cardsImages[cardNumber].Visible = false;
             }
 
-            await Shuffle();
+            await this.Shuffle();
         }
         #endregion
 
