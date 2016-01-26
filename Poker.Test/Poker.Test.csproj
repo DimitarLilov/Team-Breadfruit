@@ -52,7 +52,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CardsCollectionTest.cs" />
-    <Compile Include="BotTests\CheckBotsHandTests.cs" />
+    <Compile Include="CheckBotsHandTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,7 +61,9 @@
       <Name>Poker</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BotTests\" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
