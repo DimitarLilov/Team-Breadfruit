@@ -162,7 +162,6 @@
 
             width = this.Width;
             height = this.Height;
-
             Shuffle();
 
             EnableAllTextBoxes();
@@ -311,7 +310,6 @@
                 playerRaiseButton.Enabled = true;
                 playerRaiseButton.Enabled = true;
                 playerFoldButton.Enabled = true;
-
             }
         }
 
@@ -1419,6 +1417,7 @@
             {
                 t--;
                 timerBar.Value = (t / 6) * 100;
+                timerBar.Invalidate();
             }
         }
 

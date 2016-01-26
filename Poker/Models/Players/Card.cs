@@ -9,51 +9,20 @@
 
     class Card : ICard
     {
-        public Image Front
+        public Card(Image front, PictureBox pictureBox, int power, Suit suit)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            this.Front = front;
+            this.PictureBox = pictureBox;
+            this.Power = power;
+            this.Suit = suit;
         }
 
-        public PictureBox PictureBox
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
+        public Image Front { get; set; }
 
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public PictureBox PictureBox { get; set; }
 
-        public int Power
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
+        public int Power { get; set; }
 
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public Suit Suit
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public Suit Suit { get; set; }
     }
 }

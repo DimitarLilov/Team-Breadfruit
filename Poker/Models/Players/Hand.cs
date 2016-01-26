@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Poker.Models.Players
 {
-    class Deck
+    class Hand : CardsCollection
     {
+
     }
 }
