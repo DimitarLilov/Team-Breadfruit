@@ -7,42 +7,42 @@
     using Poker.Interfaces;
     public abstract class Player : IPlayer
     {
-        public bool HasCalled { get; }
+        public bool HasCalled { get; set; }
 
         public void Call()
         {
             throw new NotImplementedException();
         }
 
-        public bool HasChecked { get; }
+        public bool HasChecked { get; set; }
 
         public void Check()
         {
             throw new NotImplementedException();
         }
 
-        public bool HasFolded { get; }
+        public bool HasFolded { get; set; }
 
         public void Fold()
         {
             throw new NotImplementedException();
         }
 
-        public bool HasRaised { get; }
+        public bool HasRaised { get; set; }
 
         public void Raise()
         {
             throw new NotImplementedException();
         }
 
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public IEnumerable<ICard> Cards { get; }
+        public IEnumerable<ICard> Cards { get; set; }
 
-        public IPosition cardsPosition { get; }
+        public IPosition cardsPosition { get; set; }
 
-        public int Chips { get; }
+        public int Chips { get; set; }
 
-        public Label playerStatus { get; }
+        public Label playerStatus { get; set; }
     }
 }

@@ -21,3 +21,13 @@ C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties
 C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
 C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\bin\Debug\Poker.exe
 C:\Users\Mici\Documents\GitHub\Team-Breadfruit-\Poker\bin\Debug\Poker.pdb
+C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\bin\Debug\Poker.exe.config
+C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.exe
+C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.pdb
+C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.AddChipsWhenLost.resources
+C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.GameManager.resources
+C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
+C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\bin\Debug\Poker.exe
+C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\bin\Debug\Poker.pdb

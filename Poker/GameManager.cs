@@ -285,14 +285,22 @@
         }
 
         #region Shuffle methods
+
+        /// <summary>
+        /// This method rearranges the cards' positions in random orders.
+        /// </summary>
+        /// <param name="random">Add a random generator variable.</param>
         public void ShuffleCards(Random random)
         {
-            for (int i = ImgLocation.Length; i > 0; i--)
+            int cardsCount = ImgLocation.Length;
+            for (int rearrangesCount = cardsCount; rearrangesCount > 0; rearrangesCount--)
             {
-                int nextRandomNumber = random.Next(i);
-                var k = ImgLocation[nextRandomNumber];
-                ImgLocation[nextRandomNumber] = ImgLocation[i - 1];
-                ImgLocation[i - 1] = k;
+                int nextRandomNumber = random.Next(rearrangesCount);
+                var saveRandomCardNumber = ImgLocation[nextRandomNumber];
+
+                //Both cards switch places.
+                ImgLocation[nextRandomNumber] = ImgLocation[rearrangesCount - 1];
+                ImgLocation[rearrangesCount - 1] = saveRandomCardNumber;
             }
         }
 
@@ -334,12 +342,8 @@
 
             for (dealtCards = 0; dealtCards < TotalTableCards; dealtCards++)
             {
-                Deck[dealtCards] = Image.FromFile(ImgLocation[dealtCards]);
-                var charsToRemove = new string[] { "Assets\\Cards\\", ".png" };
-                foreach (var c in charsToRemove)
-                {
-                    ImgLocation[dealtCards] = ImgLocation[dealtCards].Replace(c, string.Empty);
-                }
+               
+                GetCardNumber();
 
                 cardsAsNumbers[dealtCards] = int.Parse(ImgLocation[dealtCards]) - 1;
                 cardsImages[dealtCards] = new PictureBox();
@@ -707,6 +711,17 @@
                 }
             }
         }
+
+        private void GetCardNumber()
+        {
+            Deck[dealtCards] = Image.FromFile(ImgLocation[dealtCards]);
+            var charsToRemove = new string[] {"Assets\\Cards\\", ".png"};
+            foreach (var c in charsToRemove)
+            {
+                ImgLocation[dealtCards] = ImgLocation[dealtCards].Replace(c, string.Empty);
+            }
+        }
+
         #endregion
 
         #endregion
