@@ -17,7 +17,7 @@ namespace Poker.Models.Players
         {
             FullDeckOfCards = new CardsCollection()
                 {
-                    //TODO initiliazie full deck of 52 cards
+                    //TODO initiliazie full deck of cards 52 of them
                 };
         }
 
