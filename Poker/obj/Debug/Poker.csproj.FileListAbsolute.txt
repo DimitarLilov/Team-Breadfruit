@@ -8,3 +8,6 @@ C:\Users\abi\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.Properties.
 C:\Users\abi\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
 C:\Users\abi\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.exe
 C:\Users\abi\Documents\GitHub\Team-Breadfruit-\Poker\obj\Debug\Poker.pdb
+C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\bin\Debug\Poker.exe.config
+C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.exe
+C:\Users\Joro\Documents\C#\Fundamentals\High-Quality Code\Team Project\Team-Breadfruit-\Poker\obj\Debug\Poker.pdb
