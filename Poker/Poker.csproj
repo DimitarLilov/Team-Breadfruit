@@ -68,12 +68,12 @@
     <Compile Include="Interfaces\IWinner.cs" />
     <Compile Include="Interfaces\IWinnerRules.cs" />
     <Compile Include="Models\CardFactory.cs" />
-    <Compile Include="Models\DealerManager.cs" />
+    <Compile Include="Models\Dealer\DealerManager.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\HandEvaluator.cs" />
     <Compile Include="Models\HandValue.cs" />
     <Compile Include="Models\Players\Bot\Bot.cs" />
-    <Compile Include="Models\Dealer.cs" />
+    <Compile Include="Models\Dealer\Dealer.cs" />
     <Compile Include="GameManager.cs">
       <SubType>Form</SubType>
     </Compile>

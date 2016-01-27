@@ -296,12 +296,12 @@ namespace Poker.Models.Rules
                 this.currentForm.type = power;
                 for (int j = 0; j <= 12; j++)
                 {
-                    var fh = straight.Where(o => o / 4 == j).ToArray();
-                    if (fh.Length == 3 || done)
+                    var fullHouse = straight.Where(o => o / 4 == j).ToArray();
+                    if (fullHouse.Length == 3 || done)
                     {
-                        if (fh.Length == 2)
+                        if (fullHouse.Length == 2)
                         {
-                            if (fh.Max() / 4 == 0)
+                            if (fullHouse.Max() / 4 == 0)
                             {
                                 current = 6;
                                 power = 13 * 2 + current * 100;
@@ -309,10 +309,10 @@ namespace Poker.Models.Rules
                                 break;
                             }
 
-                            if (fh.Max() / 4 > 0)
+                            if (fullHouse.Max() / 4 > 0)
                             {
                                 current = 6;
-                                power = fh.Max() / 4 * 2 + current * 100;
+                                power = fullHouse.Max() / 4 * 2 + current * 100;
                                 this.SortedWinningHands(current, power);
                                 break;
                             }
@@ -320,7 +320,7 @@ namespace Poker.Models.Rules
 
                         if (!done)
                         {
-                            if (fh.Max() / 4 == 0)
+                            if (fullHouse.Max() / 4 == 0)
                             {
                                 power = 13;
                                 done = true;
@@ -328,7 +328,7 @@ namespace Poker.Models.Rules
                             }
                             else
                             {
-                                power = fh.Max() / 4;
+                                power = fullHouse.Max() / 4;
                                 done = true;
                                 j = -1;
                             }
@@ -899,12 +899,12 @@ namespace Poker.Models.Rules
             {
                 for (int j = 0; j <= 12; j++)
                 {
-                    var fh = straight.Where(o => o / 4 == j)
+                    var threeOfAkind = straight.Where(o => o / 4 == j)
                         .ToArray();
 
-                    if (fh.Length == 3)
+                    if (threeOfAkind.Length == 3)
                     {
-                        if (fh.Max() / 4 == 0)
+                        if (threeOfAkind.Max() / 4 == 0)
                         {
                             current = 3;
                             power = 13 * 3 + current * 100;
@@ -913,7 +913,7 @@ namespace Poker.Models.Rules
                         else
                         {
                             current = 3;
-                            power = fh[0] / 4 + fh[1] / 4 + fh[2] / 4 + current * 100;
+                            power = threeOfAkind[0] / 4 + threeOfAkind[1] / 4 + threeOfAkind[2] / 4 + current * 100;
                             this.SortedWinningHands(current, power);
                         }
                     }

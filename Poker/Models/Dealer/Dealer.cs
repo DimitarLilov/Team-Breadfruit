@@ -1,30 +1,53 @@
 namespace Poker.Models
 {
-    using Poker.Interfaces;
+    using Poker;
+    using Interfaces;
+
     public class Dealer : IDealer
     {
         private readonly GameManager currentForm;
+        public bool hasExecutedFlop;
+        private bool hasExecutedTurn;
+        private bool hasExecutedRiver;
 
         public Dealer(GameManager currentForm)
         {
             this.currentForm = currentForm;
         }
 
+        public bool HasExecutedFlop
+        {
+            get { return hasExecutedFlop; }
+            private set { hasExecutedFlop = value; }
+        }
+
+        public bool HasExecutedTurn
+        {
+            get { return hasExecutedTurn; }
+            private set { hasExecutedTurn = value; }
+        }
+
+        public bool HasExecutedRiver
+        {
+            get { return hasExecutedRiver; }
+            private set { hasExecutedRiver = value; }
+        }
+
         public void AddChipsIfLost()
         {
             if (this.currentForm.playerChips <= 0)
             {
-                AddChipsWhenLost f2 = new AddChipsWhenLost();
-                f2.ShowDialog();
+                AddChipsWhenLost AchipsWhenLost = new AddChipsWhenLost();
+                AchipsWhenLost.ShowDialog();
 
-                if (f2.AddChipsValue != 0)
+                if (AchipsWhenLost.AddChipsValue != 0)
                 {
-                    this.currentForm.playerChips = f2.AddChipsValue;
-                    this.currentForm.botOneChips += f2.AddChipsValue;
-                    this.currentForm.botTwoChips += f2.AddChipsValue;
-                    this.currentForm.botThreeChips += f2.AddChipsValue;
-                    this.currentForm.botFourChips += f2.AddChipsValue;
-                    this.currentForm.botFiveChips += f2.AddChipsValue;
+                    this.currentForm.playerChips = AchipsWhenLost.AddChipsValue;
+                    this.currentForm.botOneChips += AchipsWhenLost.AddChipsValue;
+                    this.currentForm.botTwoChips += AchipsWhenLost.AddChipsValue;
+                    this.currentForm.botThreeChips += AchipsWhenLost.AddChipsValue;
+                    this.currentForm.botFourChips += AchipsWhenLost.AddChipsValue;
+                    this.currentForm.botFiveChips += AchipsWhenLost.AddChipsValue;
                     this.currentForm.hasPlayerBankrupted = false;
                     this.currentForm.playerTurn = true;
                     this.currentForm.playerRaiseButton.Enabled = true;
@@ -84,6 +107,8 @@ namespace Poker.Models
                 {
                     this.ResetPlayerBotsValues(j);
                 }
+
+                this.HasExecutedFlop = true;
             }
 
             if (this.currentForm.totalRounds == GameManager.Turn)
@@ -92,6 +117,8 @@ namespace Poker.Models
                 {
                     this.ResetPlayerBotsValues(j);
                 }
+
+                this.HasExecutedTurn = true;
             }
 
             if (this.currentForm.totalRounds == GameManager.River)
@@ -100,6 +127,8 @@ namespace Poker.Models
                 {
                     this.ResetPlayerBotsValues(j);
                 }
+
+                this.hasExecutedRiver = true;
             }
         }
 
@@ -153,7 +182,7 @@ namespace Poker.Models
                 this.currentForm.botFiveRaise = 0;
             }
         }
-        
+
         private void CheckIfBankrupted()
         {
             if (!this.currentForm.hasPlayerBankrupted)
