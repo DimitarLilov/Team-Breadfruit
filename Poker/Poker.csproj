@@ -51,7 +51,11 @@
       <DependentUpon>AddChipsWhenLost.cs</DependentUpon>
     </Compile>
     <Compile Include="Enum\CardType.cs" />
+    <Compile Include="Enum\HandStrength.cs" />
     <Compile Include="Enum\Suit.cs" />
+    <Compile Include="Enum\TablePosition.cs" />
+    <Compile Include="Extentions\QueueExtentions.cs" />
+    <Compile Include="Extentions\RandomProvider.cs" />
     <Compile Include="Interfaces\IAddChipsIfLost.cs" />
     <Compile Include="Interfaces\ICheckFlopTurnOrRiver.cs" />
     <Compile Include="Interfaces\ICheckIfSomeoneRaised.cs" />
@@ -61,6 +65,9 @@
     <Compile Include="Interfaces\IWinner.cs" />
     <Compile Include="Interfaces\IWinnerRules.cs" />
     <Compile Include="Models\CardFactory.cs" />
+    <Compile Include="Models\DealerManager.cs" />
+    <Compile Include="Models\HandEvaluator.cs" />
+    <Compile Include="Models\HandValue.cs" />
     <Compile Include="Models\Players\Bot\Bot.cs" />
     <Compile Include="Models\Dealer.cs" />
     <Compile Include="GameManager.cs">
@@ -85,6 +92,7 @@
     <Compile Include="Models\Players\Hand.cs" />
     <Compile Include="Models\Players\Human.cs" />
     <Compile Include="Models\Players\Player.cs" />
+    <Compile Include="Models\Players\SimpleCard.cs" />
     <Compile Include="PlayGame.cs" />
     <Compile Include="ProgressBars.cs">
       <SubType>Component</SubType>

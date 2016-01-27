@@ -11,6 +11,7 @@
     using Poker.Models;
     using Poker.Models.Players.Bot;
     using Poker.Models.Rules;
+    using Interfaces;
 
     public partial class GameManager : Form
     {
@@ -122,6 +123,8 @@
         public List<int> totalAllInChips = new List<int>();
         
         public Poker.Type sorted;
+
+        public IList<IPlayer> players;
 
         public string[] ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
 

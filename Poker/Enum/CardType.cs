@@ -1,19 +1,19 @@
 ﻿namespace Poker.Enum
 {
-    enum CardType
+    public enum CardType
     {
-        Ace,
-        King,
-        Queen,
-        Jack,
-        Ten,
-        Nine,
-        Eight,
-        Seven,
-        Six,
-        Five,
-        Four,
+        Two = 2,
         Three,
-        Two
+        Four,
+        Five,
+        Six,
+        Seven,
+        Eight,
+        Nine,
+        Ten,
+        Jack,
+        Queen,
+        King,
+        Ace
     }
 }
