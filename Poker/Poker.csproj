@@ -50,8 +50,10 @@
     <Compile Include="AddChipsWhenLost.Designer.cs">
       <DependentUpon>AddChipsWhenLost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Enum\BidType.cs" />
     <Compile Include="Enum\CardType.cs" />
     <Compile Include="Enum\HandStrength.cs" />
+    <Compile Include="Enum\PlayerState.cs" />
     <Compile Include="Enum\Suit.cs" />
     <Compile Include="Enum\TablePosition.cs" />
     <Compile Include="Extentions\QueueExtentions.cs" />
@@ -62,10 +64,12 @@
     <Compile Include="Interfaces\ICheckPlayerBotsStatus.cs" />
     <Compile Include="Interfaces\IDealer.cs" />
     <Compile Include="Interfaces\IFixWinners.cs" />
+    <Compile Include="Interfaces\IPlayerOOP.cs" />
     <Compile Include="Interfaces\IWinner.cs" />
     <Compile Include="Interfaces\IWinnerRules.cs" />
     <Compile Include="Models\CardFactory.cs" />
     <Compile Include="Models\DealerManager.cs" />
+    <Compile Include="Models\Game.cs" />
     <Compile Include="Models\HandEvaluator.cs" />
     <Compile Include="Models\HandValue.cs" />
     <Compile Include="Models\Players\Bot\Bot.cs" />

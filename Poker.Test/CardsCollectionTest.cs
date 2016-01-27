@@ -44,6 +44,7 @@
             }
             SimpleCard firstCard = new SimpleCard(CardType.Two, Suit.Clubs);
             bool areSame = checkCard.Equals(firstCard);
+
             Assert.IsTrue(areSame);
         }
     }
