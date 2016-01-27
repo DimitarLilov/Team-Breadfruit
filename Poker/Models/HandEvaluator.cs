@@ -17,7 +17,7 @@ namespace Poker.Models
         private Hand cards;
         private HandValue handValue;
 
-        public HandEvaluator(Hand sortedHand)
+        public HandEvaluator(IList<SimpleCard> sortedHand)
         {
             heartsSum = 0;
             diamondSum = 0;
@@ -28,9 +28,19 @@ namespace Poker.Models
             handValue = new HandValue();
         }
 
-        public HandValue HandValue { get; set; }
+        public HandValue HandValue
+        {
+            get
+            {
+                return this.handValue;
+            }
+            private set
+            {
+                this.handValue = value;
+            }
+        }
 
-        public Hand Cards
+        public IList<SimpleCard> Cards
         {
             get
             {
@@ -38,11 +48,11 @@ namespace Poker.Models
             }
             set
             {
-                cards[0] = value[0];
-                cards[1] = value[1];
-                cards[2] = value[2];
-                cards[3] = value[3];
-                cards[4] = value[4];
+                cards.Add(value[0]);
+                cards.Add(value[1]);
+                cards.Add(value[2]);
+                cards.Add(value[3]);
+                cards.Add(value[4]);
             }
         }
 
@@ -80,7 +90,7 @@ namespace Poker.Models
             }
 
             //if the hand is nothing, than the player with highest card wins
-            handValue.HighCard = (int)cards[4].Type;
+            this.handValue.HighCard = (int)cards[4].Type;
             return HandStrength.Nothing;
         }
 

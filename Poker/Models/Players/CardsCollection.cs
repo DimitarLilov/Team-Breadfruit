@@ -161,7 +161,7 @@
             return this.GetEnumerator();
         }
 
-        public IEnumerable<SimpleCard> Sort()
+        public IList<SimpleCard> Sort()
         {
             var sortedCards = cards.OrderBy(card => card.Type).ThenBy(card => card.Suit).ToList();
             return sortedCards;

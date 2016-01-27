@@ -5,6 +5,7 @@
     using Poker.Enum;
     using System.Collections.Generic;
     using Extentions;
+    using System.Linq;
 
     [TestClass]
     public class CardsCollectionTest
@@ -35,7 +36,7 @@
                 deck.Add(card);
             }
             System.Console.WriteLine();
-            var sortedDeck = deck.Sort();
+            var sortedDeck = deck.OrderBy(x => x);
             SimpleCard checkCard = null;
             foreach (var item in sortedDeck)
             {

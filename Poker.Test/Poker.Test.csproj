@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="CardsCollectionTest.cs" />
     <Compile Include="CheckBotsHandTests.cs" />
+    <Compile Include="HandEvaluatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RulesTests.cs" />
   </ItemGroup>
