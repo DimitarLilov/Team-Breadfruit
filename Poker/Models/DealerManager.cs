@@ -7,13 +7,13 @@
 
     public class DealerManager
     {
-        private readonly GameManager game;
+        private readonly Game game;
 
         private readonly Queue<SimpleCard> cardDeck;
 
         private readonly Hand[] playerCards;
 
-        public DealerManager(GameManager game)
+        public DealerManager(Game game)
         {
             this.game = game;
             this.cardDeck = new Queue<SimpleCard>(CardsCollection.FullDeckOfCards);
