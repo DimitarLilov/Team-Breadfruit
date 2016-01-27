@@ -40,37 +40,37 @@ namespace Poker.Models
             if (!this.currentForm.playerStatus.Text.Contains(Winner.FoldString))
             {
                 fixedLast = "Player";
-                this.currentForm.CurrentRules.GameRules(0, 1, ref this.currentForm.playerType, ref this.currentForm.playerPower, this.currentForm.hasPlayerBankrupted);
+                this.currentForm.CurrentRules.GameRulesCreator(0, 1, ref this.currentForm.playerType, ref this.currentForm.playerPower, this.currentForm.hasPlayerBankrupted);
             }
 
             if (!this.currentForm.botOneStatus.Text.Contains(Winner.FoldString))
             {
                 fixedLast = "Winner 1";
-                this.currentForm.CurrentRules.GameRules(2, 3, ref this.currentForm.botOneType, ref this.currentForm.botOnePower, this.currentForm.hasBotOneBankrupted);
+                this.currentForm.CurrentRules.GameRulesCreator(2, 3, ref this.currentForm.botOneType, ref this.currentForm.botOnePower, this.currentForm.hasBotOneBankrupted);
             }
 
             if (!this.currentForm.botTwoStatus.Text.Contains(Winner.FoldString))
             {
                 fixedLast = "Winner 2";
-                this.currentForm.CurrentRules.GameRules(4, 5, ref this.currentForm.botTwoType, ref this.currentForm.botTwoPower, this.currentForm.hasBotTwoBankrupted);
+                this.currentForm.CurrentRules.GameRulesCreator(4, 5, ref this.currentForm.botTwoType, ref this.currentForm.botTwoPower, this.currentForm.hasBotTwoBankrupted);
             }
 
             if (!this.currentForm.botThreeStatus.Text.Contains(Winner.FoldString))
             {
                 fixedLast = "Winner 3";
-                this.currentForm.CurrentRules.GameRules(6, 7, ref this.currentForm.botThreeType, ref this.currentForm.botThreePower, this.currentForm.hasBotThreeBankrupted);
+                this.currentForm.CurrentRules.GameRulesCreator(6, 7, ref this.currentForm.botThreeType, ref this.currentForm.botThreePower, this.currentForm.hasBotThreeBankrupted);
             }
 
             if (!this.currentForm.botFourStatus.Text.Contains(Winner.FoldString))
             {
                 fixedLast = "Winner 4";
-                this.currentForm.CurrentRules.GameRules(8, 9, ref this.currentForm.botFourType, ref this.currentForm.botFourPower, this.currentForm.hasBotFourBankrupted);
+                this.currentForm.CurrentRules.GameRulesCreator(8, 9, ref this.currentForm.botFourType, ref this.currentForm.botFourPower, this.currentForm.hasBotFourBankrupted);
             }
 
             if (!this.currentForm.botFiveStatus.Text.Contains(Winner.FoldString))
             {
                 fixedLast = "Winner 5";
-                this.currentForm.CurrentRules.GameRules(10, 11, ref this.currentForm.botFiveType, ref this.currentForm.botFivePower, this.currentForm.hasBotFiveBankrupted);
+                this.currentForm.CurrentRules.GameRulesCreator(10, 11, ref this.currentForm.botFiveType, ref this.currentForm.botFivePower, this.currentForm.hasBotFiveBankrupted);
             }
 
             return fixedLast;

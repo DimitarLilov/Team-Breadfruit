@@ -781,7 +781,7 @@
                     {
                         this.CheckCurrentBid(this.botOneStatus, ref this.botOneCall, ref this.botOneRaise, 1);
                         this.CheckCurrentBid(this.botOneStatus, ref this.botOneCall, ref this.botOneRaise, 2);
-                        this.CurrentRules.GameRules(2, 3, ref this.botOneType, ref this.botOnePower, this.hasBotOneBankrupted);
+                        this.CurrentRules.GameRulesCreator(2, 3, ref this.botOneType, ref this.botOnePower, this.hasBotOneBankrupted);
                         MessageBox.Show(@"Bot 1's Turn");
                         this.Bot.CheckBotsHand(2, 3, ref this.botOneChips, ref this.botOneTurn, ref this.hasBotOneBankrupted, this.botOneStatus, this.botOnePower, this.botOneType);
                         this.turnCount++;
@@ -811,7 +811,7 @@
                     {
                         this.CheckCurrentBid(this.botTwoStatus, ref this.botTwoCall, ref this.botTwoRaise, 1);
                         this.CheckCurrentBid(this.botTwoStatus, ref this.botTwoCall, ref this.botTwoRaise, 2);
-                        this.CurrentRules.GameRules(4, 5, ref this.botTwoType, ref this.botTwoPower, this.hasBotTwoBankrupted);
+                        this.CurrentRules.GameRulesCreator(4, 5, ref this.botTwoType, ref this.botTwoPower, this.hasBotTwoBankrupted);
 
                         MessageBox.Show(@"Bot 2's Turn");
                         this.Bot.CheckBotsHand(4, 5, ref this.botTwoChips, ref this.botTwoTurn, ref this.hasBotTwoBankrupted, this.botTwoStatus, this.botTwoPower, this.botTwoType);
@@ -844,7 +844,7 @@
                     {
                         this.CheckCurrentBid(this.botThreeStatus, ref this.botThreeCall, ref this.botThreeRaise, 1);
                         this.CheckCurrentBid(this.botThreeStatus, ref this.botThreeCall, ref this.botThreeRaise, 2);
-                        this.CurrentRules.GameRules(6, 7, ref this.botThreeType, ref this.botThreePower, this.hasBotThreeBankrupted);
+                        this.CurrentRules.GameRulesCreator(6, 7, ref this.botThreeType, ref this.botThreePower, this.hasBotThreeBankrupted);
                         MessageBox.Show(@"Bot 3's Turn");
                         this.Bot.CheckBotsHand(6, 7, ref this.botThreeChips, ref this.botThreeTurn, ref this.hasBotThreeBankrupted, this.botThreeStatus, this.botThreePower, this.botThreeType);
 
@@ -875,7 +875,7 @@
                     {
                         this.CheckCurrentBid(this.botFourStatus, ref this.botFourCall, ref this.botFourRaise, 1);
                         this.CheckCurrentBid(this.botFourStatus, ref this.botFourCall, ref this.botFourRaise, 2);
-                        this.CurrentRules.GameRules(8, 9, ref this.botFourType, ref this.botFourPower, this.hasBotFourBankrupted);
+                        this.CurrentRules.GameRulesCreator(8, 9, ref this.botFourType, ref this.botFourPower, this.hasBotFourBankrupted);
                         MessageBox.Show(@"Bot 4's Turn");
                         this.Bot.CheckBotsHand(8, 9, ref this.botFourChips, ref this.botFourTurn, ref this.hasBotFourBankrupted, this.botFourStatus, this.botFourPower, this.botFourType);
                         this.turnCount++;
@@ -905,7 +905,7 @@
                     {
                         this.CheckCurrentBid(this.botFiveStatus, ref this.botFiveCall, ref this.botFiveRaise, 1);
                         this.CheckCurrentBid(this.botFiveStatus, ref this.botFiveCall, ref this.botFiveRaise, 2);
-                        this.CurrentRules.GameRules(10, 11, ref this.botFiveType, ref this.botFivePower, this.hasBotFiveBankrupted);
+                        this.CurrentRules.GameRulesCreator(10, 11, ref this.botFiveType, ref this.botFivePower, this.hasBotFiveBankrupted);
                         MessageBox.Show(@"Bot 5's Turn");
                         this.Bot.CheckBotsHand(10, 11, ref this.botFiveChips, ref this.botFiveTurn, ref this.hasBotFiveBankrupted, this.botFiveStatus, this.botFivePower, this.botFiveType);
                         this.turnCount++;
@@ -1554,7 +1554,7 @@
 
         private async void ButtonCallClick(object sender, EventArgs e)
         {
-            this.CurrentRules.GameRules(0, 1, ref this.playerType, ref this.playerPower, this.hasPlayerBankrupted);
+            this.CurrentRules.GameRulesCreator(0, 1, ref this.playerType, ref this.playerPower, this.hasPlayerBankrupted);
 
             if (this.playerChips >= this.callChipsValue)
             {
@@ -1590,7 +1590,7 @@
 
         private async void ButtonRaiseClick(object sender, EventArgs e)
         {
-            this.CurrentRules.GameRules(0, 1, ref this.playerType, ref this.playerPower, this.hasPlayerBankrupted);
+            this.CurrentRules.GameRulesCreator(0, 1, ref this.playerType, ref this.playerPower, this.hasPlayerBankrupted);
 
             int parsedValue;
             if (this.playerRaiseTextBox.Text != "" && int.TryParse(this.playerRaiseTextBox.Text, out parsedValue))
