@@ -7,14 +7,95 @@ namespace Poker.Models.Rules
 
     public class Rules
     {
+        #region fields
         private GameManager currentForm;
+        private bool uniteTest;
+        private bool hasSucsuccessfullyExecutedRulesPairFromHand;
+        private bool hasSucsuccessfullyExecutedRulesTwoPair;
+        private bool hasSucsuccessfullyExecutedRulesThreeOfAKind;
+        private bool hasSucsuccessfullyExecutedRulesStraightFlush;
+        private bool hasSucsuccessfullyExecutedRulesFullHouse;
+        private bool hasSucsuccessfullyExecutedRulesFourOfAKind;
+        private bool hasSucsuccessfullyExecutedRulesHighCard;
+        private bool hasSucsuccessfullyExecutedRulesStraight;
+        private bool hasSucsuccessfullyExecutedRulesFlush;
+        private bool hasSucsuccessfullyExecutedRulesPairTwoPair;
+        #endregion
 
         public Rules(GameManager currentForm)
         {
             this.currentForm = currentForm;
         }
 
-        public void GameRules(int cardOne, int cardTwo, ref double current, ref double power, bool foldedTurn)
+        #region properties
+        public bool HasSucsuccessfullyExecutedRulesStraight
+        {
+            get { return hasSucsuccessfullyExecutedRulesStraight; }
+            private set { hasSucsuccessfullyExecutedRulesStraight = value; }
+        }
+
+        public bool UniteTest
+        {
+            get { return uniteTest; }
+            private set { uniteTest = value; }
+        }
+
+        public bool HasSucsuccessfullyExecutedRulesPairFromHand
+        {
+            get { return hasSucsuccessfullyExecutedRulesPairFromHand; }
+            private set { hasSucsuccessfullyExecutedRulesPairFromHand = value; }
+        }
+
+        public bool HasSucsuccessfullyExecutedRulesTwoPair
+        {
+            get { return hasSucsuccessfullyExecutedRulesTwoPair; }
+            private set { hasSucsuccessfullyExecutedRulesTwoPair = value; }
+        }
+
+        public bool HasSucsuccessfullyExecutedRulesThreeOfAKind
+        {
+            get { return hasSucsuccessfullyExecutedRulesThreeOfAKind; }
+            private set { hasSucsuccessfullyExecutedRulesThreeOfAKind = value; }
+        }
+
+        public bool HasSucsuccessfullyExecutedRulesStraightFlush
+        {
+            get { return hasSucsuccessfullyExecutedRulesStraightFlush; }
+            private set { hasSucsuccessfullyExecutedRulesStraightFlush = value; }
+        }
+
+        public bool HasSucsuccessfullyExecutedRulesFullHouse
+        {
+            get { return hasSucsuccessfullyExecutedRulesFullHouse; }
+            private set { hasSucsuccessfullyExecutedRulesFullHouse = value; }
+        }
+
+        public bool HasSucsuccessfullyExecutedRulesFourOfAKind
+        {
+            get { return hasSucsuccessfullyExecutedRulesFourOfAKind; }
+            private set { hasSucsuccessfullyExecutedRulesFourOfAKind = value; }
+        }
+
+        public bool HasSucsuccessfullyExecutedRulesHighCard
+        {
+            get { return hasSucsuccessfullyExecutedRulesHighCard; }
+            private set { hasSucsuccessfullyExecutedRulesHighCard = value; }
+        }
+
+        public bool HasSucsuccessfullyExecutedRulesPairTwoPair
+        {
+            get { return hasSucsuccessfullyExecutedRulesPairTwoPair; }
+            set { hasSucsuccessfullyExecutedRulesPairTwoPair = value; }
+        }
+
+        public bool HasSucsuccessfullyExecutedRulesFlush
+        {
+            get { return hasSucsuccessfullyExecutedRulesFlush; }
+            private set { hasSucsuccessfullyExecutedRulesFlush = value; }
+        }
+        #endregion
+
+        public void GameRulesCreator(int cardOne, int cardTwo, ref double current, ref double power, bool foldedTurn)
         {
             if (!foldedTurn || cardOne == 0 && cardTwo == 1 && this.currentForm.playerStatus.Text.Contains("Fold") == false)
             {
@@ -57,6 +138,7 @@ namespace Poker.Models.Rules
                     if (this.currentForm.cardsAsNumbers[i] == int.Parse(this.currentForm.cardsImages[cardOne].Tag.ToString()) &&
                         this.currentForm.cardsAsNumbers[i + 1] == int.Parse(this.currentForm.cardsImages[cardTwo].Tag.ToString()))
                     {
+                        this.UniteTest = true;
                         this.RulesPairTwoPair(ref current, ref power);
 
                         this.RulesTwoPair(ref current, ref power);
@@ -79,15 +161,15 @@ namespace Poker.Models.Rules
             }
         }
 
-
         private void RulesStraightFlush(
-            ref double current, 
+            ref double current,
             ref double power,
             int[] clubsStrenghtValues,
-            int[] diamondsStrenghtValues, 
-            int[] heartsStrenghtValues, 
+            int[] diamondsStrenghtValues,
+            int[] heartsStrenghtValues,
             int[] spadesStrenghtValues)
         {
+            this.HasSucsuccessfullyExecutedRulesStraightFlush = true;
             if (current >= -1)
             {
                 if (clubsStrenghtValues.Length >= 5)
@@ -179,6 +261,7 @@ namespace Poker.Models.Rules
 
         private void RulesFourOfAKind(ref double current, ref double power, int[] straight)
         {
+            this.HasSucsuccessfullyExecutedRulesFourOfAKind = true;
             if (current >= -1)
             {
                 for (int j = 0; j <= 3; j++)
@@ -193,8 +276,8 @@ namespace Poker.Models.Rules
                     }
 
                     if (straight[j] / 4 == 0 &&
-                        straight[j + 1] / 4 == 0 && 
-                        straight[j + 2] / 4 == 0 && 
+                        straight[j + 1] / 4 == 0 &&
+                        straight[j + 2] / 4 == 0 &&
                         straight[j + 3] / 4 == 0)
                     {
                         current = 7;
@@ -207,6 +290,7 @@ namespace Poker.Models.Rules
 
         private void RulesFullHouse(ref double current, ref double power, ref bool done, int[] straight)
         {
+            this.HasSucsuccessfullyExecutedRulesFullHouse = true;
             if (current >= -1)
             {
                 this.currentForm.type = power;
@@ -261,6 +345,7 @@ namespace Poker.Models.Rules
 
         private void RulesFlush(ref double current, ref double power, ref bool hasFlush, int[] straight1)
         {
+            this.HasSucsuccessfullyExecutedRulesFlush = true;
             if (current >= -1)
             {
                 var clubs = straight1.Where(o => o % 4 == 0).ToArray();
@@ -270,7 +355,7 @@ namespace Poker.Models.Rules
 
                 if (clubs.Length == 3 || clubs.Length == 4)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 && 
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 &&
                         this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == clubs[0] % 4)
                     {
                         if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > clubs.Max() / 4)
@@ -288,7 +373,7 @@ namespace Poker.Models.Rules
                             this.SortedWinningHands(current, power);
                             hasFlush = true;
                         }
-                        else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 < clubs.Max() / 4 && 
+                        else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 < clubs.Max() / 4 &&
                             this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 < clubs.Max() / 4)
                         {
                             current = 5;
@@ -299,7 +384,7 @@ namespace Poker.Models.Rules
                     }
                 }
 
-                if(clubs.Length == 4) //Different cardt in hand
+                if (clubs.Length == 4) //Different cardt in hand
                 {
                     if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 &&
                         this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == clubs[0] % 4)
@@ -320,7 +405,7 @@ namespace Poker.Models.Rules
                         }
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 && 
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 &&
                         this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == clubs[0] % 4)
                     {
                         if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 > clubs.Max() / 4)
@@ -359,7 +444,7 @@ namespace Poker.Models.Rules
                         this.SortedWinningHands(current, power);
                         hasFlush = true;
                     }
-                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 < clubs.Min() / 4 && 
+                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 < clubs.Min() / 4 &&
                         this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 < clubs.Min())
                     {
                         current = 5;
@@ -421,7 +506,7 @@ namespace Poker.Models.Rules
                         }
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 && 
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 &&
                         this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == diamonds[0] % 4)
                     {
                         if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 > diamonds.Max() / 4)
@@ -506,7 +591,7 @@ namespace Poker.Models.Rules
 
                 if (hearts.Length == 4)//different cards in hand
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 && 
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 &&
                         this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == hearts[0] % 4)
                     {
                         if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > hearts.Max() / 4)
@@ -525,7 +610,7 @@ namespace Poker.Models.Rules
                         }
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 && 
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 != this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 &&
                         this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == hearts[0] % 4)
                     {
                         if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 > hearts.Max() / 4)
@@ -576,7 +661,7 @@ namespace Poker.Models.Rules
 
                 if (spades.Length == 3 || spades.Length == 4)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 && 
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 &&
                         this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == spades[0] % 4)
                     {
                         if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > spades.Max() / 4)
@@ -664,7 +749,7 @@ namespace Poker.Models.Rules
                         this.SortedWinningHands(current, power);
                         hasFlush = true;
                     }
-                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 < spades.Min() / 4 && 
+                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 < spades.Min() / 4 &&
                         this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 < spades.Min())
                     {
                         current = 5;
@@ -676,7 +761,7 @@ namespace Poker.Models.Rules
 
                 if (clubs.Length > 0)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == 0 && 
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == 0 &&
                         this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == clubs[0] % 4 &&
                         hasFlush &&
                         clubs.Length > 0)
@@ -701,7 +786,7 @@ namespace Poker.Models.Rules
                 {
                     if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == 0 &&
                         this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == diamonds[0] % 4 &&
-                        hasFlush && 
+                        hasFlush &&
                         diamonds.Length > 0)
                     {
                         current = 5.5;
@@ -709,7 +794,7 @@ namespace Poker.Models.Rules
                         this.SortedWinningHands(current, power);
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == 0 && 
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == 0 &&
                         this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == diamonds[0] % 4 &&
                         hasFlush &&
                         diamonds.Length > 0)
@@ -724,7 +809,7 @@ namespace Poker.Models.Rules
                 {
                     if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == 0 &&
                         this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == hearts[0] % 4 &&
-                        hasFlush && 
+                        hasFlush &&
                         hearts.Length > 0)
                     {
                         current = 5.5;
@@ -733,8 +818,8 @@ namespace Poker.Models.Rules
                     }
 
                     if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == 0 &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == hearts[0] % 4 && 
-                        hasFlush && 
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % 4 == hearts[0] % 4 &&
+                        hasFlush &&
                         hearts.Length > 0)
                     {
                         current = 5.5;
@@ -747,7 +832,7 @@ namespace Poker.Models.Rules
                 {
                     if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == 0 &&
                         this.currentForm.cardsAsNumbers[this.currentForm.i] % 4 == spades[0] % 4 &&
-                        hasFlush && 
+                        hasFlush &&
                         spades.Length > 0)
                     {
                         current = 5.5;
@@ -769,6 +854,7 @@ namespace Poker.Models.Rules
 
         private void RulesStraight(ref double current, ref double power, int[] straight)
         {
+            this.HasSucsuccessfullyExecutedRulesStraight = true;
             if (current >= -1)
             {
                 var op = straight.Select(o => o / 4)
@@ -808,6 +894,7 @@ namespace Poker.Models.Rules
 
         private void RulesThreeOfAKind(ref double current, ref double power, int[] straight)
         {
+            this.HasSucsuccessfullyExecutedRulesThreeOfAKind = true;
             if (current >= -1)
             {
                 for (int j = 0; j <= 12; j++)
@@ -836,6 +923,7 @@ namespace Poker.Models.Rules
 
         private void RulesTwoPair(ref double current, ref double power)
         {
+            this.HasSucsuccessfullyExecutedRulesTwoPair = true;
             if (current >= -1)
             {
                 bool msgbox = false;
@@ -855,7 +943,7 @@ namespace Poker.Models.Rules
 
                             if (totalCards - k >= 12)
                             {
-                                if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == this.currentForm.cardsAsNumbers[totalCards] / 4 && 
+                                if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == this.currentForm.cardsAsNumbers[totalCards] / 4 &&
                                     this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == this.currentForm.cardsAsNumbers[totalCards - k] / 4 ||
                                     this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 == this.currentForm.cardsAsNumbers[totalCards] / 4 &&
                                     this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 == this.currentForm.cardsAsNumbers[totalCards - k] / 4)
@@ -896,6 +984,7 @@ namespace Poker.Models.Rules
 
         private void RulesPairTwoPair(ref double current, ref double power)
         {
+            this.HasSucsuccessfullyExecutedRulesPairTwoPair = true;
             if (current >= -1)
             {
                 bool msgbox = false;
@@ -915,7 +1004,7 @@ namespace Poker.Models.Rules
                         {
                             if (this.currentForm.cardsAsNumbers[totalCards] / 4 == this.currentForm.cardsAsNumbers[totalCards - k] / 4)
                             {
-                                if (this.currentForm.cardsAsNumbers[totalCards] / 4 != this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 && 
+                                if (this.currentForm.cardsAsNumbers[totalCards] / 4 != this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 &&
                                     this.currentForm.cardsAsNumbers[totalCards] / 4 != this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4 &&
                                     current == 1)
                                 {
@@ -1000,6 +1089,7 @@ namespace Poker.Models.Rules
 
         private void RulesPairFromHand(ref double current, ref double power)
         {
+            this.HasSucsuccessfullyExecutedRulesPairFromHand = true;
             if (current >= -1)
             {
                 bool msgbox = false;
@@ -1073,6 +1163,7 @@ namespace Poker.Models.Rules
 
         private void RulesHighCard(ref double current, ref double power)
         {
+            this.HasSucsuccessfullyExecutedRulesHighCard = true;
             if (current == -1)
             {
                 if (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 > this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4)
