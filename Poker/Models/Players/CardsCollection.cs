@@ -15,10 +15,6 @@
         {
             FullDeckOfCards = new CardsCollection()
                                 {
-                                    new SimpleCard(CardType.Ace, Suit.Clubs),
-                                    new SimpleCard(CardType.Ace, Suit.Diamonds),
-                                    new SimpleCard(CardType.Ace, Suit.Hearts),
-                                    new SimpleCard(CardType.Ace, Suit.Spades),
                                     new SimpleCard(CardType.Two, Suit.Clubs),
                                     new SimpleCard(CardType.Two, Suit.Diamonds),
                                     new SimpleCard(CardType.Two, Suit.Hearts),
@@ -67,6 +63,10 @@
                                     new SimpleCard(CardType.King, Suit.Diamonds),
                                     new SimpleCard(CardType.King, Suit.Hearts),
                                     new SimpleCard(CardType.King, Suit.Spades),
+                                    new SimpleCard(CardType.Ace, Suit.Clubs),
+                                    new SimpleCard(CardType.Ace, Suit.Diamonds),
+                                    new SimpleCard(CardType.Ace, Suit.Hearts),
+                                    new SimpleCard(CardType.Ace, Suit.Spades),
                                 };
         }
 
@@ -163,7 +163,7 @@
 
         public IEnumerable<SimpleCard> Sort()
         {
-            var sortedCards = cards.OrderBy(card => card.Type);
+            var sortedCards = cards.OrderBy(card => card.Type).ThenBy(card => card.Suit).ToList();
             return sortedCards;
         }
     }

@@ -7,3 +7,4 @@ C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.Properties.Resources.resources
 C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
 C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.exe
 C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.pdb
+C:\Users\Valio\Desktop\pp\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
