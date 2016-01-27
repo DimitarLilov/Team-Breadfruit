@@ -385,12 +385,12 @@ namespace Poker.Models.Players.Bot
 
         private void CheckBotsHighCard(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
-            BotsMoveFirstPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower, 20, 25);
+            this.BotsMoveFirstPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower, 20, 25);
         }
 
         private void PairTable(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
         {
-            BotsMoveFirstPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower, 16, 25);
+            this.BotsMoveFirstPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, botPower, 16, 25);
         }
 
         private void CheckBotsPairHand(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
@@ -401,17 +401,17 @@ namespace Poker.Models.Players.Bot
 
             if (botPower <= 199 && botPower >= 140)
             {
-                BotsMoveSecondPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 6, rRaise);
+                this.BotsMoveSecondPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 6, rRaise);
             }
 
             if (botPower <= 139 && botPower >= 128)
             {
-                BotsMoveSecondPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 7, rRaise);
+                this.BotsMoveSecondPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 7, rRaise);
             }
 
             if (botPower < 128 && botPower >= 101)
             {
-                BotsMoveSecondPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 9, rRaise);
+                this.BotsMoveSecondPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 9, rRaise);
             }
 
             this.UnitTest = true;
@@ -425,17 +425,17 @@ namespace Poker.Models.Players.Bot
 
             if (botPower <= 290 && botPower >= 246)
             {
-                BotsMoveSecondPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 3, rRaise);
+                this.BotsMoveSecondPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 3, rRaise);
             }
 
             if (botPower <= 244 && botPower >= 234)
             {
-                BotsMoveSecondPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 4, rRaise);
+                this.BotsMoveSecondPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 4, rRaise);
             }
 
             if (botPower < 234 && botPower >= 201)
             {
-                BotsMoveSecondPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 4, rRaise);
+                this.BotsMoveSecondPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, rCall, 4, rRaise);
             }
 
             this.UnitTest = true;
@@ -449,17 +449,17 @@ namespace Poker.Models.Players.Bot
 
             if (botPower <= 390 && botPower >= 330)
             {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
+                this.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
             }
 
             if (botPower <= 327 && botPower >= 321)
             {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
+                this.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
             }
 
             if (botPower < 321 && botPower >= 303)
             {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
+                this.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, tCall);
             }
 
             this.UnitTest = true;
@@ -472,17 +472,17 @@ namespace Poker.Models.Players.Bot
 
             if (botPower <= 480 && botPower >= 410)
             {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
+                this.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
             }
 
             if (botPower <= 409 && botPower >= 407)//10  8
             {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
+                this.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
             }
 
             if (botPower < 407 && botPower >= 404)
             {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
+                this.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sCall);
             }
 
             this.UnitTest = true;
@@ -494,7 +494,7 @@ namespace Poker.Models.Players.Bot
             int fCall = this.random.Next(2, 6);
             int fRaise = this.random.Next(3, 7);
 
-            BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fCall);
+            this.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fCall);
         }
 
         private void CheckBotsFullHouse(ref int botChips, ref bool isBotTurn, ref bool hasBotFolded, Label botStatus, double botPower)
@@ -505,12 +505,12 @@ namespace Poker.Models.Players.Bot
 
             if (botPower <= 626 && botPower >= 620)
             {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fhCall);
+                this.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fhCall);
             }
 
             if (botPower < 620 && botPower >= 602)
             {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fhCall);
+                this.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fhCall);
             }
 
             this.UnitTest = true;
@@ -524,7 +524,7 @@ namespace Poker.Models.Players.Bot
 
             if (botPower <= 752 && botPower >= 704)
             {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fkCall);
+                this.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, fkCall);
             }
 
             this.UnitTest = true;
@@ -538,7 +538,7 @@ namespace Poker.Models.Players.Bot
 
             if (botPower <= 913 && botPower >= 804)
             {
-                BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sfCall);
+                this.BotsMoveThirdPossibility(ref botChips, ref isBotTurn, ref hasBotFolded, botStatus, sfCall);
             }
 
             this.UnitTest = true;

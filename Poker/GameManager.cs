@@ -153,27 +153,27 @@
 
         public GameManager()
         {
-            callChipsValue = bigBlind;
-            MaximizeBox = false;
-            MinimizeBox = false;
+            this.callChipsValue = bigBlind;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
 
-            Updates.Start();
+            this.Updates.Start();
 
-            InitializeComponent();
+            this.InitializeComponent();
 
-            width = this.Width;
-            height = this.Height;
-            Shuffle();
+            this.width = this.Width;
+            this.height = this.Height;
+            this.Shuffle();
 
-            EnableAllTextBoxes();
+            this.EnableAllTextBoxes();
 
-            InitializeChipsTextBoxes();
+            this.InitializeChipsTextBoxes();
 
-            InitializeTimer();
+            this.InitializeTimer();
 
-            InitializeBlindsBoxes();
+            this.InitializeBlindsBoxes();
 
-            playerRaiseTextBox.Text = (bigBlind * 2).ToString();
+            this.playerRaiseTextBox.Text = (this.bigBlind * 2).ToString();
             this.currentRules = new Rules(this);
             this.winner = new Winner(this);
             this.checkRaiseDealer = new Dealer(this);
@@ -204,28 +204,28 @@
         
         private void InitializeBlindsBoxes()
         {
-            bigBlindTextBox.Visible = false;
-            smallBlindTextBox.Visible = false;
-            bigBlindButton.Visible = false;
-            smallBlindButton.Visible = false;
+            this.bigBlindTextBox.Visible = false;
+            this.smallBlindTextBox.Visible = false;
+            this.bigBlindButton.Visible = false;
+            this.smallBlindButton.Visible = false;
         }
 
         private void InitializeTimer()
         {
-            timer.Interval = 1000;
-            timer.Tick += timer_Tick;
-            Updates.Interval = 100;
-            Updates.Tick += Update_Tick;
+            this.timer.Interval = 1000;
+            this.timer.Tick += this.TimerTick;
+            this.Updates.Interval = 100;
+            this.Updates.Tick += this.UpdateTick;
         }
 
         private void InitializeChipsTextBoxes()
         {
-            this.playerChipsTextBox.Text = ChipsString + playerChips;
-            this.botOneChipsTextBox.Text = ChipsString + botOneChips;
-            this.botTwoChipsTextBox.Text = ChipsString + botTwoChips;
-            this.botThreeChipsTextBox.Text = ChipsString + botThreeChips;
-            this.botFourChipsTextBox.Text = ChipsString + botFourChips;
-            this.botFiveChipsTextBox.Text = ChipsString + botFiveChips;
+            this.playerChipsTextBox.Text = ChipsString + this.playerChips;
+            this.botOneChipsTextBox.Text = ChipsString + this.botOneChips;
+            this.botTwoChipsTextBox.Text = ChipsString + this.botTwoChips;
+            this.botThreeChipsTextBox.Text = ChipsString + this.botThreeChips;
+            this.botFourChipsTextBox.Text = ChipsString + this.botFourChips;
+            this.botFiveChipsTextBox.Text = ChipsString + this.botFiveChips;
         }
 
         private void EnableAllTextBoxes()
@@ -243,12 +243,12 @@
         {
             Random randomNumber = new Random();
 
-            this.bankruptPlayers.Add(hasPlayerBankrupted);
-            this.bankruptPlayers.Add(hasBotOneBankrupted);
-            this.bankruptPlayers.Add(hasBotTwoBankrupted);
-            this.bankruptPlayers.Add(hasBotThreeBankrupted);
-            this.bankruptPlayers.Add(hasBotFourBankrupted);
-            this.bankruptPlayers.Add(hasBotFiveBankrupted);
+            this.bankruptPlayers.Add(this.hasPlayerBankrupted);
+            this.bankruptPlayers.Add(this.hasBotOneBankrupted);
+            this.bankruptPlayers.Add(this.hasBotTwoBankrupted);
+            this.bankruptPlayers.Add(this.hasBotThreeBankrupted);
+            this.bankruptPlayers.Add(this.hasBotFourBankrupted);
+            this.bankruptPlayers.Add(this.hasBotFiveBankrupted);
 
             this.playerCallButton.Enabled = false;
             this.playerRaiseButton.Enabled = false;
@@ -264,13 +264,13 @@
             int vertical = 480;
 
             //shuffles cards
-            ShuffleCards(randomNumber);
+            this.ShuffleCards(randomNumber);
 
-            await DealOutCards(horizontal, vertical, isCardOnTheTable, backImage);
+            await this.DealOutCards(horizontal, vertical, isCardOnTheTable, backImage);
 
-            CheckIfGameShouldBeRestarted();
+            this.CheckIfGameShouldBeRestarted();
 
-            CheckIfBotsActionsShouldBeEnabled();
+            this.CheckIfBotsActionsShouldBeEnabled();
         }
 
         /// <summary>
@@ -308,7 +308,7 @@
         {
             if (this.foldedPlayers == 5)
             {
-                DialogResult dialogResult = MessageBox.Show("Would You Like To Play Again ?", "You Won , Congratulations ! ", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show(@"Would You Like To Play Again ?", @"You Won , Congratulations ! ", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     Application.Restart();
@@ -327,10 +327,9 @@
         private async Task DealOutCards(int horizontal, int vertical, bool isCardOnTheTable, Bitmap backImage)
         {
 
-            for (dealtCards = 0; dealtCards < TotalTableCards; dealtCards++)
+            for (this.dealtCards = 0; this.dealtCards < this.TotalTableCards; this.dealtCards++)
             {
-               
-                GetCardNumber();
+                this.GetCardNumber();
 
                 this.cardsAsNumbers[this.dealtCards] = int.Parse(this.ImgLocation[this.dealtCards]) - 1;
                 this.cardsImages[this.dealtCards] = new PictureBox();
@@ -547,8 +546,8 @@
 
                         isCardOnTheTable = true;
 
-                        cardsImages[this.dealtCards].Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-                        cardsImages[this.dealtCards].Image = backImage;
+                        this.cardsImages[this.dealtCards].Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+                        this.cardsImages[this.dealtCards].Image = backImage;
                         
                         this.cardsImages[this.dealtCards].Location = new Point(horizontal, vertical);
                         horizontal += this.cardsImages[this.dealtCards].Width;
@@ -712,7 +711,7 @@
 
                 if (this.dealtCards == 16)
                 {
-                    if (!shouldRestart)
+                    if (!this.shouldRestart)
                     {
                         this.MaximizeBox = true;
                         this.MinimizeBox = true;
@@ -725,7 +724,7 @@
 
         private void GetCardNumber()
         {
-            Deck[this.dealtCards] = Image.FromFile(this.ImgLocation[this.dealtCards]);
+            this.Deck[this.dealtCards] = Image.FromFile(this.ImgLocation[this.dealtCards]);
 
             var charsToRemove = new string[] {"Assets\\Cards\\", ".png"};
 
@@ -747,7 +746,7 @@
 
             if (this.hasPlayerBankrupted || !this.playerTurn)
             {
-                await WhoIsAllIn();
+                await this.WhoIsAllIn();
 
                 if (this.hasPlayerBankrupted && !this.hasPlayerFolded)
                 {
@@ -1063,7 +1062,7 @@
                     this.cardsImages[os].Visible = false;
                 }
 
-                this.potTextBox.Text = "0";
+                this.potTextBox.Text = @"0";
                 this.playerStatus.Text = "";
 
                 await this.Shuffle();
@@ -1123,7 +1122,7 @@
 
         async Task WhoIsAllIn()
         {
-            await CheckAllIn();
+            await this.CheckAllIn();
 
             int currentWinnerNumber = this.bankruptPlayers.Count(x => x == false);
             if (currentWinnerNumber == 1)
@@ -1172,7 +1171,7 @@
                 this.botTwoChips += int.Parse(this.potTextBox.Text);
                 this.botTwoChipsTextBox.Text = this.botTwoChips.ToString();
                 this.botTwoPanel.Visible = true;
-                MessageBox.Show("Bot 2 Wins");
+                MessageBox.Show(@"Bot 2 Wins");
             }
 
             if (index == 3)
@@ -1263,7 +1262,7 @@
                 }
             }
 
-            if (this.totalAllInChips.ToArray().Length == maxLeft)
+            if (this.totalAllInChips.ToArray().Length == this.maxLeft)
             {
                 await this.Finish(2);
             }
@@ -1363,7 +1362,7 @@
 
             this.sorted.Current = 0;
             this.sorted.Power = 0;
-            this.potTextBox.Text = "0";
+            this.potTextBox.Text = @"0";
             this.t = 60;
             this.turnCount = 0;
 
@@ -1409,13 +1408,13 @@
             await this.Shuffle();
         }
 
-        private async void timer_Tick(object sender, object e)
+        private async void TimerTick(object sender, object e)
         {
             if (this.timerBar.Value <= 0)
             {
                 this.hasPlayerBankrupted = true;
 
-                await Turns();
+                await this.Turns();
             }
 
             if (this.t > 0)
@@ -1426,39 +1425,39 @@
             }
         }
 
-        private void Update_Tick(object sender, object e)
+        private void UpdateTick(object sender, object e)
         {
             if (this.playerChips <= 0)
             {
-                this.playerChipsTextBox.Text = ChipsString + "0";
+                this.playerChipsTextBox.Text = ChipsString + @"0";
             }
 
             if (this.botOneChips <= 0)
             {
-                this.botOneChipsTextBox.Text = ChipsString + "0";
+                this.botOneChipsTextBox.Text = ChipsString + @"0";
             }
 
             if (this.botTwoChips <= 0)
             {
-                this.botTwoChipsTextBox.Text = ChipsString + "0";
+                this.botTwoChipsTextBox.Text = ChipsString + @"0";
             }
 
             if (this.botThreeChips <= 0)
             {
-                this.botThreeChipsTextBox.Text = ChipsString + "0";
+                this.botThreeChipsTextBox.Text = ChipsString + @"0";
             }
 
             if (this.botFourChips <= 0)
             {
-                this.botFourChipsTextBox.Text = ChipsString + "0";
+                this.botFourChipsTextBox.Text = ChipsString + @"0";
             }
 
             if (this.botFiveChips <= 0)
             {
-                this.botFiveChipsTextBox.Text = ChipsString + "0";
+                this.botFiveChipsTextBox.Text = ChipsString + @"0";
             }
 
-            this.playerChipsTextBox.Text = ChipsString + this.playerChips.ToString();
+            this.playerChipsTextBox.Text = ChipsString + this.playerChips;
             this.botOneChipsTextBox.Text = ChipsString + this.botOneChips;
             this.botTwoChipsTextBox.Text = ChipsString + this.botTwoChips;
             this.botThreeChipsTextBox.Text = ChipsString + this.botThreeChips;
@@ -1527,15 +1526,15 @@
             }
         }
 
-        private async void bFold_Click(object sender, EventArgs e)
+        private async void ButtonFoldClick(object sender, EventArgs e)
         {
             this.playerStatus.Text = Winner.FoldString;
             this.playerTurn = false;
             this.hasPlayerBankrupted = true;
-            await Turns();
+            await this.Turns();
         }
 
-        private async void bCheck_Click(object sender, EventArgs e)
+        private async void ButtonCheckClick(object sender, EventArgs e)
         {
             if (this.callChipsValue <= 0)
             {
@@ -1547,12 +1546,12 @@
                 this.playerCheckButton.Enabled = false;
             }
 
-            await Turns();
+            await this.Turns();
         }
 
-        private async void bCall_Click(object sender, EventArgs e)
+        private async void ButtonCallClick(object sender, EventArgs e)
         {
-            this.CurrentRules.GameRules(0, 1, ref playerType, ref playerPower, this.hasPlayerBankrupted);
+            this.CurrentRules.GameRules(0, 1, ref this.playerType, ref this.playerPower, this.hasPlayerBankrupted);
 
             if (this.playerChips >= this.callChipsValue)
             {
@@ -1565,7 +1564,7 @@
                 }
                 else
                 {
-                    potTextBox.Text = callChipsValue.ToString();
+                    this.potTextBox.Text = this.callChipsValue.ToString();
                 }
 
                 this.playerTurn = false;
@@ -1575,20 +1574,20 @@
             else if (this.playerChips <= this.callChipsValue && this.callChipsValue > 0)
             {
                 this.potTextBox.Text = (int.Parse(this.potTextBox.Text) + this.playerChips).ToString();
-                this.playerStatus.Text = AllInString + playerChips;
+                this.playerStatus.Text = AllInString + this.playerChips;
                 this.playerChips = 0;
-                this.playerChipsTextBox.Text = ChipsString + playerChips;
+                this.playerChipsTextBox.Text = ChipsString + this.playerChips;
                 this.playerTurn = false;
                 this.playerFoldButton.Enabled = false;
                 this.playerCall = this.playerChips;
             }
 
-            await Turns();
+            await this.Turns();
         }
 
-        private async void bRaise_Click(object sender, EventArgs e)
+        private async void ButtonRaiseClick(object sender, EventArgs e)
         {
-            CurrentRules.GameRules(0, 1, ref playerType, ref playerPower, this.hasPlayerBankrupted);
+            this.CurrentRules.GameRules(0, 1, ref this.playerType, ref this.playerPower, this.hasPlayerBankrupted);
 
             int parsedValue;
             if (this.playerRaiseTextBox.Text != "" && int.TryParse(this.playerRaiseTextBox.Text, out parsedValue))
@@ -1598,7 +1597,7 @@
                     if (this.Raise * 2 > int.Parse(this.playerRaiseTextBox.Text))
                     {
                         this.playerRaiseTextBox.Text = (this.Raise * 2).ToString();
-                        MessageBox.Show("You must Raise atleast twice as the current Raise !");
+                        MessageBox.Show(@"You must Raise atleast twice as the current Raise !");
 
                         return;
                     }
@@ -1630,15 +1629,15 @@
             }
             else
             {
-                MessageBox.Show("This is a number only field");
+                MessageBox.Show(@"This is a number only field");
                 return;
             }
 
             this.playerTurn = false;
-            await Turns();
+            await this.Turns();
         }
 
-        private void bAdd_Click(object sender, EventArgs e)
+        private void ButtonAddClick(object sender, EventArgs e)
         {
             if (this.addChipsTextBox.Text == "")
             {
@@ -1657,7 +1656,7 @@
             this.playerChipsTextBox.Text = ChipsString + this.playerChips;
         }
 
-        private void bOptions_Click(object sender, EventArgs e)
+        private void BlindOptionsClick(object sender, EventArgs e)
         {
             this.bigBlindTextBox.Text = this.bigBlind.ToString();
             this.smallBlindTextBox.Text = this.smallBlind.ToString();
@@ -1678,13 +1677,13 @@
             }
         }
 
-        private void bSB_Click(object sender, EventArgs e)
+        private void ButtonSmallBlindClick(object sender, EventArgs e)
         {
             int parsedValue;
 
             if (this.smallBlindTextBox.Text.Contains(",") || this.smallBlindTextBox.Text.Contains("."))
             {
-                MessageBox.Show("The Small Blind can be only round number !");
+                MessageBox.Show(@"The Small Blind can be only round number !");
                 this.smallBlindTextBox.Text = this.smallBlind.ToString();
 
                 return;
@@ -1692,39 +1691,39 @@
 
             if (!int.TryParse(this.smallBlindTextBox.Text, out parsedValue))
             {
-                MessageBox.Show("This is a number only field");
+                MessageBox.Show(@"This is a number only field");
                 this.smallBlindTextBox.Text = this.smallBlind.ToString();
 
                 return;
             }
 
-            if (int.Parse(smallBlindTextBox.Text) > 100000100000)
+            if (int.Parse(this.smallBlindTextBox.Text) > 100000)
             {
-                MessageBox.Show("The maximum of the Small Blind is 100 000 $");
+                MessageBox.Show(@"The maximum of the Small Blind is 100 000 $");
                 this.smallBlindTextBox.Text = this.smallBlind.ToString();
             }
 
-            if (int.Parse(smallBlindTextBox.Text) < 250)
+            if (int.Parse(this.smallBlindTextBox.Text) < 250)
             {
-                MessageBox.Show("The minimum of the Small Blind is 250 $");
+                MessageBox.Show(@"The minimum of the Small Blind is 250 $");
             }
 
-            if (int.Parse(smallBlindTextBox.Text) >= 250 &&
-                int.Parse(smallBlindTextBox.Text) <= 100000)
+            if (int.Parse(this.smallBlindTextBox.Text) >= 250 &&
+                int.Parse(this.smallBlindTextBox.Text) <= 100000)
             {
-                this.smallBlind = int.Parse(smallBlindTextBox.Text);
-                MessageBox.Show("The changes have been saved ! They will become available the next hand you play. ");
+                this.smallBlind = int.Parse(this.smallBlindTextBox.Text);
+                MessageBox.Show(@"The changes have been saved ! They will become available the next hand you play. ");
             }
         }
 
-        private void bBB_Click(object sender, EventArgs e)
+        private void ButtonBigBlindClick(object sender, EventArgs e)
         {
             int parsedValue;
 
             if (this.bigBlindTextBox.Text.Contains(",") ||
                 this.bigBlindTextBox.Text.Contains("."))
             {
-                MessageBox.Show("The Big Blind can be only round number !");
+                MessageBox.Show(@"The Big Blind can be only round number !");
                 this.bigBlindTextBox.Text = this.bigBlind.ToString();
 
                 return;
@@ -1732,34 +1731,34 @@
 
             if (!int.TryParse(this.smallBlindTextBox.Text, out parsedValue))
             {
-                MessageBox.Show("This is a number only field");
+                MessageBox.Show(@"This is a number only field");
                 this.smallBlindTextBox.Text = this.bigBlind.ToString();
 
                 return;
             }
 
-            if (int.Parse(bigBlindTextBox.Text) > 200000)
+            if (int.Parse(this.bigBlindTextBox.Text) > 200000)
             {
-                MessageBox.Show("The maximum of the Big Blind is 200 000");
+                MessageBox.Show(@"The maximum of the Big Blind is 200 000");
                 this.bigBlindTextBox.Text = this.bigBlind.ToString();
             }
 
-            if (int.Parse(bigBlindTextBox.Text) < 500)
+            if (int.Parse(this.bigBlindTextBox.Text) < 500)
             {
-                MessageBox.Show("The minimum of the Big Blind is 500 $");
+                MessageBox.Show(@"The minimum of the Big Blind is 500 $");
             }
 
-            if (int.Parse(bigBlindTextBox.Text) >= 500 && int.Parse(bigBlindTextBox.Text) <= 200000)
+            if (int.Parse(this.bigBlindTextBox.Text) >= 500 && int.Parse(this.bigBlindTextBox.Text) <= 200000)
             {
-                this.bigBlind = int.Parse(bigBlindTextBox.Text);
-                MessageBox.Show("The changes have been saved ! They will become available the next hand you play. ");
+                this.bigBlind = int.Parse(this.bigBlindTextBox.Text);
+                MessageBox.Show(@"The changes have been saved ! They will become available the next hand you play. ");
             }
         }
 
-        private void Layout_Change(object sender, LayoutEventArgs e)
+        private void LayoutChange(object sender, LayoutEventArgs e)
         {
-            width = this.Width;
-            height = this.Height;
+            this.width = this.Width;
+            this.height = this.Height;
         }
     }
 }

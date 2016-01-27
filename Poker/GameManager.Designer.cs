@@ -68,7 +68,7 @@
             this.playerFoldButton.TabIndex = 0;
             this.playerFoldButton.Text = "Fold";
             this.playerFoldButton.UseVisualStyleBackColor = true;
-            this.playerFoldButton.Click += new System.EventHandler(this.bFold_Click);
+            this.playerFoldButton.Click += new System.EventHandler(this.ButtonFoldClick);
             // 
             // playerCheckButton
             // 
@@ -81,7 +81,7 @@
             this.playerCheckButton.TabIndex = 2;
             this.playerCheckButton.Text = "Check";
             this.playerCheckButton.UseVisualStyleBackColor = true;
-            this.playerCheckButton.Click += new System.EventHandler(this.bCheck_Click);
+            this.playerCheckButton.Click += new System.EventHandler(this.ButtonCheckClick);
             // 
             // playerCallButton
             // 
@@ -94,7 +94,7 @@
             this.playerCallButton.TabIndex = 3;
             this.playerCallButton.Text = "Call";
             this.playerCallButton.UseVisualStyleBackColor = true;
-            this.playerCallButton.Click += new System.EventHandler(this.bCall_Click);
+            this.playerCallButton.Click += new System.EventHandler(this.ButtonCallClick);
             // 
             // playerRaiseButton
             // 
@@ -107,7 +107,7 @@
             this.playerRaiseButton.TabIndex = 4;
             this.playerRaiseButton.Text = "Raise";
             this.playerRaiseButton.UseVisualStyleBackColor = true;
-            this.playerRaiseButton.Click += new System.EventHandler(this.bRaise_Click);
+            this.playerRaiseButton.Click += new System.EventHandler(this.ButtonRaiseClick);
             // 
             // timerBar
             // 
@@ -258,7 +258,7 @@
             this.addChipsButton.TabIndex = 7;
             this.addChipsButton.Text = "Add playerChips";
             this.addChipsButton.UseVisualStyleBackColor = true;
-            this.addChipsButton.Click += new System.EventHandler(this.bAdd_Click);
+            this.addChipsButton.Click += new System.EventHandler(this.ButtonAddClick);
             // 
             // addChipsTextBox
             // 
@@ -301,7 +301,7 @@
             this.blindOptions.TabIndex = 15;
             this.blindOptions.Text = "BB/SB";
             this.blindOptions.UseVisualStyleBackColor = true;
-            this.blindOptions.Click += new System.EventHandler(this.bOptions_Click);
+            this.blindOptions.Click += new System.EventHandler(this.BlindOptionsClick);
             // 
             // smallBlindButton
             // 
@@ -312,7 +312,7 @@
             this.smallBlindButton.TabIndex = 18;
             this.smallBlindButton.Text = "Small Blind";
             this.smallBlindButton.UseVisualStyleBackColor = true;
-            this.smallBlindButton.Click += new System.EventHandler(this.bSB_Click);
+            this.smallBlindButton.Click += new System.EventHandler(this.ButtonSmallBlindClick);
             // 
             // smallBlindTextBox
             // 
@@ -332,7 +332,7 @@
             this.bigBlindButton.TabIndex = 16;
             this.bigBlindButton.Text = "Big Blind";
             this.bigBlindButton.UseVisualStyleBackColor = true;
-            this.bigBlindButton.Click += new System.EventHandler(this.bBB_Click);
+            this.bigBlindButton.Click += new System.EventHandler(this.ButtonBigBlindClick);
             // 
             // bigBlindTextBox
             // 
@@ -382,7 +382,7 @@
             this.Name = "GameManager";
             this.Text = "GLS Texas Poker";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Layout += new System.Windows.Forms.LayoutEventHandler(this.Layout_Change);
+            this.Layout += new System.Windows.Forms.LayoutEventHandler(this.LayoutChange);
             this.ResumeLayout(false);
             this.PerformLayout();
 
