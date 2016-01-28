@@ -95,7 +95,9 @@
     <Compile Include="Models\Players\CardsCollection.cs" />
     <Compile Include="Models\Players\Hand.cs" />
     <Compile Include="Models\Players\Human.cs" />
+    <Compile Include="Models\Players\PBot.cs" />
     <Compile Include="Models\Players\Player.cs" />
+    <Compile Include="Models\Players\PPlayer.cs" />
     <Compile Include="Models\Players\SimpleCard.cs" />
     <Compile Include="PlayGame.cs" />
     <Compile Include="ProgressBars.cs">

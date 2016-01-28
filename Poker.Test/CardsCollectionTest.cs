@@ -35,7 +35,6 @@
             {
                 deck.Add(card);
             }
-            System.Console.WriteLine();
             var sortedDeck = deck.OrderBy(x => x);
             SimpleCard checkCard = null;
             foreach (var item in sortedDeck)

@@ -28,6 +28,7 @@
             DealCardsVisibleForPlayer();
 
             //TODO: checking/reising/folding
+            ChooseStragies();
 
             //burn 1 card
             //deal 3 cards visible to everyone (flop)
@@ -35,6 +36,7 @@
             DealCardsVisibleForEveryone(3);
 
             //TODO: checking/reising/folding
+            ChooseStragies();
 
             //burn 1 card
             //deal 1 card visible to everyone (turn)
@@ -42,6 +44,7 @@
             DealCardsVisibleForEveryone(1);
 
             //TODO: checking/reising/folding
+            ChooseStragies();
 
             //burn 1 card
             //deal 1 card visible to everyone (river)
@@ -49,6 +52,7 @@
             DealCardsVisibleForEveryone(1);
 
             //TODO: showdown
+            ShowdownCards();
         }
 
         private void DealCardsVisibleForPlayer()
@@ -58,6 +62,16 @@
         }
         
         private void DealCardsVisibleForEveryone(int cardsCount)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ChooseStragies()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShowdownCards()
         {
             throw new NotImplementedException();
         }

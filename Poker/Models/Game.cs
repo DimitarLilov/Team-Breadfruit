@@ -1,7 +1,9 @@
 ﻿namespace Poker.Models
 {
-    using Poker.Interfaces;
+    using Enum;
+    using Interfaces;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class Game
     {
@@ -18,7 +20,13 @@
                 fifthPlayer, sixthPlayer
             };
 
+            this.dealerManager = new DealerManager(this);
+        }
 
+        public IList<IPlayerOOP> GetActivePlayers()
+        {
+            var activePlayers = players.Where(p => p.State == PlayerState.Active).ToList();
+            return activePlayers;
         }
     }
 }

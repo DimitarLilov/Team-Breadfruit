@@ -17,7 +17,8 @@ namespace Poker.Interfaces
         PlayerState State { get; set; }
         PlayerPosition Position { get; set; }
 
-        void AddCards(IEnumerable<SimpleCard> cards);
-        void ChangeStrategy(); //check fold raise
+        void AddCard(SimpleCard card);
+        void ChooseStrategy(); //check fold raise
+        
     }
 }
