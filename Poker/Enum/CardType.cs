@@ -2,7 +2,7 @@
 {
     public enum CardType
     {
-        Two,
+        Two ,
         Three,
         Four,
         Five,

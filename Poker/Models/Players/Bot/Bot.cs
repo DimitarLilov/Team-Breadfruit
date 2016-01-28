@@ -3,6 +3,8 @@ namespace Poker.Models.Players.Bot
     using System;
     using System.Windows.Forms;
 
+    using Poker.Constants;
+
     public class Bot
     {
         private readonly GameManager currentForm;
@@ -308,7 +310,7 @@ namespace Poker.Models.Players.Bot
                         this.currentForm.isRaising = false;
                         isBotTurn = false;
                         botChips = 0;
-                        botStatus.Text = "Call " + botChips;
+                        botStatus.Text = Constants.Call + botChips;
 
                         this.currentForm.potTextBox.Text = (int.Parse(this.currentForm.potTextBox.Text) + botChips).ToString();
                     }
@@ -344,14 +346,14 @@ namespace Poker.Models.Players.Bot
         private void ChangeStatusToFold(ref bool isBotTurn, ref bool hasBotFold, Label sStatus)
         {
             this.currentForm.isRaising = false;
-            sStatus.Text = "Fold";
+            sStatus.Text = Constants.Fold;
             isBotTurn = false;
             hasBotFold = true;
         }
 
         private void ChangeStatusToChecking(ref bool isBotsTurn, Label statusLabel)
         {
-            statusLabel.Text = "Check";
+            statusLabel.Text = Constants.Check;
             isBotsTurn = false;
             this.currentForm.isRaising = false;
         }
@@ -361,7 +363,7 @@ namespace Poker.Models.Players.Bot
             this.currentForm.isRaising = false;
             isBotsTurn = false;
             botsChips -= this.currentForm.callChipsValue;
-            statusLabel.Text = "Call " + this.currentForm.callChipsValue;
+            statusLabel.Text = Constants.Call + this.currentForm.callChipsValue;
 
             this.currentForm.potTextBox.Text = (int.Parse(this.currentForm.potTextBox.Text) + this.currentForm.callChipsValue).ToString();
         }
@@ -369,7 +371,7 @@ namespace Poker.Models.Players.Bot
         private void RaiseBet(ref int botChips, ref bool isBotsTurn, Label statusLabel)
         {
             botChips -= Convert.ToInt32(this.currentForm.Raise);
-            statusLabel.Text = "Raise " + this.currentForm.Raise;
+            statusLabel.Text = Constants.Raise + this.currentForm.Raise;
             this.currentForm.potTextBox.Text = (int.Parse(this.currentForm.potTextBox.Text) + Convert.ToInt32(this.currentForm.Raise)).ToString();
             this.currentForm.callChipsValue = Convert.ToInt32(this.currentForm.Raise);
             this.currentForm.isRaising = true;

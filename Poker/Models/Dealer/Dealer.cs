@@ -1,30 +1,55 @@
 namespace Poker.Models
 {
-    using Poker.Interfaces;
+    using Poker;
+    using Interfaces;
+
+    using Constants;
+
     public class Dealer : IDealer
     {
         private readonly GameManager currentForm;
+        public bool hasExecutedFlop;
+        private bool hasExecutedTurn;
+        private bool hasExecutedRiver;
 
         public Dealer(GameManager currentForm)
         {
             this.currentForm = currentForm;
         }
 
+        public bool HasExecutedFlop
+        {
+            get { return hasExecutedFlop; }
+            private set { hasExecutedFlop = value; }
+        }
+
+        public bool HasExecutedTurn
+        {
+            get { return hasExecutedTurn; }
+            private set { hasExecutedTurn = value; }
+        }
+
+        public bool HasExecutedRiver
+        {
+            get { return hasExecutedRiver; }
+            private set { hasExecutedRiver = value; }
+        }
+
         public void AddChipsIfLost()
         {
             if (this.currentForm.playerChips <= 0)
             {
-                AddChipsWhenLost f2 = new AddChipsWhenLost();
-                f2.ShowDialog();
+                AddChipsWhenLost AchipsWhenLost = new AddChipsWhenLost();
+                AchipsWhenLost.ShowDialog();
 
-                if (f2.AddChipsValue != 0)
+                if (AchipsWhenLost.AddChipsValue != 0)
                 {
-                    this.currentForm.playerChips = f2.AddChipsValue;
-                    this.currentForm.botOneChips += f2.AddChipsValue;
-                    this.currentForm.botTwoChips += f2.AddChipsValue;
-                    this.currentForm.botThreeChips += f2.AddChipsValue;
-                    this.currentForm.botFourChips += f2.AddChipsValue;
-                    this.currentForm.botFiveChips += f2.AddChipsValue;
+                    this.currentForm.playerChips = AchipsWhenLost.AddChipsValue;
+                    this.currentForm.botOneChips += AchipsWhenLost.AddChipsValue;
+                    this.currentForm.botTwoChips += AchipsWhenLost.AddChipsValue;
+                    this.currentForm.botThreeChips += AchipsWhenLost.AddChipsValue;
+                    this.currentForm.botFourChips += AchipsWhenLost.AddChipsValue;
+                    this.currentForm.botFiveChips += AchipsWhenLost.AddChipsValue;
                     this.currentForm.hasPlayerBankrupted = false;
                     this.currentForm.playerTurn = true;
                     this.currentForm.playerRaiseButton.Enabled = true;
@@ -39,37 +64,37 @@ namespace Poker.Models
         {
             if (!this.currentForm.playerStatus.Text.Contains(Winner.FoldString))
             {
-                fixedLast = "Player";
+                fixedLast = Constants.Player;
                 this.currentForm.CurrentRules.GameRulesCreator(0, 1, ref this.currentForm.playerType, ref this.currentForm.playerPower, this.currentForm.hasPlayerBankrupted);
             }
 
             if (!this.currentForm.botOneStatus.Text.Contains(Winner.FoldString))
             {
-                fixedLast = "Winner 1";
+                fixedLast = Constants.Winner1;
                 this.currentForm.CurrentRules.GameRulesCreator(2, 3, ref this.currentForm.botOneType, ref this.currentForm.botOnePower, this.currentForm.hasBotOneBankrupted);
             }
 
             if (!this.currentForm.botTwoStatus.Text.Contains(Winner.FoldString))
             {
-                fixedLast = "Winner 2";
+                fixedLast = Constants.Winner2;
                 this.currentForm.CurrentRules.GameRulesCreator(4, 5, ref this.currentForm.botTwoType, ref this.currentForm.botTwoPower, this.currentForm.hasBotTwoBankrupted);
             }
 
             if (!this.currentForm.botThreeStatus.Text.Contains(Winner.FoldString))
             {
-                fixedLast = "Winner 3";
+                fixedLast = Constants.Winner3;
                 this.currentForm.CurrentRules.GameRulesCreator(6, 7, ref this.currentForm.botThreeType, ref this.currentForm.botThreePower, this.currentForm.hasBotThreeBankrupted);
             }
 
             if (!this.currentForm.botFourStatus.Text.Contains(Winner.FoldString))
             {
-                fixedLast = "Winner 4";
+                fixedLast = Constants.Winner4;
                 this.currentForm.CurrentRules.GameRulesCreator(8, 9, ref this.currentForm.botFourType, ref this.currentForm.botFourPower, this.currentForm.hasBotFourBankrupted);
             }
 
             if (!this.currentForm.botFiveStatus.Text.Contains(Winner.FoldString))
             {
-                fixedLast = "Winner 5";
+                fixedLast = Constants.Winner5;
                 this.currentForm.CurrentRules.GameRulesCreator(10, 11, ref this.currentForm.botFiveType, ref this.currentForm.botFivePower, this.currentForm.hasBotFiveBankrupted);
             }
 
@@ -84,6 +109,8 @@ namespace Poker.Models
                 {
                     this.ResetPlayerBotsValues(j);
                 }
+
+                this.HasExecutedFlop = true;
             }
 
             if (this.currentForm.totalRounds == GameManager.Turn)
@@ -92,6 +119,8 @@ namespace Poker.Models
                 {
                     this.ResetPlayerBotsValues(j);
                 }
+
+                this.HasExecutedTurn = true;
             }
 
             if (this.currentForm.totalRounds == GameManager.River)
@@ -100,6 +129,8 @@ namespace Poker.Models
                 {
                     this.ResetPlayerBotsValues(j);
                 }
+
+                this.hasExecutedRiver = true;
             }
         }
 
@@ -153,37 +184,37 @@ namespace Poker.Models
                 this.currentForm.botFiveRaise = 0;
             }
         }
-        
+
         private void CheckIfBankrupted()
         {
             if (!this.currentForm.hasPlayerBankrupted)
             {
-                this.currentForm.playerStatus.Text = "";
+                this.currentForm.playerStatus.Text = string.Empty;
             }
 
             if (!this.currentForm.hasBotOneBankrupted)
             {
-                this.currentForm.botOneStatus.Text = "";
+                this.currentForm.botOneStatus.Text = string.Empty;
             }
 
             if (!this.currentForm.hasBotTwoBankrupted)
             {
-                this.currentForm.botTwoStatus.Text = "";
+                this.currentForm.botTwoStatus.Text = string.Empty;
             }
 
             if (!this.currentForm.hasBotThreeBankrupted)
             {
-                this.currentForm.botThreeStatus.Text = "";
+                this.currentForm.botThreeStatus.Text = string.Empty;
             }
 
             if (!this.currentForm.hasBotFourBankrupted)
             {
-                this.currentForm.botFourStatus.Text = "";
+                this.currentForm.botFourStatus.Text = string.Empty;
             }
 
             if (!this.currentForm.hasBotFiveBankrupted)
             {
-                this.currentForm.botFiveStatus.Text = "";
+                this.currentForm.botFiveStatus.Text = string.Empty;
             }
         }
     }

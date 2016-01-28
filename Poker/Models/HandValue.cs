@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Poker.Models
+﻿namespace Poker.Models
 {
     public struct HandValue
     {
         public int Total { get; set; }
+
         public int HighCard { get; set; }
     }
 }

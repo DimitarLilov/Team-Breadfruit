@@ -1,15 +1,13 @@
-﻿using Poker.Enum;
-using Poker.Models.Players;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Poker.Models
+﻿namespace Poker.Models
 {
     //TODO: make it work for 7 cards
     //TODO: optimize if possible
+    using Enum;
+    using Players;
+
+    using System.Collections.Generic;
+
+
     public class HandEvaluator
     {
         private int heartsSum;
@@ -36,6 +34,7 @@ namespace Poker.Models
             {
                 return this.handValue;
             }
+
             private set
             {
                 this.handValue = value;
@@ -58,46 +57,45 @@ namespace Poker.Models
                 this.cards.Add(value[5]);
                 this.cards.Add(value[6]);
             }
-        }
+           }
 
-        public HandStrength EvaluateHand()
-        {
-            GetNumberOfSuits();
+            public HandStrength EvaluateHand()
+            {
+                GetNumberOfSuits();
 
-            if (CheckFourOfKind())
-            {
-                return HandStrength.FourKind;
-            }
-            else if (CheckFullHouse())
-            {
-                return HandStrength.FullHouse;
-            }
-            else if (CheckFlush())
-            {
-                return HandStrength.Flush;
-            }
-            else if (CheckStraight())
-            {
-                return HandStrength.Straight;
-            }
-            else if (CheckTreeOfKind())
-            {
-                return HandStrength.ThreeKind;
-            }
-            else if (CheckTwoPairs())
-            {
-                return HandStrength.TwoPairs;
-            }
-            else if (CheckOnePair())
-            {
-                return HandStrength.OnePair;
-            }
+                if (CheckFourOfKind())
+                {
+                    return HandStrength.FourKind;
+                }
+                else if (CheckFullHouse())
+                {
+                    return HandStrength.FullHouse;
+                }
+                else if (CheckFlush())
+                {
+                    return HandStrength.Flush;
+                }
+                else if (CheckStraight())
+                {
+                    return HandStrength.Straight;
+                }
+                else if (CheckTreeOfKind())
+                {
+                    return HandStrength.ThreeKind;
+                }
+                else if (CheckTwoPairs())
+                {
+                    return HandStrength.TwoPairs;
+                }
+                else if (CheckOnePair())
+                {
+                    return HandStrength.OnePair;
+                }
 
-            //if the hand is nothing, than the player with highest card wins
-            this.handValue.HighCard = (int)cards[6].Type;
-            return HandStrength.Nothing;
-        }
-
+                //if the hand is nothing, than the player with highest card wins
+                this.handValue.HighCard = (int)cards[6].Type;
+                return HandStrength.Nothing;
+            }
         //get the number of each suit on hand
         private void GetNumberOfSuits()
         {
@@ -121,12 +119,14 @@ namespace Poker.Models
             {
                 handValue.Total = (int)cards[1].Type * 4;
                 handValue.HighCard = (int)cards[4].Type;
+
                 return true;
             }
             else if (cards[1].Type == cards[2].Type && cards[1].Type == cards[3].Type && cards[1].Type == cards[4].Type)
             {
                 handValue.Total = (int)cards[1].Type * 4;
                 handValue.HighCard = (int)cards[0].Type;
+
                 return true;
             }
             else if(cards[2].Type == cards[3].Type && cards[2].Type == cards[4].Type && cards[2].Type == cards[5].Type)
@@ -155,6 +155,7 @@ namespace Poker.Models
             {
                 handValue.Total = (int)(cards[0].Type) + (int)(cards[1].Type) + (int)(cards[2].Type) +
                     (int)(cards[3].Type) + (int)(cards[4].Type);
+
                 return true;
             }
 
@@ -169,6 +170,7 @@ namespace Poker.Models
                 //if flush, the player with higher cards win
                 //whoever has the last card the highest, has automatically all the cards total higher
                 handValue.Total = CheckHighestFlushCard();
+
                 return true;
             }
 
@@ -215,6 +217,7 @@ namespace Poker.Models
             {
                 //player with the highest value of the last card wins
                 handValue.Total = (int)cards[4].Type;
+
                 return true;
             }
 
@@ -244,6 +247,7 @@ namespace Poker.Models
             {
                 handValue.Total = (int)cards[2].Type * 3;
                 handValue.HighCard = (int)cards[1].Type;
+
                 return true;
             }
             else if (cards[3].Type == cards[4].Type && cards[3].Type == cards[5].Type)
@@ -259,6 +263,7 @@ namespace Poker.Models
                 return true;
             }
 
+
             return false;
         }
 
@@ -273,6 +278,7 @@ namespace Poker.Models
             {
                 handValue.Total = ((int)cards[1].Type * 2) + ((int)cards[3].Type * 2);
                 handValue.HighCard = (int)cards[6].Type;
+
                 return true;
             }
             else if (cards[0].Type == cards[1].Type && cards[3].Type == cards[4].Type)
@@ -343,6 +349,7 @@ namespace Poker.Models
             {
                 handValue.Total = (int)cards[0].Type * 2;
                 handValue.HighCard = (int)cards[6].Type;
+
                 return true;
             }
             else if (cards[1].Type == cards[2].Type)
@@ -373,6 +380,7 @@ namespace Poker.Models
             {
                 handValue.Total = (int)cards[5].Type * 2;
                 handValue.HighCard = (int)cards[4].Type;
+
                 return true;
             }
 

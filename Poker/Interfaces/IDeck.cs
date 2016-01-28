@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Poker.Interfaces
+﻿namespace Poker.Interfaces
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Implements a class that holds a collection of cards.
     /// </summary>
-    interface IDeck
+    public interface IDeck
     {
         IEnumerable<ICard> Cards { get; }
     } 

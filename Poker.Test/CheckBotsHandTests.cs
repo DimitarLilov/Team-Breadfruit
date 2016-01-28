@@ -3,7 +3,7 @@
     using System;
     using System.Windows.Forms;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Poker.Models.Players.Bot;
+    using Models.Players.Bot;
 
     [TestClass]
     public class CheckBotsHandTests
@@ -66,6 +66,7 @@
         public void CheckBotsHandShould_ReturnTrue_WhenCheckBotsPairHandMethod_IsAccessed()
         {
             this.sampleBotCurrent = 1;
+            var expected = true;
 
             this.bot.CheckBotsHand(this.sampleBotsFirstCard,
                 this.sampleBotsSecondCard,
@@ -75,7 +76,7 @@
                 this.sampleBotStatus,
                 this.sampleBotPower,
                 this.sampleBotCurrent);
-            var expected = true;
+            
 
             Assert.AreEqual(expected, this.bot.UnitTest);
         }
@@ -84,6 +85,7 @@
         public void CheckBotsHandShould_ReturnTrue_WhenCheckBotsTwoPairMethod_IsAccessed()
         {
             this.sampleBotCurrent = 2;
+            var expected = true;
 
             this.bot.CheckBotsHand(this.sampleBotsFirstCard,
                 this.sampleBotsSecondCard,
@@ -93,7 +95,6 @@
                 this.sampleBotStatus,
                 this.sampleBotPower,
                 this.sampleBotCurrent);
-            var expected = true;
 
             Assert.AreEqual(expected, this.bot.UnitTest);
         }
@@ -102,6 +103,7 @@
         public void CheckBotsHandShould_ReturnTrue_WhenCheckBotsThreeOfAKindMethod_IsAccessed()
         {
             this.sampleBotCurrent = 3;
+            var expected = true;
 
             this.bot.CheckBotsHand(this.sampleBotsFirstCard,
                 this.sampleBotsSecondCard,
@@ -111,7 +113,6 @@
                 this.sampleBotStatus,
                 this.sampleBotPower,
                 this.sampleBotCurrent);
-            var expected = true;
 
             Assert.AreEqual(expected, this.bot.UnitTest);
         }
@@ -120,6 +121,7 @@
         public void CheckBotsHandShould_ReturnTrue_WhenCheckBotsStraightMethod_IsAccessed()
         {
             this.sampleBotCurrent = 4;
+            var expected = true;
 
             this.bot.CheckBotsHand(this.sampleBotsFirstCard,
                 this.sampleBotsSecondCard,
@@ -129,7 +131,6 @@
                 this.sampleBotStatus,
                 this.sampleBotPower,
                 this.sampleBotCurrent);
-            var expected = true;
 
             Assert.AreEqual(expected, this.bot.UnitTest);
         }
@@ -190,6 +191,7 @@
         public void CheckBotsHandShould_ReturnTrue_WhenCheckBotsStraightFlushMethod_IsAccessed()
         {
             this.sampleBotCurrent = 8;
+            var expected = true;
 
             this.bot.CheckBotsHand(this.sampleBotsFirstCard,
                 this.sampleBotsSecondCard,
@@ -199,7 +201,6 @@
                 this.sampleBotStatus,
                 this.sampleBotPower,
                 this.sampleBotCurrent);
-            var expected = true;
 
             Assert.AreEqual(expected, this.bot.UnitTest);
         }
