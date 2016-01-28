@@ -20,6 +20,7 @@
         PlayerPosition Position { get; set; }
 
         void AddCards(IEnumerable<SimpleCard> cards);
+
         void ChangeStrategy(); //check fold raise
     }
 }

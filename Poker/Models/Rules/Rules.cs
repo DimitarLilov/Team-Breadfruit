@@ -99,7 +99,7 @@ namespace Poker.Models.Rules
 
         public void GameRulesCreator(int cardOne, int cardTwo, ref double current, ref double power, bool foldedTurn)
         {
-            if (!foldedTurn || cardOne == 0 && cardTwo == 1 && this.currentForm.playerStatus.Text.Contains(Constants.Fold) == false)
+            if (!foldedTurn || cardOne == 0 && cardTwo == 1 && this.currentForm.playerStatus.Text.Contains(Constant.Fold) == false)
             {
                 bool done = false, hasFlush = false;
                 int[] cardsOnTheTable = new int[5];
@@ -119,15 +119,15 @@ namespace Poker.Models.Rules
                 cardsOnTheTable[3] = this.currentForm.cardsAsNumbers[15];
                 cardsOnTheTable[4] = this.currentForm.cardsAsNumbers[16];
 
-                var clubs = currentPlayerAndTableCards.Where(o => o % Constants.Devider == 0).ToArray();
-                var diamonds = currentPlayerAndTableCards.Where(o => o % Constants.Devider == 1).ToArray();
-                var hearts = currentPlayerAndTableCards.Where(o => o % Constants.Devider == 2).ToArray();
-                var spades = currentPlayerAndTableCards.Where(o => o % Constants.Devider == 3).ToArray();
+                var clubs = currentPlayerAndTableCards.Where(o => o % Constant.Devider == 0).ToArray();
+                var diamonds = currentPlayerAndTableCards.Where(o => o % Constant.Devider == 1).ToArray();
+                var hearts = currentPlayerAndTableCards.Where(o => o % Constant.Devider == 2).ToArray();
+                var spades = currentPlayerAndTableCards.Where(o => o % Constant.Devider == 3).ToArray();
 
-                var clubsStrenghtValues = clubs.Select(o => o / Constants.Devider).Distinct().ToArray();
-                var diamondsStrenghtValues = diamonds.Select(o => o / Constants.Devider).Distinct().ToArray();
-                var heartsStrenghtValues = hearts.Select(o => o / Constants.Devider).Distinct().ToArray();
-                var spadesStrenghtValues = spades.Select(o => o / Constants.Devider).Distinct().ToArray();
+                var clubsStrenghtValues = clubs.Select(o => o / Constant.Devider).Distinct().ToArray();
+                var diamondsStrenghtValues = diamonds.Select(o => o / Constant.Devider).Distinct().ToArray();
+                var heartsStrenghtValues = hearts.Select(o => o / Constant.Devider).Distinct().ToArray();
+                var spadesStrenghtValues = spades.Select(o => o / Constant.Devider).Distinct().ToArray();
 
                 Array.Sort(currentPlayerAndTableCards);
                 Array.Sort(clubsStrenghtValues);
@@ -179,7 +179,7 @@ namespace Poker.Models.Rules
                     if (clubsStrenghtValues[0] + 4 == clubsStrenghtValues[4])
                     {
                         current = 8;
-                        power = clubsStrenghtValues.Max() / Constants.Devider + current * 100;
+                        power = clubsStrenghtValues.Max() / Constant.Devider + current * 100;
                         this.SortedWinningHands(current, power);
 
                     }
@@ -191,7 +191,7 @@ namespace Poker.Models.Rules
                         clubsStrenghtValues[0] + 12 == clubsStrenghtValues[4])
                     {
                         current = 9;
-                        power = (clubsStrenghtValues.Max()) / Constants.Devider + current * 100;
+                        power = (clubsStrenghtValues.Max()) / Constant.Devider + current * 100;
                         this.SortedWinningHands(current, power);
                     }
                 }
@@ -201,7 +201,7 @@ namespace Poker.Models.Rules
                     if (diamondsStrenghtValues[0] + 4 == diamondsStrenghtValues[4])
                     {
                         current = 8;
-                        power = diamondsStrenghtValues.Max() / Constants.Devider + current * 100;
+                        power = diamondsStrenghtValues.Max() / Constant.Devider + current * 100;
                         this.SortedWinningHands(current, power);
                     }
 
@@ -212,7 +212,7 @@ namespace Poker.Models.Rules
                         diamondsStrenghtValues[0] + 12 == diamondsStrenghtValues[4])
                     {
                         current = 9;
-                        power = diamondsStrenghtValues.Max() / Constants.Devider + current * 100;
+                        power = diamondsStrenghtValues.Max() / Constant.Devider + current * 100;
                         this.SortedWinningHands(current, power);
                     }
                 }
@@ -222,7 +222,7 @@ namespace Poker.Models.Rules
                     if (heartsStrenghtValues[0] + 4 == heartsStrenghtValues[4])
                     {
                         current = 8;
-                        power = heartsStrenghtValues.Max() / Constants.Devider + current * 100;
+                        power = heartsStrenghtValues.Max() / Constant.Devider + current * 100;
                         this.SortedWinningHands(current, power);
                     }
 
@@ -233,7 +233,7 @@ namespace Poker.Models.Rules
                         heartsStrenghtValues[0] + 12 == heartsStrenghtValues[4])
                     {
                         current = 9;
-                        power = heartsStrenghtValues.Max() / Constants.Devider + current * 100;
+                        power = heartsStrenghtValues.Max() / Constant.Devider + current * 100;
                         this.SortedWinningHands(current, power);
                     }
                 }
@@ -243,7 +243,7 @@ namespace Poker.Models.Rules
                     if (spadesStrenghtValues[0] + 4 == spadesStrenghtValues[4])
                     {
                         current = 8;
-                        power = spadesStrenghtValues.Max() / Constants.Devider + current * 100;
+                        power = spadesStrenghtValues.Max() / Constant.Devider + current * 100;
                         this.SortedWinningHands(current, power);
                     }
 
@@ -254,7 +254,7 @@ namespace Poker.Models.Rules
                         spadesStrenghtValues[0] + 12 == spadesStrenghtValues[4])
                     {
                         current = 9;
-                        power = spadesStrenghtValues.Max() / Constants.Devider + current * 100;
+                        power = spadesStrenghtValues.Max() / Constant.Devider + current * 100;
                         this.SortedWinningHands(current, power);
                     }
                 }
@@ -268,19 +268,19 @@ namespace Poker.Models.Rules
             {
                 for (int j = 0; j <= 3; j++)
                 {
-                    if (straight[j] / Constants.Devider == straight[j + 1] / Constants.Devider &&
-                        straight[j] / Constants.Devider == straight[j + 2] / Constants.Devider &&
-                        straight[j] / Constants.Devider == straight[j + 3] / Constants.Devider)
+                    if (straight[j] / Constant.Devider == straight[j + 1] / Constant.Devider &&
+                        straight[j] / Constant.Devider == straight[j + 2] / Constant.Devider &&
+                        straight[j] / Constant.Devider == straight[j + 3] / Constant.Devider)
                     {
                         current = 7;
-                        power = (straight[j] / Constants.Devider) * 4 + current * 100;
+                        power = (straight[j] / Constant.Devider) * 4 + current * 100;
                         this.SortedWinningHands(current, power);
                     }
 
-                    if (straight[j] / Constants.Devider == 0 &&
-                        straight[j + 1] / Constants.Devider == 0 &&
-                        straight[j + 2] / Constants.Devider == 0 &&
-                        straight[j + 3] / Constants.Devider == 0)
+                    if (straight[j] / Constant.Devider == 0 &&
+                        straight[j + 1] / Constant.Devider == 0 &&
+                        straight[j + 2] / Constant.Devider == 0 &&
+                        straight[j + 3] / Constant.Devider == 0)
                     {
                         current = 7;
                         power = 13 * 4 + current * 100;
@@ -296,14 +296,14 @@ namespace Poker.Models.Rules
             if (current >= -1)
             {
                 this.currentForm.type = power;
-                for (int j = 0; j <= Constants.CardTypes; j++)
+                for (int j = 0; j <= Constant.CardTypes; j++)
                 {
-                    var fullHouse = straight.Where(o => o / Constants.Devider == j).ToArray();
+                    var fullHouse = straight.Where(o => o / Constant.Devider == j).ToArray();
                     if (fullHouse.Length == 3 || done)
                     {
                         if (fullHouse.Length == 2)
                         {
-                            if (fullHouse.Max() / Constants.Devider == 0)
+                            if (fullHouse.Max() / Constant.Devider == 0)
                             {
                                 current = 6;
                                 power = 13 * 2 + current * 100;
@@ -311,10 +311,10 @@ namespace Poker.Models.Rules
                                 break;
                             }
 
-                            if (fullHouse.Max() / Constants.Devider > 0)
+                            if (fullHouse.Max() / Constant.Devider > 0)
                             {
                                 current = 6;
-                                power = fullHouse.Max() / Constants.Devider * 2 + current * 100;
+                                power = fullHouse.Max() / Constant.Devider * 2 + current * 100;
                                 this.SortedWinningHands(current, power);
                                 break;
                             }
@@ -322,7 +322,7 @@ namespace Poker.Models.Rules
 
                         if (!done)
                         {
-                            if (fullHouse.Max() / Constants.Devider == 0)
+                            if (fullHouse.Max() / Constant.Devider == 0)
                             {
                                 power = 13;
                                 done = true;
@@ -330,7 +330,7 @@ namespace Poker.Models.Rules
                             }
                             else
                             {
-                                power = fullHouse.Max() / Constants.Devider;
+                                power = fullHouse.Max() / Constant.Devider;
                                 done = true;
                                 j = -1;
                             }
@@ -350,20 +350,20 @@ namespace Poker.Models.Rules
             this.HasSucsuccessfullyExecutedRulesFlush = true;
             if (current >= -1)
             {
-                var clubs = straight1.Where(o => o % Constants.Devider == 0).ToArray();
-                var diamonds = straight1.Where(o => o % Constants.Devider == 1).ToArray();
-                var hearts = straight1.Where(o => o % Constants.Devider == 2).ToArray();
-                var spades = straight1.Where(o => o % Constants.Devider == 3).ToArray();
+                var clubs = straight1.Where(o => o % Constant.Devider == 0).ToArray();
+                var diamonds = straight1.Where(o => o % Constant.Devider == 1).ToArray();
+                var hearts = straight1.Where(o => o % Constant.Devider == 2).ToArray();
+                var spades = straight1.Where(o => o % Constant.Devider == 3).ToArray();
 
                 if (clubs.Length == 3 || clubs.Length == 4)
                 {
                     if (
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider ==
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider == 
-                        clubs[0] % Constants.Devider)
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider ==
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider == 
+                        clubs[0] % Constant.Devider)
                     {
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider > clubs.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider > clubs.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
@@ -371,15 +371,15 @@ namespace Poker.Models.Rules
                             hasFlush = true;
                         }
 
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider > clubs.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider > clubs.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                             this.SortedWinningHands(current, power);
                             hasFlush = true;
                         }
-                        else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider < clubs.Max() / Constants.Devider &&
-                            this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider < clubs.Max() / Constants.Devider)
+                        else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider < clubs.Max() / Constant.Devider &&
+                            this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider < clubs.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = clubs.Max() + current * 100;
@@ -391,12 +391,12 @@ namespace Poker.Models.Rules
 
                 if (clubs.Length == 4) //Different cardt in hand
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider !=
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider ==
-                        clubs[0] % Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider !=
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider ==
+                        clubs[0] % Constant.Devider)
                     {
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider > clubs.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider > clubs.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
@@ -412,12 +412,12 @@ namespace Poker.Models.Rules
                         }
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider != 
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider == 
-                        clubs[0] % Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider != 
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider == 
+                        clubs[0] % Constant.Devider)
                     {
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider > clubs.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider > clubs.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
@@ -436,8 +436,8 @@ namespace Poker.Models.Rules
 
                 if (clubs.Length == 5)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider == clubs[0] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider > clubs.Min() / Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider == clubs[0] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider > clubs.Min() / Constant.Devider)
                     {
                         current = 5;
                         power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
@@ -445,16 +445,16 @@ namespace Poker.Models.Rules
                         hasFlush = true;
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider == clubs[0] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider > clubs.Min() / Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider == clubs[0] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider > clubs.Min() / Constant.Devider)
                     {
                         current = 5;
                         power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                         this.SortedWinningHands(current, power);
                         hasFlush = true;
                     }
-                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider < clubs.Min() / Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider < clubs.Min())
+                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider < clubs.Min() / Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider < clubs.Min())
                     {
                         current = 5;
                         power = clubs.Max() + current * 100;
@@ -465,12 +465,12 @@ namespace Poker.Models.Rules
 
                 if (diamonds.Length == 3 || diamonds.Length == 4)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider == 
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider ==
-                        diamonds[0] % Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider == 
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider ==
+                        diamonds[0] % Constant.Devider)
                     {
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider > diamonds.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider > diamonds.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
@@ -478,15 +478,15 @@ namespace Poker.Models.Rules
                             hasFlush = true;
                         }
 
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider > diamonds.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider > diamonds.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                             this.SortedWinningHands(current, power);
                             hasFlush = true;
                         }
-                        else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider < diamonds.Max() / Constants.Devider &&
-                            this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider < diamonds.Max() / Constants.Devider)
+                        else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider < diamonds.Max() / Constant.Devider &&
+                            this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider < diamonds.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = diamonds.Max() + current * 100;
@@ -498,12 +498,12 @@ namespace Poker.Models.Rules
 
                 if (diamonds.Length == 4)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider !=
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider ==
-                        diamonds[0] % Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider !=
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider ==
+                        diamonds[0] % Constant.Devider)
                     {
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider > diamonds.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider > diamonds.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
@@ -519,12 +519,12 @@ namespace Poker.Models.Rules
                         }
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider !=
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider == 
-                        diamonds[0] % Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider !=
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider == 
+                        diamonds[0] % Constant.Devider)
                     {
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider > diamonds.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider > diamonds.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
@@ -543,8 +543,8 @@ namespace Poker.Models.Rules
 
                 if (diamonds.Length == 5)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider == diamonds[0] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider > diamonds.Min() / Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider == diamonds[0] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider > diamonds.Min() / Constant.Devider)
                     {
                         current = 5;
                         power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
@@ -552,16 +552,16 @@ namespace Poker.Models.Rules
                         hasFlush = true;
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider == diamonds[0] % Constants.Devider
-                        && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider > diamonds.Min() / Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider == diamonds[0] % Constant.Devider
+                        && this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider > diamonds.Min() / Constant.Devider)
                     {
                         current = 5;
                         power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                         this.SortedWinningHands(current, power);
                         hasFlush = true;
                     }
-                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider < diamonds.Min() / Constants.Devider && 
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider < diamonds.Min())
+                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider < diamonds.Min() / Constant.Devider && 
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider < diamonds.Min())
                     {
                         current = 5;
                         power = diamonds.Max() + current * 100;
@@ -573,12 +573,12 @@ namespace Poker.Models.Rules
 
                 if (hearts.Length == 3 || hearts.Length == 4)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider == 
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider == 
-                        hearts[0] % Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider == 
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider == 
+                        hearts[0] % Constant.Devider)
                     {
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider > hearts.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider > hearts.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
@@ -587,7 +587,7 @@ namespace Poker.Models.Rules
                             hasFlush = true;
                         }
 
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider > hearts.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider > hearts.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
@@ -595,8 +595,8 @@ namespace Poker.Models.Rules
 
                             hasFlush = true;
                         }
-                        else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider < hearts.Max() / Constants.Devider &&
-                            this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider < hearts.Max() / Constants.Devider)
+                        else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider < hearts.Max() / Constant.Devider &&
+                            this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider < hearts.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = hearts.Max() + current * 100;
@@ -609,12 +609,12 @@ namespace Poker.Models.Rules
 
                 if (hearts.Length == 4)//different cards in hand
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider !=
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider == 
-                        hearts[0] % Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider !=
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider == 
+                        hearts[0] % Constant.Devider)
                     {
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider > hearts.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider > hearts.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
@@ -630,12 +630,12 @@ namespace Poker.Models.Rules
                         }
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider != 
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider == 
-                        hearts[0] % Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider != 
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider == 
+                        hearts[0] % Constant.Devider)
                     {
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider > hearts.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider > hearts.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
@@ -654,8 +654,8 @@ namespace Poker.Models.Rules
 
                 if (hearts.Length == 5)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider == hearts[0] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider > hearts.Min() / Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider == hearts[0] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider > hearts.Min() / Constant.Devider)
                     {
                         current = 5;
                         power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
@@ -663,16 +663,16 @@ namespace Poker.Models.Rules
                         hasFlush = true;
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider == hearts[0] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider > hearts.Min() / Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider == hearts[0] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider > hearts.Min() / Constant.Devider)
                     {
                         current = 5;
                         power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                         this.SortedWinningHands(current, power);
                         hasFlush = true;
                     }
-                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider < hearts.Min() / Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider < hearts.Min())
+                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider < hearts.Min() / Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider < hearts.Min())
                     {
                         current = 5;
                         power = hearts.Max() + current * 100;
@@ -683,12 +683,12 @@ namespace Poker.Models.Rules
 
                 if (spades.Length == 3 || spades.Length == 4)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider == 
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider ==
-                        spades[0] % Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider == 
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider ==
+                        spades[0] % Constant.Devider)
                     {
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider > spades.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider > spades.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
@@ -696,15 +696,15 @@ namespace Poker.Models.Rules
                             hasFlush = true;
                         }
 
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider > spades.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider > spades.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                             this.SortedWinningHands(current, power);
                             hasFlush = true;
                         }
-                        else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider < spades.Max() / Constants.Devider &&
-                            this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider < spades.Max() / Constants.Devider)
+                        else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider < spades.Max() / Constant.Devider &&
+                            this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider < spades.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = spades.Max() + current * 100;
@@ -716,12 +716,12 @@ namespace Poker.Models.Rules
 
                 if (spades.Length == 4)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider != 
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider ==
-                        spades[0] % Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider != 
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider ==
+                        spades[0] % Constant.Devider)
                     {
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider > spades.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider > spades.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
@@ -737,12 +737,12 @@ namespace Poker.Models.Rules
                         }
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider != 
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider == 
-                        spades[0] % Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider != 
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider == 
+                        spades[0] % Constant.Devider)
                     {
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider > spades.Max() / Constants.Devider)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider > spades.Max() / Constant.Devider)
                         {
                             current = 5;
                             power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
@@ -761,8 +761,8 @@ namespace Poker.Models.Rules
 
                 if (spades.Length == 5)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider == spades[0] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider > spades.Min() / Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider == spades[0] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider > spades.Min() / Constant.Devider)
                     {
                         current = 5;
                         power = this.currentForm.cardsAsNumbers[this.currentForm.i] + current * 100;
@@ -770,16 +770,16 @@ namespace Poker.Models.Rules
                         hasFlush = true;
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider == spades[0] % Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider > spades.Min() / Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider == spades[0] % Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider > spades.Min() / Constant.Devider)
                     {
                         current = 5;
                         power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
                         this.SortedWinningHands(current, power);
                         hasFlush = true;
                     }
-                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider < spades.Min() / Constants.Devider &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider < spades.Min())
+                    else if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider < spades.Min() / Constant.Devider &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider < spades.Min())
                     {
                         current = 5;
                         power = spades.Max() + current * 100;
@@ -790,8 +790,8 @@ namespace Poker.Models.Rules
 
                 if (clubs.Length > 0)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider == 0 &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider == clubs[0] % Constants.Devider &&
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider == 0 &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider == clubs[0] % Constant.Devider &&
                         hasFlush &&
                         clubs.Length > 0)
                     {
@@ -800,8 +800,8 @@ namespace Poker.Models.Rules
                         this.SortedWinningHands(current, power);
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider == 0 &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider == clubs[0] % Constants.Devider &&
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider == 0 &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider == clubs[0] % Constant.Devider &&
                         hasFlush &&
                         clubs.Length > 0)
                     {
@@ -813,8 +813,8 @@ namespace Poker.Models.Rules
 
                 if (diamonds.Length > 0)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider == 0 &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider == diamonds[0] % Constants.Devider &&
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider == 0 &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider == diamonds[0] % Constant.Devider &&
                         hasFlush &&
                         diamonds.Length > 0)
                     {
@@ -823,8 +823,8 @@ namespace Poker.Models.Rules
                         this.SortedWinningHands(current, power);
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider == 0 &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider == diamonds[0] % Constants.Devider &&
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider == 0 &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider == diamonds[0] % Constant.Devider &&
                         hasFlush &&
                         diamonds.Length > 0)
                     {
@@ -836,8 +836,8 @@ namespace Poker.Models.Rules
 
                 if (hearts.Length > 0)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider == 0 &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider == hearts[0] % Constants.Devider &&
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider == 0 &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider == hearts[0] % Constant.Devider &&
                         hasFlush &&
                         hearts.Length > 0)
                     {
@@ -846,8 +846,8 @@ namespace Poker.Models.Rules
                         this.SortedWinningHands(current, power);
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider == 0 &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider == hearts[0] % Constants.Devider &&
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider == 0 &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider == hearts[0] % Constant.Devider &&
                         hasFlush &&
                         hearts.Length > 0)
                     {
@@ -859,8 +859,8 @@ namespace Poker.Models.Rules
 
                 if (spades.Length > 0)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider == 0 &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constants.Devider == spades[0] % Constants.Devider &&
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider == 0 &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i] % Constant.Devider == spades[0] % Constant.Devider &&
                         hasFlush &&
                         spades.Length > 0)
                     {
@@ -869,8 +869,8 @@ namespace Poker.Models.Rules
                         this.SortedWinningHands(current, power);
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider == 0 &&
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constants.Devider == spades[0] % Constants.Devider &&
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider == 0 &&
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] % Constant.Devider == spades[0] % Constant.Devider &&
                         hasFlush)
                     {
                         current = 5.5;
@@ -886,7 +886,7 @@ namespace Poker.Models.Rules
             this.HasSucsuccessfullyExecutedRulesStraight = true;
             if (current >= -1)
             {
-                var op = straight.Select(o => o / Constants.Devider)
+                var op = straight.Select(o => o / Constant.Devider)
                     .Distinct()
                     .ToArray();
 
@@ -926,14 +926,14 @@ namespace Poker.Models.Rules
             this.HasSucsuccessfullyExecutedRulesThreeOfAKind = true;
             if (current >= -1)
             {
-                for (int j = 0; j <= Constants.CardTypes; j++)
+                for (int j = 0; j <= Constant.CardTypes; j++)
                 {
-                    var threeOfAkind = straight.Where(o => o / Constants.Devider == j)
+                    var threeOfAkind = straight.Where(o => o / Constant.Devider == j)
                         .ToArray();
 
                     if (threeOfAkind.Length == 3)
                     {
-                        if (threeOfAkind.Max() / Constants.Devider == 0)
+                        if (threeOfAkind.Max() / Constant.Devider == 0)
                         {
                             current = 3;
                             power = 13 * 3 + current * 100;
@@ -942,7 +942,7 @@ namespace Poker.Models.Rules
                         else
                         {
                             current = 3;
-                            power = threeOfAkind[0] / Constants.Devider + threeOfAkind[1] / Constants.Devider + threeOfAkind[2] / Constants.Devider + current * 100;
+                            power = threeOfAkind[0] / Constant.Devider + threeOfAkind[1] / Constant.Devider + threeOfAkind[2] / Constant.Devider + current * 100;
                             this.SortedWinningHands(current, power);
                         }
                     }
@@ -957,52 +957,52 @@ namespace Poker.Models.Rules
             {
                 bool msgbox = false;
 
-                for (int totalCards = 16; totalCards >= Constants.CardTypes; totalCards--)
+                for (int totalCards = 16; totalCards >= Constant.CardTypes; totalCards--)
                 {
                     int max = totalCards - 12;
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider != 
-                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider != 
+                        this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider)
                     {
                         for (int k = 1; k <= max; k++)
                         {
-                            if (totalCards - k < Constants.CardTypes)
+                            if (totalCards - k < Constant.CardTypes)
                             {
                                 max--;
                             }
 
-                            if (totalCards - k >= Constants.CardTypes)
+                            if (totalCards - k >= Constant.CardTypes)
                             {
-                                if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider ==
-                                    this.currentForm.cardsAsNumbers[totalCards] / Constants.Devider &&
-                                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider == 
-                                    this.currentForm.cardsAsNumbers[totalCards - k] / Constants.Devider ||
-                                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider == 
-                                    this.currentForm.cardsAsNumbers[totalCards] / Constants.Devider &&
-                                    this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider == 
-                                    this.currentForm.cardsAsNumbers[totalCards - k] / Constants.Devider)
+                                if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider ==
+                                    this.currentForm.cardsAsNumbers[totalCards] / Constant.Devider &&
+                                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider == 
+                                    this.currentForm.cardsAsNumbers[totalCards - k] / Constant.Devider ||
+                                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider == 
+                                    this.currentForm.cardsAsNumbers[totalCards] / Constant.Devider &&
+                                    this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider == 
+                                    this.currentForm.cardsAsNumbers[totalCards - k] / Constant.Devider)
                                 {
                                     if (!msgbox)
                                     {
-                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider == 0)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider == 0)
                                         {
                                             current = 2;
-                                            power = 13 * 4 + (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider) * 2 + current * 100;
+                                            power = 13 * 4 + (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider) * 2 + current * 100;
                                             this.SortedWinningHands(current, power);
                                         }
 
-                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider == 0)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider == 0)
                                         {
                                             current = 2;
-                                            power = 13 * 4 + (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider) * 2 + current * 100;
+                                            power = 13 * 4 + (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider) * 2 + current * 100;
                                             this.SortedWinningHands(current, power);
                                         }
 
-                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider != 0 &&
-                                            this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider != 0)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider != 0 &&
+                                            this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider != 0)
                                         {
                                             current = 2;
-                                            power = (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider) * 2 +
+                                            power = (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider) * 2 +
                                                 (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4) * 2 + current * 100;
                                             this.SortedWinningHands(current, power);
                                         }
@@ -1025,55 +1025,55 @@ namespace Poker.Models.Rules
                 bool msgbox = false;
                 bool msgbox1 = false;
 
-                for (int totalCards = 16; totalCards >= Constants.CardTypes; totalCards--)
+                for (int totalCards = 16; totalCards >= Constant.CardTypes; totalCards--)
                 {
-                    int max = totalCards - Constants.CardTypes;
+                    int max = totalCards - Constant.CardTypes;
                     for (int k = 1; k <= max; k++)
                     {
-                        if (totalCards - k < Constants.CardTypes)
+                        if (totalCards - k < Constant.CardTypes)
                         {
                             max--;
                         }
 
-                        if (totalCards - k >= Constants.CardTypes)
+                        if (totalCards - k >= Constant.CardTypes)
                         {
-                            if (this.currentForm.cardsAsNumbers[totalCards] / Constants.Devider ==
-                                this.currentForm.cardsAsNumbers[totalCards - k] / Constants.Devider)
+                            if (this.currentForm.cardsAsNumbers[totalCards] / Constant.Devider ==
+                                this.currentForm.cardsAsNumbers[totalCards - k] / Constant.Devider)
                             {
-                                if (this.currentForm.cardsAsNumbers[totalCards] / Constants.Devider != 
-                                    this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider &&
-                                    this.currentForm.cardsAsNumbers[totalCards] / Constants.Devider != 
-                                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider &&
+                                if (this.currentForm.cardsAsNumbers[totalCards] / Constant.Devider != 
+                                    this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider &&
+                                    this.currentForm.cardsAsNumbers[totalCards] / Constant.Devider != 
+                                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider &&
                                     current == 1)
                                 {
                                     if (!msgbox)
                                     {
-                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider == 0)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider == 0)
                                         {
                                             current = 2;
-                                            power = (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider) * 2 + 13 * 4 + current * 100;
+                                            power = (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider) * 2 + 13 * 4 + current * 100;
                                             this.SortedWinningHands(current, power);
                                         }
 
-                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider == 0)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider == 0)
                                         {
                                             current = 2;
-                                            power = (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider) * 2 + 13 * 4 + current * 100;
+                                            power = (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider) * 2 + 13 * 4 + current * 100;
                                             this.SortedWinningHands(current, power);
                                         }
 
-                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider != 0)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider != 0)
                                         {
                                             current = 2;
-                                            power = (this.currentForm.cardsAsNumbers[totalCards] / Constants.Devider) * 2 + 
+                                            power = (this.currentForm.cardsAsNumbers[totalCards] / Constant.Devider) * 2 + 
                                                 (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / 4) * 2 + current * 100;
                                             this.SortedWinningHands(current, power);
                                         }
 
-                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider != 0)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider != 0)
                                         {
                                             current = 2;
-                                            power = (this.currentForm.cardsAsNumbers[totalCards] / Constants.Devider) * 2 + 
+                                            power = (this.currentForm.cardsAsNumbers[totalCards] / Constant.Devider) * 2 + 
                                                 (this.currentForm.cardsAsNumbers[this.currentForm.i] / 4) * 2 + current * 100;
                                             this.SortedWinningHands(current, power);
                                         }
@@ -1086,26 +1086,26 @@ namespace Poker.Models.Rules
                                 {
                                     if (!msgbox1)
                                     {
-                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider > 
-                                            this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider)
+                                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider > 
+                                            this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider)
                                         {
-                                            if (this.currentForm.cardsAsNumbers[totalCards] / Constants.Devider == 0)
+                                            if (this.currentForm.cardsAsNumbers[totalCards] / Constant.Devider == 0)
                                             {
                                                 current = 0;
-                                                power = 13 + this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider + current * 100;
+                                                power = 13 + this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider + current * 100;
                                                 this.SortedWinningHands(current, power);
                                             }
                                             else
                                             {
                                                 current = 0;
-                                                power = this.currentForm.cardsAsNumbers[totalCards] / Constants.Devider + 
-                                                    this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider + current * 100;
+                                                power = this.currentForm.cardsAsNumbers[totalCards] / Constant.Devider + 
+                                                    this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider + current * 100;
                                                 this.SortedWinningHands(current, power);
                                             }
                                         }
                                         else
                                         {
-                                            if (this.currentForm.cardsAsNumbers[totalCards] / Constants.Devider == 0)
+                                            if (this.currentForm.cardsAsNumbers[totalCards] / Constant.Devider == 0)
                                             {
                                                 current = 0;
                                                 power = 13 + this.currentForm.cardsAsNumbers[this.currentForm.i + 1] + current * 100;
@@ -1114,8 +1114,8 @@ namespace Poker.Models.Rules
                                             else
                                             {
                                                 current = 0;
-                                                power = this.currentForm.cardsAsNumbers[totalCards] / Constants.Devider + 
-                                                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider + current * 100;
+                                                power = this.currentForm.cardsAsNumbers[totalCards] / Constant.Devider + 
+                                                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider + current * 100;
                                                 this.SortedWinningHands(current, power);
                                             }
                                         }
@@ -1136,12 +1136,12 @@ namespace Poker.Models.Rules
             if (current >= -1)
             {
                 bool msgbox = false;
-                if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider == 
-                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider)
+                if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider == 
+                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider)
                 {
                     if (!msgbox)
                     {
-                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider == 0)
+                        if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider == 0)
                         {
                             current = 1;
                             power = 13 * 4 + current * 100;
@@ -1150,7 +1150,7 @@ namespace Poker.Models.Rules
                         else
                         {
                             current = 1;
-                            power = (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider) * 4 + current * 100;
+                            power = (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider) * 4 + current * 100;
                             this.SortedWinningHands(current, power);
                         }
                     }
@@ -1158,23 +1158,23 @@ namespace Poker.Models.Rules
                     msgbox = true;
                 }
 
-                for (int totalCards = 16; totalCards >= Constants.CardTypes; totalCards--)
+                for (int totalCards = 16; totalCards >= Constant.CardTypes; totalCards--)
                 {
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider ==
-                        this.currentForm.cardsAsNumbers[totalCards] / Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider ==
+                        this.currentForm.cardsAsNumbers[totalCards] / Constant.Devider)
                     {
                         if (!msgbox)
                         {
-                            if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider == 0)
+                            if (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider == 0)
                             {
                                 current = 1;
-                                power = 13 * 4 + this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider + current * 100;
+                                power = 13 * 4 + this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider + current * 100;
                                 this.SortedWinningHands(current, power);
                             }
                             else
                             {
                                 current = 1;
-                                power = (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider) * 4 + 
+                                power = (this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider) * 4 + 
                                     this.currentForm.cardsAsNumbers[this.currentForm.i] / 4 + current * 100;
                                 this.SortedWinningHands(current, power);
                             }
@@ -1183,22 +1183,22 @@ namespace Poker.Models.Rules
                         msgbox = true;
                     }
 
-                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider == 
-                        this.currentForm.cardsAsNumbers[totalCards] / Constants.Devider)
+                    if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider == 
+                        this.currentForm.cardsAsNumbers[totalCards] / Constant.Devider)
                     {
                         if (!msgbox)
                         {
-                            if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider == 0)
+                            if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider == 0)
                             {
                                 current = 1;
-                                power = 13 * 4 + this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider + current * 100;
+                                power = 13 * 4 + this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider + current * 100;
                                 this.SortedWinningHands(current, power);
                             }
                             else
                             {
                                 current = 1;
-                                power = (this.currentForm.cardsAsNumbers[totalCards] / Constants.Devider) * 4 + 
-                                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider + current * 100;
+                                power = (this.currentForm.cardsAsNumbers[totalCards] / Constant.Devider) * 4 + 
+                                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider + current * 100;
                                 this.SortedWinningHands(current, power);
                             }
                         }
@@ -1214,22 +1214,22 @@ namespace Poker.Models.Rules
             this.HasSucsuccessfullyExecutedRulesHighCard = true;
             if (current == -1)
             {
-                if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider > 
-                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider)
+                if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider > 
+                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider)
                 {
                     current = -1;
-                    power = this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider;
+                    power = this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider;
                     this.SortedWinningHands(current, power);
                 }
                 else
                 {
                     current = -1;
-                    power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider;
+                    power = this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider;
                     this.SortedWinningHands(current, power);
                 }
 
-                if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constants.Devider == 0 ||
-                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constants.Devider == 0)
+                if (this.currentForm.cardsAsNumbers[this.currentForm.i] / Constant.Devider == 0 ||
+                    this.currentForm.cardsAsNumbers[this.currentForm.i + 1] / Constant.Devider == 0)
                 {
                     current = -1;
                     power = 13;

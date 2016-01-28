@@ -50,7 +50,7 @@
     <Compile Include="AddChipsWhenLost.Designer.cs">
       <DependentUpon>AddChipsWhenLost.cs</DependentUpon>
     </Compile>
-    <Compile Include="Constants\Constants.cs" />
+    <Compile Include="Constants\Constant.cs" />
     <Compile Include="Enum\BidType.cs" />
     <Compile Include="Enum\CardType.cs" />
     <Compile Include="Enum\HandStrength.cs" />
@@ -96,9 +96,7 @@
     <Compile Include="Models\Players\CardsCollection.cs" />
     <Compile Include="Models\Players\Hand.cs" />
     <Compile Include="Models\Players\Human.cs" />
-    <Compile Include="Models\Players\PBot.cs" />
     <Compile Include="Models\Players\Player.cs" />
-    <Compile Include="Models\Players\PPlayer.cs" />
     <Compile Include="Models\Players\SimpleCard.cs" />
     <Compile Include="PlayGame.cs" />
     <Compile Include="ProgressBars.cs">

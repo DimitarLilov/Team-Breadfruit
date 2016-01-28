@@ -16,27 +16,17 @@
 
     public partial class GameManager : Form
     {
-        //ProgressBar asd = new ProgressBar();
-        //public int Nm;
-     
-
-        Panel playerPanel = new Panel();
-        Panel botOnePanel = new Panel();
-        Panel botTwoPanel = new Panel();
-        Panel botThreePanel = new Panel();
-        Panel botFourPanel = new Panel();
-        Panel botFivePanel = new Panel();
 
         public int callChipsValue = 500;
         public int foldedPlayers = 5;
         private int TotalTableCards = 17;
 
-        public int playerChips = Constants.Constants.DefaultStartingChips;
-        public int botOneChips = Constants.Constants.DefaultStartingChips;
-        public int botTwoChips = Constants.Constants.DefaultStartingChips;
-        public int botThreeChips = Constants.Constants.DefaultStartingChips;
-        public int botFourChips = Constants.Constants.DefaultStartingChips;
-        public int botFiveChips = Constants.Constants.DefaultStartingChips;
+        public int playerChips = Constants.Constant.DefaultStartingChips;
+        public int botOneChips = Constants.Constant.DefaultStartingChips;
+        public int botTwoChips = Constants.Constant.DefaultStartingChips;
+        public int botThreeChips = Constants.Constant.DefaultStartingChips;
+        public int botFourChips = Constants.Constant.DefaultStartingChips;
+        public int botFiveChips = Constants.Constant.DefaultStartingChips;
 
 
         public double type;
@@ -212,12 +202,12 @@
 
         private void InitializeChipsTextBoxes()
         {
-            this.playerChipsTextBox.Text = Constants.Constants.Chips + this.playerChips;
-            this.botOneChipsTextBox.Text = Constants.Constants.Chips  + this.botOneChips;
-            this.botTwoChipsTextBox.Text = Constants.Constants.Chips + this.botTwoChips;
-            this.botThreeChipsTextBox.Text = Constants.Constants.Chips + this.botThreeChips;
-            this.botFourChipsTextBox.Text = Constants.Constants.Chips  + this.botFourChips;
-            this.botFiveChipsTextBox.Text = Constants.Constants.Chips + this.botFiveChips;
+            this.playerChipsTextBox.Text = Constants.Constant.Chips + this.playerChips;
+            this.botOneChipsTextBox.Text = Constants.Constant.Chips  + this.botOneChips;
+            this.botTwoChipsTextBox.Text = Constants.Constant.Chips + this.botTwoChips;
+            this.botThreeChipsTextBox.Text = Constants.Constant.Chips + this.botThreeChips;
+            this.botFourChipsTextBox.Text = Constants.Constant.Chips  + this.botFourChips;
+            this.botFiveChipsTextBox.Text = Constants.Constant.Chips + this.botFiveChips;
         }
 
         private void EnableAllTextBoxes()
@@ -344,13 +334,6 @@
                     this.cardsImages[this.dealtCards].Anchor = (AnchorStyles.Bottom);
                     this.cardsImages[this.dealtCards].Location = new Point(horizontal, vertical);
                     horizontal += this.cardsImages[this.dealtCards].Width;
-
-                    this.Controls.Add(this.playerPanel);
-                    this.playerPanel.Location = new Point(this.cardsImages[0].Left - 10, this.cardsImages[0].Top - 10);
-                    this.playerPanel.BackColor = Color.DarkBlue;
-                    this.playerPanel.Height = 150;
-                    this.playerPanel.Width = 180;
-                    this.playerPanel.Visible = false;
                 }
 
                 if (this.botOneChips > 0)
@@ -380,13 +363,6 @@
                         this.cardsImages[this.dealtCards].Location = new Point(horizontal, vertical);
                         horizontal += this.cardsImages[this.dealtCards].Width;
                         this.cardsImages[this.dealtCards].Visible = true;
-
-                        this.Controls.Add(this.botOnePanel);
-                        this.botOnePanel.Location = new Point(this.cardsImages[2].Left - 10, this.cardsImages[2].Top - 10);
-                        this.botOnePanel.BackColor = Color.DarkBlue;
-                        this.botOnePanel.Height = 150;
-                        this.botOnePanel.Width = 180;
-                        this.botOnePanel.Visible = false;
 
                         if (this.dealtCards == 3)
                         {
@@ -422,13 +398,6 @@
                         horizontal += this.cardsImages[this.dealtCards].Width;
                         this.cardsImages[this.dealtCards].Visible = true;
 
-                        this.Controls.Add(this.botTwoPanel);
-                        this.botTwoPanel.Location = new Point(this.cardsImages[4].Left - 10, this.cardsImages[4].Top - 10);
-                        this.botTwoPanel.BackColor = Color.DarkBlue;
-                        this.botTwoPanel.Height = 150;
-                        this.botTwoPanel.Width = 180;
-                        this.botTwoPanel.Visible = false;
-
                         if (this.dealtCards == 5)
                         {
                             isCardOnTheTable = false;
@@ -462,12 +431,6 @@
                         this.cardsImages[this.dealtCards].Location = new Point(horizontal, vertical);
                         horizontal += this.cardsImages[this.dealtCards].Width;
                         this.cardsImages[this.dealtCards].Visible = true;
-                        this.Controls.Add(this.botThreePanel);
-                        this.botThreePanel.Location = new Point(this.cardsImages[6].Left - 10, this.cardsImages[6].Top - 10);
-                        this.botThreePanel.BackColor = Color.DarkBlue;
-                        this.botThreePanel.Height = 150;
-                        this.botThreePanel.Width = 180;
-                        this.botThreePanel.Visible = false;
 
                         if (this.dealtCards == 7)
                         {
@@ -503,13 +466,6 @@
                         horizontal += this.cardsImages[this.dealtCards].Width;
                         this.cardsImages[this.dealtCards].Visible = true;
 
-                        this.Controls.Add(this.botFourPanel);
-                        this.botFourPanel.Location = new Point(this.cardsImages[8].Left - 10, this.cardsImages[8].Top - 10);
-                        this.botFourPanel.BackColor = Color.DarkBlue;
-                        this.botFourPanel.Height = 150;
-                        this.botFourPanel.Width = 180;
-                        this.botFourPanel.Visible = false;
-
                         if (this.dealtCards == 9)
                         {
                             isCardOnTheTable = false;
@@ -544,12 +500,6 @@
                         this.cardsImages[this.dealtCards].Location = new Point(horizontal, vertical);
                         horizontal += this.cardsImages[this.dealtCards].Width;
                         this.cardsImages[this.dealtCards].Visible = true;
-                        this.Controls.Add(this.botFivePanel);
-                        this.botFivePanel.Location = new Point(this.cardsImages[10].Left - 10, this.cardsImages[10].Top - 10);
-                        this.botFivePanel.BackColor = Color.DarkBlue;
-                        this.botFivePanel.Height = 150;
-                        this.botFivePanel.Width = 180;
-                        this.botFivePanel.Visible = false;
 
                         if (this.dealtCards == 11)
                         {
@@ -742,8 +692,8 @@
 
                 if (this.hasPlayerBankrupted && !this.hasPlayerFolded)
                 {
-                    if (this.playerCallButton.Text.Contains(Constants.Constants.AllInString) == false ||
-                        this.playerRaiseButton.Text.Contains(Constants.Constants.AllInString) == false)
+                    if (this.playerCallButton.Text.Contains(Constants.Constant.AllInString) == false ||
+                        this.playerRaiseButton.Text.Contains(Constants.Constant.AllInString) == false)
                     {
                         this.bankruptPlayers.RemoveAt(0);
                         this.bankruptPlayers.Insert(0, null);
@@ -920,8 +870,8 @@
 
                 if (this.hasPlayerBankrupted && !this.hasPlayerFolded)
                 {
-                    if (this.playerCallButton.Text.Contains(Constants.Constants.AllInString) == false || 
-                        this.playerRaiseButton.Text.Contains(Constants.Constants.AllInString) == false)
+                    if (this.playerCallButton.Text.Contains(Constants.Constant.AllInString) == false || 
+                        this.playerRaiseButton.Text.Contains(Constants.Constant.AllInString) == false)
                     {
                         this.bankruptPlayers.RemoveAt(0);
                         this.bankruptPlayers.Insert(0, null);
@@ -971,18 +921,18 @@
 
             this.CheckRaiseDealer.CheckFlopTurnOrRiver();
 
-            if (this.totalRounds == Constants.Constants.End && this.maxLeft == 6)
+            if (this.totalRounds == Constants.Constant.End && this.maxLeft == 6)
             {
                 string fixedLast = string.Empty;
 
                 fixedLast = this.CheckRaiseDealer.CheckPlayerBotsStatus(fixedLast);
 
-                this.Winner1.WinnerRules(this.playerType, this.playerPower, Constants.Constants.Player, fixedLast);
-                this.Winner1.WinnerRules(this.botOneType, this.botOnePower, Constants.Constants.Bot1Winner, fixedLast);
-                this.Winner1.WinnerRules(this.botTwoType, this.botTwoPower, Constants.Constants.Bot2Winner, fixedLast);
-                this.Winner1.WinnerRules(this.botThreeType, this.botThreePower, Constants.Constants.Bot3Winner, fixedLast);
-                this.Winner1.WinnerRules(this.botFourType, this.botFourPower, Constants.Constants.Bot4Winner, fixedLast);
-                this.Winner1.WinnerRules(this.botFiveType, this.botFivePower, Constants.Constants.Bot5Winner, fixedLast);
+                this.Winner1.WinnerRules(this.playerType, this.playerPower, Constants.Constant.Player, fixedLast);
+                this.Winner1.WinnerRules(this.botOneType, this.botOnePower, Constants.Constant.Bot1Winner, fixedLast);
+                this.Winner1.WinnerRules(this.botTwoType, this.botTwoPower, Constants.Constant.Bot2Winner, fixedLast);
+                this.Winner1.WinnerRules(this.botThreeType, this.botThreePower, Constants.Constant.Bot3Winner, fixedLast);
+                this.Winner1.WinnerRules(this.botFourType, this.botFourPower, Constants.Constant.Bot4Winner, fixedLast);
+                this.Winner1.WinnerRules(this.botFiveType, this.botFivePower, Constants.Constant.Bot5Winner, fixedLast);
 
                 this.shouldRestart = true;
                 this.playerTurn = true;
@@ -995,13 +945,6 @@
                 this.hasBotFiveBankrupted = false;
 
                 this.CheckRaiseDealer.AddChipsIfLost();
-
-                this.playerPanel.Visible = false;
-                this.botOnePanel.Visible = false;
-                this.botTwoPanel.Visible = false;
-                this.botThreePanel.Visible = false;
-                this.botFourPanel.Visible = false;
-                this.botFivePanel.Visible = false;
 
                 this.playerCall = 0;
                 this.playerRaise = 0;
@@ -1069,23 +1012,23 @@
 
         public void CheckCurrentBid(Label status, ref int chipCall, ref int chipRaise, int options)
         {
-            if (this.totalRounds != Constants.Constants.LastRound)
+            if (this.totalRounds != Constants.Constant.LastRound)
             {
                 if (options == 1)
                 {
-                    if (status.Text.Contains(Constants.Constants.Raise))
+                    if (status.Text.Contains(Constants.Constant.Raise))
                     {
                         var changeRaise = status.Text.Substring(6);
                         chipRaise = int.Parse(changeRaise);
                     }
 
-                    if (status.Text.Contains(Constants.Constants.Call))
+                    if (status.Text.Contains(Constants.Constant.Call))
                     {
                         var changeCall = status.Text.Substring(5);
                         chipCall = int.Parse(changeCall);
                     }
 
-                    if (status.Text.Contains(Constants.Constants.Check))
+                    if (status.Text.Contains(Constants.Constant.Check))
                     {
                         chipRaise = 0;
                         chipCall = 0;
@@ -1134,7 +1077,7 @@
             this.hasAddedChips = false;
 
             if (currentWinnerNumber < 6 &&
-                currentWinnerNumber > 1 && this.totalRounds >= Constants.Constants.End)
+                currentWinnerNumber > 1 && this.totalRounds >= Constants.Constant.End)
             {
                 await this.Finish(2);
             }
@@ -1148,7 +1091,6 @@
             {
                 this.playerChips += int.Parse(this.potTextBox.Text);
                 this.playerChipsTextBox.Text = this.playerChips.ToString();
-                this.playerPanel.Visible = true;
                 MessageBox.Show(@"Player Wins");
             }
 
@@ -1156,7 +1098,6 @@
             {
                 this.botOneChips += int.Parse(this.potTextBox.Text);
                 this.botOneChipsTextBox.Text = this.botOneChips.ToString();
-                this.botOnePanel.Visible = true;
                 MessageBox.Show(@"Bot 1 Wins");
             }
 
@@ -1164,7 +1105,6 @@
             {
                 this.botTwoChips += int.Parse(this.potTextBox.Text);
                 this.botTwoChipsTextBox.Text = this.botTwoChips.ToString();
-                this.botTwoPanel.Visible = true;
                 MessageBox.Show(@"Bot 2 Wins");
             }
 
@@ -1172,7 +1112,6 @@
             {
                 this.botThreeChips += int.Parse(this.potTextBox.Text);
                 this.botThreeChipsTextBox.Text = this.botThreeChips.ToString();
-                this.botThreePanel.Visible = true;
                 MessageBox.Show(@"Bot 3 Wins");
             }
 
@@ -1180,7 +1119,6 @@
             {
                 this.botFourChips += int.Parse(this.potTextBox.Text);
                 this.botFourChipsTextBox.Text = this.botFourChips.ToString();
-                this.botFourPanel.Visible = true;
                 MessageBox.Show(@"Bot 4 Wins");
             }
 
@@ -1188,7 +1126,6 @@
             {
                 this.botFiveChips += int.Parse(this.potTextBox.Text);
                 this.botFiveChipsTextBox.Text = this.botFiveChips.ToString();
-                this.botFivePanel.Visible = true;
                 MessageBox.Show(@"Bot 5 Wins");
             }
         }
@@ -1272,13 +1209,6 @@
             {
                 this.winner.FixWinners();
             }
-
-            this.playerPanel.Visible = false;
-            this.botOnePanel.Visible = false;
-            this.botTwoPanel.Visible = false;
-            this.botThreePanel.Visible = false;
-            this.botFourPanel.Visible = false;
-            this.botFivePanel.Visible = false;
 
             this.callChipsValue = this.bigBlind;
             this.Raise = 0;
@@ -1423,40 +1353,40 @@
         {
             if (this.playerChips <= 0)
             {
-                this.playerChipsTextBox.Text = Constants.Constants.Chips + @"0";
+                this.playerChipsTextBox.Text = Constants.Constant.Chips + @"0";
             }
 
             if (this.botOneChips <= 0)
             {
-                this.botOneChipsTextBox.Text = Constants.Constants.Chips + @"0";
+                this.botOneChipsTextBox.Text = Constants.Constant.Chips + @"0";
             }
 
             if (this.botTwoChips <= 0)
             {
-                this.botTwoChipsTextBox.Text = Constants.Constants.Chips + @"0";
+                this.botTwoChipsTextBox.Text = Constants.Constant.Chips + @"0";
             }
 
             if (this.botThreeChips <= 0)
             {
-                this.botThreeChipsTextBox.Text = Constants.Constants.Chips + @"0";
+                this.botThreeChipsTextBox.Text = Constants.Constant.Chips + @"0";
             }
 
             if (this.botFourChips <= 0)
             {
-                this.botFourChipsTextBox.Text = Constants.Constants.Chips + @"0";
+                this.botFourChipsTextBox.Text = Constants.Constant.Chips + @"0";
             }
 
             if (this.botFiveChips <= 0)
             {
-                this.botFiveChipsTextBox.Text = Constants.Constants.Chips + @"0";
+                this.botFiveChipsTextBox.Text = Constants.Constant.Chips + @"0";
             }
 
-            this.playerChipsTextBox.Text = Constants.Constants.Chips + this.playerChips;
-            this.botOneChipsTextBox.Text = Constants.Constants.Chips + this.botOneChips;
-            this.botTwoChipsTextBox.Text = Constants.Constants.Chips + this.botTwoChips;
-            this.botThreeChipsTextBox.Text = Constants.Constants.Chips + this.botThreeChips;
-            this.botFourChipsTextBox.Text = Constants.Constants.Chips + this.botFourChips;
-            this.botFiveChipsTextBox.Text = Constants.Constants.Chips + this.botFiveChips;
+            this.playerChipsTextBox.Text = Constants.Constant.Chips + this.playerChips;
+            this.botOneChipsTextBox.Text = Constants.Constant.Chips + this.botOneChips;
+            this.botTwoChipsTextBox.Text = Constants.Constant.Chips + this.botTwoChips;
+            this.botThreeChipsTextBox.Text = Constants.Constant.Chips + this.botThreeChips;
+            this.botFourChipsTextBox.Text = Constants.Constant.Chips + this.botFourChips;
+            this.botFiveChipsTextBox.Text = Constants.Constant.Chips + this.botFiveChips;
 
             if (this.playerChips <= 0)
             {
@@ -1475,11 +1405,11 @@
 
             if (this.playerChips >= this.callChipsValue)
             {
-                this.playerCallButton.Text = Constants.Constants.Call + this.callChipsValue;
+                this.playerCallButton.Text = Constants.Constant.Call + this.callChipsValue;
             }
             else
             {
-                this.playerCallButton.Text = Constants.Constants.AllInString;
+                this.playerCallButton.Text = Constants.Constant.AllInString;
                 this.playerRaiseButton.Enabled = false;
             }
 
@@ -1491,7 +1421,7 @@
             if (this.callChipsValue <= 0)
             {
                 this.playerCheckButton.Enabled = true;
-                this.playerCallButton.Text = Constants.Constants.Call;
+                this.playerCallButton.Text = Constants.Constant.Call;
                 this.playerCallButton.Enabled = false;
             }   
 
@@ -1506,11 +1436,11 @@
             {
                 if (this.playerChips <= int.Parse(this.playerRaiseTextBox.Text))
                 {
-                    this.playerRaiseButton.Text = Constants.Constants.AllInString;
+                    this.playerRaiseButton.Text = Constants.Constant.AllInString;
                 }
                 else
                 {
-                    this.playerRaiseButton.Text = Constants.Constants.Raise;
+                    this.playerRaiseButton.Text = Constants.Constant.Raise;
                 }
             }
 
@@ -1522,7 +1452,7 @@
 
         private async void ButtonFoldClick(object sender, EventArgs e)
         {
-            this.playerStatus.Text = Constants.Constants.Fold;
+            this.playerStatus.Text = Constants.Constant.Fold;
             this.playerTurn = false;
             this.hasPlayerBankrupted = true;
             await this.Turns();
@@ -1533,7 +1463,7 @@
             if (this.callChipsValue <= 0)
             {
                 this.playerTurn = false;
-                this.playerStatus.Text = Constants.Constants.Check;
+                this.playerStatus.Text = Constants.Constant.Check;
             }
             else
             {
@@ -1550,7 +1480,7 @@
             if (this.playerChips >= this.callChipsValue)
             {
                 this.playerChips -= this.callChipsValue;
-                this.playerChipsTextBox.Text = Constants.Constants.Chips + this.playerChips;
+                this.playerChipsTextBox.Text = Constants.Constant.Chips + this.playerChips;
 
                 if (this.potTextBox.Text != string.Empty)
                 {
@@ -1562,15 +1492,15 @@
                 }
 
                 this.playerTurn = false;
-                this.playerStatus.Text = Constants.Constants.Call + this.callChipsValue;
+                this.playerStatus.Text = Constants.Constant.Call + this.callChipsValue;
                 this.playerCall = this.callChipsValue;
             }
             else if (this.playerChips <= this.callChipsValue && this.callChipsValue > 0)
             {
                 this.potTextBox.Text = (int.Parse(this.potTextBox.Text) + this.playerChips).ToString();
-                this.playerStatus.Text = Constants.Constants.AllInString + this.playerChips;
+                this.playerStatus.Text = Constants.Constant.AllInString + this.playerChips;
                 this.playerChips = 0;
-                this.playerChipsTextBox.Text = Constants.Constants.Chips + this.playerChips;
+                this.playerChipsTextBox.Text = Constants.Constant.Chips + this.playerChips;
                 this.playerTurn = false;
                 this.playerFoldButton.Enabled = false;
                 this.playerCall = this.playerChips;
@@ -1600,9 +1530,9 @@
                     {
                         this.callChipsValue = int.Parse(this.playerRaiseTextBox.Text);
                         this.Raise = int.Parse(this.playerRaiseTextBox.Text);
-                        this.playerStatus.Text = Constants.Constants.Raise + this.callChipsValue;
+                        this.playerStatus.Text = Constants.Constant.Raise + this.callChipsValue;
                         this.potTextBox.Text = (int.Parse(this.potTextBox.Text) + this.callChipsValue).ToString();
-                        this.playerCallButton.Text = Constants.Constants.Call;
+                        this.playerCallButton.Text = Constants.Constant.Call;
                         this.playerChips -= int.Parse(this.playerRaiseTextBox.Text);
                         this.isRaising = true;
                         this.last = 0;
@@ -1613,7 +1543,7 @@
                         this.callChipsValue = this.playerChips;
                         this.Raise = this.playerChips;
                         this.potTextBox.Text = (int.Parse(this.potTextBox.Text) + this.playerChips).ToString();
-                        this.playerStatus.Text = Constants.Constants.Raise + this.callChipsValue;
+                        this.playerStatus.Text = Constants.Constant.Raise + this.callChipsValue;
                         this.playerChips = 0;
                         this.isRaising = true;
                         this.last = 0;
@@ -1647,7 +1577,7 @@
                 this.botFiveChips += int.Parse(this.addChipsTextBox.Text);
             }
 
-            this.playerChipsTextBox.Text = Constants.Constants.Chips + this.playerChips;
+            this.playerChipsTextBox.Text = Constants.Constant.Chips + this.playerChips;
         }
 
         private void BlindOptionsClick(object sender, EventArgs e)

@@ -62,39 +62,39 @@ namespace Poker.Models
 
         public string CheckPlayerBotsStatus(string fixedLast)
         {
-            if (!this.currentForm.playerStatus.Text.Contains(Winner.FoldString))
+            if (!this.currentForm.playerStatus.Text.Contains(Constant.Fold))
             {
-                fixedLast = Constants.Player;
+                fixedLast = Constant.Player;
                 this.currentForm.CurrentRules.GameRulesCreator(0, 1, ref this.currentForm.playerType, ref this.currentForm.playerPower, this.currentForm.hasPlayerBankrupted);
             }
 
-            if (!this.currentForm.botOneStatus.Text.Contains(Winner.FoldString))
+            if (!this.currentForm.botOneStatus.Text.Contains(Constant.Fold))
             {
-                fixedLast = Constants.Winner1;
+                fixedLast = Constant.Winner1;
                 this.currentForm.CurrentRules.GameRulesCreator(2, 3, ref this.currentForm.botOneType, ref this.currentForm.botOnePower, this.currentForm.hasBotOneBankrupted);
             }
 
-            if (!this.currentForm.botTwoStatus.Text.Contains(Winner.FoldString))
+            if (!this.currentForm.botTwoStatus.Text.Contains(Constant.Fold))
             {
-                fixedLast = Constants.Winner2;
+                fixedLast = Constant.Winner2;
                 this.currentForm.CurrentRules.GameRulesCreator(4, 5, ref this.currentForm.botTwoType, ref this.currentForm.botTwoPower, this.currentForm.hasBotTwoBankrupted);
             }
 
-            if (!this.currentForm.botThreeStatus.Text.Contains(Winner.FoldString))
+            if (!this.currentForm.botThreeStatus.Text.Contains(Constant.Fold))
             {
-                fixedLast = Constants.Winner3;
+                fixedLast = Constant.Winner3;
                 this.currentForm.CurrentRules.GameRulesCreator(6, 7, ref this.currentForm.botThreeType, ref this.currentForm.botThreePower, this.currentForm.hasBotThreeBankrupted);
             }
 
-            if (!this.currentForm.botFourStatus.Text.Contains(Winner.FoldString))
+            if (!this.currentForm.botFourStatus.Text.Contains(Constant.Fold))
             {
-                fixedLast = Constants.Winner4;
+                fixedLast = Constant.Winner4;
                 this.currentForm.CurrentRules.GameRulesCreator(8, 9, ref this.currentForm.botFourType, ref this.currentForm.botFourPower, this.currentForm.hasBotFourBankrupted);
             }
 
-            if (!this.currentForm.botFiveStatus.Text.Contains(Winner.FoldString))
+            if (!this.currentForm.botFiveStatus.Text.Contains(Constant.Fold))
             {
-                fixedLast = Constants.Winner5;
+                fixedLast = Constant.Winner5;
                 this.currentForm.CurrentRules.GameRulesCreator(10, 11, ref this.currentForm.botFiveType, ref this.currentForm.botFivePower, this.currentForm.hasBotFiveBankrupted);
             }
 
@@ -103,7 +103,7 @@ namespace Poker.Models
 
         public void CheckFlopTurnOrRiver()
         {
-            if (this.currentForm.totalRounds == GameManager.Flop)
+            if (this.currentForm.totalRounds == Constant.Flop)
             {
                 for (int j = 12; j <= 14; j++)
                 {
@@ -113,7 +113,7 @@ namespace Poker.Models
                 this.HasExecutedFlop = true;
             }
 
-            if (this.currentForm.totalRounds == GameManager.Turn)
+            if (this.currentForm.totalRounds == Constant.Turn)
             {
                 for (int j = 14; j <= 15; j++)
                 {
@@ -123,7 +123,7 @@ namespace Poker.Models
                 this.HasExecutedTurn = true;
             }
 
-            if (this.currentForm.totalRounds == GameManager.River)
+            if (this.currentForm.totalRounds == Constant.River)
             {
                 for (int j = 15; j <= 16; j++)
                 {
