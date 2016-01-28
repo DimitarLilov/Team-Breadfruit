@@ -10,26 +10,26 @@
     {
         public bool HasCalled { get; set; }
 
+        public bool HasChecked { get; set; }
+
+        public bool HasFolded { get; set; }
+
+        public bool HasRaised { get; set; }
+
         public void Call()
         {
             throw new NotImplementedException();
         }
-
-        public bool HasChecked { get; set; }
 
         public void Check()
         {
             throw new NotImplementedException();
         }
 
-        public bool HasFolded { get; set; }
-
         public void Fold()
         {
             throw new NotImplementedException();
         }
-
-        public bool HasRaised { get; set; }
 
         public void Raise()
         {

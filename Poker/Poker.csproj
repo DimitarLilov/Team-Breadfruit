@@ -50,6 +50,7 @@
     <Compile Include="AddChipsWhenLost.Designer.cs">
       <DependentUpon>AddChipsWhenLost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Constants\Constants.cs" />
     <Compile Include="Enum\BidType.cs" />
     <Compile Include="Enum\CardType.cs" />
     <Compile Include="Enum\HandStrength.cs" />

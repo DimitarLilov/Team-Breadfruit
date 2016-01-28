@@ -2,7 +2,7 @@
 namespace Poker.Test
 {
     using System;
-    using System.Windows.Forms;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Poker.Models.Rules;
 
@@ -90,7 +90,6 @@ namespace Poker.Test
                 this.sampleHasBankrupted);
 
             Assert.AreEqual(expected, this.rules.HasSucsuccessfullyExecutedRulesTwoPair, "Unable to get into the RulesTwoPair method.");
-            //Assert.AreEqual(expected, this.rules.HasSucsuccessfullyExecutedRulesPairFromHand, "Unable to get into the RulesPairFromHand method.");
             Assert.AreEqual(expected, this.rules.HasSucsuccessfullyExecutedRulesStraight, "Unable to get into the RulesStraight method.");
             Assert.AreEqual(expected, this.rules.HasSucsuccessfullyExecutedRulesThreeOfAKind, "Unable to get into the RulesThreeOfAKind method.");
             Assert.AreEqual(expected, this.rules.HasSucsuccessfullyExecutedRulesFullHouse, "Unable to get into the RulesFullHouse method.");

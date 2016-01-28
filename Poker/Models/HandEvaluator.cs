@@ -1,13 +1,10 @@
-﻿using Poker.Enum;
-using Poker.Models.Players;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Poker.Models
+﻿namespace Poker.Models
 {
+    using Poker.Enum;
+    using Poker.Models.Players;
+
+    using System.Collections.Generic;
+
     public class HandEvaluator
     {
         private int heartsSum;
@@ -34,6 +31,7 @@ namespace Poker.Models
             {
                 return this.handValue;
             }
+
             private set
             {
                 this.handValue = value;
@@ -46,6 +44,7 @@ namespace Poker.Models
             {
                 return cards;
             }
+
             set
             {
                 cards.Add(value[0]);
@@ -91,6 +90,7 @@ namespace Poker.Models
 
             //if the hand is nothing, than the player with highest card wins
             this.handValue.HighCard = (int)cards[4].Type;
+
             return HandStrength.Nothing;
         }
 
@@ -117,12 +117,14 @@ namespace Poker.Models
             {
                 handValue.Total = (int)cards[1].Type * 4;
                 handValue.HighCard = (int)cards[4].Type;
+
                 return true;
             }
             else if (cards[1].Type == cards[2].Type && cards[1].Type == cards[3].Type && cards[1].Type == cards[4].Type)
             {
                 handValue.Total = (int)cards[1].Type * 4;
                 handValue.HighCard = (int)cards[0].Type;
+
                 return true;
             }
 
@@ -138,6 +140,7 @@ namespace Poker.Models
             {
                 handValue.Total = (int)(cards[0].Type) + (int)(cards[1].Type) + (int)(cards[2].Type) +
                     (int)(cards[3].Type) + (int)(cards[4].Type);
+
                 return true;
             }
 
@@ -152,6 +155,7 @@ namespace Poker.Models
                 //if flush, the player with higher cards win
                 //whoever has the last card the highest, has automatically all the cards total higher
                 handValue.Total = (int)cards[4].Type;
+
                 return true;
             }
 
@@ -168,6 +172,7 @@ namespace Poker.Models
             {
                 //player with the highest value of the last card wins
                 handValue.Total = (int)cards[4].Type;
+
                 return true;
             }
 
@@ -191,8 +196,10 @@ namespace Poker.Models
             {
                 handValue.Total = (int)cards[2].Type * 3;
                 handValue.HighCard = (int)cards[1].Type;
+
                 return true;
             }
+
             return false;
         }
 
@@ -207,20 +214,24 @@ namespace Poker.Models
             {
                 handValue.Total = ((int)cards[1].Type * 2) + ((int)cards[3].Type * 2);
                 handValue.HighCard = (int)cards[4].Type;
+
                 return true;
             }
             else if (cards[0].Type == cards[1].Type && cards[3].Type == cards[4].Type)
             {
                 handValue.Total = ((int)cards[1].Type * 2) + ((int)cards[3].Type * 2);
                 handValue.HighCard = (int)cards[2].Type;
+
                 return true;
             }
             else if (cards[1].Type == cards[2].Type && cards[3].Type == cards[4].Type)
             {
                 handValue.Total = ((int)cards[1].Type * 2) + ((int)cards[3].Type * 2);
                 handValue.HighCard = (int)cards[0].Type;
+
                 return true;
             }
+
             return false;
         }
 
@@ -234,24 +245,28 @@ namespace Poker.Models
             {
                 handValue.Total = (int)cards[0].Type * 2;
                 handValue.HighCard = (int)cards[4].Type;
+
                 return true;
             }
             else if (cards[1].Type == cards[2].Type)
             {
                 handValue.Total = (int)cards[1].Type * 2;
                 handValue.HighCard = (int)cards[4].Type;
+
                 return true;
             }
             else if (cards[2].Type == cards[3].Type)
             {
                 handValue.Total = (int)cards[2].Type * 2;
                 handValue.HighCard = (int)cards[4].Type;
+
                 return true;
             }
             else if (cards[3].Type == cards[4].Type)
             {
                 handValue.Total = (int)cards[3].Type * 2;
                 handValue.HighCard = (int)cards[2].Type;
+
                 return true;
             }
 

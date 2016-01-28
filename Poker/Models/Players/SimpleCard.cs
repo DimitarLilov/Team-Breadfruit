@@ -1,12 +1,8 @@
-﻿using Poker.Enum;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Poker.Models.Players
+﻿namespace Poker.Models.Players
 {
+    using Poker.Enum;
+    using System;
+
     public class SimpleCard : IComparable<SimpleCard>
     {
         public SimpleCard(CardType type, Suit suit)
@@ -24,6 +20,7 @@ namespace Poker.Models.Players
             if (obj is SimpleCard)
             {
                 var card = (SimpleCard)obj;
+
                 return this.Type == card.Type && this.Suit == card.Suit;
             }
 

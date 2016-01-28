@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Poker.Extentions
+﻿namespace Poker.Extentions
 {
+    using System.Collections.Generic;
+
     public static class QueueExtensions
     {
         public static void Shuffle<T>(this Queue<T> source)
@@ -22,6 +18,7 @@ namespace Poker.Extentions
             }
 
             source.Clear();
+
             foreach (var element in tempArr)
             {
                 source.Enqueue(element);

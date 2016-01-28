@@ -17,8 +17,6 @@
                 thirdPlayer, forthPlayer,
                 fifthPlayer, sixthPlayer
             };
-
-
         }
     }
 }

@@ -3,6 +3,8 @@ namespace Poker.Models
     using Poker;
     using Interfaces;
 
+    using Constants;
+
     public class Dealer : IDealer
     {
         private readonly GameManager currentForm;
@@ -62,37 +64,37 @@ namespace Poker.Models
         {
             if (!this.currentForm.playerStatus.Text.Contains(Winner.FoldString))
             {
-                fixedLast = "Player";
+                fixedLast = Constants.Player;
                 this.currentForm.CurrentRules.GameRulesCreator(0, 1, ref this.currentForm.playerType, ref this.currentForm.playerPower, this.currentForm.hasPlayerBankrupted);
             }
 
             if (!this.currentForm.botOneStatus.Text.Contains(Winner.FoldString))
             {
-                fixedLast = "Winner 1";
+                fixedLast = Constants.Winner1;
                 this.currentForm.CurrentRules.GameRulesCreator(2, 3, ref this.currentForm.botOneType, ref this.currentForm.botOnePower, this.currentForm.hasBotOneBankrupted);
             }
 
             if (!this.currentForm.botTwoStatus.Text.Contains(Winner.FoldString))
             {
-                fixedLast = "Winner 2";
+                fixedLast = Constants.Winner2;
                 this.currentForm.CurrentRules.GameRulesCreator(4, 5, ref this.currentForm.botTwoType, ref this.currentForm.botTwoPower, this.currentForm.hasBotTwoBankrupted);
             }
 
             if (!this.currentForm.botThreeStatus.Text.Contains(Winner.FoldString))
             {
-                fixedLast = "Winner 3";
+                fixedLast = Constants.Winner3;
                 this.currentForm.CurrentRules.GameRulesCreator(6, 7, ref this.currentForm.botThreeType, ref this.currentForm.botThreePower, this.currentForm.hasBotThreeBankrupted);
             }
 
             if (!this.currentForm.botFourStatus.Text.Contains(Winner.FoldString))
             {
-                fixedLast = "Winner 4";
+                fixedLast = Constants.Winner4;
                 this.currentForm.CurrentRules.GameRulesCreator(8, 9, ref this.currentForm.botFourType, ref this.currentForm.botFourPower, this.currentForm.hasBotFourBankrupted);
             }
 
             if (!this.currentForm.botFiveStatus.Text.Contains(Winner.FoldString))
             {
-                fixedLast = "Winner 5";
+                fixedLast = Constants.Winner5;
                 this.currentForm.CurrentRules.GameRulesCreator(10, 11, ref this.currentForm.botFiveType, ref this.currentForm.botFivePower, this.currentForm.hasBotFiveBankrupted);
             }
 
@@ -187,32 +189,32 @@ namespace Poker.Models
         {
             if (!this.currentForm.hasPlayerBankrupted)
             {
-                this.currentForm.playerStatus.Text = "";
+                this.currentForm.playerStatus.Text = string.Empty;
             }
 
             if (!this.currentForm.hasBotOneBankrupted)
             {
-                this.currentForm.botOneStatus.Text = "";
+                this.currentForm.botOneStatus.Text = string.Empty;
             }
 
             if (!this.currentForm.hasBotTwoBankrupted)
             {
-                this.currentForm.botTwoStatus.Text = "";
+                this.currentForm.botTwoStatus.Text = string.Empty;
             }
 
             if (!this.currentForm.hasBotThreeBankrupted)
             {
-                this.currentForm.botThreeStatus.Text = "";
+                this.currentForm.botThreeStatus.Text = string.Empty;
             }
 
             if (!this.currentForm.hasBotFourBankrupted)
             {
-                this.currentForm.botFourStatus.Text = "";
+                this.currentForm.botFourStatus.Text = string.Empty;
             }
 
             if (!this.currentForm.hasBotFiveBankrupted)
             {
-                this.currentForm.botFiveStatus.Text = "";
+                this.currentForm.botFiveStatus.Text = string.Empty;
             }
         }
     }

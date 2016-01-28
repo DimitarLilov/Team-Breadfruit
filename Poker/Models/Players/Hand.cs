@@ -11,7 +11,5 @@
             : base(capacity)
         {
         }
-
-
     }
 }

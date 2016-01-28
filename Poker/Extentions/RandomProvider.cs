@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Poker.Extentions
+﻿namespace Poker.Extentions
 {
+    using System;
+
     public static class RandomProvider
     {
         private static object syncRoot = new object();
